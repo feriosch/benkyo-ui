@@ -1,3 +1,6 @@
+import { prodBackendUrl } from './env'
+
 export const environment = {
-  production: true
+  production: true,
+  backendUrl: prodBackendUrl
 };

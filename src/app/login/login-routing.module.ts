@@ -5,7 +5,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'signin',
+    pathMatch: 'full',
     component: LoginFormComponent
   }
 ];

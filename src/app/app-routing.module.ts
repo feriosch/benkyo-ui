@@ -1,11 +1,19 @@
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 const routes: Routes= [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/vocabulary',
+  },
+  {
+    path: 'login',
     loadChildren: async () => {
       const m = await import('./login/login-routing.module');
       return m.LoginRoutingModule;
@@ -13,6 +21,7 @@ const routes: Routes= [
   },
   {
     path: 'vocabulary',
+    canActivate: [AuthGuardService],
     loadChildren: async () => {
       const m = await import('./vocabulary/vocabulary-routing.module');
       return m.VocabularyRoutingModule;
@@ -31,6 +40,13 @@ const routes: Routes= [
       onSameUrlNavigation: 'reload'
     })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ]
 })
 export class AppRoutingModule { }
