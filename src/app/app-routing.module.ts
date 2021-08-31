@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { LoginGuardService } from "./auth/login-guard.service";
 
 const routes: Routes= [
   {
@@ -14,6 +15,7 @@ const routes: Routes= [
   },
   {
     path: 'login',
+    canActivate: [LoginGuardService],
     loadChildren: async () => {
       const m = await import('./login/login-routing.module');
       return m.LoginRoutingModule;

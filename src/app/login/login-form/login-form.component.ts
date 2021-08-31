@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
 import { LoginResponse } from '../../../models/responses/login';
@@ -14,14 +13,13 @@ export class LoginFormComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   onSubmit() {
     this.authService.submitCredentials(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
       .subscribe(
         async (response: LoginResponse) => {
-          localStorage.setItem('token', response.token);
-          await this.router.navigate(['/vocabulary'])
+          await this.authService.login(response.token);
         },
         (error) => {
           console.log(error)
