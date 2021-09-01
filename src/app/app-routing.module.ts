@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { LoginGuardService } from "./auth/login-guard.service";
+import { LoginGuardService } from './auth/login-guard.service';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes= [
   {
