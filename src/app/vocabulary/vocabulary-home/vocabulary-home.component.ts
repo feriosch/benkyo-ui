@@ -30,7 +30,7 @@ export class VocabularyHomeComponent implements OnInit {
     this.words$ = new Observable<Word[]>();
   }
 
-  getWords() {
+  getWords(): void {
     this.words$ = this.vocabularyService.getWords(
       this.collection,
       this.pageSize,
