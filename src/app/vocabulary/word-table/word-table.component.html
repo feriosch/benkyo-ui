@@ -1,9 +1,10 @@
-<div class="container grid-table">
+<div class="container">
   <ag-grid-angular
-    style="width: 500px; height: 500px;"
     class="ag-theme-alpine"
+    domLayout="autoHeight"
     [rowData]="words"
     [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
   >
   </ag-grid-angular>
 </div>

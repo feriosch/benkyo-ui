@@ -6,3 +6,10 @@ $purple: #8a4d76;
 @import "node_modules/bulma/bulma";
 @import "node_modules/ag-grid-community/dist/styles/ag-grid";
 @import "node_modules/ag-grid-community/dist/styles/ag-theme-alpine";
+@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+
+.ag-theme-alpine {
+  @include ag-theme-alpine((
+    // alpine-active-color: deeppink
+  ));
+}

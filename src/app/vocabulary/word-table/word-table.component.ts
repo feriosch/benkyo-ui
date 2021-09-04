@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Word } from '../../../models/responses/vocabulary/word.model';
+import { AgGridEvent, ColDef } from 'ag-grid-community';
 
 @Component({
   selector: 'app-word-table',
@@ -9,9 +10,8 @@ import { Word } from '../../../models/responses/vocabulary/word.model';
 export class WordTableComponent implements OnInit {
 
   @Input()
-  words?: any;
-
-  columnDefs: Array<any>;
+  words: any;
+  columnDefs: ColDef[];
 
   constructor() {
     this.words = new Array<Word>();
@@ -23,6 +23,10 @@ export class WordTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onGridReady(params: AgGridEvent) {
+    params.api.sizeColumnsToFit();
   }
 
 }
