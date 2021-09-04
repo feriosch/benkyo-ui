@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Word } from '../../../models/responses/vocabulary/word.model';
 import { AgGridEvent, ColDef } from 'ag-grid-community';
+
+import { Word } from '../../../../models/responses/vocabulary/word.model';
+
 
 @Component({
   selector: 'app-word-table',

@@ -1,4 +1,19 @@
-<p>vocabulary-home works!</p>
+<div class="section">
+  <div class="columns is-multiline is-mobile is-centered">
+    <div
+      class="column has-text-centered"
+      *ngFor="let collection of collections$ | async"
+    >
+      <app-collection-card
+        [collection]="collection"
+        [currentSelection]="selectedCollection"
+        (collectionSelected)="changeCollection($event)"
+      >
+      </app-collection-card>
+    </div>
+  </div>
+</div>
+
 <app-word-table
   [words]="words$ | async">
 </app-word-table>

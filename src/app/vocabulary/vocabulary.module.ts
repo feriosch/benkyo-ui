@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { VocabularyHomeComponent } from './vocabulary-home/vocabulary-home.component';
-import { WordTableComponent } from './word-table/word-table.component';
+import { WordTableComponent } from './home/word-table/word-table.component';
+import { CollectionCardComponent } from './home/collection-card/collection-card.component';
 
 @NgModule({
   declarations: [
     VocabularyHomeComponent,
-    WordTableComponent
+    WordTableComponent,
+    CollectionCardComponent
   ],
   imports: [
     CommonModule,
