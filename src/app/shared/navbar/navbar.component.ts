@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +11,18 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   isAuthenticated() {
     return this.authService.isAuthenticated;
+  }
+
+  async onClickVocabulary() {
+    await this.router.navigateByUrl('/vocabulary');
+  }
+
+  async onClickAddWord() {
+    await this.router.navigateByUrl('/vocabulary/add');
   }
 
   async onClickLogout() {

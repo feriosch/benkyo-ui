@@ -16,12 +16,18 @@
       *ngIf="isAuthenticated()"
       class="navbar-start"
     >
-      <a class="navbar-item">
-        Home
+      <a
+        class="navbar-item"
+        (click)="onClickVocabulary()"
+      >
+        Vocabulary
       </a>
 
-      <a class="navbar-item">
-        Documentation
+      <a
+        class="navbar-item"
+        (click)="onClickAddWord()"
+      >
+        Add Word
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">

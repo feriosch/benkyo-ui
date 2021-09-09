@@ -4,18 +4,21 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { OrderDirection, OrderField } from '../../models/requests/vocabulary';
+import { Word } from '../../models/responses/vocabulary/word.model';
 import { WordsResponse } from '../../models/responses/vocabulary/words-response.model';
-import { Collection } from '../../models/responses/vocabulary/collection.model'
+import { Collection } from '../../models/responses/vocabulary/collection.model';
 
 
 @Injectable({ providedIn: 'root' })
 export class VocabularyService {
   private readonly wordsUrl: string;
   private readonly collectionsUrl: string;
+  private readonly searchOneWordUrl: string;
 
   constructor(private http: HttpClient) {
     this.wordsUrl = `${environment.backendUrl}/words`;
     this.collectionsUrl = `${environment.backendUrl}/collections`;
+    this.searchOneWordUrl = `${environment.backendUrl}/searchone`
   }
 
   getWords(
@@ -37,5 +40,10 @@ export class VocabularyService {
 
   getCollections(): Observable<Collection[]> {
     return this.http.get<Collection[]>(this.collectionsUrl);
+  }
+
+  searchWordByWord(word: string): Observable<Word | null> {
+    let params = new HttpParams().append('word', word);
+    return this.http.get<Word | null>(this.searchOneWordUrl, { params })
   }
 }

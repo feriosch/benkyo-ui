@@ -1,0 +1,18 @@
+<form
+  [formGroup]="addWordForm"
+  class="box"
+>
+  <div formGroupName="basic">
+    <div class="field">
+      <label class="label">Word</label>
+      <input
+        formControlName="word"
+        class="input"
+        type="text"
+        autocomplete="word"
+        placeholder="Enter the word"
+      >
+    </div>
+  </div>
+
+</form>
