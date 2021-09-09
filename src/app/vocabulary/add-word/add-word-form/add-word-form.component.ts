@@ -17,10 +17,25 @@ export class AddWordFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.addWordForm = new FormGroup({
-      'basic': new FormGroup({
-        'word': new FormControl(null, [Validators.required], [this.wordExistsValidator.validate.bind(this.wordExistsValidator)])
-      })
+      'word': new FormControl(null, [Validators.required], [this.wordExistsValidator.validate.bind(this.wordExistsValidator)]),
+      'hiragana': new FormControl(null),
+      'spanish': new FormControl(null, [Validators.required])
     })
+  }
+
+  get word() { return this.addWordForm.get('word'); }
+
+  get spanish() { return this.addWordForm.get('spanish'); }
+
+  isWordRepeated(): boolean {
+    if (this.word?.errors) {
+      return this.word!.errors!.hasOwnProperty('repeatedWord');
+    }
+    return false;
+  }
+
+  onSubmit(): void {
+    console.log(this.word)
   }
 
 }

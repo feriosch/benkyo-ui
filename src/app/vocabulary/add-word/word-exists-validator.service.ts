@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { VocabularyService } from '../vocabulary.service';
-import { of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators'
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,12 +16,11 @@ export class WordExistsValidator implements AsyncValidator {
       .pipe(
         map(response => {
           if (response != null) {
-            console.log(response.spanish)
-            return { repeatedWord: true }
+            return { repeatedWord: response.from }
           }
           return null;
         }),
-        catchError(() => of({ repeatedWord: true }))
+        catchError((error) => of({ repeatedWord: error }))
       );
   }
 
