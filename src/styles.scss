@@ -4,6 +4,10 @@ $purple: #8a4d76;
 // $primary: $purple;
 
 @import "node_modules/bulma/bulma";
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import "node_modules/ag-grid-community/dist/styles/ag-grid";
 @import "node_modules/ag-grid-community/dist/styles/ag-theme-alpine";
 @import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
