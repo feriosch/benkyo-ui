@@ -1,0 +1,15 @@
+<div [formGroup]="form!">
+  <div class="columns">
+    <div class="column has-text-centered">
+      <figure
+        (click)="onClickCell('noun')"
+        class="image is-96x96 is-inline-block"
+      >
+        <div>
+          {{ getMappedValue(getCellValue('noun'), 'na')}}
+          {{ getCellValue('noun') }}
+        </div>
+      </figure>
+    </div>
+  </div>
+</div>

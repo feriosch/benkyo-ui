@@ -17,9 +17,25 @@ export class AddWordFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.addWordForm = new FormGroup({
-      'word': new FormControl(null, [Validators.required], [this.wordExistsValidator.validate.bind(this.wordExistsValidator)]),
+      'word': new FormControl(
+        null,
+        [Validators.required],
+        [this.wordExistsValidator.validate.bind(this.wordExistsValidator)]
+      ),
       'hiragana': new FormControl(null),
-      'spanish': new FormControl(null, [Validators.required])
+      'spanish': new FormControl(null, [Validators.required]),
+      'type': new FormGroup({
+        'noun': new FormControl(0, [Validators.required]),
+        'suru': new FormControl(0, [Validators.required]),
+        'noAdjective': new FormControl(0, [Validators.required]),
+        'naAdjective': new FormControl(0, [Validators.required]),
+        'iAdjective': new FormControl(0, [Validators.required]),
+        'adverb': new FormControl(0, [Validators.required]),
+        'verb': new FormControl(0, [Validators.required]),
+        'adjectivalNoun': new FormControl(0, [Validators.required]),
+        'adjectivalVerb': new FormControl(0, [Validators.required]),
+        'counter': new FormControl(0, [Validators.required])
+      })
     })
   }
 
@@ -35,7 +51,7 @@ export class AddWordFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.word)
+    console.log(this.addWordForm)
   }
 
 }
