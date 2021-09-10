@@ -7,7 +7,8 @@ import { WordTableComponent } from './home/word-table/word-table.component';
 import { CollectionCardComponent } from './home/collection-card/collection-card.component';
 import { AddWordFormComponent } from './add-word/add-word-form/add-word-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component'
+import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component';
+import { AddTagsComponent } from './add-word/add-tags/add-tags.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.
     WordTableComponent,
     CollectionCardComponent,
     AddWordFormComponent,
-    AddTypeTableComponent
+    AddTypeTableComponent,
+    AddTagsComponent
   ],
   imports: [
     CommonModule,

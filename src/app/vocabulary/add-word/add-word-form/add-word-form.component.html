@@ -68,7 +68,22 @@
   </div>
   <div class="field">
     <label class="label">Word Type</label>
-    <app-add-type-table formGroupName="type"></app-add-type-table>
+    <app-add-type-table></app-add-type-table>
+  </div>
+  <div class="field">
+    <label class="label">Word Tags</label>
+    <app-add-tags></app-add-tags>
+  </div>
+  <div class="field">
+    <label class="label">Notes</label>
+    <div class="control">
+      <input
+        formControlName="notes"
+        class="input"
+        type="text"
+        placeholder="Enter notes (Optional)"
+      >
+    </div>
   </div>
   <div class="field">
     <div class="control">
@@ -80,5 +95,4 @@
       </button>
     </div>
   </div>
-
 </form>

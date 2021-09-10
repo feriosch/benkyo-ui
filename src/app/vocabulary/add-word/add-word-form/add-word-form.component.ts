@@ -35,7 +35,21 @@ export class AddWordFormComponent implements OnInit {
         'adjectivalNoun': new FormControl(0, [Validators.required]),
         'adverbialNoun': new FormControl(0, [Validators.required]),
         'counter': new FormControl(0, [Validators.required])
-      })
+      }),
+      'tags': new FormGroup({
+        'ateji': new FormControl(false, [Validators.required]),
+        'common': new FormControl(false, [Validators.required]),
+        'expression': new FormControl(false, [Validators.required]),
+        'honorific': new FormControl(false, [Validators.required]),
+        'humble': new FormControl(false, [Validators.required]),
+        'intransitive': new FormControl(false, [Validators.required]),
+        'jlptN1': new FormControl(false, [Validators.required]),
+        'notJoyo': new FormControl(false, [Validators.required]),
+        'onomatopeic': new FormControl(false, [Validators.required]),
+        'transitive': new FormControl(false, [Validators.required]),
+        'usuallyKana': new FormControl(false, [Validators.required]),
+      }),
+      'notes': new FormControl(null, [Validators.max(20)])
     })
   }
 
@@ -51,7 +65,7 @@ export class AddWordFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.addWordForm)
+    console.log(this.addWordForm.value)
   }
 
 }

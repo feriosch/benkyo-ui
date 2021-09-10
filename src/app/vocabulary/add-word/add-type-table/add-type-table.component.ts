@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 
@@ -8,9 +8,6 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./add-type-table.component.scss']
 })
 export class AddTypeTableComponent implements OnInit {
-
-  @Input()
-  formGroupName?: string;
 
   form?: FormGroup;
   subTypes: string[];
@@ -65,7 +62,7 @@ export class AddTypeTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.rootFormGroup.control.get(this.formGroupName!) as FormGroup;
+    this.form = this.rootFormGroup.control.get('type') as FormGroup;
     for (const [key] of Object.entries(this.form.controls)) {
       this.subTypes.push(key);
     }
