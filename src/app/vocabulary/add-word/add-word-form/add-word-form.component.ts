@@ -26,14 +26,14 @@ export class AddWordFormComponent implements OnInit {
       'spanish': new FormControl(null, [Validators.required]),
       'type': new FormGroup({
         'noun': new FormControl(0, [Validators.required]),
-        'suru': new FormControl(0, [Validators.required]),
+        'suruVerb': new FormControl(0, [Validators.required]),
         'noAdjective': new FormControl(0, [Validators.required]),
         'naAdjective': new FormControl(0, [Validators.required]),
         'iAdjective': new FormControl(0, [Validators.required]),
         'adverb': new FormControl(0, [Validators.required]),
         'verb': new FormControl(0, [Validators.required]),
         'adjectivalNoun': new FormControl(0, [Validators.required]),
-        'adjectivalVerb': new FormControl(0, [Validators.required]),
+        'adverbialNoun': new FormControl(0, [Validators.required]),
         'counter': new FormControl(0, [Validators.required])
       })
     })

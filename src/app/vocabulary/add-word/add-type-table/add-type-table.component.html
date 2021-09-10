@@ -1,13 +1,20 @@
-<div [formGroup]="form!">
-  <div class="columns">
-    <div class="column has-text-centered">
+<div [formGroup]="form!" class="mt-4">
+  <div class="columns is-centered is-mobile is-multiline">
+    <div
+      *ngFor="let subtype of subTypes"
+      class="column has-text-centered"
+    >
       <figure
-        (click)="onClickCell('noun')"
-        class="image is-96x96 is-inline-block"
+        (click)="onClickCell(subtype)"
+        [ngClass]="{
+          'common-cell': getCellValue(subtype) === 1,
+          'rare-cell': getCellValue(subtype) === 2,
+          'extra-cell': getCellValue(subtype) > 2
+        }"
+        class="image is-64x64 is-inline-block"
       >
         <div>
-          {{ getMappedValue(getCellValue('noun'), 'na')}}
-          {{ getCellValue('noun') }}
+          {{ getMappedValue(getCellValue(subtype), getPrintingValue(subtype)) }}
         </div>
       </figure>
     </div>

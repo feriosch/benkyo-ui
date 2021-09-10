@@ -1,5 +1,7 @@
+@import "src/styles";
+
 figure {
-  border: 4px solid;
+  border: 3px solid;
   border-radius: 8px;
 }
 
@@ -9,4 +11,17 @@ figure > div {
   justify-content: center;
   align-items: center;
   user-select: none;
+  font-size: 20px;
+}
+
+.common-cell {
+  background-color: $green-cell;
+}
+
+.rare-cell {
+  background-color: $orange-cell;
+}
+
+.extra-cell {
+  background-color: $lilac-cell;
 }
