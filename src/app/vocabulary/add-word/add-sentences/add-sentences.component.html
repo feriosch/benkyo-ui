@@ -1,0 +1,57 @@
+<div [formGroup]="form!">
+  <div class="field">
+    <label class="label">Sentences</label>
+    <button
+      (click)="pushSentence()"
+      class="button mr-4"
+      type="button"
+    >
+      Add Sentence
+    </button>
+    <button
+      (click)="popSentence()"
+      class="button is-warning mr-4"
+      type="button"
+    >
+      Remove Sentence
+    </button>
+  </div>
+  <div formArrayName="sentences">
+    <div *ngFor="let control of controls; let i = index">
+      <label class="label">Sentence {{ i + 1 }}</label>
+      <div
+        [formGroupName]="i"
+        class="control mb-4"
+      >
+        <label class="label is-small">Japanese Sentence</label>
+        <input
+          [ngClass]="{'is-danger': getJapaneseControl(i).touched && getJapaneseControl(i).invalid}"
+          formControlName="japanese"
+          class="input is-small mb-1"
+          type="text"
+          placeholder="Enter Japanese sentence"
+        >
+        <p
+          *ngIf="getJapaneseControl(i).touched && getJapaneseControl(i).invalid"
+          class="help is-danger mb-1"
+        >
+          Japanese sentence is required!
+        </p>
+        <label class="label is-small">Translation Sentence</label>
+        <input
+          [ngClass]="{'is-danger': getTranslationControl(i).touched && getTranslationControl(i).invalid}"
+          formControlName="translation"
+          class="input is-small mb-1"
+          type="text"
+          placeholder="Enter translation sentence"
+        >
+        <p
+          *ngIf="getTranslationControl(i).touched && getTranslationControl(i).invalid"
+          class="help is-danger mb-1"
+        >
+          Translation sentence is required!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { WordExistsValidator } from '../word-exists-validator.service';
 
@@ -49,8 +49,9 @@ export class AddWordFormComponent implements OnInit {
         'transitive': new FormControl(false, [Validators.required]),
         'usuallyKana': new FormControl(false, [Validators.required]),
       }),
-      'notes': new FormControl(null, [Validators.max(20)])
-    })
+      'notes': new FormControl(null, [Validators.max(20)]),
+      'sentences': new FormArray([])
+    });
   }
 
   get word() { return this.addWordForm.get('word'); }

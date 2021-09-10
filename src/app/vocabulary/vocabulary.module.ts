@@ -8,7 +8,9 @@ import { CollectionCardComponent } from './home/collection-card/collection-card.
 import { AddWordFormComponent } from './add-word/add-word-form/add-word-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component';
-import { AddTagsComponent } from './add-word/add-tags/add-tags.component'
+import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
+import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { AddTagsComponent } from './add-word/add-tags/add-tags.component'
     CollectionCardComponent,
     AddWordFormComponent,
     AddTypeTableComponent,
-    AddTagsComponent
+    AddTagsComponent,
+    AddSentencesComponent
   ],
   imports: [
     CommonModule,
