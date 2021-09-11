@@ -3,97 +3,141 @@
   (ngSubmit)="onSubmit()"
   class="box"
 >
-  <div class="field">
-    <label class="label">Word</label>
-    <div
-      class="control has-icons-right"
-      [ngClass]="{'is-loading': word!.pending}"
-    >
-      <input
-        [ngClass]="{
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Word</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div
+          class="control has-icons-right"
+          [ngClass]="{'is-loading': word!.pending}"
+        >
+          <input
+            [ngClass]="{
           'is-danger': word!.touched && word!.invalid,
           'is-success': word!.valid
         }"
-        formControlName="word"
-        class="input"
-        type="text"
-        placeholder="Enter the word"
-      >
-      <span class="icon is-small is-right">
-        <i
-          *ngIf="word!.touched && word!.invalid"
-          class="fas fa-exclamation-triangle">
-        </i>
-        <i
-          *ngIf="word!.valid"
-          class="fas fa-check">
-        </i>
-      </span>
-    </div>
-    <p
-      *ngIf="isWordRepeated()"
-      class="help is-danger"
-    >
-      This word is repeated! {{ word!.errors!.repeatedWord }}
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Hiragana</label>
-    <div class="control">
-      <input
-        formControlName="hiragana"
-        class="input"
-        type="text"
-        placeholder="Enter hiragana (optional)"
-      >
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">Spanish translation</label>
-    <div class="control">
-      <input
-        [ngClass]="{'is-danger': spanish!.touched && spanish!.invalid}"
-        formControlName="spanish"
-        class="input"
-        type="text"
-        placeholder="Enter Spanish translation"
-      >
-    </div>
-    <p
-      *ngIf="spanish!.touched && spanish!.invalid"
-      class="help is-danger"
-    >
-      Spanish translation is required!
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Word Type</label>
-    <app-add-type-table></app-add-type-table>
-  </div>
-  <div class="field">
-    <label class="label">Word Tags</label>
-    <app-add-tags></app-add-tags>
-  </div>
-  <div class="field">
-    <label class="label">Notes</label>
-    <div class="control">
-      <input
-        formControlName="notes"
-        class="input"
-        type="text"
-        placeholder="Enter notes (Optional)"
-      >
+            formControlName="word"
+            class="input"
+            type="text"
+            placeholder="Enter the word"
+          >
+          <span class="icon is-small is-right">
+            <i
+              *ngIf="word!.touched && word!.invalid"
+              class="fas fa-exclamation-triangle">
+            </i>
+            <i
+              *ngIf="word!.valid"
+              class="fas fa-check">
+            </i>
+          </span>
+        </div>
+        <p
+          *ngIf="isWordRepeated()"
+          class="help is-danger"
+        >
+          This word is repeated! {{ word!.errors!.repeatedWord }}
+        </p>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            formControlName="hiragana"
+            class="input"
+            type="text"
+            placeholder="Enter hiragana (optional)"
+          >
+        </div>
+      </div>
     </div>
   </div>
-  <app-add-sentences></app-add-sentences>
-  <div class="field">
-    <div class="control">
-      <button
-        [disabled]="addWordForm.invalid || addWordForm.pending"
-        class="button is-link"
-      >
-        Submit
-      </button>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Spanish</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            [ngClass]="{'is-danger': spanish!.touched && spanish!.invalid}"
+            formControlName="spanish"
+            class="input"
+            type="text"
+            placeholder="Enter Spanish translation"
+          >
+        </div>
+        <p
+          *ngIf="spanish!.touched && spanish!.invalid"
+          class="help is-danger"
+        >
+          Spanish translation is required!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label mt-3">
+      <label class="label">Word Type</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-type-table></app-add-type-table>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label mt-4">
+      <label class="label">Word Tags</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-tags></app-add-tags>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Notes</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            formControlName="notes"
+            class="input"
+            type="text"
+            placeholder="Enter notes (Optional)"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Sentences</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-sentences></app-add-sentences>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button
+            [disabled]="addWordForm.invalid || addWordForm.pending"
+            class="button is-primary"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </form>
