@@ -11,12 +11,12 @@
       <div class="field">
         <div
           class="control has-icons-right"
-          [ngClass]="{'is-loading': word!.pending}"
+          [ngClass]="{'is-loading': wordControl!.pending}"
         >
           <input
             [ngClass]="{
-          'is-danger': word!.touched && word!.invalid,
-          'is-success': word!.valid
+          'is-danger': wordControl!.touched && wordControl!.invalid,
+          'is-success': wordControl!.valid
         }"
             formControlName="word"
             class="input"
@@ -25,11 +25,11 @@
           >
           <span class="icon is-small is-right">
             <i
-              *ngIf="word!.touched && word!.invalid"
+              *ngIf="wordControl!.touched && wordControl!.invalid"
               class="fas fa-exclamation-triangle">
             </i>
             <i
-              *ngIf="word!.valid"
+              *ngIf="wordControl!.valid"
               class="fas fa-check">
             </i>
           </span>
@@ -38,7 +38,7 @@
           *ngIf="isWordRepeated()"
           class="help is-danger"
         >
-          This word is repeated! {{ word!.errors!.repeatedWord }}
+          This word is repeated! {{ wordControl!.errors!.repeatedWord }}
         </p>
       </div>
       <div class="field">
@@ -61,7 +61,7 @@
       <div class="field">
         <div class="control">
           <input
-            [ngClass]="{'is-danger': spanish!.touched && spanish!.invalid}"
+            [ngClass]="{'is-danger': spanishControl!.touched && spanishControl!.invalid}"
             formControlName="spanish"
             class="input"
             type="text"
@@ -69,7 +69,7 @@
           >
         </div>
         <p
-          *ngIf="spanish!.touched && spanish!.invalid"
+          *ngIf="spanishControl!.touched && spanishControl!.invalid"
           class="help is-danger"
         >
           Spanish translation is required!
@@ -110,6 +110,30 @@
             type="text"
             placeholder="Enter notes (Optional)"
           >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Collection</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <div
+            [ngClass]="{'is-loading': !collections}"
+            class="select"
+          >
+            <select formControlName="collection">
+              <option
+                *ngFor="let collection of collections"
+                [value]="collection.collection_name"
+              >
+                {{ collection.printing_name }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
