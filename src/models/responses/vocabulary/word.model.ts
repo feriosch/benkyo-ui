@@ -11,16 +11,16 @@ export interface Word {
 }
 
 export interface Type {
-  noun: number;
-  suru_verb: number;
-  no_adjective: number;
-  na_adjective: number;
-  i_adjective: number;
-  adverb: number;
-  verb: number;
-  adjectival_noun: number;
-  adverbial_noun: number;
-  counter: number;
+  noun?: number;
+  suru_verb?: number;
+  no_adjective?: number;
+  na_adjective?: number;
+  i_adjective?: number;
+  adverb?: number;
+  verb?: number;
+  adjectival_noun?: number;
+  adverbial_noun?: number;
+  counter?: number;
 }
 
 export interface Tags {
@@ -31,7 +31,7 @@ export interface Tags {
   humble?: boolean;
   intransitive?: boolean;
   jlpt_n1?: boolean;
-  not_joyo?: boolean;
+  joyogai?: boolean;
   onomatopeic?: boolean;
   transitive?: boolean;
   usually_kana?: boolean;

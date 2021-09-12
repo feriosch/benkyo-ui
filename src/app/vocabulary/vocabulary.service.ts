@@ -7,6 +7,7 @@ import { OrderDirection, OrderField } from '../../models/requests/vocabulary';
 import { Word } from '../../models/responses/vocabulary/word.model';
 import { WordsResponse } from '../../models/responses/vocabulary/words-response.model';
 import { Collection } from '../../models/responses/vocabulary/collection.model';
+import { AddWordBody } from '../../models/requests/add-word-body.model'
 
 
 @Injectable({ providedIn: 'root' })
@@ -44,6 +45,10 @@ export class VocabularyService {
 
   searchWordByWord(word: string): Observable<Word | null> {
     let params = new HttpParams().append('word', word);
-    return this.http.get<Word | null>(this.searchOneWordUrl, { params })
+    return this.http.get<Word | null>(this.searchOneWordUrl, { params });
+  }
+
+  addNewWord(body: AddWordBody): Observable<any> {
+    return this.http.post(this.wordsUrl, body);
   }
 }

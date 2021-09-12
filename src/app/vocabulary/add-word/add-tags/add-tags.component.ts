@@ -33,7 +33,7 @@ export class AddTagsComponent implements OnInit {
       case 'intransitive': return 'Intransitive';
       case 'jlptN1': return 'JLPT N1';
       case 'notJoyo': return 'Not Joyo';
-      case 'onomatopeic': return 'Onomatopoeic';
+      case 'onomatopoeic': return 'Onomatopoeic';
       case 'transitive': return 'Transitive';
       case 'usuallyKana': return 'Usually Kana';
       default: return '?';

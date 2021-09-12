@@ -3,7 +3,9 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { VocabularyService } from '../../vocabulary.service';
 import { WordExistsValidator } from '../word-exists-validator.service';
+import { ValueTransformerService } from '../value-transformer.service';
 import { Collection } from '../../../../models/responses/vocabulary/collection.model';
+import { AddWordBody } from '../../../../models/requests/add-word-body.model';
 
 
 @Component({
@@ -16,7 +18,11 @@ export class AddWordFormComponent implements OnInit {
   addWordForm: FormGroup;
   collections?: Collection[];
 
-  constructor(private vocabularyService: VocabularyService, private wordExistsValidator: WordExistsValidator) {
+  constructor(
+    private vocabularyService: VocabularyService,
+    private wordExistsValidator: WordExistsValidator,
+    private valueTransformerService: ValueTransformerService
+  ) {
     this.addWordForm = new FormGroup({
       'word': new FormControl(
         null,
@@ -46,7 +52,7 @@ export class AddWordFormComponent implements OnInit {
         'intransitive': new FormControl(false, [Validators.required]),
         'jlptN1': new FormControl(false, [Validators.required]),
         'notJoyo': new FormControl(false, [Validators.required]),
-        'onomatopeic': new FormControl(false, [Validators.required]),
+        'onomatopoeic': new FormControl(false, [Validators.required]),
         'transitive': new FormControl(false, [Validators.required]),
         'usuallyKana': new FormControl(false, [Validators.required]),
       }),
@@ -83,7 +89,16 @@ export class AddWordFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.addWordForm.value)
+    const addWordBody: AddWordBody = this.valueTransformerService.transform(this.addWordForm.value);
+    this.vocabularyService.addNewWord(addWordBody)
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
 }
