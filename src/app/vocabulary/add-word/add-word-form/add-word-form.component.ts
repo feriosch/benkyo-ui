@@ -4,6 +4,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { VocabularyService } from '../../vocabulary.service';
 import { WordExistsValidator } from '../word-exists-validator.service';
 import { ValueTransformerService } from '../value-transformer.service';
+import { NotificationService } from '../../../shared/notification.service';
 import { Collection } from '../../../../models/responses/vocabulary/collection.model';
 import { AddWordBody } from '../../../../models/requests/add-word-body.model';
 
@@ -21,7 +22,8 @@ export class AddWordFormComponent implements OnInit {
   constructor(
     private vocabularyService: VocabularyService,
     private wordExistsValidator: WordExistsValidator,
-    private valueTransformerService: ValueTransformerService
+    private valueTransformerService: ValueTransformerService,
+    private notificationService: NotificationService
   ) {
     this.addWordForm = new FormGroup({
       'word': new FormControl(
@@ -92,11 +94,14 @@ export class AddWordFormComponent implements OnInit {
     const addWordBody: AddWordBody = this.valueTransformerService.transform(this.addWordForm.value);
     this.vocabularyService.addNewWord(addWordBody)
       .subscribe(
-        (response) => {
-          console.log(response);
+        (_response) => {
+          const collection = this.collectionControl!.value;
+          this.notificationService.toastWordCreationNotification(collection);
+          this.addWordForm.reset();
+          this.collectionControl!.setValue(collection);
         },
         (error) => {
-          console.log(error);
+          this.notificationService.toastErrorNotification(error.error.error);
         }
       );
   }

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component';
 import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
 import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
+import { AddWordComponent } from './add-word/add-word.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.co
     AddWordFormComponent,
     AddTypeTableComponent,
     AddTagsComponent,
-    AddSentencesComponent
+    AddSentencesComponent,
+    AddWordComponent
   ],
   imports: [
     CommonModule,

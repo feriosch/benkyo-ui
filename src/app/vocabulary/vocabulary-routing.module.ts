@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { VocabularyHomeComponent } from './vocabulary-home/vocabulary-home.component';
-import { AddWordFormComponent } from './add-word/add-word-form/add-word-form.component';
+import { AddWordComponent } from './add-word/add-word.component';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddWordFormComponent
+    component: AddWordComponent
   },
   {
     path: '**',
