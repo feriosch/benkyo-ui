@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { VocabularyService } from '../vocabulary.service';
 import { OrderDirection, OrderField } from '../../../models/requests/vocabulary';
@@ -16,32 +15,44 @@ import { Collection } from '../../../models/responses/vocabulary/collection.mode
 export class VocabularyHomeComponent implements OnInit {
 
   selectedCollection: string | null;
-  pageSize: number | null;
-  currentPageNumber: number | null;
+  pageSize: number;
+  currentPageNumber: number;
+  nextPageNumber: string;
+  totalPages: number;
+  totalWords: number;
   orderField: OrderField | null;
   orderDirection: OrderDirection | null;
-  words$: Observable<Word[]>;
+  words: Word[];
   collections$: Observable<Collection[]>;
 
   constructor(private vocabularyService: VocabularyService) {
     this.selectedCollection = null;
     this.pageSize = 10;
-    this.currentPageNumber = null;
+    this.currentPageNumber = 1;
+    this.nextPageNumber = '';
+    this.totalPages = 0;
+    this.totalWords = 0;
     this.orderField = null;
     this.orderDirection = null;
-    this.words$ = new Observable<Word[]>();
+    this.words = [];
     this.collections$ = new Observable<Collection[]>();
   }
 
   getWords(): void {
-    this.words$ = this.vocabularyService.getWords(
+    this.vocabularyService.getWords(
       this.selectedCollection,
       this.pageSize,
       this.currentPageNumber,
       this.orderField,
       this.orderDirection
-    )
-      .pipe(map((response) => response.words))
+    ).toPromise()
+      .then((response) => {
+        this.words = response.words;
+        this.nextPageNumber = response.next_page_number;
+        this.totalPages = response.total_pages;
+        this.totalWords = response.total_words;
+      })
+      .catch((error) => console.log(error));
   }
 
   getCollections(): void {
@@ -50,6 +61,29 @@ export class VocabularyHomeComponent implements OnInit {
 
   changeCollection(collection: string): void {
     this.selectedCollection = collection;
+    this.currentPageNumber = 1;
+    this.getWords();
+  }
+
+  changeToFirstPage(): void {
+    if (this.currentPageNumber > 1) {
+      this.currentPageNumber = 1;
+      this.getWords();
+    }
+  }
+
+  changeToPreviousPage(): void {
+    if (this.currentPageNumber > 1) this.currentPageNumber--;
+    this.getWords();
+  }
+
+  changeToNextPage(): void {
+    if (this.nextPageNumber) this.currentPageNumber = +this.nextPageNumber;
+    this.getWords();
+  }
+
+  changeToLastPage(): void {
+    if (this.currentPageNumber < this.totalPages) this.currentPageNumber = this.totalPages;
     this.getWords();
   }
 

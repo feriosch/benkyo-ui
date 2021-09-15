@@ -15,5 +15,13 @@
 </div>
 
 <app-word-table
-  [words]="words$ | async">
+  [words]="words"
+  [currentPage]="currentPageNumber"
+  [totalPages]="totalPages"
+  [totalWords]="totalWords"
+  (clickedPreviousPage)="changeToPreviousPage()"
+  (clickedNextPage)="changeToNextPage()"
+  (clickedFirstPage)="changeToFirstPage()"
+  (clickedLastPage)="changeToLastPage()"
+>
 </app-word-table>
