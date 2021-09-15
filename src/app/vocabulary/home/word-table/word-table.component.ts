@@ -23,6 +23,9 @@ export class WordTableComponent implements OnInit {
   @Input()
   totalWords?: number;
 
+  @Input()
+  isWordFetchLoading?: boolean;
+
   @Output()
   clickedPreviousPage: EventEmitter<any>;
 
@@ -50,11 +53,11 @@ export class WordTableComponent implements OnInit {
   }
 
   isBackwardPossible(): boolean {
-    return this.currentPage! > 1;
+    return this.currentPage! > 1 && !this.isWordFetchLoading!;
   }
 
   isForwardPossible(): boolean {
-    return this.currentPage! < this.totalPages!;
+    return this.currentPage! < this.totalPages! && !this.isWordFetchLoading!;
   }
 
   onClickPreviousPage(): void {

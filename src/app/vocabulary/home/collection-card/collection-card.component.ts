@@ -17,14 +17,18 @@ export class CollectionCardComponent implements OnInit {
   currentSelection?: string | null;
 
   @Output()
-  collectionSelected: EventEmitter<string>;
+  collectionSelected: EventEmitter<string | null>;
 
   constructor() {
-    this.collectionSelected = new EventEmitter<string>();
+    this.collectionSelected = new EventEmitter<string | null>();
   }
 
   onCollectionClicked(): void {
-    this.collectionSelected.emit(this.collection!.collection_name);
+    if (this.isCurrentCollection()) {
+      this.collectionSelected.emit(null);
+    } else {
+      this.collectionSelected.emit(this.collection!.collection_name);
+    }
   }
 
   isCurrentCollection(): boolean {

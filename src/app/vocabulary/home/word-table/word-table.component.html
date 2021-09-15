@@ -11,6 +11,12 @@
     id="pagination-container"
     class="column has-text-right ag-theme-alpine"
   >
+    <span
+      class="is-loading"
+      *ngIf="isWordFetchLoading"
+    >
+      Loading
+    </span>
     Page
     <i
       (click)="onClickFirstPage()"

@@ -1,4 +1,4 @@
-<div class="section">
+<div class="container mt-4 mb-4">
   <div class="columns is-multiline is-mobile is-centered">
     <div
       class="column has-text-centered"
@@ -19,6 +19,7 @@
   [currentPage]="currentPageNumber"
   [totalPages]="totalPages"
   [totalWords]="totalWords"
+  [isWordFetchLoading]="isWordFetchLoading"
   (clickedPreviousPage)="changeToPreviousPage()"
   (clickedNextPage)="changeToNextPage()"
   (clickedFirstPage)="changeToFirstPage()"

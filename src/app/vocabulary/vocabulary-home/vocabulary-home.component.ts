@@ -22,6 +22,7 @@ export class VocabularyHomeComponent implements OnInit {
   totalWords: number;
   orderField: OrderField | null;
   orderDirection: OrderDirection | null;
+  isWordFetchLoading: boolean;
   words: Word[];
   collections$: Observable<Collection[]>;
 
@@ -34,11 +35,13 @@ export class VocabularyHomeComponent implements OnInit {
     this.totalWords = 0;
     this.orderField = null;
     this.orderDirection = null;
+    this.isWordFetchLoading = false;
     this.words = [];
     this.collections$ = new Observable<Collection[]>();
   }
 
   getWords(): void {
+    this.isWordFetchLoading = true;
     this.vocabularyService.getWords(
       this.selectedCollection,
       this.pageSize,
@@ -52,14 +55,15 @@ export class VocabularyHomeComponent implements OnInit {
         this.totalPages = response.total_pages;
         this.totalWords = response.total_words;
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => this.isWordFetchLoading = false);
   }
 
   getCollections(): void {
     this.collections$ = this.vocabularyService.getCollections();
   }
 
-  changeCollection(collection: string): void {
+  changeCollection(collection: string | null): void {
     this.selectedCollection = collection;
     this.currentPageNumber = 1;
     this.getWords();
