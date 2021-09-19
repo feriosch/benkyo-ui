@@ -11,6 +11,7 @@ import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.
 import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
 import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
 import { AddWordComponent } from './add-word/add-word.component';
+import { WordDetailsComponent } from './word-details/word-details.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddWordComponent } from './add-word/add-word.component';
     AddTypeTableComponent,
     AddTagsComponent,
     AddSentencesComponent,
-    AddWordComponent
+    AddWordComponent,
+    WordDetailsComponent,
   ],
   imports: [
     CommonModule,

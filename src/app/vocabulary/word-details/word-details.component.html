@@ -1,0 +1,39 @@
+
+<div class="section">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <p class="title is-1 mr-6">
+          {{ word!.word }}
+        </p>
+      </div>
+      <div
+        *ngIf="word!.hiragana"
+        class="level-item"
+      >
+        <p class="subtitle is-3">
+          ( {{ word!.hiragana }} )
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <p class="subtitle is-2 mr-6">
+          {{ word!.spanish! }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="level">
+    <div class="level-item">
+      <figure
+        class="image is-64x64 is-inline-block"
+      >
+      </figure>
+    </div>
+  </div>
+</div>
+
+{{ getword() }}

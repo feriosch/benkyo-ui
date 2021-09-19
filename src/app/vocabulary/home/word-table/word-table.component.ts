@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { AgGridEvent, ColDef } from 'ag-grid-community';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AgGridEvent, ColDef, GridOptions, RowDoubleClickedEvent } from 'ag-grid-community';
 
 import { Word } from '../../../../models/responses/vocabulary/word.model';
 
@@ -40,7 +41,9 @@ export class WordTableComponent implements OnInit {
 
   columnDefs: ColDef[];
 
-  constructor() {
+  gridOptions: GridOptions;
+
+  constructor(private router: Router) {
     this.clickedPreviousPage = new EventEmitter();
     this.clickedNextPage = new EventEmitter();
     this.clickedFirstPage = new EventEmitter();
@@ -50,6 +53,9 @@ export class WordTableComponent implements OnInit {
       { field: 'hiragana' },
       { field: 'spanish'}
     ]
+    this.gridOptions = {
+      suppressCellSelection: true,
+    }
   }
 
   isBackwardPossible(): boolean {
@@ -81,6 +87,10 @@ export class WordTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  async onRowClicked(event: RowDoubleClickedEvent) {
+    await this.router.navigateByUrl(`vocabulary/word/${event.data.id}`)
   }
 
 }

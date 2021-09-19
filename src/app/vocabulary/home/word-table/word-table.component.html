@@ -4,7 +4,9 @@
     domLayout="autoHeight"
     [rowData]="words"
     [columnDefs]="columnDefs"
+    [gridOptions]="gridOptions"
     (gridReady)="onGridReady($event)"
+    (rowDoubleClicked)="onRowClicked($event)"
   >
   </ag-grid-angular>
   <div

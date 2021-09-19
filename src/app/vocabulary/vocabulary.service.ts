@@ -51,4 +51,9 @@ export class VocabularyService {
   addNewWord(body: AddWordBody): Observable<any> {
     return this.http.post(this.wordsUrl, body);
   }
+
+  getWordById(id: string): Observable<Word | null> {
+    let params = new HttpParams().append('word_id', id);
+    return this.http.get<Word | null>(this.searchOneWordUrl, { params });
+  }
 }
