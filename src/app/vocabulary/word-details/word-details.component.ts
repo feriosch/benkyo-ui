@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { VocabularyService } from '../vocabulary.service';
+import { WordTypeMapperService } from '../word-type-mapper.service';
 import { Word } from '../../../models/responses/vocabulary/word.model';
 
 
@@ -14,20 +15,34 @@ export class WordDetailsComponent implements OnInit {
 
   id: string;
   word?: Word | null;
-  subtypes?: string[];
+  subtypes: string[];
 
   constructor(
     private route: ActivatedRoute,
-    private vocabularyService: VocabularyService
+    private vocabularyService: VocabularyService,
+    private typeMapperService: WordTypeMapperService
   ) {
     this.id = this.route.snapshot.params['id'];
+    this.subtypes = this.typeMapperService.backendSubtypes;
+  }
+
+  getCellValue(name: string): number {
+    if (this.word!.type.hasOwnProperty(name)) {
+      // @ts-ignore
+      return this.word!.type[name];
+    }
+    return 0;
+  }
+
+  getValueText(value: number, subtype: string): string {
+    let subtypeName = this.typeMapperService.getPrintingValueFromBackend(subtype)
+    return this.typeMapperService.getValueText(value, subtypeName);
   }
 
   ngOnInit(): void {
     this.vocabularyService.getWordById(this.id)
       .subscribe((response) => {
         this.word = response;
-        this.subtypes = Object.keys(response!.type)
       });
   }
 

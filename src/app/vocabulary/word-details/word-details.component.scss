@@ -1,0 +1,26 @@
+@import "src/styles";
+
+figure {
+  border: 2px solid;
+  border-radius: 8px;
+}
+
+figure > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.common-cell {
+  background-color: $green-cell;
+}
+
+.rare-cell {
+  background-color: $orange-cell;
+}
+
+.extra-cell {
+  background-color: $lilac-cell;
+}

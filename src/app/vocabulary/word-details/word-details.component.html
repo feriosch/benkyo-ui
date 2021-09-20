@@ -27,10 +27,21 @@
     </div>
   </div>
   <div class="level">
-    <div class="level-item">
+    <div
+      *ngFor="let subtype of subtypes"
+      class="level-item"
+    >
       <figure
+        [ngClass]="{
+          'common-cell': getCellValue(subtype) === 1,
+          'rare-cell': getCellValue(subtype) === 2,
+          'extra-cell': getCellValue(subtype) > 2
+        }"
         class="image is-64x64 is-inline-block"
       >
+        <div>
+          {{ getValueText(getCellValue(subtype), subtype) }}
+        </div>
       </figure>
     </div>
   </div>
