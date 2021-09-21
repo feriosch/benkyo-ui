@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 
+import { WordTagsMapperService } from '../../word-tags-mapper.service';
+
 
 @Component({
   selector: 'app-add-tags',
@@ -12,7 +14,10 @@ export class AddTagsComponent implements OnInit {
   form?: FormGroup;
   tags: string[];
 
-  constructor(private rootFormGroup: FormGroupDirective) {
+  constructor(
+    private rootFormGroup: FormGroupDirective,
+    private tagsMapperService: WordTagsMapperService
+  ) {
     this.tags = [];
   }
 
@@ -24,20 +29,7 @@ export class AddTagsComponent implements OnInit {
   }
 
   getPrintingValue(tag: string): string {
-    switch (tag) {
-      case 'ateji': return 'Ateji';
-      case 'common': return 'Common';
-      case 'expression': return 'Expression';
-      case 'honorific': return 'Honorific';
-      case 'humble': return 'Humble';
-      case 'intransitive': return 'Intransitive';
-      case 'jlptN1': return 'JLPT N1';
-      case 'notJoyo': return 'Not Joyo';
-      case 'onomatopoeic': return 'Onomatopoeic';
-      case 'transitive': return 'Transitive';
-      case 'usuallyKana': return 'Usually Kana';
-      default: return '?';
-    }
+    return this.tagsMapperService.getPrintingValueFromLocal(tag);
   }
 
   onClickTag(tag: string): void {

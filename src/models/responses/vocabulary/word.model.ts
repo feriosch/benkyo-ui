@@ -5,6 +5,7 @@ export interface Word {
   spanish: string;
   from: string;
   level: number;
+  notes?: string;
   type: Type;
   tags?: Tags;
   sentences?: Sentence[]
