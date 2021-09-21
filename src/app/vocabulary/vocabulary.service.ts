@@ -22,17 +22,60 @@ export class VocabularyService {
     this.searchOneWordUrl = `${environment.backendUrl}/searchone`
   }
 
+  get currentCollection(): string | null {
+    return localStorage.getItem('collection');
+  }
+
+  set currentCollection(collection: string | null) {
+    if (collection) {
+      localStorage.setItem('collection', collection);
+    } else {
+      localStorage.removeItem('collection');
+    }
+  }
+
+  get pageSize(): number | null {
+    const page = localStorage.getItem('page_size');
+    if (page) {
+      return +page;
+    } else {
+      return null;
+    }
+  }
+
+  set pageSize(page: number | null) {
+    if (page) {
+      localStorage.setItem('page_size', page.toString());
+    } else {
+      localStorage.removeItem('page_size');
+    }
+  }
+
+  get pageNumber(): number | null {
+    const page = localStorage.getItem('page');
+    if (page) {
+      return +page;
+    } else {
+      return null;
+    }
+  }
+
+  set pageNumber(page: number | null) {
+    if (page) {
+      localStorage.setItem('page', page.toString());
+    } else {
+      localStorage.removeItem('page');
+    }
+  }
+
   getWords(
-    collection?: string | null,
-    pageSize?: number | null,
-    pageNumber?: number | null,
     orderField?: OrderField | null,
     orderDirection?: OrderDirection | null
   ): Observable<WordsResponse> {
     let params = new HttpParams();
-    if (collection) params = params.append('from', collection);
-    if (pageSize) params = params.append('page_size', pageSize);
-    if (pageNumber) params = params.append('page_number', pageNumber);
+    if (this.currentCollection) params = params.append('from', this.currentCollection);
+    if (this.pageSize) params = params.append('page_size', this.pageSize);
+    if (this.pageNumber) params = params.append('page_number', this.pageNumber);
     if (orderField) params = params.append('order_field', orderField);
     if (orderDirection) params = params.append('order_direction', orderDirection);
 

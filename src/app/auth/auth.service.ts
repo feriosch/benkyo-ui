@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { LoginResponse } from '../../models/responses/login';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
@@ -32,13 +33,13 @@ export class AuthService {
 
   async login(token: string) {
     localStorage.setItem('token', token);
-    await this.router.navigate(['/vocabulary'])
+    await this.router.navigateByUrl('/vocabulary');
   }
 
   async logout() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.isAuthenticated = false;
-    await this.router.navigate(['/login/signin'])
+    await this.router.navigateByUrl('/login/signin');
   }
 
   getToken(): string | null {

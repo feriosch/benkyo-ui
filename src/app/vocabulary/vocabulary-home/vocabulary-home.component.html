@@ -6,7 +6,7 @@
     >
       <app-collection-card
         [collection]="collection"
-        [currentSelection]="selectedCollection"
+        [currentSelection]="vocabularyService.currentCollection"
         (collectionSelected)="changeCollection($event)"
       >
       </app-collection-card>
@@ -16,7 +16,7 @@
 
 <app-word-table
   [words]="words"
-  [currentPage]="currentPageNumber"
+  [currentPage]="vocabularyService.pageNumber!"
   [totalPages]="totalPages"
   [totalWords]="totalWords"
   [isWordFetchLoading]="isWordFetchLoading"

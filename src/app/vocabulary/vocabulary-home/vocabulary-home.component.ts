@@ -14,9 +14,6 @@ import { Collection } from '../../../models/responses/vocabulary/collection.mode
 })
 export class VocabularyHomeComponent implements OnInit {
 
-  selectedCollection: string | null;
-  pageSize: number;
-  currentPageNumber: number;
   nextPageNumber: string;
   totalPages: number;
   totalWords: number;
@@ -26,10 +23,7 @@ export class VocabularyHomeComponent implements OnInit {
   words: Word[];
   collections$: Observable<Collection[]>;
 
-  constructor(private vocabularyService: VocabularyService) {
-    this.selectedCollection = null;
-    this.pageSize = 10;
-    this.currentPageNumber = 1;
+  constructor(public vocabularyService: VocabularyService) {
     this.nextPageNumber = '';
     this.totalPages = 0;
     this.totalWords = 0;
@@ -43,9 +37,6 @@ export class VocabularyHomeComponent implements OnInit {
   getWords(): void {
     this.isWordFetchLoading = true;
     this.vocabularyService.getWords(
-      this.selectedCollection,
-      this.pageSize,
-      this.currentPageNumber,
       this.orderField,
       this.orderDirection
     ).toPromise()
@@ -64,34 +55,46 @@ export class VocabularyHomeComponent implements OnInit {
   }
 
   changeCollection(collection: string | null): void {
-    this.selectedCollection = collection;
-    this.currentPageNumber = 1;
+    this.vocabularyService.currentCollection = collection;
+    this.vocabularyService.pageNumber = 1;
     this.getWords();
   }
 
   changeToFirstPage(): void {
-    if (this.currentPageNumber > 1) {
-      this.currentPageNumber = 1;
-      this.getWords();
+    if (this.vocabularyService.pageNumber! > 1) {
+      this.vocabularyService.pageNumber = 1;
     }
+    this.getWords();
   }
 
   changeToPreviousPage(): void {
-    if (this.currentPageNumber > 1) this.currentPageNumber--;
+    if (this.vocabularyService.pageNumber! > 1) {
+      this.vocabularyService.pageNumber = this.vocabularyService.pageNumber! - 1;
+    }
     this.getWords();
   }
 
   changeToNextPage(): void {
-    if (this.nextPageNumber) this.currentPageNumber = +this.nextPageNumber;
+    if (this.nextPageNumber) {
+      this.vocabularyService.pageNumber = +this.nextPageNumber;
+    }
     this.getWords();
   }
 
   changeToLastPage(): void {
-    if (this.currentPageNumber < this.totalPages) this.currentPageNumber = this.totalPages;
+    if (this.vocabularyService.pageNumber! < this.totalPages) {
+      this.vocabularyService.pageNumber = this.totalPages;
+    }
     this.getWords();
   }
 
   ngOnInit(): void {
+    if (!this.vocabularyService.pageSize) {
+      this.vocabularyService.pageSize = 10;
+    }
+    if (!this.vocabularyService.pageNumber) {
+      this.vocabularyService.pageNumber = 1;
+    }
     this.getWords();
     this.getCollections();
   }
