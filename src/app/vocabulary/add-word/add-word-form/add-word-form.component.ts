@@ -18,6 +18,7 @@ export class AddWordFormComponent implements OnInit {
 
   addWordForm: FormGroup;
   collections?: Collection[];
+  initialValues: any;
 
   constructor(
     private vocabularyService: VocabularyService,
@@ -62,6 +63,7 @@ export class AddWordFormComponent implements OnInit {
       'collection': new FormControl(null, [Validators.required]),
       'sentences': new FormArray([])
     });
+    this.initialValues = this.addWordForm.value;
   }
 
   ngOnInit(): void {
@@ -97,7 +99,7 @@ export class AddWordFormComponent implements OnInit {
         (_response) => {
           const collection = this.collectionControl!.value;
           this.notificationService.toastWordCreationNotification(collection);
-          this.addWordForm.reset();
+          this.addWordForm.reset(this.initialValues);
           this.collectionControl!.setValue(collection);
         },
         (error) => {
