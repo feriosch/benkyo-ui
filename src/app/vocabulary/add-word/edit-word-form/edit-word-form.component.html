@@ -1,0 +1,142 @@
+<form
+  *ngIf="editWordForm"
+  [formGroup]="editWordForm"
+  (ngSubmit)="onSubmit()"
+  class="box"
+>
+  <div class="field is-horizontal">
+    <div class="field-label">
+    </div>
+    <div class="field-body">
+      <h1 class="title is-4">{{ originalWord?.word }}</h1>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Hiragana</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            formControlName="hiragana"
+            class="input"
+            type="text"
+            placeholder="Enter hiragana (optional)"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Spanish</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            [ngClass]="{'is-danger': spanishControl!.touched && spanishControl!.invalid}"
+            formControlName="spanish"
+            class="input"
+            type="text"
+            placeholder="Enter Spanish translation"
+          >
+        </div>
+        <p
+          *ngIf="spanishControl!.touched && spanishControl!.invalid"
+          class="help is-danger"
+        >
+          Spanish translation is required!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label mt-3">
+      <label class="label">Word Type</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-type-table></app-add-type-table>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label mt-4">
+      <label class="label">Word Tags</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-tags></app-add-tags>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Notes</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            formControlName="notes"
+            class="input"
+            type="text"
+            placeholder="Enter notes (Optional)"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Collection</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <div
+            [ngClass]="{'is-loading': !collections}"
+            class="select"
+          >
+            <select formControlName="collection">
+              <option
+                *ngFor="let collection of collections"
+                [value]="collection.collection_name"
+              >
+                {{ collection.printing_name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Sentences</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <app-add-sentences></app-add-sentences>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button
+            [disabled]="editWordForm.invalid || editWordForm.pending"
+            class="button is-primary"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

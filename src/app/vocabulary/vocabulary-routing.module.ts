@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { VocabularyHomeComponent } from './home/vocabulary-home.component';
 import { AddWordComponent } from './add-word/add-word.component';
 import { WordDetailsComponent } from './word-details/word-details.component';
+import { EditWordFormComponent } from './add-word/edit-word-form/edit-word-form.component';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'word/:id',
     component: WordDetailsComponent
+  },
+  {
+    path: 'word/:id/edit',
+    component: EditWordFormComponent
   },
   {
     path: '**',
