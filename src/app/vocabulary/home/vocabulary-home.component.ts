@@ -17,6 +17,7 @@ export class VocabularyHomeComponent implements OnInit {
   nextPageNumber: string;
   totalPages: number;
   totalWords: number;
+  filter: string | null;
   orderField: OrderField | null;
   orderDirection: OrderDirection | null;
   isWordFetchLoading: boolean;
@@ -27,6 +28,7 @@ export class VocabularyHomeComponent implements OnInit {
     this.nextPageNumber = '';
     this.totalPages = 0;
     this.totalWords = 0;
+    this.filter = this.vocabularyService.filter;
     this.orderField = null;
     this.orderDirection = null;
     this.isWordFetchLoading = false;
@@ -52,6 +54,20 @@ export class VocabularyHomeComponent implements OnInit {
 
   getCollections(): void {
     this.collections$ = this.vocabularyService.getCollections();
+  }
+
+  applyFilter(): void {
+    if (this.filter) {
+      this.vocabularyService.filter = this.filter;
+      this.getWords();
+    }
+  }
+
+  onChangeFilter(value: any) {
+    if (!value) {
+      this.vocabularyService.filter = null;
+      this.getWords();
+    }
   }
 
   changeCollection(collection: string | null): void {

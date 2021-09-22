@@ -13,7 +13,26 @@
     </div>
   </div>
 </div>
-
+<div class="field has-addons">
+  <div class="control">
+    <input
+      [(ngModel)]="filter"
+      (ngModelChange)="onChangeFilter($event)"
+      class="input"
+      type="text"
+      placeholder="Filter word"
+    >
+  </div>
+  <div class="control">
+    <button
+      [disabled]="!filter"
+      (click)="applyFilter()"
+      class="button is-info"
+    >
+      Search
+    </button>
+  </div>
+</div>
 <app-word-table
   [words]="words"
   [currentPage]="vocabularyService.pageNumber!"

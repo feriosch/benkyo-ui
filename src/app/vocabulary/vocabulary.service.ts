@@ -68,12 +68,25 @@ export class VocabularyService {
     }
   }
 
+  get filter(): string | null {
+    return localStorage.getItem('filter');
+  }
+
+  set filter(filter: string | null) {
+    if (filter) {
+      localStorage.setItem('filter', filter);
+    } else {
+      localStorage.removeItem('filter');
+    }
+  }
+
   getWords(
     orderField?: OrderField | null,
     orderDirection?: OrderDirection | null
   ): Observable<WordsResponse> {
     let params = new HttpParams();
     if (this.currentCollection) params = params.append('from', this.currentCollection);
+    if (this.filter) params = params.append('filter_by', this.filter);
     if (this.pageSize) params = params.append('page_size', this.pageSize);
     if (this.pageNumber) params = params.append('page_number', this.pageNumber);
     if (orderField) params = params.append('order_field', orderField);
