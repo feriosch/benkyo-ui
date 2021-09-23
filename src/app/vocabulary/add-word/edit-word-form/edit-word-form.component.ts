@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { VocabularyService } from '../../vocabulary.service';
-import { WordExistsValidator } from '../word-exists-validator.service';
 import { ValueTransformerService } from '../value-transformer.service';
+import { NotificationService } from '../../../shared/notification.service';
 import { Sentence, Word } from '../../../../models/responses/vocabulary/word.model';
 import { Collection } from '../../../../models/responses/vocabulary/collection.model';
 import { AddWordBody } from '../../../../models/requests/add-word-body.model';
@@ -25,9 +25,10 @@ export class EditWordFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private vocabularyService: VocabularyService,
-    private wordExistsValidator: WordExistsValidator,
     private valueTransformerService: ValueTransformerService,
+    private notificationService: NotificationService
   ) {
     this.id = this.route.snapshot.params['id'];
     this.originalTags = [];
@@ -56,7 +57,6 @@ export class EditWordFormComponent implements OnInit {
 
   initializeForm(): void {
     this.editWordForm = new FormGroup({
-      'word': new FormControl(this.originalWord?.word, [Validators.required]),
       'hiragana': new FormControl(this.originalWord?.hiragana),
       'spanish': new FormControl(this.originalWord?.spanish, [Validators.required]),
       'type': new FormGroup({
@@ -91,8 +91,17 @@ export class EditWordFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const editWordBody: AddWordBody = this.valueTransformerService.transform(this.editWordForm?.value);
-    console.log(editWordBody);
+    const editWordBody: AddWordBody = this.valueTransformerService.transform(this.editWordForm?.value, this.id);
+    console.log(JSON.stringify(editWordBody));
+    this.vocabularyService.updateWord(editWordBody)
+      .subscribe(
+        async (_response) => {
+          await this.router.navigate(['../'], { relativeTo: this.route });
+          this.notificationService.toastWordUpdateNotification(this.originalWord?.word!);
+        }, (error) => {
+          this.notificationService.toastErrorNotification(error.error.error);
+        }
+      )
   }
 
   ngOnInit(): void {

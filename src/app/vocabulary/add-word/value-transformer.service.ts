@@ -3,25 +3,29 @@ import { Injectable } from '@angular/core';
 import { AddWordBody } from '../../../models/requests/add-word-body.model';
 import { Sentence, Tags, Type } from '../../../models/responses/vocabulary/word.model';
 
-
 @Injectable({ providedIn: 'root' })
 export class ValueTransformerService {
 
-  transform(value: any): AddWordBody {
+  transform(value: any, id?: string): AddWordBody {
 
-    let word: string;
     let spanish: string;
     let collection: string;
     let type: Type;
 
-    if (value.hasOwnProperty('word')) word = <string> value.word;
     if (value.hasOwnProperty('spanish')) spanish = <string> value.spanish;
     if (value.hasOwnProperty('collection')) collection = <string> value.collection;
 
     const addWordBody: AddWordBody = {
-      word: word!,
       spanish: spanish!,
       from: collection!
+    }
+
+    if (id) {
+      addWordBody.word_id = id;
+    }
+
+    if (value.hasOwnProperty('word')) {
+      addWordBody.word = <string> value.word;
     }
 
     if (value.hasOwnProperty('type')) {
