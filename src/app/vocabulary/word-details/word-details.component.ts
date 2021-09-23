@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { VocabularyService } from '../vocabulary.service';
 import { WordTypeMapperService } from '../word-type-mapper.service';
 import { WordTagsMapperService } from '../word-tags-mapper.service';
 import { Word } from '../../../models/responses/vocabulary/word.model';
+import { Collection } from '../../../models/responses/vocabulary/collection.model';
 
 
 @Component({
@@ -16,11 +17,13 @@ export class WordDetailsComponent implements OnInit {
 
   id: string;
   word?: Word | null;
+  collection?: Collection;
   subtypes: string[];
   tags: string[];
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private vocabularyService: VocabularyService,
     private typeMapperService: WordTypeMapperService,
     private tagMapperService: WordTagsMapperService
@@ -47,6 +50,14 @@ export class WordDetailsComponent implements OnInit {
     return this.tagMapperService.getPrintingValueFromBackend(tag);
   }
 
+  async onClickBack() {
+    await this.router.navigateByUrl('/vocabulary');
+  }
+
+  async onClickEdit() {
+    await this.router.navigate(['edit'], { relativeTo: this.route })
+  }
+
   ngOnInit(): void {
     this.vocabularyService.getWordById(this.id)
       .subscribe((response) => {
@@ -56,6 +67,10 @@ export class WordDetailsComponent implements OnInit {
             this.tags.push(key);
           }
         }
+        this.vocabularyService.getCollection(this.word?.from!)
+          .subscribe((response) => {
+            this.collection = response;
+          })
       });
   }
 

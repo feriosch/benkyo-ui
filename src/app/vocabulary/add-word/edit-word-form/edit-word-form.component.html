@@ -129,12 +129,22 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <button
-            [disabled]="editWordForm.invalid || editWordForm.pending"
-            class="button is-primary"
-          >
-            Submit
-          </button>
+          <div class="buttons">
+            <button
+              [disabled]="editWordForm.invalid || editWordForm.pending"
+              type="submit"
+              class="button is-primary"
+            >
+              Submit
+            </button>
+            <button
+              (click)="onClickCancel()"
+              type="button"
+              class="button is-danger"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>

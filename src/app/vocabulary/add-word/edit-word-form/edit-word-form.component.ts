@@ -104,6 +104,10 @@ export class EditWordFormComponent implements OnInit {
       )
   }
 
+  async onClickCancel() {
+    await this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
   ngOnInit(): void {
     this.vocabularyService.getWordById(this.id)
       .subscribe((response) => {

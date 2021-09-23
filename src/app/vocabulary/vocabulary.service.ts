@@ -99,6 +99,13 @@ export class VocabularyService {
     return this.http.get<Collection[]>(this.collectionsUrl);
   }
 
+  getCollection(name: string): Observable<Collection> {
+    let params = new HttpParams();
+    params = params.append('name', name);
+
+    return this.http.get<Collection>(this.collectionsUrl, { params });
+  }
+
   searchWordByWord(word: string): Observable<Word | null> {
     let params = new HttpParams().append('word', word);
     return this.http.get<Word | null>(this.searchOneWordUrl, { params });
