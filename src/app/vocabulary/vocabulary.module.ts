@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
+import { SharedModule } from '../shared/shared.module';
+import { KanjiModule } from '../kanji/kanji.module';
 import { VocabularyHomeComponent } from './home/vocabulary-home.component';
 import { WordTableComponent } from './home/word-table/word-table.component';
 import { CollectionCardComponent } from './home/collection-card/collection-card.component';
@@ -31,6 +33,8 @@ import { WordDetailsComponent } from './word-details/word-details.component';
   imports: [
     CommonModule,
     AgGridModule.withComponents([]),
+    SharedModule,
+    KanjiModule,
     ReactiveFormsModule,
     FormsModule
   ]
