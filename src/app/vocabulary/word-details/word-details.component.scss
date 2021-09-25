@@ -13,6 +13,11 @@ figure > div {
   font-size: 20px;
 }
 
+.character:hover {
+  color: $link;
+  cursor: pointer;
+}
+
 .common-cell {
   background-color: $green-cell;
 }

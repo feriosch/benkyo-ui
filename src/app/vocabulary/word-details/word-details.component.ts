@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { KanjiModalComponent } from './kanji-modal/kanji-modal.component';
 import { VocabularyService } from '../vocabulary.service';
 import { WordTypeMapperService } from '../word-type-mapper.service';
 import { WordTagsMapperService } from '../word-tags-mapper.service';
@@ -20,6 +21,10 @@ export class WordDetailsComponent implements OnInit {
   collection?: Collection;
   subtypes: string[];
   tags: string[];
+  selectedKanji: string | null;
+
+  @ViewChild('kanjiModal')
+  kanjiModal!: KanjiModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +36,7 @@ export class WordDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.subtypes = this.typeMapperService.backendSubtypes;
     this.tags = [];
+    this.selectedKanji = null;
   }
 
   getCellValue(name: string): number {
@@ -56,6 +62,11 @@ export class WordDetailsComponent implements OnInit {
 
   async onClickEdit() {
     await this.router.navigate(['edit'], { relativeTo: this.route })
+  }
+
+  onClickCharacter(character: string): void {
+    this.selectedKanji = character;
+    this.kanjiModal.openModal();
   }
 
   ngOnInit(): void {

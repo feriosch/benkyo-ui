@@ -13,12 +13,16 @@
       <div class="tile">
         <div class="tile is-parent is-9 is-vertical">
           <div class="tile is-child has-text-centered-mobile">
-            <span class="title is-1">
-              {{ word?.word }}
+            <span
+              *ngFor="let character of word?.word?.split('')"
+              (click)="onClickCharacter(character)"
+              class="title is-1 is-inline-block character"
+            >
+              {{ character }}
             </span>
             <span
               *ngIf="word?.hiragana"
-              class="subtitle is-3"
+              class="subtitle is-3 ml-4"
             >
               ( {{ word?.hiragana }} )
             </span>
@@ -123,3 +127,8 @@
     </div>
   </div>
 </div>
+<app-kanji-modal
+  #kanjiModal
+  [character]="selectedKanji"
+>
+</app-kanji-modal>

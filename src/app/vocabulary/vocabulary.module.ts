@@ -15,6 +15,7 @@ import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
 import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
 import { AddWordComponent } from './add-word/add-word.component';
 import { WordDetailsComponent } from './word-details/word-details.component';
+import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { WordDetailsComponent } from './word-details/word-details.component';
     AddSentencesComponent,
     AddWordComponent,
     WordDetailsComponent,
+    KanjiModalComponent,
   ],
   imports: [
     CommonModule,

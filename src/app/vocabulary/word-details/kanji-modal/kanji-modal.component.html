@@ -1,0 +1,74 @@
+<div
+  [ngClass]="{'is-active': isActive}"
+  class="modal"
+>
+  <div
+    (click)="closeModal()"
+    class="modal-background"
+  >
+  </div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{ character }}</p>
+      <button
+        (click)="closeModal()"
+        class="delete"
+        aria-label="close">
+      </button>
+    </header>
+    <section *ngIf="isLoading" class="modal-card-body">
+      <p class="subtitle is-4">
+        Retrieving data...
+      </p>
+    </section>
+    <section *ngIf="kanjiInfo && !isLoading" class="modal-card-body">
+      <p class="block title is-2">
+        {{kanjiInfo.kanji}}
+      </p>
+      <p class="block subtitle is-3">
+        {{kanjiInfo.spanish}}
+      </p>
+      <div
+        *ngIf="kanjiInfo.components"
+        class="block tags are-large"
+      >
+        <span
+          *ngFor="let component of kanjiInfo.components"
+          class="tag is-rounded is-light is-info ml-2 mr-2"
+        >
+          {{ component }}
+        </span>
+      </div>
+      <p
+        *ngIf="kanjiInfo.on"
+        class="block title is-5 on-yomi"
+      >
+        {{ kanjiInfo.on }}
+      </p>
+      <p
+        *ngIf="kanjiInfo.kun"
+        class="block title is-5 kun-yomi"
+      >
+        {{ kanjiInfo.kun }}
+      </p>
+      <p
+        *ngIf="kanjiInfo.story"
+        class="block subtitle mt-2 is-4"
+      >
+        {{ kanjiInfo.story }}
+      </p>
+    </section>
+    <section *ngIf="error && !isLoading" class="modal-card-body">
+      <p class="subtitle is-4">
+        {{ error }}
+      </p>
+    </section>
+    <footer class="modal-card-foot">
+      <button
+        (click)="closeModal()"
+        class="button">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
