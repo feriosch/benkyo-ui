@@ -25,6 +25,10 @@ export class NavbarComponent implements OnInit {
     await this.router.navigateByUrl('/vocabulary/add');
   }
 
+  async onClickKanji() {
+    await this.router.navigateByUrl('/kanji');
+  }
+
   async onClickLogout() {
     await this.authService.logout();
   }

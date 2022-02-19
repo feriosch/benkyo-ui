@@ -30,6 +30,14 @@ const routes: Routes= [
     }
   },
   {
+    path: 'kanji',
+    canActivate: [AuthGuardService],
+    loadChildren: async () => {
+      const m = await import('./kanji/kanji-routing.module');
+      return m.KanjiRoutingModule;
+    }
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
