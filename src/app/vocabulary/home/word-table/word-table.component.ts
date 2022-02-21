@@ -40,8 +40,8 @@ export class WordTableComponent implements OnInit {
   clickedLastPage: EventEmitter<any>;
 
   columnDefs: ColDef[];
-
   gridOptions: GridOptions;
+  rowHeight: number;
 
   constructor(private router: Router) {
     this.clickedPreviousPage = new EventEmitter();
@@ -49,13 +49,22 @@ export class WordTableComponent implements OnInit {
     this.clickedFirstPage = new EventEmitter();
     this.clickedLastPage = new EventEmitter();
     this.columnDefs = [
-      { field: 'word' },
-      { field: 'hiragana' },
-      { field: 'spanish'}
-    ]
+      {
+        field: 'word',
+        maxWidth: 400,
+        cellClass: 'has-text-weight-medium',
+      },
+      {
+        field: 'hiragana',
+        maxWidth: 400
+      },
+      { field: 'spanish' }
+    ];
     this.gridOptions = {
       suppressCellSelection: true,
-    }
+      rowClass: 'is-size-5',
+    };
+    this.rowHeight = 50;
   }
 
   isBackwardPossible(): boolean {
@@ -90,7 +99,7 @@ export class WordTableComponent implements OnInit {
   }
 
   async onRowClicked(event: RowDoubleClickedEvent) {
-    await this.router.navigateByUrl(`vocabulary/word/${event.data.id}`)
+    await this.router.navigateByUrl(`vocabulary/word/${event.data.id}`);
   }
 
 }

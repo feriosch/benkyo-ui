@@ -39,8 +39,8 @@ export class KanjiTableComponent implements OnInit {
   clickedLastPage: EventEmitter<any>;
 
   columnDefs: ColDef[];
-
   gridOptions: GridOptions;
+  rowHeight: number;
 
   constructor(private router: Router) {
     this.clickedPreviousPage = new EventEmitter();
@@ -48,20 +48,40 @@ export class KanjiTableComponent implements OnInit {
     this.clickedFirstPage = new EventEmitter();
     this.clickedLastPage = new EventEmitter();
     this.columnDefs = [
-      { field: 'kanji',
+      {
+        field: 'kanji',
         maxWidth: 150,
-        cellClass: 'has-text-weight-semibold',
-        cellStyle: { fontSize: '18px', marginLeft: '10px' }
+        cellClass: ['has-text-weight-semibold'],
+        cellStyle: { marginLeft: '6px' }
       },
-      { field: 'v1', maxWidth: 150 },
-      { field: 'v2', maxWidth: 150 },
-      { field: 'on' },
-      { field: 'kun' },
-      { field: 'spanish' }
+      {
+        field: 'v1',
+        maxWidth: 100,
+        cellClass: ['is-size-6']
+      },
+      {
+        field: 'v2',
+        maxWidth: 100,
+        cellClass: ['is-size-6']
+      },
+      {
+        field: 'on',
+        maxWidth: 250,
+        cellClass: ['has-text-weight-medium', 'on-yomi']
+      },
+      {
+        field: 'kun',
+        cellClass: ['has-text-weight-medium', 'kun-yomi']
+      },
+      {
+        field: 'spanish'
+      }
     ];
     this.gridOptions = {
       suppressCellSelection: true,
+      rowClass: ['is-size-5']
     };
+    this.rowHeight = 50;
   }
 
   isBackwardPossible(): boolean {

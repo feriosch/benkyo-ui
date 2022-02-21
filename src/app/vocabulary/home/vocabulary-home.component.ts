@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { VocabularyService } from '../vocabulary.service';
 import { OrderDirection, OrderField } from '../../../models/requests/vocabulary';
 import { Word } from '../../../models/responses/vocabulary/word.model';
 import { Collection } from '../../../models/responses/vocabulary/collection.model'
+import { VocabularyService } from '../vocabulary.service';
 
 
 @Component({
@@ -59,6 +59,8 @@ export class VocabularyHomeComponent implements OnInit {
   applyFilter(): void {
     if (this.filter) {
       this.vocabularyService.filter = this.filter;
+      this.vocabularyService.currentCollection = null;
+      this.vocabularyService.pageNumber = 1;
       this.getWords();
     }
   }
@@ -66,6 +68,7 @@ export class VocabularyHomeComponent implements OnInit {
   onChangeFilter(value: any) {
     if (!value) {
       this.vocabularyService.filter = null;
+      this.vocabularyService.pageNumber = 1;
       this.getWords();
     }
   }
