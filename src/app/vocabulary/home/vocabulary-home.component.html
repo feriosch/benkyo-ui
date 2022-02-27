@@ -40,7 +40,10 @@
   </div>
   <div class="level-right">
     <div class="level-item">
-      <app-csv-button></app-csv-button>
+      <app-csv-button
+        [currentSelection]="vocabularyService.currentCollection"
+      >
+      </app-csv-button>
     </div>
   </div>
 </div>

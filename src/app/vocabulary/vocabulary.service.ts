@@ -15,11 +15,13 @@ export class VocabularyService {
   private readonly wordsUrl: string;
   private readonly collectionsUrl: string;
   private readonly searchOneWordUrl: string;
+  private readonly wordsCsvUrl: string;
 
   constructor(private http: HttpClient) {
     this.wordsUrl = `${environment.backendUrl}/words`;
     this.collectionsUrl = `${environment.backendUrl}/collections`;
     this.searchOneWordUrl = `${environment.backendUrl}/searchone`;
+    this.wordsCsvUrl = `${this.wordsUrl}/csv`;
   }
 
   get currentCollection(): string | null {
@@ -122,5 +124,11 @@ export class VocabularyService {
   getWordById(id: string): Observable<Word | null> {
     let params = new HttpParams().append('word_id', id);
     return this.http.get<Word | null>(this.searchOneWordUrl, { params });
+  }
+
+  downloadCSVFile() {
+    let params = new HttpParams();
+    if (this.currentCollection) params = params.append('from', this.currentCollection);
+    return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }
 }
