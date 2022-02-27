@@ -13,24 +13,35 @@
     </div>
   </div>
 </div>
-<div class="field has-addons">
-  <div class="control">
-    <input
-      [(ngModel)]="filter"
-      (ngModelChange)="onChangeFilter($event)"
-      class="input"
-      type="text"
-      placeholder="Filter word"
-    >
+<div class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <div class="field has-addons">
+        <div class="control">
+          <input
+            [(ngModel)]="filter"
+            (ngModelChange)="onChangeFilter($event)"
+            class="input"
+            type="text"
+            placeholder="Filter word"
+          >
+        </div>
+        <div class="control">
+          <button
+            [disabled]="!filter"
+            (click)="applyFilter()"
+            class="button is-info"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="control">
-    <button
-      [disabled]="!filter"
-      (click)="applyFilter()"
-      class="button is-info"
-    >
-      Search
-    </button>
+  <div class="level-right">
+    <div class="level-item">
+      <app-csv-button></app-csv-button>
+    </div>
   </div>
 </div>
 <app-word-table

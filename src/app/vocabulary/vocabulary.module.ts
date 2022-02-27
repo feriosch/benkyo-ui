@@ -16,6 +16,7 @@ import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.co
 import { AddWordComponent } from './add-word/add-word.component';
 import { WordDetailsComponent } from './word-details/word-details.component';
 import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
+import { CsvButtonComponent } from './home/csv-button/csv-button.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.comp
     AddWordComponent,
     WordDetailsComponent,
     KanjiModalComponent,
+    CsvButtonComponent,
   ],
   imports: [
     CommonModule,
