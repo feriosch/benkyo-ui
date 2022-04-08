@@ -1,1 +1,1 @@
-export const prodBackendUrl: string = "http://35.208.48.244:5000"
+export const prodBackendUrl: string = 'https://benkyo.backend.ferios.me'
