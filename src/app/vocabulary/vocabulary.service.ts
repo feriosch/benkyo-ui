@@ -20,7 +20,7 @@ export class VocabularyService {
   constructor(private http: HttpClient) {
     this.wordsUrl = `${environment.backendUrl}/words`;
     this.collectionsUrl = `${environment.backendUrl}/collections`;
-    this.searchOneWordUrl = `${environment.backendUrl}/searchone`;
+    this.searchOneWordUrl = `${this.wordsUrl}/search`;
     this.wordsCsvUrl = `${this.wordsUrl}/csv`;
   }
 

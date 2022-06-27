@@ -1,4 +1,4 @@
-import * as env from './env'
+import * as env from './variables.env'
 
 export const environment = {
   production: true,
