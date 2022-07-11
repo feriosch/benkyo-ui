@@ -7,7 +7,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { LoginGuardService } from './auth/login-guard.service';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
-const routes: Routes= [
+const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -19,7 +19,7 @@ const routes: Routes= [
     loadChildren: async () => {
       const m = await import('./login/login-routing.module');
       return m.LoginRoutingModule;
-    }
+    },
   },
   {
     path: 'vocabulary',
@@ -27,7 +27,7 @@ const routes: Routes= [
     loadChildren: async () => {
       const m = await import('./vocabulary/vocabulary-routing.module');
       return m.VocabularyRoutingModule;
-    }
+    },
   },
   {
     path: 'kanji',
@@ -35,28 +35,36 @@ const routes: Routes= [
     loadChildren: async () => {
       const m = await import('./kanji/kanji-routing.module');
       return m.KanjiRoutingModule;
-    }
+    },
+  },
+  {
+    path: 'grammar',
+    canActivate: [AuthGuardService],
+    loadChildren: async () => {
+      const m = await import('./grammar/grammar-routing.module');
+      return m.GrammarRoutingModule;
+    },
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
-]
+    component: NotFoundComponent,
+  },
+];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
-      onSameUrlNavigation: 'reload'
-    })
+      onSameUrlNavigation: 'reload',
+    }),
   ],
   exports: [RouterModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
