@@ -7,7 +7,7 @@ import { OrderDirection, OrderField } from 'src/models/requests/grammar';
 import { ClausesResponse } from 'src/models/responses/grammar/clauses-response.model';
 
 @Injectable({ providedIn: 'root' })
-export class KanjiService {
+export class GrammarService {
   private readonly clausesUrl: string;
   private readonly searchClauseUrl: string;
 
@@ -62,7 +62,7 @@ export class KanjiService {
     }
   }
 
-  getKanjis(
+  getClauses(
     orderField?: OrderField | null,
     orderDirection?: OrderDirection | null
   ): Observable<ClausesResponse> {
