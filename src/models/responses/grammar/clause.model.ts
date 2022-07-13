@@ -43,6 +43,7 @@ export interface Related {
 
 export interface FullClause {
   id: string;
+  title: string;
   hiragana?: string;
   translation: string;
   level: string;

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/grammar';
+import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { ClausesResponse } from 'src/models/responses/grammar/clauses-response.model';
 
 @Injectable({ providedIn: 'root' })
@@ -75,5 +76,10 @@ export class GrammarService {
       params = params.append('order_direction', orderDirection);
 
     return this.http.get<ClausesResponse>(this.clausesUrl, { params });
+  }
+
+  getFullClauseById(id: string): Observable<FullClause | null> {
+    let params = new HttpParams().append('clause_id', id);
+    return this.http.get<FullClause | null>(this.searchClauseUrl, { params });
   }
 }

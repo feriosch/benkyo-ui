@@ -106,7 +106,7 @@ export class GrammarTableComponent implements OnInit {
   }
 
   async onRowClicked(event: RowDoubleClickedEvent) {
-    await this.router.navigateByUrl(`grammar/search/${event.data.id}`);
+    await this.router.navigateByUrl(`grammar/clause/${event.data.id}`);
   }
 
   ngOnInit(): void {}
