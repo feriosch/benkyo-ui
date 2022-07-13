@@ -9,3 +9,8 @@
         </button>
     </div>
 </div>
+<app-grammar-table [clauses]="clauses" [currentPage]="grammarService.pageNumber!" [totalPages]="totalPages"
+    [totalClauses]="totalClauses" [isClauseFetchLoading]="isClauseFetchLoading"
+    (clickedPreviousPage)="changeToPreviousPage()" (clickedNextPage)="changeToNextPage()"
+    (clickedFirstPage)="changeToFirstPage()" (clickedLastPage)="changeToLastPage()">
+</app-grammar-table>
