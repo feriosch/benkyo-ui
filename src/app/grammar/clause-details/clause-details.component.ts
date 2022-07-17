@@ -7,20 +7,18 @@ import { GrammarService } from '../grammar.service';
 @Component({
   selector: 'app-clause-details',
   templateUrl: './clause-details.component.html',
-  styleUrls: ['./clause-details.component.scss']
+  styleUrls: ['./clause-details.component.scss'],
 })
 export class ClauseDetailsComponent implements OnInit {
-
   id: string;
   clause?: FullClause | null;
   tags: string[];
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService,
-  ) { 
+    private grammarService: GrammarService
+  ) {
     this.id = this.route.snapshot.params['id'];
     this.tags = [];
   }
@@ -30,19 +28,17 @@ export class ClauseDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.grammarService.getFullClauseById(this.id)
-      .subscribe((response) => {
-        this.clause = response;
-        if (this.clause?.tags) {
-          for (const [key] of Object.entries(this.clause?.tags)) {
-            this.tags.push(key);
-          }
+    this.grammarService.getFullClauseById(this.id).subscribe((response) => {
+      this.clause = response;
+      if (this.clause?.tags) {
+        for (const [key] of Object.entries(this.clause?.tags)) {
+          this.tags.push(key);
         }
-      });
+      }
+    });
   }
 
   debug() {
-    return JSON.stringify(this.clause)
+    return JSON.stringify(this.clause);
   }
-
 }

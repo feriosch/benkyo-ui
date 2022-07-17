@@ -67,7 +67,7 @@ export class GrammarTableComponent implements OnInit {
       },
       {
         field: 'level',
-        maxWidth: 250
+        maxWidth: 250,
       },
     ];
     this.gridOptions = {

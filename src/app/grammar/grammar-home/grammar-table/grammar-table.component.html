@@ -1,23 +1,44 @@
-<ag-grid-angular class="ag-theme-alpine" domLayout="autoHeight" [rowData]="clauses" [columnDefs]="columnDefs"
-    [gridOptions]="gridOptions" [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"
-    (rowDoubleClicked)="onRowClicked($event)">
+<ag-grid-angular
+  class="ag-theme-alpine"
+  domLayout="autoHeight"
+  [rowData]="clauses"
+  [columnDefs]="columnDefs"
+  [gridOptions]="gridOptions"
+  [rowHeight]="rowHeight"
+  (gridReady)="onGridReady($event)"
+  (rowDoubleClicked)="onRowClicked($event)"
+>
 </ag-grid-angular>
 <div id="pagination-container" class="column has-text-right ag-theme-alpine">
-    <span class="is-loading" *ngIf="isClauseFetchLoading">
-        Loading
-    </span>
-    Page
-    <i (click)="onClickFirstPage()" [ngClass]="{'is-active': isBackwardPossible()}" class="fas fa-step-backward"
-        id="to-first-page">
-    </i>
-    <i (click)="onClickPreviousPage()" [ngClass]="{'is-active': isBackwardPossible()}" class="fas fa-chevron-left"
-        id="previous-page">
-    </i>
-    <b>{{ currentPage }}</b> of <b>{{ totalPages }}</b>
-    <i (click)="onClickNextPage()" [ngClass]="{'is-active': isForwardPossible()}" class="fas fa-chevron-right"
-        id="next-page">
-    </i>
-    <i (click)="onClickLastPage()" [ngClass]="{'is-active': isForwardPossible()}" class="fas fa-step-forward"
-        id="to-last-page">
-    </i>
+  <span class="is-loading" *ngIf="isClauseFetchLoading"> Loading </span>
+  Page
+  <i
+    (click)="onClickFirstPage()"
+    [ngClass]="{ 'is-active': isBackwardPossible() }"
+    class="fas fa-step-backward"
+    id="to-first-page"
+  >
+  </i>
+  <i
+    (click)="onClickPreviousPage()"
+    [ngClass]="{ 'is-active': isBackwardPossible() }"
+    class="fas fa-chevron-left"
+    id="previous-page"
+  >
+  </i>
+  <b>{{ currentPage }}</b> of <b>{{ totalPages }}</b>
+  <i
+    (click)="onClickNextPage()"
+    [ngClass]="{ 'is-active': isForwardPossible() }"
+    class="fas fa-chevron-right"
+    id="next-page"
+  >
+  </i>
+  <i
+    (click)="onClickLastPage()"
+    [ngClass]="{ 'is-active': isForwardPossible() }"
+    class="fas fa-step-forward"
+    id="to-last-page"
+  >
+  </i>
 </div>
