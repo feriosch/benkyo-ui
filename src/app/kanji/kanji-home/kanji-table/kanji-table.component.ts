@@ -1,16 +1,20 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AgGridEvent, ColDef, GridOptions, RowDoubleClickedEvent } from 'ag-grid-community';
+import {
+  AgGridEvent,
+  ColDef,
+  GridOptions,
+  RowDoubleClickedEvent,
+} from 'ag-grid-community';
 
 import { SummarizedKanji } from '../../../../models/responses/kanji/kanji.model';
 
 @Component({
   selector: 'app-kanji-table',
   templateUrl: './kanji-table.component.html',
-  styleUrls: ['./kanji-table.component.scss']
+  styleUrls: ['./kanji-table.component.scss'],
 })
 export class KanjiTableComponent implements OnInit {
-
   @Input()
   kanjis?: SummarizedKanji[];
 
@@ -52,34 +56,34 @@ export class KanjiTableComponent implements OnInit {
         field: 'kanji',
         maxWidth: 150,
         cellClass: ['has-text-weight-semibold'],
-        cellStyle: { marginLeft: '6px' }
+        cellStyle: { marginLeft: '6px' },
       },
       {
         field: 'v1',
         maxWidth: 100,
-        cellClass: ['is-size-6']
+        cellClass: ['is-size-6'],
       },
       {
         field: 'v2',
         maxWidth: 100,
-        cellClass: ['is-size-6']
+        cellClass: ['is-size-6'],
       },
       {
         field: 'on',
         maxWidth: 250,
-        cellClass: ['has-text-weight-medium', 'on-yomi']
+        cellClass: ['has-text-weight-medium', 'on-yomi'],
       },
       {
         field: 'kun',
-        cellClass: ['has-text-weight-medium', 'kun-yomi']
+        cellClass: ['has-text-weight-medium', 'kun-yomi'],
       },
       {
-        field: 'spanish'
-      }
+        field: 'spanish',
+      },
     ];
     this.gridOptions = {
       suppressCellSelection: true,
-      rowClass: ['is-size-5']
+      rowClass: ['is-size-5'],
     };
     this.rowHeight = 50;
   }
@@ -112,8 +116,7 @@ export class KanjiTableComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onRowClicked(event: RowDoubleClickedEvent) {
     await this.router.navigateByUrl(`kanjis/searchone/${event.data.id}`);

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { OrderDirection, OrderField } from '../../../models/requests/kanji';
 import { SummarizedKanji } from '../../../models/responses/kanji/kanji.model';
@@ -7,10 +7,9 @@ import { KanjiService } from '../kanji.service';
 @Component({
   selector: 'app-kanji-home',
   templateUrl: './kanji-home.component.html',
-  styleUrls: ['./kanji-home.component.scss']
+  styleUrls: ['./kanji-home.component.scss'],
 })
 export class KanjiHomeComponent implements OnInit {
-
   nextPageNumber: string;
   totalPages: number;
   totalKanjis: number;
@@ -33,18 +32,17 @@ export class KanjiHomeComponent implements OnInit {
 
   getKanjis(): void {
     this.isKanjiFetchLoading = true;
-    this.kanjiService.getKanjis(
-      this.orderField,
-      this.orderDirection
-    ).toPromise()
+    this.kanjiService
+      .getKanjis(this.orderField, this.orderDirection)
+      .toPromise()
       .then((response) => {
         this.kanjis = response.kanjis;
         this.nextPageNumber = response.next_page_number;
         this.totalPages = response.total_pages;
-        this.totalKanjis = response.total_kanjis
+        this.totalKanjis = response.total_kanjis;
       })
       .catch((error) => console.log(error))
-      .finally(() => this.isKanjiFetchLoading = false);
+      .finally(() => (this.isKanjiFetchLoading = false));
   }
 
   applyFilter(): void {
@@ -101,5 +99,4 @@ export class KanjiHomeComponent implements OnInit {
     this.orderField = OrderField.v1;
     this.getKanjis();
   }
-
 }

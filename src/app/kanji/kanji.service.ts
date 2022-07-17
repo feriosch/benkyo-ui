@@ -7,7 +7,6 @@ import { Kanji } from '../../models/responses/kanji/kanji.model';
 import { OrderDirection, OrderField } from '../../models/requests/kanji';
 import { KanjisResponse } from '../../models/responses/kanji/kanjis-response.model';
 
-
 @Injectable({ providedIn: 'root' })
 export class KanjiService {
   private readonly kanjisUrl: string;
@@ -73,9 +72,10 @@ export class KanjiService {
     if (this.pageSize) params = params.append('page_size', this.pageSize);
     if (this.pageNumber) params = params.append('page_number', this.pageNumber);
     if (orderField) params = params.append('order_field', orderField);
-    if (orderDirection) params = params.append('order_direction', orderDirection);
+    if (orderDirection)
+      params = params.append('order_direction', orderDirection);
 
-    return this.http.get<KanjisResponse>(this.kanjisUrl, { params })
+    return this.http.get<KanjisResponse>(this.kanjisUrl, { params });
   }
 
   getKanjiByKanji(kanji: string): Observable<Kanji | null> {

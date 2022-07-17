@@ -6,16 +6,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { KanjiHomeComponent } from './kanji-home/kanji-home.component';
 import { KanjiTableComponent } from './kanji-home/kanji-table/kanji-table.component';
 
-
 @NgModule({
-  declarations: [
-    KanjiHomeComponent,
-    KanjiTableComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AgGridModule
-  ]
+  declarations: [KanjiHomeComponent, KanjiTableComponent],
+  imports: [CommonModule, FormsModule, AgGridModule],
 })
-export class KanjiModule { }
+export class KanjiModule {}

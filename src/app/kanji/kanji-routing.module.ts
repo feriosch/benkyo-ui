@@ -9,20 +9,16 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: KanjiHomeComponent
+    component: KanjiHomeComponent,
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
-]
+    component: NotFoundComponent,
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule
-  ],
+  imports: [RouterModule.forChild(routes), SharedModule],
   exports: [RouterModule],
 })
-
-export class KanjiRoutingModule { }
+export class KanjiRoutingModule {}
