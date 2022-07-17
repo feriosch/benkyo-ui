@@ -8,14 +8,12 @@ import { WordTagsMapperService } from '../word-tags-mapper.service';
 import { Word } from '../../../models/responses/vocabulary/word.model';
 import { Collection } from '../../../models/responses/vocabulary/collection.model';
 
-
 @Component({
   selector: 'app-word-details',
   templateUrl: './word-details.component.html',
-  styleUrls: ['./word-details.component.scss']
+  styleUrls: ['./word-details.component.scss'],
 })
 export class WordDetailsComponent implements OnInit {
-
   id: string;
   word?: Word | null;
   collection?: Collection;
@@ -48,7 +46,8 @@ export class WordDetailsComponent implements OnInit {
   }
 
   getSubtypeValueText(value: number, subtype: string): string {
-    let subtypeName = this.typeMapperService.getPrintingValueFromBackend(subtype)
+    let subtypeName =
+      this.typeMapperService.getPrintingValueFromBackend(subtype);
     return this.typeMapperService.getValueText(value, subtypeName);
   }
 
@@ -61,7 +60,7 @@ export class WordDetailsComponent implements OnInit {
   }
 
   async onClickEdit() {
-    await this.router.navigate(['edit'], { relativeTo: this.route })
+    await this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
   onClickCharacter(character: string): void {
@@ -70,19 +69,18 @@ export class WordDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vocabularyService.getWordById(this.id)
-      .subscribe((response) => {
-        this.word = response;
-        if (this.word?.tags) {
-          for (const [key] of Object.entries(this.word?.tags)) {
-            this.tags.push(key);
-          }
+    this.vocabularyService.getWordById(this.id).subscribe((response) => {
+      this.word = response;
+      if (this.word?.tags) {
+        for (const [key] of Object.entries(this.word?.tags)) {
+          this.tags.push(key);
         }
-        this.vocabularyService.getCollection(this.word?.from!)
-          .subscribe((response) => {
-            this.collection = response;
-          })
-      });
+      }
+      this.vocabularyService
+        .getCollection(this.word?.from!)
+        .subscribe((response) => {
+          this.collection = response;
+        });
+    });
   }
-
 }

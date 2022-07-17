@@ -1,10 +1,6 @@
-
 <div class="section">
   <div class="block">
-    <button
-      (click)="onClickBack()"
-      class="button is-info"
-    >
+    <button (click)="onClickBack()" class="button is-info">
       Back To Words
     </button>
   </div>
@@ -20,10 +16,7 @@
             >
               {{ character }}
             </span>
-            <span
-              *ngIf="word?.hiragana"
-              class="subtitle is-3 ml-4"
-            >
+            <span *ngIf="word?.hiragana" class="subtitle is-3 ml-4">
               ( {{ word?.hiragana }} )
             </span>
           </div>
@@ -34,20 +27,18 @@
           </div>
         </div>
         <div class="tile is-parent">
-          <div
-            *ngIf="collection"
-            class="tile is-child has-text-centered"
-          >
+          <div *ngIf="collection" class="tile is-child has-text-centered">
             <p class="title is-4">
-              {{ collection.printing_name}}
+              {{ collection.printing_name }}
             </p>
             <figure
               class="image is-96x96 is-inline-block"
-              id="collection-figure">
+              id="collection-figure"
+            >
               <img
                 [src]="collection!.image_url"
                 [alt]="collection!.printing_name"
-              >
+              />
             </figure>
           </div>
         </div>
@@ -55,10 +46,7 @@
     </div>
   </div>
   <div class="columns is-centered is-mobile is-multiline">
-    <div
-      *ngFor="let subtype of subtypes"
-      class="column has-text-centered"
-    >
+    <div *ngFor="let subtype of subtypes" class="column has-text-centered">
       <figure
         [ngClass]="{
           'common-cell': getCellValue(subtype) === 1,
@@ -73,15 +61,13 @@
       </figure>
     </div>
   </div>
-  <div
-    *ngIf="word?.tags"
-    class="tags are-large is-centered"
-  >
+  <div *ngIf="word?.tags" class="tags are-large is-centered">
     <span
       *ngFor="let tag of tags"
       [ngClass]="{
         'is-success': tag === 'common',
-        'is-info': tag === 'expression' || tag === 'usually_kana' || tag === 'jlpt_n1',
+        'is-info':
+          tag === 'expression' || tag === 'usually_kana' || tag === 'jlpt_n1',
         'is-warning': tag === 'honorific' || tag === 'humble',
         'is-danger': tag === 'joyogai' || tag === 'ateji',
         'is-link': tag === 'intransitive' || tag === 'transitive',
@@ -92,18 +78,12 @@
       {{ getTagValueText(tag) }}
     </span>
   </div>
-  <div
-    *ngIf="word?.notes"
-    class="block has-text-centered"
-  >
+  <div *ngIf="word?.notes" class="block has-text-centered">
     <p class="subtitle is-4">
       {{ word?.notes }}
     </p>
   </div>
-  <div
-    *ngIf="word?.sentences"
-    class="block"
-  >
+  <div *ngIf="word?.sentences" class="block">
     <div *ngFor="let sentence of word?.sentences" class="block">
       <p class="title is-4">
         {{ sentence.sentence }}
@@ -115,20 +95,9 @@
   </div>
   <div class="block">
     <div class="buttons">
-      <button
-        (click)="onClickEdit()"
-        class="button is-info"
-      >
-        Edit
-      </button>
-      <button class="button is-danger">
-        Delete
-      </button>
+      <button (click)="onClickEdit()" class="button is-info">Edit</button>
+      <button class="button is-danger">Delete</button>
     </div>
   </div>
 </div>
-<app-kanji-modal
-  #kanjiModal
-  [character]="selectedKanji"
->
-</app-kanji-modal>
+<app-kanji-modal #kanjiModal [character]="selectedKanji"> </app-kanji-modal>

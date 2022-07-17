@@ -1,16 +1,20 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 
 import { KanjiService } from '../../../kanji/kanji.service';
 import { Kanji } from '../../../../models/responses/kanji/kanji.model';
 
-
 @Component({
   selector: 'app-kanji-modal',
   templateUrl: './kanji-modal.component.html',
-  styleUrls: ['./kanji-modal.component.scss']
+  styleUrls: ['./kanji-modal.component.scss'],
 })
 export class KanjiModalComponent implements OnInit, OnChanges {
-
   @Input()
   character: string | null;
 
@@ -37,25 +41,25 @@ export class KanjiModalComponent implements OnInit, OnChanges {
 
   getKanjiInfo(): void {
     this.isLoading = true;
-    this.kanjiService.getKanjiByKanji(this.character!)
-      .subscribe((response) => {
+    this.kanjiService.getKanjiByKanji(this.character!).subscribe(
+      (response) => {
         this.kanjiInfo = response;
         this.error = null;
         this.isLoading = false;
-      }, (error) => {
+      },
+      (error) => {
         this.error = error.error.error;
         this.kanjiInfo = null;
         this.isLoading = false;
-      })
+      }
+    );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  ngOnChanges (changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges) {
     if (this.character) {
       this.getKanjiInfo();
     }
   }
-
 }
