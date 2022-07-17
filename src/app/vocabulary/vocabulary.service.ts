@@ -7,8 +7,7 @@ import { OrderDirection, OrderField } from '../../models/requests/vocabulary';
 import { Word } from '../../models/responses/vocabulary/word.model';
 import { WordsResponse } from '../../models/responses/vocabulary/words-response.model';
 import { Collection } from '../../models/responses/vocabulary/collection.model';
-import { AddWordBody } from '../../models/requests/add-word-body.model'
-
+import { AddWordBody } from '../../models/requests/add-word-body.model';
 
 @Injectable({ providedIn: 'root' })
 export class VocabularyService {
@@ -87,12 +86,14 @@ export class VocabularyService {
     orderDirection?: OrderDirection | null
   ): Observable<WordsResponse> {
     let params = new HttpParams();
-    if (this.currentCollection) params = params.append('from', this.currentCollection);
+    if (this.currentCollection)
+      params = params.append('from', this.currentCollection);
     if (this.filter) params = params.append('filter_by', this.filter);
     if (this.pageSize) params = params.append('page_size', this.pageSize);
     if (this.pageNumber) params = params.append('page_number', this.pageNumber);
     if (orderField) params = params.append('order_field', orderField);
-    if (orderDirection) params = params.append('order_direction', orderDirection);
+    if (orderDirection)
+      params = params.append('order_direction', orderDirection);
 
     return this.http.get<WordsResponse>(this.wordsUrl, { params });
   }
@@ -128,7 +129,8 @@ export class VocabularyService {
 
   downloadCSVFile() {
     let params = new HttpParams();
-    if (this.currentCollection) params = params.append('from', this.currentCollection);
+    if (this.currentCollection)
+      params = params.append('from', this.currentCollection);
     return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }
 }

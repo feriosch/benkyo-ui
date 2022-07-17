@@ -12,31 +12,28 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: VocabularyHomeComponent
+    component: VocabularyHomeComponent,
   },
   {
     path: 'add',
-    component: AddWordComponent
+    component: AddWordComponent,
   },
   {
     path: 'word/:id',
-    component: WordDetailsComponent
+    component: WordDetailsComponent,
   },
   {
     path: 'word/:id/edit',
-    component: EditWordFormComponent
+    component: EditWordFormComponent,
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule
-  ],
+  imports: [RouterModule.forChild(routes), SharedModule],
   exports: [RouterModule],
 })
-export class VocabularyRoutingModule { }
+export class VocabularyRoutingModule {}

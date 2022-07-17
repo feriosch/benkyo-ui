@@ -18,7 +18,6 @@ import { WordDetailsComponent } from './word-details/word-details.component';
 import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
 import { CsvButtonComponent } from './home/csv-button/csv-button.component';
 
-
 @NgModule({
   declarations: [
     VocabularyHomeComponent,
@@ -40,7 +39,7 @@ import { CsvButtonComponent } from './home/csv-button/csv-button.component';
     SharedModule,
     KanjiModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
-export class VocabularyModule { }
+export class VocabularyModule {}
