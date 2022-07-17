@@ -8,7 +8,7 @@ export interface Word {
   notes?: string;
   type: Type;
   tags?: Tags;
-  sentences?: Sentence[]
+  sentences?: Sentence[];
 }
 
 export interface Type {

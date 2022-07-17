@@ -8,7 +8,7 @@ export interface SummarizedClause {
 
 export interface ClausesResponse {
   clauses: SummarizedClause[];
-  next_page_number: string,
-  total_pages: number,
-  total_clauses: number,
+  next_page_number: string;
+  total_pages: number;
+  total_clauses: number;
 }

@@ -38,7 +38,7 @@ export interface Related {
   title: string;
   hiragana?: string;
   reference?: string;
-  sections: Section[]
+  sections: Section[];
 }
 
 export interface FullClause {
