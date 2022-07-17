@@ -1,8 +1,4 @@
-<form
-  [formGroup]="addWordForm"
-  (ngSubmit)="onSubmit()"
-  class="box"
->
+<form [formGroup]="addWordForm" (ngSubmit)="onSubmit()" class="box">
   <div class="field is-horizontal">
     <div class="field-label">
       <label class="label">Word</label>
@@ -11,33 +7,28 @@
       <div class="field">
         <div
           class="control has-icons-right"
-          [ngClass]="{'is-loading': wordControl!.pending}"
+          [ngClass]="{ 'is-loading': wordControl!.pending }"
         >
           <input
             [ngClass]="{
-          'is-danger': wordControl!.touched && wordControl!.invalid,
-          'is-success': wordControl!.valid
-        }"
+              'is-danger': wordControl!.touched && wordControl!.invalid,
+              'is-success': wordControl!.valid
+            }"
             formControlName="word"
             class="input"
             type="text"
             placeholder="Enter the word"
-          >
+          />
           <span class="icon is-small is-right">
             <i
               *ngIf="wordControl!.touched && wordControl!.invalid"
-              class="fas fa-exclamation-triangle">
+              class="fas fa-exclamation-triangle"
+            >
             </i>
-            <i
-              *ngIf="wordControl!.valid"
-              class="fas fa-check">
-            </i>
+            <i *ngIf="wordControl!.valid" class="fas fa-check"> </i>
           </span>
         </div>
-        <p
-          *ngIf="isWordRepeated()"
-          class="help is-danger"
-        >
+        <p *ngIf="isWordRepeated()" class="help is-danger">
           This word is repeated! {{ wordControl!.errors!.repeatedWord }}
         </p>
       </div>
@@ -48,7 +39,7 @@
             class="input"
             type="text"
             placeholder="Enter hiragana (optional)"
-          >
+          />
         </div>
       </div>
     </div>
@@ -61,12 +52,14 @@
       <div class="field">
         <div class="control">
           <input
-            [ngClass]="{'is-danger': spanishControl!.touched && spanishControl!.invalid}"
+            [ngClass]="{
+              'is-danger': spanishControl!.touched && spanishControl!.invalid
+            }"
             formControlName="spanish"
             class="input"
             type="text"
             placeholder="Enter Spanish translation"
-          >
+          />
         </div>
         <p
           *ngIf="spanishControl!.touched && spanishControl!.invalid"
@@ -109,7 +102,7 @@
             class="input"
             type="text"
             placeholder="Enter notes (Optional)"
-          >
+          />
         </div>
       </div>
     </div>
@@ -121,10 +114,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <div
-            [ngClass]="{'is-loading': !collections}"
-            class="select"
-          >
+          <div [ngClass]="{ 'is-loading': !collections }" class="select">
             <select formControlName="collection">
               <option
                 *ngFor="let collection of collections"
@@ -149,8 +139,7 @@
     </div>
   </div>
   <div class="field is-horizontal">
-    <div class="field-label">
-    </div>
+    <div class="field-label"></div>
     <div class="field-body">
       <div class="field">
         <div class="control">

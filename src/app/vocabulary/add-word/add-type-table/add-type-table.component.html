@@ -1,9 +1,6 @@
 <div [formGroup]="form!" class="mt-4">
   <div class="columns is-centered is-mobile is-multiline">
-    <div
-      *ngFor="let subtype of subTypes"
-      class="column has-text-centered"
-    >
+    <div *ngFor="let subtype of subTypes" class="column has-text-centered">
       <figure
         (click)="onClickCell(subtype)"
         [ngClass]="{

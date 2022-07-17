@@ -4,23 +4,23 @@ import {
   FormControl,
   FormGroup,
   FormGroupDirective,
-  Validators
+  Validators,
 } from '@angular/forms';
-
 
 @Component({
   selector: 'app-add-sentences',
   templateUrl: './add-sentences.component.html',
-  styleUrls: ['./add-sentences.component.scss']
+  styleUrls: ['./add-sentences.component.scss'],
 })
 export class AddSentencesComponent implements OnInit {
-
   form?: FormGroup;
   sentencesFormArray?: FormArray;
 
-  constructor(private rootFormGroup: FormGroupDirective) { }
+  constructor(private rootFormGroup: FormGroupDirective) {}
 
-  get controls() { return this.sentencesFormArray!.controls; }
+  get controls() {
+    return this.sentencesFormArray!.controls;
+  }
 
   getJapaneseControl(index: number): FormControl {
     return this.controls[index].get('japanese') as FormControl;
@@ -33,8 +33,8 @@ export class AddSentencesComponent implements OnInit {
   pushSentence(): void {
     this.sentencesFormArray!.push(
       new FormGroup({
-        'japanese': new FormControl('', [Validators.required]),
-        'translation': new FormControl('', [Validators.required])
+        japanese: new FormControl('', [Validators.required]),
+        translation: new FormControl('', [Validators.required]),
       })
     );
   }
@@ -47,7 +47,8 @@ export class AddSentencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.rootFormGroup.control as FormGroup;
-    this.sentencesFormArray = this.rootFormGroup.control.get('sentences') as FormArray;
+    this.sentencesFormArray = this.rootFormGroup.control.get(
+      'sentences'
+    ) as FormArray;
   }
-
 }

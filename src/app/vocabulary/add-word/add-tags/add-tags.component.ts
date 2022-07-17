@@ -3,14 +3,12 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 import { WordTagsMapperService } from '../../word-tags-mapper.service';
 
-
 @Component({
   selector: 'app-add-tags',
   templateUrl: './add-tags.component.html',
-  styleUrls: ['./add-tags.component.scss']
+  styleUrls: ['./add-tags.component.scss'],
 })
 export class AddTagsComponent implements OnInit {
-
   form?: FormGroup;
   tags: string[];
 
@@ -45,5 +43,4 @@ export class AddTagsComponent implements OnInit {
       this.tags.push(key);
     }
   }
-
 }

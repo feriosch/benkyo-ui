@@ -6,10 +6,9 @@ import { WordTypeMapperService } from '../../word-type-mapper.service';
 @Component({
   selector: 'app-add-type-table',
   templateUrl: './add-type-table.component.html',
-  styleUrls: ['./add-type-table.component.scss']
+  styleUrls: ['./add-type-table.component.scss'],
 })
 export class AddTypeTableComponent implements OnInit {
-
   form?: FormGroup;
   subTypes: string[];
 
@@ -35,7 +34,7 @@ export class AddTypeTableComponent implements OnInit {
   }
 
   getValueText(value: number, subtype: string): string {
-    let subtypeName = this.typeMapperService.getPrintingValueFromLocal(subtype)
+    let subtypeName = this.typeMapperService.getPrintingValueFromLocal(subtype);
     return this.typeMapperService.getValueText(value, subtypeName);
   }
 
@@ -45,5 +44,4 @@ export class AddTypeTableComponent implements OnInit {
       this.subTypes.push(key);
     }
   }
-
 }

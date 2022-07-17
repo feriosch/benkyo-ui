@@ -1,9 +1,6 @@
 <div [formGroup]="form!" class="mt-4">
   <div class="columns is-centered is-multiline is-mobile">
-    <div
-      *ngFor="let tag of tags"
-      class="column is-2-desktop has-text-centered"
-    >
+    <div *ngFor="let tag of tags" class="column is-2-desktop has-text-centered">
       <span
         [ngClass]="{
           'is-white': !getTagValue(tag),
@@ -12,7 +9,7 @@
         (click)="onClickTag(tag)"
         class="tag is-medium is-rounded"
       >
-        {{ getPrintingValue(tag)}}
+        {{ getPrintingValue(tag) }}
       </span>
     </div>
   </div>

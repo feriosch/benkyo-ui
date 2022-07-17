@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-add-word',
   templateUrl: './add-word.component.html',
-  styleUrls: ['./add-word.component.scss']
+  styleUrls: ['./add-word.component.scss'],
 })
 export class AddWordComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
