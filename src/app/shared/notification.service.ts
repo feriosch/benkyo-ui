@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
 import {
   DialogLayoutDisplay,
   ToastNotificationInitializer,
   ToastPositionEnum,
   ToastProgressBarEnum,
-  ToastUserViewTypeEnum
+  ToastUserViewTypeEnum,
 } from '@costlydeveloper/ngx-awesome-popup';
-
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-
   toastErrorNotification(error: string): void {
     const notification = new ToastNotificationInitializer();
     notification.setTitle('Error');
@@ -21,8 +19,8 @@ export class NotificationService {
       LayoutType: DialogLayoutDisplay.DANGER,
       ProgressBar: ToastProgressBarEnum.NONE,
       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_RIGHT
-    })
+      ToastPosition: ToastPositionEnum.TOP_RIGHT,
+    });
 
     notification.openToastNotification$();
   }
@@ -37,11 +35,11 @@ export class NotificationService {
       LayoutType: DialogLayoutDisplay.SUCCESS,
       ProgressBar: ToastProgressBarEnum.NONE,
       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER
-    })
+      ToastPosition: ToastPositionEnum.TOP_CENTER,
+    });
 
     notification.openToastNotification$();
-  };
+  }
 
   toastWordUpdateNotification(word: string): void {
     const notification = new ToastNotificationInitializer();
@@ -53,10 +51,9 @@ export class NotificationService {
       LayoutType: DialogLayoutDisplay.SUCCESS,
       ProgressBar: ToastProgressBarEnum.NONE,
       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER
-    })
+      ToastPosition: ToastPositionEnum.TOP_CENTER,
+    });
 
     notification.openToastNotification$();
-  };
-
+  }
 }
