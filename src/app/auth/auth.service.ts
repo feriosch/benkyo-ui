@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { LoginResponse } from '../../models/responses/login';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
   private _isAuthenticated: boolean;
 
-  constructor (private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this._isAuthenticated = false;
   }
 
@@ -24,10 +22,13 @@ export class AuthService {
     this._isAuthenticated = value;
   }
 
-  submitCredentials(username: string, password: string): Observable<LoginResponse> {
+  submitCredentials(
+    username: string,
+    password: string
+  ): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(environment.backendUrl + '/login', {
       username: username,
-      password: password
+      password: password,
     });
   }
 
