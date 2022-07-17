@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: 'signin',
     pathMatch: 'full',
-    component: LoginFormComponent
-  }
+    component: LoginFormComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}
