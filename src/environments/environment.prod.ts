@@ -1,6 +1,6 @@
-import * as env from './variables.env'
+import * as env from './variables.env';
 
 export const environment = {
   production: true,
-  backendUrl: env.prodBackendIP
+  backendUrl: env.prodBackendIP,
 };
