@@ -2,14 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Collection } from '../../../../models/responses/vocabulary/collection.model';
 
-
 @Component({
   selector: 'app-collection-card',
   templateUrl: './collection-card.component.html',
-  styleUrls: ['./collection-card.component.scss']
+  styleUrls: ['./collection-card.component.scss'],
 })
 export class CollectionCardComponent implements OnInit {
-
   @Input()
   collection?: Collection;
 
@@ -32,10 +30,8 @@ export class CollectionCardComponent implements OnInit {
   }
 
   isCurrentCollection(): boolean {
-    return this.collection?.collection_name === this.currentSelection
+    return this.collection?.collection_name === this.currentSelection;
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

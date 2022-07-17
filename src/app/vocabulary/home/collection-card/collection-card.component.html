@@ -1,11 +1,8 @@
 <figure
   class="image is-96x96 is-inline-block"
-  [ngClass]="{'active-collection': isCurrentCollection()}"
+  [ngClass]="{ 'active-collection': isCurrentCollection() }"
   (click)="onCollectionClicked()"
 >
-  <img
-    [src]="collection!.image_url"
-    [alt]="collection!.printing_name"
-  >
+  <img [src]="collection!.image_url" [alt]="collection!.printing_name" />
 </figure>
 <p class="title is-6">{{ collection!.printing_name }}</p>

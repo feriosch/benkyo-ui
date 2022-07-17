@@ -1,17 +1,20 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AgGridEvent, ColDef, GridOptions, RowDoubleClickedEvent } from 'ag-grid-community';
+import {
+  AgGridEvent,
+  ColDef,
+  GridOptions,
+  RowDoubleClickedEvent,
+} from 'ag-grid-community';
 
 import { Word } from '../../../../models/responses/vocabulary/word.model';
-
 
 @Component({
   selector: 'app-word-table',
   templateUrl: './word-table.component.html',
-  styleUrls: ['./word-table.component.scss']
+  styleUrls: ['./word-table.component.scss'],
 })
 export class WordTableComponent implements OnInit {
-
   @Input()
   words?: Word[];
 
@@ -56,9 +59,9 @@ export class WordTableComponent implements OnInit {
       },
       {
         field: 'hiragana',
-        maxWidth: 400
+        maxWidth: 400,
       },
-      { field: 'spanish' }
+      { field: 'spanish' },
     ];
     this.gridOptions = {
       suppressCellSelection: true,
@@ -95,11 +98,9 @@ export class WordTableComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onRowClicked(event: RowDoubleClickedEvent) {
     await this.router.navigateByUrl(`vocabulary/word/${event.data.id}`);
   }
-
 }

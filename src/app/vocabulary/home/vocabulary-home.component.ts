@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OrderDirection, OrderField } from '../../../models/requests/vocabulary';
+import {
+  OrderDirection,
+  OrderField,
+} from '../../../models/requests/vocabulary';
 import { Word } from '../../../models/responses/vocabulary/word.model';
-import { Collection } from '../../../models/responses/vocabulary/collection.model'
+import { Collection } from '../../../models/responses/vocabulary/collection.model';
 import { VocabularyService } from '../vocabulary.service';
-
 
 @Component({
   selector: 'app-vocabulary-home',
   templateUrl: './vocabulary-home.component.html',
-  styleUrls: ['./vocabulary-home.component.scss']
+  styleUrls: ['./vocabulary-home.component.scss'],
 })
 export class VocabularyHomeComponent implements OnInit {
-
   nextPageNumber: string;
   totalPages: number;
   totalWords: number;
@@ -38,10 +39,9 @@ export class VocabularyHomeComponent implements OnInit {
 
   getWords(): void {
     this.isWordFetchLoading = true;
-    this.vocabularyService.getWords(
-      this.orderField,
-      this.orderDirection
-    ).toPromise()
+    this.vocabularyService
+      .getWords(this.orderField, this.orderDirection)
+      .toPromise()
       .then((response) => {
         this.words = response.words;
         this.nextPageNumber = response.next_page_number;
@@ -49,7 +49,7 @@ export class VocabularyHomeComponent implements OnInit {
         this.totalWords = response.total_words;
       })
       .catch((error) => console.log(error))
-      .finally(() => this.isWordFetchLoading = false);
+      .finally(() => (this.isWordFetchLoading = false));
   }
 
   getCollections(): void {
@@ -88,7 +88,8 @@ export class VocabularyHomeComponent implements OnInit {
 
   changeToPreviousPage(): void {
     if (this.vocabularyService.pageNumber! > 1) {
-      this.vocabularyService.pageNumber = this.vocabularyService.pageNumber! - 1;
+      this.vocabularyService.pageNumber =
+        this.vocabularyService.pageNumber! - 1;
     }
     this.getWords();
   }
@@ -117,5 +118,4 @@ export class VocabularyHomeComponent implements OnInit {
     this.getWords();
     this.getCollections();
   }
-
 }
