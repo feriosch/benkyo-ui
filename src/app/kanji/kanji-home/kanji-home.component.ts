@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OrderDirection, OrderField } from '../../../models/requests/kanji';
-import { SummarizedKanji } from '../../../models/responses/kanji/kanji.model';
+import { OrderDirection, OrderField } from 'src/models/requests/kanji';
+import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../kanji.service';
 
 @Component({

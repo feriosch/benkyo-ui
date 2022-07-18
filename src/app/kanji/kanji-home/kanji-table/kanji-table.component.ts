@@ -7,7 +7,7 @@ import {
   RowDoubleClickedEvent,
 } from 'ag-grid-community';
 
-import { SummarizedKanji } from '../../../../models/responses/kanji/kanji.model';
+import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
 
 @Component({
   selector: 'app-kanji-table',

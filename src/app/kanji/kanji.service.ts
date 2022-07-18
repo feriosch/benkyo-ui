@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
-import { Kanji } from '../../models/responses/kanji/kanji.model';
-import { OrderDirection, OrderField } from '../../models/requests/kanji';
-import { KanjisResponse } from '../../models/responses/kanji/kanjis-response.model';
+import { environment } from 'src/environments/environment';
+import { OrderDirection, OrderField } from 'src/models/requests/kanji';
+import { Kanji } from 'src/models/responses/kanji/kanji.model';
+import { KanjisResponse } from 'src/models/responses/kanji/kanjis-response.model';
 
 @Injectable({ providedIn: 'root' })
 export class KanjiService {
