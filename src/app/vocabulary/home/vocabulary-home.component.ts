@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import {
-  OrderDirection,
-  OrderField,
-} from '../../../models/requests/vocabulary';
-import { Word } from '../../../models/responses/vocabulary/word.model';
-import { Collection } from '../../../models/responses/vocabulary/collection.model';
+import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
+import { Word } from 'src/models/responses/vocabulary/word.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { VocabularyService } from '../vocabulary.service';
 
 @Component({

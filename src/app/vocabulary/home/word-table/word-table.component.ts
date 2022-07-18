@@ -7,7 +7,7 @@ import {
   RowDoubleClickedEvent,
 } from 'ag-grid-community';
 
-import { Word } from '../../../../models/responses/vocabulary/word.model';
+import { Word } from 'src/models/responses/vocabulary/word.model';
 
 @Component({
   selector: 'app-word-table',

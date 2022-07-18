@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AddWordBody } from 'src/models/requests/add-word-body.model';
+import { Sentence, Word } from 'src/models/responses/vocabulary/word.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { NotificationService } from 'src/app/shared/notification.service';
 import { VocabularyService } from '../../vocabulary.service';
 import { ValueTransformerService } from '../value-transformer.service';
-import { NotificationService } from '../../../shared/notification.service';
-import {
-  Sentence,
-  Word,
-} from '../../../../models/responses/vocabulary/word.model';
-import { Collection } from '../../../../models/responses/vocabulary/collection.model';
-import { AddWordBody } from '../../../../models/requests/add-word-body.model';
 
 @Component({
   selector: 'app-edit-word-form',

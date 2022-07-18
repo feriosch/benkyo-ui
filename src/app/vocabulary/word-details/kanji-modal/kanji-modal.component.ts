@@ -6,8 +6,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { KanjiService } from '../../../kanji/kanji.service';
-import { Kanji } from '../../../../models/responses/kanji/kanji.model';
+import { Kanji } from 'src/models/responses/kanji/kanji.model';
+import { KanjiService } from 'src/app/kanji/kanji.service';
 
 @Component({
   selector: 'app-kanji-modal',

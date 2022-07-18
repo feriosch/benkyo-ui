@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { KanjiModalComponent } from './kanji-modal/kanji-modal.component';
+import { Word } from 'src/models/responses/vocabulary/word.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { VocabularyService } from '../vocabulary.service';
 import { WordTypeMapperService } from '../word-type-mapper.service';
 import { WordTagsMapperService } from '../word-tags-mapper.service';
-import { Word } from '../../../models/responses/vocabulary/word.model';
-import { Collection } from '../../../models/responses/vocabulary/collection.model';
+import { KanjiModalComponent } from './kanji-modal/kanji-modal.component';
 
 @Component({
   selector: 'app-word-details',

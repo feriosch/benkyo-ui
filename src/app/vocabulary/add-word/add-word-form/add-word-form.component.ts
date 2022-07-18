@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { AddWordBody } from 'src/models/requests/add-word-body.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { NotificationService } from 'src/app/shared/notification.service';
 import { VocabularyService } from '../../vocabulary.service';
 import { WordExistsValidator } from '../word-exists-validator.service';
 import { ValueTransformerService } from '../value-transformer.service';
-import { NotificationService } from '../../../shared/notification.service';
-import { Collection } from '../../../../models/responses/vocabulary/collection.model';
-import { AddWordBody } from '../../../../models/requests/add-word-body.model';
 
 @Component({
   selector: 'app-add-word-form',

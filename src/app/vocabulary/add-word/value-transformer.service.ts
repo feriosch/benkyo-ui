@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { AddWordBody } from '../../../models/requests/add-word-body.model';
+import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import {
   Sentence,
   Tags,
   Type,
-} from '../../../models/responses/vocabulary/word.model';
+} from 'src/models/responses/vocabulary/word.model';
 
 @Injectable({ providedIn: 'root' })
 export class ValueTransformerService {

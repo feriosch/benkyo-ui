@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Collection } from '../../../../models/responses/vocabulary/collection.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
 
 @Component({
   selector: 'app-collection-card',

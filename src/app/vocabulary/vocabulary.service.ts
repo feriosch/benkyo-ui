@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
-import { OrderDirection, OrderField } from '../../models/requests/vocabulary';
-import { Word } from '../../models/responses/vocabulary/word.model';
-import { WordsResponse } from '../../models/responses/vocabulary/words-response.model';
-import { Collection } from '../../models/responses/vocabulary/collection.model';
-import { AddWordBody } from '../../models/requests/add-word-body.model';
+import { environment } from 'src/environments/environment';
+import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
+import { AddWordBody } from 'src/models/requests/add-word-body.model';
+import { Word } from 'src/models/responses/vocabulary/word.model';
+import { WordsResponse } from 'src/models/responses/vocabulary/words-response.model';
+import { Collection } from 'src/models/responses/vocabulary/collection.model';
 
 @Injectable({ providedIn: 'root' })
 export class VocabularyService {
