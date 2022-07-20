@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
-import { Word } from 'src/models/responses/vocabulary/word.model';
+import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { VocabularyService } from '../vocabulary.service';
 
@@ -19,7 +19,7 @@ export class VocabularyHomeComponent implements OnInit {
   orderField: OrderField | null;
   orderDirection: OrderDirection | null;
   isWordFetchLoading: boolean;
-  words: Word[];
+  words: SummarizedWord[];
   collections$: Observable<Collection[]>;
 
   constructor(public vocabularyService: VocabularyService) {

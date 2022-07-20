@@ -7,7 +7,7 @@ import {
   RowDoubleClickedEvent,
 } from 'ag-grid-community';
 
-import { Word } from 'src/models/responses/vocabulary/word.model';
+import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
 
 @Component({
   selector: 'app-word-table',
@@ -16,7 +16,7 @@ import { Word } from 'src/models/responses/vocabulary/word.model';
 })
 export class WordTableComponent implements OnInit {
   @Input()
-  words?: Word[];
+  words?: SummarizedWord[];
 
   @Input()
   currentPage?: number;
