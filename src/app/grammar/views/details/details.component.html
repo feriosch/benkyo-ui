@@ -9,16 +9,19 @@
       <div class="tile">
         <div class="tile is-parent is-9 is-vertical">
           <div class="tile is-child has-text-centered-mobile">
-            <span class="title is-1 is-inline-block character">
+            <span class="title is-1 is-inline-block character has-text-danger">
               {{ clause?.title }}
             </span>
-            <span *ngIf="clause?.hiragana" class="subtitle is-3 ml-4">
+            <span
+              *ngIf="clause?.hiragana"
+              class="subtitle is-3 ml-4 is-hidden-mobile"
+            >
               ( {{ clause?.hiragana }} )
             </span>
           </div>
           <div class="tile is-child has-text-centered-mobile">
-            <p class="subtitle is-2">
-              {{ clause?.translation }}
+            <p class="is-italic is-lowercase is-size-3">
+              {{ fullType }}
             </p>
           </div>
         </div>
@@ -34,5 +37,27 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container mx-6">
+  <div class="columns is-vcentered">
+    <div class="column">
+      <div class="box is-size-4">
+        {{ clause?.definition }}
+      </div>
+    </div>
+    <div class="column">
+      <div class="block ml-4 is-size-4">
+        {{ clause?.translation }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <h4 class="subtitle is-3 has-text-weight-semibold">Key Sentences</h4>
+  <div *ngFor="let key of clause?.keys" class="block">
+    <span *ngFor="let part of key.sentence" class="span is-size-4">
+      {{ part }}
+    </span>
   </div>
 </div>

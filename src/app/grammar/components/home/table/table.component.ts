@@ -8,12 +8,11 @@ import {
 } from 'ag-grid-community';
 
 import { SummarizedClause } from 'src/models/responses/grammar/clauses-response.model';
-import { GrammarService } from '../../grammar.service';
 
 @Component({
   selector: 'app-grammar-table',
-  templateUrl: './grammar-table.component.html',
-  styleUrls: ['./grammar-table.component.scss'],
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class GrammarTableComponent implements OnInit {
   @Input()

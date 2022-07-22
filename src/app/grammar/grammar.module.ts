@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
-import { GrammarHomeComponent } from './grammar-home/grammar-home.component';
-import { GrammarTableComponent } from './grammar-home/grammar-table/grammar-table.component';
-import { ClauseDetailsComponent } from './clause-details/clause-details.component';
+import { GrammarHomeComponent } from './views/home/home.component';
+import { ClauseDetailsComponent } from './views/details/details.component';
+import { GrammarTableComponent } from './components/home/table/table.component';
 
 @NgModule({
   declarations: [

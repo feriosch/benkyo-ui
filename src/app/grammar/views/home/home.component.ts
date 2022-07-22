@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 import { OrderDirection, OrderField } from 'src/models/requests/grammar';
 import { SummarizedClause } from 'src/models/responses/grammar/clauses-response.model';
-import { GrammarService } from '../grammar.service';
+import { GrammarService } from 'src/app/grammar/services/grammar.service';
 
 @Component({
   selector: 'app-grammar-home',
-  templateUrl: './grammar-home.component.html',
-  styleUrls: ['./grammar-home.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
 export class GrammarHomeComponent implements OnInit {
   nextPageNumber: string;

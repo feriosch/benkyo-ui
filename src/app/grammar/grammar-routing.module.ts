@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { GrammarHomeComponent } from './grammar-home/grammar-home.component';
-import { ClauseDetailsComponent } from './clause-details/clause-details.component';
+import { GrammarHomeComponent } from './views/home/home.component';
+import { ClauseDetailsComponent } from './views/details/details.component';
 
 const routes: Routes = [
   {

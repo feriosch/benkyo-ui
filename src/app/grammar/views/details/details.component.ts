@@ -2,22 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { FullClause } from 'src/models/responses/grammar/clause.model';
-import { GrammarService } from '../grammar.service';
+import { ClauseTypeMapperService } from 'src/app/grammar/services/clause-type-mapper.service';
+import { GrammarService } from 'src/app/grammar/services/grammar.service';
 
 @Component({
   selector: 'app-clause-details',
-  templateUrl: './clause-details.component.html',
-  styleUrls: ['./clause-details.component.scss'],
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
 export class ClauseDetailsComponent implements OnInit {
   id: string;
   clause?: FullClause | null;
+  fullType?: string
   tags: string[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService
+    private grammarService: GrammarService,
+    private typeMapperService: ClauseTypeMapperService
   ) {
     this.id = this.route.snapshot.params['id'];
     this.tags = [];
@@ -30,8 +33,10 @@ export class ClauseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.grammarService.getFullClauseById(this.id).subscribe((response) => {
       this.clause = response;
-      if (this.clause?.tags) {
-        for (const [key] of Object.entries(this.clause?.tags)) {
+      this.fullType = this.typeMapperService.getFullType(this.clause!.type)
+      console.log(this.clause)
+      if (this.clause!.tags) {
+        for (const [key] of Object.entries(this.clause!.tags)) {
           this.tags.push(key);
         }
       }
