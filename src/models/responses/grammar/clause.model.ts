@@ -20,7 +20,7 @@ export interface Tags {
 }
 
 export interface Example {
-  sentence: string;
+  sentence: string[];
   translation: string;
 }
 

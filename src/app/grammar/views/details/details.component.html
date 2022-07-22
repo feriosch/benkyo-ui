@@ -56,8 +56,7 @@
 <div class="section">
   <h4 class="subtitle is-3 has-text-weight-semibold">Key Sentences</h4>
   <div *ngFor="let key of clause?.keys" class="block">
-    <span *ngFor="let part of key.sentence" class="span is-size-4">
-      {{ part }}
-    </span>
+    <app-example-sentence [components]="key.sentence"></app-example-sentence>
+    <div class="is-size-5">({{ key.translation }})</div>
   </div>
 </div>
