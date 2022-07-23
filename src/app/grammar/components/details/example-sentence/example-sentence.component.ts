@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Example } from 'src/models/responses/grammar/clause.model';
 
 @Component({
   selector: 'app-example-sentence',

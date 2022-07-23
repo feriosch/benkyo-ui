@@ -1,9 +1,9 @@
-<div class="section">
-  <div class="block">
-    <button (click)="onClickBack()" class="button is-info">
-      Back To Clauses
-    </button>
-  </div>
+<div class="block">
+  <button (click)="onClickBack()" class="button is-info">
+    Back To Clauses
+  </button>
+</div>
+<div class="container mx-6 my-5">
   <div class="tile is-ancestor">
     <div class="tile is-vertical">
       <div class="tile">
@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<div class="container mx-6">
+<div class="container mx-6 my-5">
   <div class="columns is-vcentered">
     <div class="column">
       <div class="box is-size-4">
@@ -53,10 +53,24 @@
     </div>
   </div>
 </div>
-<div class="section">
+<div class="container mx-6 my-5">
   <h4 class="subtitle is-3 has-text-weight-semibold">Key Sentences</h4>
   <div *ngFor="let key of clause?.keys" class="block">
     <app-example-sentence [components]="key.sentence"></app-example-sentence>
     <div class="is-size-5">({{ key.translation }})</div>
   </div>
+</div>
+<div class="container mx-6 my-5">
+  <h4 class="subtitle is-3 has-text-weight-semibold">Formations</h4>
+  <app-clause-formations
+    [formations]="clause?.formations!"
+  ></app-clause-formations>
+</div>
+<div *ngIf="clause?.examples" class="container mx-6 my-5 content">
+  <h4 class="subtitle is-3 has-text-weight-semibold">Examples</h4>
+  <app-clause-examples [examples]="clause?.examples!"></app-clause-examples>
+</div>
+<div class="container mx-6 my-5">
+  <h4 class="subtitle is-3 has-text-weight-semibold">Notes</h4>
+  <app-clause-notes [notes]="clause?.notes!"></app-clause-notes>
 </div>

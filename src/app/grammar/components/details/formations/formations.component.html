@@ -1,0 +1,15 @@
+<div *ngFor="let formation of formations" class="content">
+  <div class="is-flex is-flex-direction-row is-align-items-center">
+    <div class="is-size-4 ml-4">({{ formation.rule }})</div>
+  </div>
+  <ul *ngFor="let example of formation.examples">
+    <li>
+      <div class="is-flex is-flex-direction-row is-align-items-center">
+        <app-example-sentence
+          [components]="example.sentence"
+        ></app-example-sentence>
+        <div class="is-size-5 ml-4">({{ example.translation }})</div>
+      </div>
+    </li>
+  </ul>
+</div>
