@@ -10,6 +10,7 @@ import { ExampleSentenceComponent } from './components/details/example-sentence/
 import { FormationsComponent } from './components/details/formations/formations.component';
 import { ExamplesComponent } from './components/details/examples/examples.component';
 import { NotesComponent } from './components/details/notes/notes.component';
+import { MainInfoComponent } from './components/details/main-info/main-info.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NotesComponent } from './components/details/notes/notes.component';
     FormationsComponent,
     ExamplesComponent,
     NotesComponent,
+    MainInfoComponent,
   ],
   imports: [CommonModule, FormsModule, AgGridModule],
 })
