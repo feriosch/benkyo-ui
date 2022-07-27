@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/grammar';
+import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { ClausesResponse } from 'src/models/responses/grammar/clauses-response.model';
 
@@ -81,5 +82,9 @@ export class GrammarService {
   getFullClauseById(id: string): Observable<FullClause | null> {
     let params = new HttpParams().append('clause_id', id);
     return this.http.get<FullClause | null>(this.searchClauseUrl, { params });
+  }
+
+  addClause(body: AddClauseBody): Observable<any> {
+    return this.http.post(this.clausesUrl, body);
   }
 }
