@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { GrammarHomeComponent } from './views/home/home.component';
@@ -15,6 +15,7 @@ import { NotesComponent } from './components/details/notes/notes.component';
 import { RelatedComponent } from './components/details/related/related.component';
 import { GrammarAddViewComponent } from './views/add/add.component';
 import { AddClauseFormComponent } from './components/add/form/form.component';
+import { AddClauseFormTitleComponent } from './components/add/fields/title/title.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddClauseFormComponent } from './components/add/form/form.component';
     RelatedComponent,
     GrammarAddViewComponent,
     AddClauseFormComponent,
+    AddClauseFormTitleComponent,
   ],
-  imports: [CommonModule, FormsModule, AgGridModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, AgGridModule],
 })
 export class GrammarModule {}

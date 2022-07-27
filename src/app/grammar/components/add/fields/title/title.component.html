@@ -1,0 +1,71 @@
+<ng-container [formGroup]="form!">
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Clause</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div
+          class="control has-icons-right"
+          [ngClass]="{ 'is-loading': titleControl!.pending }"
+        >
+          <input
+            [ngClass]="{
+              'is-danger': titleControl!.touched && titleControl!.invalid,
+              'is-success': titleControl!.valid
+            }"
+            formControlName="title"
+            class="input"
+            type="text"
+            placeholder="Enter the clause title"
+          />
+          <span class="icon is-small is-right">
+            <i
+              *ngIf="titleControl!.touched && titleControl!.invalid"
+              class="fas fa-exclamation-triangle"
+            >
+            </i>
+            <i *ngIf="titleControl!.valid" class="fas fa-check"> </i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            formControlName="hiragana"
+            class="input"
+            type="text"
+            placeholder="Enter hiragana (optional)"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Translation</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input
+            [ngClass]="{
+              'is-danger':
+                translationControl!.touched && translationControl!.invalid
+            }"
+            formControlName="translation"
+            class="input"
+            type="text"
+            placeholder="Enter translation"
+          />
+        </div>
+        <p
+          *ngIf="translationControl!.touched && translationControl!.invalid"
+          class="help is-danger"
+        >
+          Translation is required!
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-container>
