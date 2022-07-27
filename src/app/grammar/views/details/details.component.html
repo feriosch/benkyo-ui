@@ -1,4 +1,4 @@
-<div class="block">
+<div class="container mx-6 my-5">
   <button (click)="onClickBack()" class="button is-info">
     Back To Clauses
   </button>
@@ -27,27 +27,61 @@
   </div>
 </div>
 <div class="container mx-6 my-5">
-  <h4 class="subtitle is-3 has-text-weight-semibold">Key Sentences</h4>
-  <div *ngFor="let key of clause?.keys" class="block">
+  <app-clause-section-title
+    (dropdownToggled)="onClickDropdown('keys')"
+    [isVisible]="views['keys']"
+    title="Key Sentence"
+  ></app-clause-section-title>
+  <div
+    [ngClass]="{ 'is-hidden': !views['keys'] }"
+    *ngFor="let key of clause?.keys"
+    class="block"
+  >
     <app-example-sentence [components]="key.sentence"></app-example-sentence>
     <div class="is-size-5">({{ key.translation }})</div>
   </div>
 </div>
 <div class="container mx-6 my-5">
-  <h4 class="subtitle is-3 has-text-weight-semibold">Formations</h4>
+  <app-clause-section-title
+    (dropdownToggled)="onClickDropdown('formations')"
+    [isVisible]="views['formations']"
+    title="Formations"
+  ></app-clause-section-title>
   <app-clause-formations
+    [ngClass]="{ 'is-hidden': !views['formations'] }"
     [formations]="clause?.formations!"
   ></app-clause-formations>
 </div>
 <div *ngIf="clause?.examples" class="container mx-6 my-5 content">
-  <h4 class="subtitle is-3 has-text-weight-semibold">Examples</h4>
-  <app-clause-examples [examples]="clause?.examples!"></app-clause-examples>
+  <app-clause-section-title
+    (dropdownToggled)="onClickDropdown('examples')"
+    [isVisible]="views['examples']"
+    title="Examples"
+  ></app-clause-section-title>
+  <app-clause-examples
+    [ngClass]="{ 'is-hidden': !views['examples'] }"
+    [examples]="clause?.examples!"
+  ></app-clause-examples>
 </div>
 <div class="container mx-6 my-5">
-  <h4 class="subtitle is-3 has-text-weight-semibold">Notes</h4>
-  <app-clause-notes [notes]="clause?.notes!"></app-clause-notes>
+  <app-clause-section-title
+    (dropdownToggled)="onClickDropdown('notes')"
+    [isVisible]="views['notes']"
+    title="Notes"
+  ></app-clause-section-title>
+  <app-clause-notes
+    [ngClass]="{ 'is-hidden': !views['notes'] }"
+    [notes]="clause?.notes!"
+  ></app-clause-notes>
 </div>
 <div *ngIf="clause?.related" class="container mx-6 my-5">
-  <h4 class="subtitle is-3 has-text-weight-semibold">Related Expressions</h4>
-  <app-clause-related [related]="clause?.related!"></app-clause-related>
+  <app-clause-section-title
+    (dropdownToggled)="onClickDropdown('related')"
+    [isVisible]="views['related']"
+    title="Related Expressions"
+  ></app-clause-section-title>
+  <app-clause-related
+    [ngClass]="{ 'is-hidden': !views['related'] }"
+    [related]="clause?.related!"
+  ></app-clause-related>
 </div>

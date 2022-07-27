@@ -7,6 +7,7 @@ import { GrammarHomeComponent } from './views/home/home.component';
 import { ClauseDetailsComponent } from './views/details/details.component';
 import { GrammarTableComponent } from './components/home/table/table.component';
 import { MainInfoComponent } from './components/details/main-info/main-info.component';
+import { SectionTitleComponent } from './components/details/section-title/section-title.component';
 import { ExampleSentenceComponent } from './components/details/example-sentence/example-sentence.component';
 import { FormationsComponent } from './components/details/formations/formations.component';
 import { ExamplesComponent } from './components/details/examples/examples.component';
@@ -19,6 +20,7 @@ import { RelatedComponent } from './components/details/related/related.component
     GrammarTableComponent,
     ClauseDetailsComponent,
     MainInfoComponent,
+    SectionTitleComponent,
     ExampleSentenceComponent,
     FormationsComponent,
     ExamplesComponent,

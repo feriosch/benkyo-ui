@@ -1,0 +1,14 @@
+<div class="mb-2">
+  <span class="subtitle is-3 has-text-weight-semibold mr-2">{{ title }}</span>
+  <span class="icon-text">
+    <span class="icon" (click)="onClickDropdown()">
+      <i
+        [ngClass]="{
+          'fa-chevron-circle-down': isVisible,
+          'fa-chevron-circle-right': !isVisible
+        }"
+        class="fas"
+      ></i>
+    </span>
+  </span>
+</div>
