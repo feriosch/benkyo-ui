@@ -47,3 +47,7 @@
   <h4 class="subtitle is-3 has-text-weight-semibold">Notes</h4>
   <app-clause-notes [notes]="clause?.notes!"></app-clause-notes>
 </div>
+<div *ngIf="clause?.related" class="container mx-6 my-5">
+  <h4 class="subtitle is-3 has-text-weight-semibold">Related Expressions</h4>
+  <app-clause-related [related]="clause?.related!"></app-clause-related>
+</div>
