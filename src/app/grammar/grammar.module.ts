@@ -17,6 +17,7 @@ import { GrammarAddViewComponent } from './views/add/add.component';
 import { AddClauseFormComponent } from './components/add/form/form.component';
 import { AddClauseFormTitleComponent } from './components/add/fields/title/title.component';
 import { AddClauseFormTypeComponent } from './components/add/fields/type/type.component';
+import { AddClauseFormTagsComponent } from './components/add/fields/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AddClauseFormTypeComponent } from './components/add/fields/type/type.co
     AddClauseFormComponent,
     AddClauseFormTitleComponent,
     AddClauseFormTypeComponent,
+    AddClauseFormTagsComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AgGridModule],
 })
