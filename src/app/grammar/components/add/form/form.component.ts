@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { NotificationService } from 'src/app/shared/notification.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
@@ -44,7 +44,8 @@ export class AddClauseFormComponent implements OnInit {
         colloquial: new FormControl(false),
         interrogative: new FormControl(false),
       }),
-      definition: new FormControl(null, [Validators.required])
+      definition: new FormControl(null, [Validators.required]),
+      keys: new FormArray([]),
     });
     this.initialValues = this.addClauseForm.value;
   }

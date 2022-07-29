@@ -1,0 +1,33 @@
+<ng-container [formGroup]="form!">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label">
+      <label class="label">Keys</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <button
+          (click)="pushExample()"
+          class="button is-link mr-4"
+          type="button"
+        >
+          Add Key Sentence
+        </button>
+        <button
+          (click)="popExample()"
+          class="button is-warning mr-4"
+          type="button"
+        >
+          Remove Key Sentence
+        </button>
+        <div formArrayName="keys" class="mt-4">
+          <div *ngFor="let control of keysFormArray!.controls; let i = index">
+            <label class="label">Key Sentence {{ i + 1 }}</label>
+            <app-add-clause-form-clause-example
+              [control]="control"
+            ></app-add-clause-form-clause-example>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
