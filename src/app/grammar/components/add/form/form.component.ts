@@ -22,8 +22,8 @@ export class AddClauseFormComponent implements OnInit {
   ) {
     this.addClauseForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
-      hiragana: new FormControl(''),
-      translation: new FormControl('', [Validators.required]),
+      hiragana: new FormControl(null),
+      translation: new FormControl(null, [Validators.required]),
       level: new FormControl(null, [Validators.required]),
       type: new FormGroup({
         adjective: new FormControl(false),
@@ -44,6 +44,7 @@ export class AddClauseFormComponent implements OnInit {
         colloquial: new FormControl(false),
         interrogative: new FormControl(false),
       }),
+      definition: new FormControl(null, [Validators.required])
     });
     this.initialValues = this.addClauseForm.value;
   }
