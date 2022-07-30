@@ -46,6 +46,7 @@ export class AddClauseFormComponent implements OnInit {
       }),
       definition: new FormControl(null, [Validators.required]),
       keys: new FormArray([]),
+      formations: new FormArray([])
     });
     this.initialValues = this.addClauseForm.value;
   }
