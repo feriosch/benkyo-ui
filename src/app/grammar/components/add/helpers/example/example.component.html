@@ -13,35 +13,50 @@
         type="text"
         placeholder="Enter Japanese sentence"
       />
-      <div class="buttons are-small mb-0 mt-2">
-        <button
-          (click)="addFormatToSentence(1)"
-          class="button is-light is-danger"
-          type="button"
-        >
-          Grammatical
-        </button>
-        <button
-          (click)="addFormatToSentence(2)"
-          class="button is-light is-link"
-          type="button"
-        >
-          Bold
-        </button>
-        <button
-          (click)="addFormatToSentence(3)"
-          class="button is-light is-warning"
-          type="button"
-        >
-          Incorrect
-        </button>
+      <div class="columns is-vcentered">
+        <div class="column is-one-third">
+          <div class="buttons are-small mb-0 mt-2">
+            <button
+              (click)="addFormatToSentence(1)"
+              class="button is-light is-danger"
+              type="button"
+            >
+              Grammatical
+            </button>
+            <button
+              (click)="addFormatToSentence(2)"
+              class="button is-light is-link"
+              type="button"
+            >
+              Bold
+            </button>
+            <button
+              (click)="addFormatToSentence(3)"
+              class="button is-light is-warning"
+              type="button"
+            >
+              Incorrect
+            </button>
+          </div>
+        </div>
+        <div class="column">
+          <p
+            *ngIf="
+              sentenceControl.touched && sentenceControl.invalid;
+              else formatted
+            "
+            class="help is-danger"
+          >
+            Sentence is required!
+          </p>
+          <ng-template #formatted>
+            <app-example-sentence
+              [components]="getFormattedComponents()"
+              sizeClass="is-size-5"
+            ></app-example-sentence>
+          </ng-template>
+        </div>
       </div>
-      <p
-        *ngIf="sentenceControl.touched && sentenceControl.invalid"
-        class="help is-danger"
-      >
-        Sentence is required!
-      </p>
     </div>
   </div>
   <div class="field has-addons">

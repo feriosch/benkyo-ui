@@ -9,13 +9,13 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 export class AddClauseFormExampleComponent implements OnInit {
   @Input()
   control?: AbstractControl;
-  
+
   formGroup?: FormGroup;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup = this.control! as FormGroup
+    this.formGroup = this.control! as FormGroup;
   }
 
   get sentenceControl(): FormControl {
@@ -42,5 +42,37 @@ export class AddClauseFormExampleComponent implements OnInit {
         break;
     }
     this.sentenceControl.setValue(value);
+  }
+
+  getFormattedComponents(): string[] {
+    let value: string[] = Array.from(this.sentenceControl.value!);
+    let components: string[] = [];
+    let currentComponent: string[] = [];
+    let isBetweenSymbols: boolean = false;
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] === '*' || value[i] === '_' || value[i] === '$') {
+        if (isBetweenSymbols) {
+          components.push(currentComponent.join(''));
+          isBetweenSymbols = false;
+          currentComponent = [];
+        } else {
+          if (currentComponent.length > 0) {
+            components.push(currentComponent.join(''));
+          }
+          currentComponent = [];
+          currentComponent.push(value[i]);
+          currentComponent.push('/');
+          isBetweenSymbols = true;
+        }
+      } else {
+        currentComponent.push(value[i]);
+        if (i === value.length - 1) {
+          components.push(currentComponent.join(''));
+        }
+      }
+    }
+
+    return components;
   }
 }

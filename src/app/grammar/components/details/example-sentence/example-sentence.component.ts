@@ -9,8 +9,12 @@ export class ExampleSentenceComponent implements OnInit {
   @Input()
   components: string[];
 
+  @Input()
+  sizeClass: string;
+
   constructor() {
     this.components = [];
+    this.sizeClass = 'is-size-4';
   }
 
   isRed(component: string): boolean {

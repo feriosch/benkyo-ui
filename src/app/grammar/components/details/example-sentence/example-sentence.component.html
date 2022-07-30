@@ -5,7 +5,8 @@
       'has-text-danger': isRed(component),
       'has-text-weight-bold': isBold(component) || isIncorrect(component)
     }"
-    class="is-size-4 mx-0"
+    [class]="sizeClass"
+    class="mx-0"
   >
     {{ getWords(component) }}
   </span>
