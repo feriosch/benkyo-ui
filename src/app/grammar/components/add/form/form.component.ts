@@ -3,8 +3,6 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { NotificationService } from 'src/app/shared/notification.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
-import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-values-transformer.service';
-import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 
 @Component({
   selector: 'app-add-clause-form',
@@ -17,7 +15,6 @@ export class AddClauseFormComponent implements OnInit {
 
   constructor(
     private grammarService: GrammarService,
-    private valueTransformerService: AddClauseValuesTransformerService,
     private notificationService: NotificationService
   ) {
     this.addClauseForm = new FormGroup({
@@ -52,17 +49,6 @@ export class AddClauseFormComponent implements OnInit {
       related: new FormArray([]),
     });
     this.initialValues = this.addClauseForm.value;
-  }
-
-  get titleControl() {
-    return this.addClauseForm.get('title');
-  }
-
-  onSubmit(): void {
-    const addClauseBody: AddClauseBody = this.valueTransformerService.transform(
-      this.addClauseForm.value
-    );
-    console.log(addClauseBody);
   }
 
   ngOnInit(): void {}

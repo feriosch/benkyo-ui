@@ -26,6 +26,7 @@ import { AddClauseFormNotesComponent } from './components/add/fields/notes/notes
 import { AddClauseFormExampleComponent } from './components/add/helpers/example/example.component';
 import { AddClauseFormSectionComponent } from './components/add/helpers/section/section.component';
 import { AddClauseFormRelatedComponent } from './components/add/fields/related/related.component';
+import { AddClauseFormSubmitButtonComponent } from './components/add/fields/submit/submit.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AddClauseFormRelatedComponent } from './components/add/fields/related/r
     AddClauseFormNotesComponent,
     AddClauseFormSectionComponent,
     AddClauseFormRelatedComponent,
+    AddClauseFormSubmitButtonComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AgGridModule],
 })
