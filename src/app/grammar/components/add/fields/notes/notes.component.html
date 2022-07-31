@@ -20,65 +20,11 @@
           Remove Section
         </button>
         <div formArrayName="notes" class="mt-4">
-          <div
-            *ngFor="let control of sectionsFormArray!.controls; let i = index"
-          >
-            <ng-container [formGroup]="getFormGroupControl(control)">
-              <div class="columns is-vcentered mb-0">
-                <div class="column is-two-thirds">
-                  <div class="field has-addons">
-                    <div class="control">
-                      <a class="button is-static"> Explanation </a>
-                    </div>
-                    <div class="control is-expanded">
-                      <textarea
-                        formControlName="explanation"
-                        rows="4"
-                        class="input"
-                        type="text"
-                        placeholder="Enter explanation"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="columns">
-                    <div class="column">
-                      <button
-                        (click)="pushExample(control)"
-                        class="button is-link is-light is-fullwidth"
-                        type="button"
-                      >
-                        Add Example
-                      </button>
-                    </div>
-                    <div class="column">
-                      <button
-                        (click)="popExample(control)"
-                        class="button is-warning is-light is-fullwidth"
-                        type="button"
-                      >
-                        Remove Example
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                *ngFor="
-                  let exampleControl of getExampleArrayControls(control)
-                    .controls;
-                  let j = index
-                "
-              >
-                <label class="label">
-                  Section {{ i + 1 }}, example sentence {{ j + 1 }}
-                </label>
-                <app-add-clause-form-clause-example
-                  [control]="exampleControl"
-                ></app-add-clause-form-clause-example>
-              </div>
-            </ng-container>
+          <div *ngFor="let control of formArray!.controls; let i = index">
+            <label class="label"> Section {{ i + 1 }} </label>
+            <app-add-clause-form-section
+              [control]="control"
+            ></app-add-clause-form-section>
           </div>
         </div>
       </div>

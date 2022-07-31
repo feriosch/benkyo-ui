@@ -15,27 +15,17 @@ import {
 })
 export class AddClauseFormNotesComponent implements OnInit {
   form?: FormGroup;
-  sectionsFormArray?: FormArray;
+  formArray?: FormArray;
 
   constructor(private rootFormGroup: FormGroupDirective) {}
 
   ngOnInit(): void {
     this.form = this.rootFormGroup.control as FormGroup;
-    this.sectionsFormArray = this.rootFormGroup.control.get(
-      'notes'
-    ) as FormArray;
-  }
-
-  getFormGroupControl(control: AbstractControl): FormGroup {
-    return control as FormGroup;
-  }
-
-  getExampleArrayControls(control: AbstractControl): FormArray {
-    return control!.get('examples') as FormArray;
+    this.formArray = this.form.get('notes') as FormArray;
   }
 
   pushSection(): void {
-    this.sectionsFormArray!.push(
+    this.formArray!.push(
       new FormGroup({
         explanation: new FormControl('', [Validators.required]),
         examples: new FormArray([]),
@@ -44,31 +34,8 @@ export class AddClauseFormNotesComponent implements OnInit {
   }
 
   popSection(): void {
-    if (this.sectionsFormArray!.length > 0) {
-      this.sectionsFormArray!.removeAt(this.sectionsFormArray!.length - 1);
-    }
-  }
-
-  pushExample(control: AbstractControl): void {
-    let examplesFormArray: FormArray;
-    examplesFormArray = this.getFormGroupControl(control).get(
-      'examples'
-    ) as FormArray;
-    examplesFormArray!.push(
-      new FormGroup({
-        sentence: new FormControl('', [Validators.required]),
-        translation: new FormControl('', [Validators.required]),
-      })
-    );
-  }
-
-  popExample(control: AbstractControl): void {
-    let examplesFormArray: FormArray;
-    examplesFormArray = this.getFormGroupControl(control!).get(
-      'examples'
-    ) as FormArray;
-    if (examplesFormArray!.length > 0) {
-      examplesFormArray!.removeAt(examplesFormArray!.length - 1);
+    if (this.formArray!.length > 0) {
+      this.formArray!.removeAt(this.formArray!.length - 1);
     }
   }
 }
