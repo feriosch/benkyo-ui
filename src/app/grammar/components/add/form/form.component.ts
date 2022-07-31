@@ -48,6 +48,7 @@ export class AddClauseFormComponent implements OnInit {
       keys: new FormArray([]),
       formations: new FormArray([]),
       notes: new FormArray([]),
+      related: new FormArray([]),
     });
     this.initialValues = this.addClauseForm.value;
   }

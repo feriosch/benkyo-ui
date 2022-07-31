@@ -1,0 +1,112 @@
+<ng-container [formGroup]="form!">
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Related</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <button
+          (click)="pushRelated()"
+          class="button is-link mr-4"
+          type="button"
+        >
+          Add Related
+        </button>
+        <button
+          (click)="popRelated()"
+          class="button is-warning mr-4"
+          type="button"
+        >
+          Remove Related
+        </button>
+        <div
+          *ngFor="let control of formArray!.controls; let i = index"
+          class="my-2"
+        >
+          <ng-container [formGroup]="getFormGroupControl(control)!">
+            <label class="label"> Related Expression {{ i + 1 }} </label>
+            <div class="field is-horizontal mb-2">
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input
+                      [ngClass]="{
+                        'is-danger':
+                          getTitleControl(control)!.touched &&
+                          getTitleControl(control)!.invalid
+                      }"
+                      formControlName="title"
+                      class="input"
+                      type="text"
+                      placeholder="Expression title"
+                    />
+                  </div>
+                  <p
+                    *ngIf="
+                      getTitleControl(control)!.touched &&
+                      getTitleControl(control)!.invalid
+                    "
+                    class="help is-danger"
+                  >
+                    Expression title is required!
+                  </p>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <input
+                      formControlName="hiragana"
+                      class="input"
+                      type="text"
+                      placeholder="Hiragana (optional)"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <input
+                      formControlName="reference"
+                      class="input"
+                      type="text"
+                      placeholder="Reference (optional)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-horizontal mb-2">
+              <div class="field-body">
+                <div class="field">
+                  <button
+                    (click)="pushSection(control)"
+                    class="button is-link is-light mr-4"
+                    type="button"
+                  >
+                    Add Section
+                  </button>
+                  <button
+                    (click)="popSection(control)"
+                    class="button is-warning is-light mr-4"
+                    type="button"
+                  >
+                    Remove Section
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngFor="
+                let sectionControl of getSectionsArray(control)!.controls;
+                let j = index
+              "
+            >
+              <label class="label"> Section {{ j + 1 }} </label>
+              <app-add-clause-form-section
+                [control]="sectionControl"
+              ></app-add-clause-form-section>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
