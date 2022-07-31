@@ -1,0 +1,35 @@
+<ng-container [formGroup]="form!">
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Examples</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <button
+          (click)="pushExample()"
+          class="button is-link mr-4"
+          type="button"
+        >
+          Add Example
+        </button>
+        <button
+          (click)="popExample()"
+          class="button is-warning mr-4"
+          type="button"
+        >
+          Remove Example
+        </button>
+        <div class="mt-4">
+          <div
+            *ngFor="let control of examplesFormArray!.controls; let i = index"
+          >
+            <label class="label">Example {{ i + 1 }}</label>
+            <app-add-clause-form-clause-example
+              [control]="control"
+            ></app-add-clause-form-clause-example>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
