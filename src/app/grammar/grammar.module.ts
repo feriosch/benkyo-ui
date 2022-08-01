@@ -14,7 +14,7 @@ import { ExamplesComponent } from './components/details/examples/examples.compon
 import { NotesComponent } from './components/details/notes/notes.component';
 import { RelatedComponent } from './components/details/related/related.component';
 import { GrammarAddViewComponent } from './views/add/add.component';
-import { AddClauseFormComponent } from './components/add/form/form.component';
+import { AddClauseFormComponent } from './components/add/forms/add/add-form.component';
 import { AddClauseFormTitleComponent } from './components/add/fields/title/title.component';
 import { AddClauseFormTypeComponent } from './components/add/fields/type/type.component';
 import { AddClauseFormTagsComponent } from './components/add/fields/tags/tags.component';

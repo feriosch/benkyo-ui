@@ -8,8 +8,8 @@ import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-
 
 @Component({
   selector: 'app-add-clause-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+  templateUrl: './add-form.component.html',
+  styleUrls: ['./add-form.component.scss'],
 })
 export class AddClauseFormComponent implements OnInit {
   addClauseForm: FormGroup;
