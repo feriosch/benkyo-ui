@@ -1,7 +1,10 @@
 <div class="container mx-6 my-5">
-  <button (click)="onClickBack()" class="button is-info">
-    Back To Clauses
-  </button>
+  <div class="buttons">
+    <button (click)="onClickBack()" class="button is-info">
+      Back To Clauses
+    </button>
+    <button (click)="onClickEdit()" class="button is-info">Edit</button>
+  </div>
 </div>
 <div class="container mx-6 my-5">
   <app-clause-main-info
@@ -30,7 +33,7 @@
   <app-clause-section-title
     (dropdownToggled)="onClickDropdown('keys')"
     [isVisible]="views['keys']"
-    title="Key Sentence"
+    title="Key Sentences"
   ></app-clause-section-title>
   <div
     [ngClass]="{ 'is-hidden': !views['keys'] }"

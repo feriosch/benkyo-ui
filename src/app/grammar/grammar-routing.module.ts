@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { GrammarHomeComponent } from './views/home/home.component';
 import { ClauseDetailsComponent } from './views/details/details.component';
 import { GrammarAddViewComponent } from './views/add/add.component';
+import { EditClauseViewComponent } from './views/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'clause/:id',
     component: ClauseDetailsComponent,
+  },
+  {
+    path: 'clause/:id/edit',
+    component: EditClauseViewComponent,
   },
 ];
 

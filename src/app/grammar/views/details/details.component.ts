@@ -32,14 +32,6 @@ export class ClauseDetailsComponent implements OnInit {
     };
   }
 
-  onClickDropdown(section: string) {
-    this.views[section as keyof Views] = !this.views[section as keyof Views];
-  }
-
-  async onClickBack() {
-    await this.router.navigateByUrl('/grammar');
-  }
-
   ngOnInit(): void {
     this.grammarService.getFullClauseById(this.id).subscribe((response) => {
       this.clause = response;
@@ -49,5 +41,17 @@ export class ClauseDetailsComponent implements OnInit {
         }
       }
     });
+  }
+
+  onClickDropdown(section: string) {
+    this.views[section as keyof Views] = !this.views[section as keyof Views];
+  }
+
+  async onClickBack() {
+    await this.router.navigateByUrl('/grammar');
+  }
+
+  async onClickEdit() {
+    await this.router.navigate(['edit'], { relativeTo: this.route });
   }
 }
