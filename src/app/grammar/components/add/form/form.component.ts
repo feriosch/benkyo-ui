@@ -56,10 +56,32 @@ export class AddClauseFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  resetFormArray(name: string): void {
+    const formArray = this.addClauseForm.get(name)! as FormArray;
+    while (formArray.length !== 0) formArray.removeAt(0);
+  }
+
+  resetFormValues(): void {
+    this.resetFormArray('keys');
+    this.resetFormArray('formations');
+    this.resetFormArray('examples');
+    this.resetFormArray('notes');
+    this.resetFormArray('related');
+    this.addClauseForm.reset(this.initialValues);
+  }
+
   onSubmit(): void {
     const addClauseBody: AddClauseBody = this.valueTransformerService.transform(
       this.addClauseForm.value
     );
-    console.log(addClauseBody);
+    this.grammarService.addClause(addClauseBody).subscribe(
+      (_response) => {
+        this.notificationService.toastClauseCreationNotification();
+        this.resetFormValues();
+      },
+      (error) => {
+        this.notificationService.toastErrorNotification(error.error.error);
+      }
+    );
   }
 }

@@ -28,7 +28,15 @@ export class AddClauseValuesTransformerService {
     if (value.hasOwnProperty('translation'))
       translation = <string>value.translation;
     if (value.hasOwnProperty('level')) level = <string>value.level;
-    if (value.hasOwnProperty('type')) type = <Type>value.type;
+
+    if (value.hasOwnProperty('type')) {
+      const typeValues: any = value.type;
+      for (const property in typeValues) {
+        if (!typeValues[property]) delete typeValues[property];
+      }
+      type = <Type>typeValues;
+    }
+
     if (value.hasOwnProperty('definition'))
       definition = <string>value.definition;
     if (value.hasOwnProperty('keys')) keys = <Example[]>value.keys;
@@ -52,8 +60,12 @@ export class AddClauseValuesTransformerService {
     }
 
     if (value.hasOwnProperty('tags')) {
-      if (value.tags && Object.keys(value.tags).length > 0)
-        addClauseBody.tags = <Tags>value.tags;
+      const tagsValues: any = value.tags;
+      for (const property in tagsValues) {
+        if (!tagsValues[property]) delete tagsValues[property];
+      }
+      if (Object.keys(tagsValues).length > 0)
+        addClauseBody.tags = <Tags>tagsValues;
     }
 
     if (value.hasOwnProperty('examples')) {

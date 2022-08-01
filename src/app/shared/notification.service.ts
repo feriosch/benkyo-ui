@@ -56,4 +56,20 @@ export class NotificationService {
 
     notification.openToastNotification$();
   }
+
+  toastClauseCreationNotification(): void {
+    const notification = new ToastNotificationInitializer();
+    notification.setTitle('Success!');
+    notification.setMessage(`Clause was created successfully!.`);
+
+    notification.setConfig({
+      AutoCloseDelay: 3000,
+      LayoutType: DialogLayoutDisplay.SUCCESS,
+      ProgressBar: ToastProgressBarEnum.NONE,
+      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      ToastPosition: ToastPositionEnum.TOP_CENTER,
+    });
+
+    notification.openToastNotification$();
+  }
 }
