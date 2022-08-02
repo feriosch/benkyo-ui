@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
-  FormGroupDirective,
   Validators,
 } from '@angular/forms';
 
@@ -14,28 +13,26 @@ import {
   styleUrls: ['./formations.component.scss'],
 })
 export class AddClauseFormFormationsComponent implements OnInit {
-  form?: FormGroup;
-  formationsFormArray?: FormArray;
+  @Input()
+  formGroup?: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  @Input()
+  formArray?: FormArray;
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-    this.formationsFormArray = this.rootFormGroup.control.get(
-      'formations'
-    ) as FormArray;
-  }
+  constructor() {}
 
-  getFormGroupControl(control: AbstractControl): FormGroup {
+  ngOnInit(): void {}
+
+  getFormGroupFromControl(control: AbstractControl): FormGroup {
     return control as FormGroup;
   }
 
-  getExampleArrayControls(control: AbstractControl): FormArray {
+  getExamplesFormArray(control: AbstractControl): FormArray {
     return control!.get('examples') as FormArray;
   }
 
   pushFormation(): void {
-    this.formationsFormArray!.push(
+    this.formArray!.push(
       new FormGroup({
         rule: new FormControl('', [Validators.required]),
         examples: new FormArray([]),
@@ -44,17 +41,12 @@ export class AddClauseFormFormationsComponent implements OnInit {
   }
 
   popFormation(): void {
-    if (this.formationsFormArray!.length > 0) {
-      this.formationsFormArray!.removeAt(this.formationsFormArray!.length - 1);
-    }
+    if (this.formArray!.length > 0)
+      this.formArray!.removeAt(this.formArray!.length - 1);
   }
 
   pushExample(control: AbstractControl): void {
-    let examplesFormArray: FormArray;
-    examplesFormArray = this.getFormGroupControl(control).get(
-      'examples'
-    ) as FormArray;
-    examplesFormArray!.push(
+    this.getExamplesFormArray(control)!.push(
       new FormGroup({
         sentence: new FormControl('', [Validators.required]),
         translation: new FormControl('', [Validators.required]),
@@ -63,10 +55,7 @@ export class AddClauseFormFormationsComponent implements OnInit {
   }
 
   popExample(control: AbstractControl): void {
-    let examplesFormArray: FormArray;
-    examplesFormArray = this.getFormGroupControl(control!).get(
-      'examples'
-    ) as FormArray;
+    const examplesFormArray: FormArray = this.getExamplesFormArray(control)!;
     if (examplesFormArray!.length > 0) {
       examplesFormArray!.removeAt(examplesFormArray!.length - 1);
     }

@@ -1,4 +1,4 @@
-<ng-container [formGroup]="form!">
+<ng-container [formGroup]="formGroup!">
   <div class="field is-horizontal">
     <div class="field-label">
       <label class="label">Formations</label>
@@ -21,9 +21,12 @@
         </button>
         <div formArrayName="formations" class="mt-4">
           <div
-            *ngFor="let control of formationsFormArray!.controls; let i = index"
+            *ngFor="let formationControl of formArray!.controls; let i = index"
           >
-            <ng-container [formGroup]="getFormGroupControl(control)">
+            <ng-container
+              [formGroup]="getFormGroupFromControl(formationControl)"
+            >
+              <label class="label"> Rule {{ i + 1 }} </label>
               <div class="columns is-vcentered mb-0">
                 <div class="column is-two-thirds">
                   <div class="field has-addons">
@@ -44,7 +47,7 @@
                   <div class="columns">
                     <div class="column">
                       <button
-                        (click)="pushExample(control)"
+                        (click)="pushExample(formationControl)"
                         class="button is-link is-light is-fullwidth"
                         type="button"
                       >
@@ -53,7 +56,7 @@
                     </div>
                     <div class="column">
                       <button
-                        (click)="popExample(control)"
+                        (click)="popExample(formationControl)"
                         class="button is-warning is-light is-fullwidth"
                         type="button"
                       >
@@ -65,14 +68,10 @@
               </div>
               <div
                 *ngFor="
-                  let exampleControl of getExampleArrayControls(control)
-                    .controls;
-                  let j = index
+                  let exampleControl of getExamplesFormArray(formationControl)
+                    .controls
                 "
               >
-                <label class="label">
-                  Rule {{ i + 1 }}, example sentence {{ j + 1 }}
-                </label>
                 <app-add-clause-form-clause-example
                   [control]="exampleControl"
                 ></app-add-clause-form-clause-example>

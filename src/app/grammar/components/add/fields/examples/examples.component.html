@@ -1,4 +1,4 @@
-<ng-container [formGroup]="form!">
+<ng-container [formGroup]="formGroup!">
   <div class="field is-horizontal">
     <div class="field-label">
       <label class="label">Examples</label>
@@ -20,9 +20,7 @@
           Remove Example
         </button>
         <div class="mt-4">
-          <div
-            *ngFor="let control of examplesFormArray!.controls; let i = index"
-          >
+          <div *ngFor="let control of formArray!.controls; let i = index">
             <label class="label">Example {{ i + 1 }}</label>
             <app-add-clause-form-clause-example
               [control]="control"
