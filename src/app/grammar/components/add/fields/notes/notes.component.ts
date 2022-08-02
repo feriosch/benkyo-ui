@@ -1,12 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-notes',
@@ -14,15 +7,15 @@ import {
   styleUrls: ['./notes.component.scss'],
 })
 export class AddClauseFormNotesComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
+  formGroup?: FormGroup;
+
+  @Input()
   formArray?: FormArray;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-    this.formArray = this.form.get('notes') as FormArray;
-  }
+  ngOnInit(): void {}
 
   pushSection(): void {
     this.formArray!.push(

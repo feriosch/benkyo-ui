@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-submit-button',
@@ -7,11 +7,10 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./submit.component.scss'],
 })
 export class AddClauseFormSubmitButtonComponent implements OnInit {
+  @Input()
   formGroup?: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.formGroup = this.rootFormGroup.control as FormGroup;
-  }
+  ngOnInit(): void {}
 }

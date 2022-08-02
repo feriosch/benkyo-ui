@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
-  FormGroupDirective,
   Validators,
 } from '@angular/forms';
 
@@ -14,17 +13,15 @@ import {
   styleUrls: ['./related.component.scss'],
 })
 export class AddClauseFormRelatedComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
   formGroup?: FormGroup;
+
+  @Input()
   formArray?: FormArray;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-    this.formGroup = this.form.get('related') as FormGroup;
-    this.formArray = this.form.get('related') as FormArray;
-  }
+  ngOnInit(): void {}
 
   pushRelated(): void {
     this.formArray!.push(
@@ -38,12 +35,11 @@ export class AddClauseFormRelatedComponent implements OnInit {
   }
 
   popRelated(): void {
-    if (this.formArray!.length > 0) {
+    if (this.formArray!.length > 0)
       this.formArray!.removeAt(this.formArray!.length - 1);
-    }
   }
 
-  getFormGroupControl(control: AbstractControl): FormGroup {
+  getFormGroupFromControl(control: AbstractControl): FormGroup {
     return control as FormGroup;
   }
 

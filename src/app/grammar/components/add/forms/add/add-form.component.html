@@ -23,7 +23,15 @@
     [formGroup]="addClauseForm"
     [formArray]="getFormArray('examples')"
   ></app-add-clause-form-examples-field>
-  <app-add-clause-form-notes></app-add-clause-form-notes>
-  <app-add-clause-form-related></app-add-clause-form-related>
-  <app-add-clause-form-submit-button></app-add-clause-form-submit-button>
+  <app-add-clause-form-notes
+    [formGroup]="addClauseForm"
+    [formArray]="getFormArray('notes')"
+  ></app-add-clause-form-notes>
+  <app-add-clause-form-related
+    [formGroup]="addClauseForm"
+    [formArray]="getFormArray('related')"
+  ></app-add-clause-form-related>
+  <app-add-clause-form-submit-button
+    [formGroup]="addClauseForm"
+  ></app-add-clause-form-submit-button>
 </form>
