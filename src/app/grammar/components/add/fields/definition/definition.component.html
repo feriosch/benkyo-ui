@@ -1,4 +1,4 @@
-<ng-container [formGroup]="form!">
+<ng-container [formGroup]="formGroup!">
   <div class="field is-horizontal mt-4">
     <div class="field-label">
       <label class="label">Definition</label>
@@ -8,8 +8,7 @@
         <div class="control">
           <input
             [ngClass]="{
-              'is-danger':
-                definitionControl!.touched && definitionControl!.invalid
+              'is-danger': control!.touched && control!.invalid
             }"
             formControlName="definition"
             class="input"
@@ -17,10 +16,7 @@
             placeholder="Enter definition"
           />
         </div>
-        <p
-          *ngIf="definitionControl!.touched && definitionControl!.invalid"
-          class="help is-danger"
-        >
+        <p *ngIf="control!.touched && control!.invalid" class="help is-danger">
           Definition is required!
         </p>
       </div>

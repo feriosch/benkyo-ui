@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-definition',
@@ -7,15 +7,14 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./definition.component.scss'],
 })
 export class AddClauseFormDefinitionComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
+  formGroup?: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor() {}
 
-  get definitionControl() {
-    return this.form!.get('definition');
+  get control(): FormControl {
+    return this.formGroup!.get('definition') as FormControl;
   }
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-  }
+  ngOnInit(): void {}
 }

@@ -8,7 +8,9 @@
   <app-add-clause-form-tags
     [formGroup]="getFormGroup('tags')"
   ></app-add-clause-form-tags>
-  <app-add-clause-form-definition></app-add-clause-form-definition>
+  <app-add-clause-form-definition
+    [formGroup]="addClauseForm"
+  ></app-add-clause-form-definition>
   <app-add-clause-form-keys></app-add-clause-form-keys>
   <app-add-clause-form-formations></app-add-clause-form-formations>
   <app-add-clause-form-examples-field></app-add-clause-form-examples-field>
