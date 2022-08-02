@@ -1,11 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-keys',
@@ -13,18 +7,18 @@ import {
   styleUrls: ['./keys.component.scss'],
 })
 export class AddClauseFormKeysComponent implements OnInit {
-  form?: FormGroup;
-  keysFormArray?: FormArray;
+  @Input()
+  formGroup?: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  @Input()
+  formArray?: FormArray;
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-    this.keysFormArray = this.rootFormGroup.control.get('keys') as FormArray;
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   pushExample(): void {
-    this.keysFormArray!.push(
+    this.formArray!.push(
       new FormGroup({
         sentence: new FormControl('', [Validators.required]),
         translation: new FormControl('', [Validators.required]),
@@ -33,8 +27,7 @@ export class AddClauseFormKeysComponent implements OnInit {
   }
 
   popExample(): void {
-    if (this.keysFormArray!.length > 0) {
-      this.keysFormArray!.removeAt(this.keysFormArray!.length - 1);
-    }
+    if (this.formArray!.length > 0)
+      this.formArray!.removeAt(this.formArray!.length - 1);
   }
 }

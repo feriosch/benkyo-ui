@@ -1,4 +1,4 @@
-<ng-container [formGroup]="form!">
+<ng-container [formGroup]="formGroup!">
   <div class="field is-horizontal mt-4">
     <div class="field-label">
       <label class="label">Keys</label>
@@ -20,7 +20,7 @@
           Remove Key Sentence
         </button>
         <div formArrayName="keys" class="mt-4">
-          <div *ngFor="let control of keysFormArray!.controls; let i = index">
+          <div *ngFor="let control of formArray!.controls; let i = index">
             <label class="label">Key Sentence {{ i + 1 }}</label>
             <app-add-clause-form-clause-example
               [control]="control"

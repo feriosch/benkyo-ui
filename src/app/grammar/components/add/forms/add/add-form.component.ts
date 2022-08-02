@@ -60,6 +60,10 @@ export class AddClauseFormComponent implements OnInit {
     return this.addClauseForm.get(formGroup) as FormGroup;
   }
 
+  getFormArray(formArray: string): FormArray {
+    return this.addClauseForm.get(formArray) as FormArray;
+  }
+
   resetFormArray(name: string): void {
     const formArray = this.addClauseForm.get(name)! as FormArray;
     while (formArray.length !== 0) formArray.removeAt(0);
