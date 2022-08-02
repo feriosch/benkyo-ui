@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-type',
@@ -7,30 +7,31 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./type.component.scss'],
 })
 export class AddClauseFormTypeComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
+  formGroup?: FormGroup;
+
   subtypes: string[];
 
-  constructor(private rootFormGroup: FormGroupDirective) {
+  constructor() {
     this.subtypes = [];
   }
 
   getSubtypeValue(subtype: string): boolean {
-    if (this.form!.controls.hasOwnProperty(subtype)) {
-      return this.form!.controls[subtype].value;
+    if (this.formGroup!.controls.hasOwnProperty(subtype)) {
+      return this.formGroup!.controls[subtype].value;
     }
     return false;
   }
 
   onClickSubtype(subtype: string): void {
-    if (this.form!.controls.hasOwnProperty(subtype)) {
-      let control = this.form!.controls[subtype];
+    if (this.formGroup!.controls.hasOwnProperty(subtype)) {
+      let control = this.formGroup!.controls[subtype];
       control.setValue(!control.value);
     }
   }
 
   ngOnInit(): void {
-    this.form = this.rootFormGroup.control.get('type') as FormGroup;
-    for (const [key] of Object.entries(this.form.controls)) {
+    for (const [key] of Object.entries(this.formGroup!.controls)) {
       this.subtypes.push(key);
     }
   }

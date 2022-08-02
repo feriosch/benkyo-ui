@@ -56,6 +56,10 @@ export class AddClauseFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getFormGroup(formGroup: string): FormGroup {
+    return this.addClauseForm.get(formGroup) as FormGroup;
+  }
+
   resetFormArray(name: string): void {
     const formArray = this.addClauseForm.get(name)! as FormArray;
     while (formArray.length !== 0) formArray.removeAt(0);

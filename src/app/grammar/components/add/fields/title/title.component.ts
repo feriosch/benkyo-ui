@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-title',
@@ -7,23 +7,22 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./title.component.scss'],
 })
 export class AddClauseFormTitleComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
+  formGroup?: FormGroup;
 
-  constructor(private rootFormGroup: FormGroupDirective) {}
+  constructor() {}
 
   get titleControl() {
-    return this.form!.get('title');
+    return this.formGroup!.get('title');
   }
 
   get hiraganaControl() {
-    return this.form!.get('hiragana');
+    return this.formGroup!.get('hiragana');
   }
 
   get translationControl() {
-    return this.form!.get('translation')
+    return this.formGroup!.get('translation');
   }
 
-  ngOnInit(): void {
-    this.form = this.rootFormGroup.control as FormGroup;
-  }
+  ngOnInit(): void {}
 }

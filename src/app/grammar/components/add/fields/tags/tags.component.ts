@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-tags',
@@ -7,30 +7,31 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./tags.component.scss'],
 })
 export class AddClauseFormTagsComponent implements OnInit {
-  form?: FormGroup;
+  @Input()
+  formGroup?: FormGroup;
+
   tags: string[];
 
-  constructor(private rootFormGroup: FormGroupDirective) {
+  constructor() {
     this.tags = [];
   }
 
   getTagValue(tag: string): boolean {
-    if (this.form!.controls.hasOwnProperty(tag)) {
-      return this.form!.controls[tag].value;
+    if (this.formGroup!.controls.hasOwnProperty(tag)) {
+      return this.formGroup!.controls[tag].value;
     }
     return false;
   }
 
   onClickTag(tag: string): void {
-    if (this.form!.controls.hasOwnProperty(tag)) {
-      let control = this.form!.controls[tag];
+    if (this.formGroup!.controls.hasOwnProperty(tag)) {
+      let control = this.formGroup!.controls[tag];
       control.setValue(!control.value);
     }
   }
 
   ngOnInit(): void {
-    this.form = this.rootFormGroup.control.get('tags') as FormGroup;
-    for (const [key] of Object.entries(this.form.controls)) {
+    for (const [key] of Object.entries(this.formGroup!.controls)) {
       this.tags.push(key);
     }
   }
