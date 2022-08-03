@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { FullClause } from 'src/models/responses/grammar/clause.model';
+import { Example, FullClause } from 'src/models/responses/grammar/clause.model';
+import { SentenceFormatterService } from 'src/app/grammar/services/sentence-formatter.service';
 
 @Component({
   selector: 'app-edit-clause-form',
@@ -14,7 +15,7 @@ export class EditClauseFormComponent implements OnInit {
 
   editClauseForm: FormGroup;
 
-  constructor() {
+  constructor(private sentenceFormatterService: SentenceFormatterService) {
     this.editClauseForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
       hiragana: new FormControl(null),
@@ -40,6 +41,7 @@ export class EditClauseFormComponent implements OnInit {
         interrogative: new FormControl(false),
       }),
       definition: new FormControl(null, [Validators.required]),
+      keys: new FormArray([]),
     });
   }
 
@@ -48,6 +50,7 @@ export class EditClauseFormComponent implements OnInit {
     this.initializeBasicControls();
     this.initializeTypeControls();
     if (this.clause!.tags) this.initializeTagControls();
+    this.initializeKeyControls();
   }
 
   getFormControl(control: string): FormControl {
@@ -56,6 +59,10 @@ export class EditClauseFormComponent implements OnInit {
 
   getFormGroup(group: string): FormGroup {
     return this.editClauseForm.get(group) as FormGroup;
+  }
+
+  getFormArray(array: string): FormArray {
+    return this.editClauseForm.get(array) as FormArray;
   }
 
   initializeBasicControls(): void {
@@ -84,6 +91,22 @@ export class EditClauseFormComponent implements OnInit {
     originalTags.forEach((tag: string) =>
       this.getFormControl(`tags.${tag}`).setValue(true)
     );
+  }
+
+  initializeKeyControls(): void {
+    this.clause!.keys.forEach((key: Example) => {
+      this.getFormArray('keys')!.push(
+        new FormGroup({
+          sentence: new FormControl(
+            this.sentenceFormatterService.getFrontFormattedSentence(
+              key.sentence
+            ),
+            [Validators.required]
+          ),
+          translation: new FormControl(key.translation, [Validators.required]),
+        })
+      );
+    });
   }
 
   onSubmit(): void {

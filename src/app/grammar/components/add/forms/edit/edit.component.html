@@ -11,6 +11,10 @@
   <app-add-clause-form-definition
     [formGroup]="editClauseForm"
   ></app-add-clause-form-definition>
+  <app-add-clause-form-keys
+    [formGroup]="editClauseForm"
+    [formArray]="getFormArray('keys')"
+  ></app-add-clause-form-keys>
   <app-add-clause-form-submit-button
     [formGroup]="editClauseForm"
   ></app-add-clause-form-submit-button>
