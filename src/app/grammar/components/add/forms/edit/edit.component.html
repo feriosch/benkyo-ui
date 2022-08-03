@@ -1,1 +1,17 @@
-<p>{{ clause!.title }}</p>
+<form [formGroup]="editClauseForm" (ngSubmit)="onSubmit()" class="box">
+  <app-add-clause-form-title
+    [formGroup]="editClauseForm"
+  ></app-add-clause-form-title>
+  <app-add-clause-form-type
+    [formGroup]="getFormGroup('type')"
+  ></app-add-clause-form-type>
+  <app-add-clause-form-tags
+    [formGroup]="getFormGroup('tags')"
+  ></app-add-clause-form-tags>
+  <app-add-clause-form-definition
+    [formGroup]="editClauseForm"
+  ></app-add-clause-form-definition>
+  <app-add-clause-form-submit-button
+    [formGroup]="editClauseForm"
+  ></app-add-clause-form-submit-button>
+</form>

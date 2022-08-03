@@ -28,7 +28,6 @@ export class EditClauseViewComponent implements OnInit {
     this.grammarService.getFullClauseById(this.id).subscribe((response) => {
       this.isLoading = false;
       this.originalClause = response;
-      console.log(this.originalClause);
     });
   }
 
