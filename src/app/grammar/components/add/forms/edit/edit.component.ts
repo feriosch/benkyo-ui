@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   Example,
@@ -8,7 +9,11 @@ import {
   Related,
   Section,
 } from 'src/models/responses/grammar/clause.model';
+import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
+import { NotificationService } from 'src/app/shared/notification.service';
 import { SentenceFormatterService } from 'src/app/grammar/services/sentence-formatter.service';
+import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-values-transformer.service';
+import { GrammarService } from 'src/app/grammar/services/grammar.service';
 
 @Component({
   selector: 'app-edit-clause-form',
@@ -19,9 +24,19 @@ export class EditClauseFormComponent implements OnInit {
   @Input()
   clause?: FullClause;
 
+  @Input()
+  id?: string;
+
   editClauseForm: FormGroup;
 
-  constructor(private sentenceFormatterService: SentenceFormatterService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sentenceFormatterService: SentenceFormatterService,
+    private valueTransformerService: AddClauseValuesTransformerService,
+    private grammarService: GrammarService,
+    private notificationService: NotificationService
+  ) {
     this.editClauseForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
       hiragana: new FormControl(null),
@@ -56,7 +71,6 @@ export class EditClauseFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.clause!);
     this.initializeBasicControls();
     this.initializeTypeControls();
     if (this.clause!.tags) this.initializeTagControls();
@@ -205,6 +219,19 @@ export class EditClauseFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.editClauseForm.value);
+    const editClauseBody: AddClauseBody =
+      this.valueTransformerService.transform(
+        this.editClauseForm.value,
+        this.id!
+      );
+    this.grammarService.updateClause(editClauseBody).subscribe(
+      async (_response) => {
+        await this.router.navigate(['../'], { relativeTo: this.route });
+        this.notificationService.toastClauseCreationNotification();
+      },
+      (error) => {
+        this.notificationService.toastErrorNotification(error.error.error);
+      }
+    );
   }
 }

@@ -55,6 +55,8 @@ export class AddClauseValuesTransformerService {
       notes: notes,
     };
 
+    if (id) addClauseBody.clause_id = id;
+
     if (value.hasOwnProperty('hiragana')) {
       if (value.hiragana) addClauseBody.hiragana = <string>value.hiragana;
     }

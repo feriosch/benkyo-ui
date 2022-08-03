@@ -87,4 +87,8 @@ export class GrammarService {
   addClause(body: AddClauseBody): Observable<any> {
     return this.http.post(this.clausesUrl, body);
   }
+
+  updateClause(body: AddClauseBody): Observable<any> {
+    return this.http.put(this.clausesUrl, body);
+  }
 }
