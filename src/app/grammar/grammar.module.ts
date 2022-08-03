@@ -5,6 +5,8 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { GrammarHomeComponent } from './views/home/home.component';
 import { ClauseDetailsComponent } from './views/details/details.component';
+import { GrammarAddViewComponent } from './views/add/add.component';
+import { EditClauseViewComponent } from './views/edit/edit.component';
 import { GrammarTableComponent } from './components/home/table/table.component';
 import { MainInfoComponent } from './components/details/main-info/main-info.component';
 import { SectionTitleComponent } from './components/details/section-title/section-title.component';
@@ -13,7 +15,6 @@ import { FormationsComponent } from './components/details/formations/formations.
 import { ExamplesComponent } from './components/details/examples/examples.component';
 import { NotesComponent } from './components/details/notes/notes.component';
 import { RelatedComponent } from './components/details/related/related.component';
-import { GrammarAddViewComponent } from './views/add/add.component';
 import { AddClauseFormComponent } from './components/add/forms/add/add-form.component';
 import { AddClauseFormTitleComponent } from './components/add/fields/title/title.component';
 import { AddClauseFormTypeComponent } from './components/add/fields/type/type.component';
@@ -27,7 +28,7 @@ import { AddClauseFormExampleComponent } from './components/add/helpers/example/
 import { AddClauseFormSectionComponent } from './components/add/helpers/section/section.component';
 import { AddClauseFormRelatedComponent } from './components/add/fields/related/related.component';
 import { AddClauseFormSubmitButtonComponent } from './components/add/fields/submit/submit.component';
-import { EditClauseViewComponent } from './views/edit/edit.component';
+import { EditClauseFormComponent } from './components/add/forms/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditClauseViewComponent } from './views/edit/edit.component';
     AddClauseFormRelatedComponent,
     AddClauseFormSubmitButtonComponent,
     EditClauseViewComponent,
+    EditClauseFormComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AgGridModule],
 })

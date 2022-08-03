@@ -1,1 +1,7 @@
-<p>edit view works!</p>
+<div class="container mt-2">
+  <ng-template *ngIf="isLoading; else editForm"> Loading... </ng-template>
+  <ng-template #editForm>
+    <h1 class="title">Edit {{ originalClause!.title }}</h1>
+    <app-edit-clause-form [clause]="originalClause!"></app-edit-clause-form>
+  </ng-template>
+</div>
