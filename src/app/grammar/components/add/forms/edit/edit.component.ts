@@ -5,6 +5,8 @@ import {
   Example,
   Formation,
   FullClause,
+  Related,
+  Section,
 } from 'src/models/responses/grammar/clause.model';
 import { SentenceFormatterService } from 'src/app/grammar/services/sentence-formatter.service';
 
@@ -48,6 +50,8 @@ export class EditClauseFormComponent implements OnInit {
       keys: new FormArray([]),
       formations: new FormArray([]),
       examples: new FormArray([]),
+      notes: new FormArray([]),
+      related: new FormArray([]),
     });
   }
 
@@ -59,6 +63,8 @@ export class EditClauseFormComponent implements OnInit {
     this.initializeKeyControls();
     this.initializeFormationControls();
     if (this.clause!.examples) this.initializeExampleControls();
+    this.initializeNoteControls();
+    if (this.clause!.related) this.initializeRelatedControls();
   }
 
   getFormControl(control: string): FormControl {
@@ -145,6 +151,56 @@ export class EditClauseFormComponent implements OnInit {
       this.getFormArray('examples')!.push(
         this.getNewExampleFormGroup(example.sentence, example.translation)
       );
+    });
+  }
+
+  initializeNoteControls(): void {
+    this.clause!.notes.forEach((note: Section) => {
+      const formGroup: FormGroup = new FormGroup({
+        explanation: new FormControl(note.explanation, [Validators.required]),
+        examples: new FormArray([]),
+      });
+      this.getFormArray('notes')!.push(formGroup);
+      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      if (note.examples) {
+        note.examples!.forEach((example: Example) => {
+          examplesArray!.push(
+            this.getNewExampleFormGroup(example.sentence, example.translation)
+          );
+        });
+      }
+    });
+  }
+
+  initializeRelatedControls(): void {
+    this.clause!.related!.forEach((related: Related) => {
+      const formGroup: FormGroup = new FormGroup({
+        title: new FormControl(related.title, [Validators.required]),
+        hiragana: new FormControl(related.hiragana || null),
+        reference: new FormControl(related.reference || null),
+        sections: new FormArray([]),
+      });
+      this.getFormArray('related')!.push(formGroup);
+      const sectionsArray: FormArray = formGroup.get('sections') as FormArray;
+      related.sections.forEach((section: Section) => {
+        const sectionFormGroup: FormGroup = new FormGroup({
+          explanation: new FormControl(section.explanation, [
+            Validators.required,
+          ]),
+          examples: new FormArray([]),
+        });
+        sectionsArray.push(sectionFormGroup);
+        const examplesArray: FormArray = sectionFormGroup.get(
+          'examples'
+        ) as FormArray;
+        if (section.examples) {
+          section.examples!.forEach((example: Example) => {
+            examplesArray!.push(
+              this.getNewExampleFormGroup(example.sentence, example.translation)
+            );
+          });
+        }
+      });
     });
   }
 
