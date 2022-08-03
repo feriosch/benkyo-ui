@@ -15,6 +15,14 @@
     [formGroup]="editClauseForm"
     [formArray]="getFormArray('keys')"
   ></app-add-clause-form-keys>
+  <app-add-clause-form-formations
+    [formGroup]="editClauseForm"
+    [formArray]="getFormArray('formations')"
+  ></app-add-clause-form-formations>
+  <app-add-clause-form-examples-field
+    [formGroup]="editClauseForm"
+    [formArray]="getFormArray('examples')"
+  ></app-add-clause-form-examples-field>
   <app-add-clause-form-submit-button
     [formGroup]="editClauseForm"
   ></app-add-clause-form-submit-button>

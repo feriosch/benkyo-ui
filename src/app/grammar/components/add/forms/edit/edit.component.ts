@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Example, FullClause } from 'src/models/responses/grammar/clause.model';
+import {
+  Example,
+  Formation,
+  FullClause,
+} from 'src/models/responses/grammar/clause.model';
 import { SentenceFormatterService } from 'src/app/grammar/services/sentence-formatter.service';
 
 @Component({
@@ -42,6 +46,8 @@ export class EditClauseFormComponent implements OnInit {
       }),
       definition: new FormControl(null, [Validators.required]),
       keys: new FormArray([]),
+      formations: new FormArray([]),
+      examples: new FormArray([]),
     });
   }
 
@@ -51,6 +57,8 @@ export class EditClauseFormComponent implements OnInit {
     this.initializeTypeControls();
     if (this.clause!.tags) this.initializeTagControls();
     this.initializeKeyControls();
+    this.initializeFormationControls();
+    if (this.clause!.examples) this.initializeExampleControls();
   }
 
   getFormControl(control: string): FormControl {
@@ -63,6 +71,21 @@ export class EditClauseFormComponent implements OnInit {
 
   getFormArray(array: string): FormArray {
     return this.editClauseForm.get(array) as FormArray;
+  }
+
+  getNewExampleFormGroup(
+    sentenceComponents: string[],
+    translation: string
+  ): FormGroup {
+    return new FormGroup({
+      sentence: new FormControl(
+        this.sentenceFormatterService.getFrontFormattedSentence(
+          sentenceComponents
+        ),
+        [Validators.required]
+      ),
+      translation: new FormControl(translation, [Validators.required]),
+    });
   }
 
   initializeBasicControls(): void {
@@ -96,15 +119,31 @@ export class EditClauseFormComponent implements OnInit {
   initializeKeyControls(): void {
     this.clause!.keys.forEach((key: Example) => {
       this.getFormArray('keys')!.push(
-        new FormGroup({
-          sentence: new FormControl(
-            this.sentenceFormatterService.getFrontFormattedSentence(
-              key.sentence
-            ),
-            [Validators.required]
-          ),
-          translation: new FormControl(key.translation, [Validators.required]),
-        })
+        this.getNewExampleFormGroup(key.sentence, key.translation)
+      );
+    });
+  }
+
+  initializeFormationControls(): void {
+    this.clause!.formations.forEach((formation: Formation) => {
+      const formGroup: FormGroup = new FormGroup({
+        rule: new FormControl(formation.rule, [Validators.required]),
+        examples: new FormArray([]),
+      });
+      this.getFormArray('formations')!.push(formGroup);
+      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      formation.examples.forEach((example: Example) => {
+        examplesArray.push(
+          this.getNewExampleFormGroup(example.sentence, example.translation)
+        );
+      });
+    });
+  }
+
+  initializeExampleControls(): void {
+    this.clause!.examples!.forEach((example: Example) => {
+      this.getFormArray('examples')!.push(
+        this.getNewExampleFormGroup(example.sentence, example.translation)
       );
     });
   }
