@@ -1,92 +1,103 @@
-<div class="container mx-6 my-5">
-  <div class="buttons">
-    <button (click)="onClickBack()" class="button is-info">
-      Back To Clauses
-    </button>
-    <button (click)="onClickEdit()" class="button is-info">Edit</button>
-    <button (click)="onClickDelete()" class="button is-danger">Delete</button>
+<ng-template *ngIf="isLoading; else details">
+  <div class="container mx-6 my-5">
+    <h1>Loading...</h1>
   </div>
-</div>
-<div class="container mx-6 my-5">
-  <app-clause-main-info
-    [title]="clause?.title!"
-    [hiragana]="clause?.hiragana"
-    [type]="clause?.type!"
-    [level]="clause?.level!"
-  >
-  </app-clause-main-info>
-</div>
-<div class="container mx-6 my-5">
-  <div class="columns is-vcentered">
-    <div class="column">
-      <div class="box is-size-4">
-        {{ clause?.definition }}
-      </div>
-    </div>
-    <div class="column">
-      <div class="block ml-4 is-size-4">
-        {{ clause?.translation }}
-      </div>
+</ng-template>
+<ng-template #details>
+  <div class="container mx-6 my-5">
+    <div class="buttons">
+      <button (click)="onClickBack()" class="button is-info">
+        Back To Clauses
+      </button>
+      <button (click)="onClickEdit()" class="button is-info">Edit</button>
+      <button (click)="onClickDelete()" class="button is-danger">Delete</button>
     </div>
   </div>
-</div>
-<div class="container mx-6 my-5">
-  <app-clause-section-title
-    (dropdownToggled)="onClickDropdown('keys')"
-    [isVisible]="views['keys']"
-    title="Key Sentences"
-  ></app-clause-section-title>
-  <div
-    [ngClass]="{ 'is-hidden': !views['keys'] }"
-    *ngFor="let key of clause?.keys"
-    class="block"
-  >
-    <app-example-sentence [components]="key.sentence"></app-example-sentence>
-    <div class="is-size-5">({{ key.translation }})</div>
+  <div class="container mx-6 my-5">
+    <app-clause-main-info
+      [title]="clause?.title!"
+      [hiragana]="clause?.hiragana"
+      [type]="clause?.type!"
+      [level]="clause?.level!"
+    >
+    </app-clause-main-info>
   </div>
-</div>
-<div class="container mx-6 my-5">
-  <app-clause-section-title
-    (dropdownToggled)="onClickDropdown('formations')"
-    [isVisible]="views['formations']"
-    title="Formations"
-  ></app-clause-section-title>
-  <app-clause-formations
-    [ngClass]="{ 'is-hidden': !views['formations'] }"
-    [formations]="clause?.formations!"
-  ></app-clause-formations>
-</div>
-<div *ngIf="clause?.examples" class="container mx-6 my-5 content">
-  <app-clause-section-title
-    (dropdownToggled)="onClickDropdown('examples')"
-    [isVisible]="views['examples']"
-    title="Examples"
-  ></app-clause-section-title>
-  <app-clause-examples
-    [ngClass]="{ 'is-hidden': !views['examples'] }"
-    [examples]="clause?.examples!"
-  ></app-clause-examples>
-</div>
-<div class="container mx-6 my-5">
-  <app-clause-section-title
-    (dropdownToggled)="onClickDropdown('notes')"
-    [isVisible]="views['notes']"
-    title="Notes"
-  ></app-clause-section-title>
-  <app-clause-notes
-    [ngClass]="{ 'is-hidden': !views['notes'] }"
-    [notes]="clause?.notes!"
-  ></app-clause-notes>
-</div>
-<div *ngIf="clause?.related" class="container mx-6 my-5">
-  <app-clause-section-title
-    (dropdownToggled)="onClickDropdown('related')"
-    [isVisible]="views['related']"
-    title="Related Expressions"
-  ></app-clause-section-title>
-  <app-clause-related
-    [ngClass]="{ 'is-hidden': !views['related'] }"
-    [related]="clause?.related!"
-  ></app-clause-related>
-  <app-delete-clause-modal #deleteModal [id]="id"></app-delete-clause-modal>
-</div>
+  <div class="container mx-6 my-5">
+    <div class="columns is-vcentered">
+      <div class="column">
+        <div class="box is-size-4">
+          {{ clause?.definition }}
+        </div>
+      </div>
+      <div class="column">
+        <div class="block ml-4 is-size-4">
+          {{ clause?.translation }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mx-6 my-5">
+    <app-clause-section-title
+      (dropdownToggled)="onClickDropdown('keys')"
+      [isVisible]="views['keys']"
+      title="Key Sentences"
+    ></app-clause-section-title>
+    <div
+      [ngClass]="{ 'is-hidden': !views['keys'] }"
+      *ngFor="let key of clause?.keys"
+      class="block"
+    >
+      <app-example-sentence [components]="key.sentence"></app-example-sentence>
+      <div class="is-size-5">({{ key.translation }})</div>
+    </div>
+  </div>
+  <div class="container mx-6 my-5">
+    <app-clause-section-title
+      (dropdownToggled)="onClickDropdown('formations')"
+      [isVisible]="views['formations']"
+      title="Formations"
+    ></app-clause-section-title>
+    <app-clause-formations
+      [ngClass]="{ 'is-hidden': !views['formations'] }"
+      [formations]="clause?.formations!"
+    ></app-clause-formations>
+  </div>
+  <div *ngIf="clause?.examples" class="container mx-6 my-5 content">
+    <app-clause-section-title
+      (dropdownToggled)="onClickDropdown('examples')"
+      [isVisible]="views['examples']"
+      title="Examples"
+    ></app-clause-section-title>
+    <app-clause-examples
+      [ngClass]="{ 'is-hidden': !views['examples'] }"
+      [examples]="clause?.examples!"
+    ></app-clause-examples>
+  </div>
+  <div class="container mx-6 my-5">
+    <app-clause-section-title
+      (dropdownToggled)="onClickDropdown('notes')"
+      [isVisible]="views['notes']"
+      title="Notes"
+    ></app-clause-section-title>
+    <app-clause-notes
+      [ngClass]="{ 'is-hidden': !views['notes'] }"
+      [notes]="clause?.notes!"
+    ></app-clause-notes>
+  </div>
+  <div *ngIf="clause?.related" class="container mx-6 my-5">
+    <app-clause-section-title
+      (dropdownToggled)="onClickDropdown('related')"
+      [isVisible]="views['related']"
+      title="Related Expressions"
+    ></app-clause-section-title>
+    <app-clause-related
+      [ngClass]="{ 'is-hidden': !views['related'] }"
+      [related]="clause?.related!"
+    ></app-clause-related>
+  </div>
+  <app-delete-clause-modal
+    #deleteModal
+    [id]="id"
+    [title]="clause!.title"
+  ></app-delete-clause-modal>
+</ng-template>

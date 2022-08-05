@@ -12,9 +12,10 @@ import { DeleteClauseModalComponent } from '../../components/details/delete-moda
   styleUrls: ['./details.component.scss'],
 })
 export class ClauseDetailsComponent implements OnInit {
-  @ViewChild('deleteModal')
-  deleteModal!: DeleteClauseModalComponent;
+  @ViewChild('deleteModal') deleteModal!: DeleteClauseModalComponent;
 
+  // TODO: Loading is not working as expected
+  isLoading: boolean;
   id: string;
   clause?: FullClause | null;
   tags: string[];
@@ -25,6 +26,7 @@ export class ClauseDetailsComponent implements OnInit {
     private router: Router,
     private grammarService: GrammarService
   ) {
+    this.isLoading = true;
     this.id = this.route.snapshot.params['id'];
     this.tags = [];
     this.views = {
@@ -37,12 +39,13 @@ export class ClauseDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.grammarService.getFullClauseById(this.id).subscribe((response) => {
       this.clause = response;
+      this.isLoading = false;
       if (this.clause!.tags) {
-        for (const [key] of Object.entries(this.clause!.tags)) {
+        for (const [key] of Object.entries(this.clause!.tags))
           this.tags.push(key);
-        }
       }
     });
   }

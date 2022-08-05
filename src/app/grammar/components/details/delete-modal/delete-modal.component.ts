@@ -11,8 +11,8 @@ import { GrammarNotificationService } from 'src/app/grammar/services/notificatio
   styleUrls: ['./delete-modal.component.scss'],
 })
 export class DeleteClauseModalComponent implements OnInit {
-  @Input()
-  id?: string;
+  @Input() id?: string;
+  @Input() title?: string;
 
   isActive: boolean;
 
@@ -44,7 +44,6 @@ export class DeleteClauseModalComponent implements OnInit {
         );
       },
       (error) => {
-        console.log(error)
         this.notificationService.toastErrorNotification(error);
       }
     );
