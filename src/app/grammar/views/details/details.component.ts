@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { Views } from 'src/models/responses/grammar/details.model';
-import { NotificationService } from 'src/app/shared/notification.service';
-import { GrammarService } from 'src/app/grammar/services/grammar.service';
-import { GrammarNotificationService } from 'src/app/grammar/services/notification.service';
+import { GrammarService } from '../../services/grammar.service';
+import { DeleteClauseModalComponent } from '../../components/details/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-clause-details',
@@ -13,6 +12,9 @@ import { GrammarNotificationService } from 'src/app/grammar/services/notificatio
   styleUrls: ['./details.component.scss'],
 })
 export class ClauseDetailsComponent implements OnInit {
+  @ViewChild('deleteModal')
+  deleteModal!: DeleteClauseModalComponent;
+
   id: string;
   clause?: FullClause | null;
   tags: string[];
@@ -21,9 +23,7 @@ export class ClauseDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService,
-    private grammarNotificationService: GrammarNotificationService,
-    private notificationService: NotificationService
+    private grammarService: GrammarService
   ) {
     this.id = this.route.snapshot.params['id'];
     this.tags = [];
@@ -60,16 +60,6 @@ export class ClauseDetailsComponent implements OnInit {
   }
 
   onClickDelete() {
-    this.grammarService.deleteClause(this.id).subscribe(
-      (_response) => {
-        this.router.navigateByUrl('/grammar');
-        this.grammarNotificationService.toastClauseDeletionNotification(
-          this.id
-        );
-      },
-      (error) => {
-        this.notificationService.toastErrorNotification(error);
-      }
-    );
+    this.deleteModal.openModal();
   }
 }
