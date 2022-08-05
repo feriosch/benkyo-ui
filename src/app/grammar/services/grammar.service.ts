@@ -6,7 +6,10 @@ import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/grammar';
 import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 import { FullClause } from 'src/models/responses/grammar/clause.model';
-import { ClausesResponse } from 'src/models/responses/grammar/clauses-response.model';
+import {
+  ClausesResponse,
+  DeletedResponse,
+} from 'src/models/responses/grammar/clauses-response.model';
 
 @Injectable({ providedIn: 'root' })
 export class GrammarService {
@@ -90,5 +93,10 @@ export class GrammarService {
 
   updateClause(body: AddClauseBody): Observable<any> {
     return this.http.put(this.clausesUrl, body);
+  }
+
+  deleteClause(id: string): Observable<DeletedResponse> {
+    let params = new HttpParams().append('clause_id', id);
+    return this.http.delete<DeletedResponse>(this.clausesUrl, { params });
   }
 }

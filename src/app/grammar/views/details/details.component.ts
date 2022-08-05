@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { Views } from 'src/models/responses/grammar/details.model';
+import { NotificationService } from 'src/app/shared/notification.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
+import { GrammarNotificationService } from 'src/app/grammar/services/notification.service';
 
 @Component({
   selector: 'app-clause-details',
@@ -19,7 +21,9 @@ export class ClauseDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService
+    private grammarService: GrammarService,
+    private grammarNotificationService: GrammarNotificationService,
+    private notificationService: NotificationService
   ) {
     this.id = this.route.snapshot.params['id'];
     this.tags = [];
@@ -53,5 +57,19 @@ export class ClauseDetailsComponent implements OnInit {
 
   async onClickEdit() {
     await this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  onClickDelete() {
+    this.grammarService.deleteClause(this.id).subscribe(
+      (_response) => {
+        this.router.navigateByUrl('/grammar');
+        this.grammarNotificationService.toastClauseDeletionNotification(
+          this.id
+        );
+      },
+      (error) => {
+        this.notificationService.toastErrorNotification(error);
+      }
+    );
   }
 }

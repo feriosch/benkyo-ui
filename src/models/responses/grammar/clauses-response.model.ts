@@ -12,3 +12,7 @@ export interface ClausesResponse {
   total_pages: number;
   total_clauses: number;
 }
+
+export interface DeletedResponse {
+  id: string;
+}
