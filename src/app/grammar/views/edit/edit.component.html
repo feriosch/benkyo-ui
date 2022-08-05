@@ -1,7 +1,12 @@
 <div class="container mt-2">
   <ng-template *ngIf="isLoading; else editForm"> Loading... </ng-template>
   <ng-template #editForm>
-    <h1 class="title">Edit {{ originalClause!.title }}</h1>
+    <div class="container mb-2">
+      <span class="title mr-4">Edit {{ originalClause!.title }}</span>
+      <button (click)="onClickCancel()" class="button is-info">
+        Back To Cluase
+      </button>
+    </div>
     <app-edit-clause-form
       [clause]="originalClause!"
       [id]="id"
