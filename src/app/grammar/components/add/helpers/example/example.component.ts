@@ -62,7 +62,7 @@ export class AddClauseFormExampleComponent implements OnInit {
           }
           currentComponent = [];
           currentComponent.push(value[i]);
-          currentComponent.push('/');
+          currentComponent.push('|');
           isBetweenSymbols = true;
         }
       } else {

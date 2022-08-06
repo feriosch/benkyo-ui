@@ -18,19 +18,19 @@ export class ExampleSentenceComponent implements OnInit {
   }
 
   isRed(component: string): boolean {
-    return component.split('/')[0] === '*';
+    return component.split('|')[0] === '*';
   }
 
   isBold(component: string): boolean {
-    return component.split('/')[0] === '_';
+    return component.split('|')[0] === '_';
   }
 
   isIncorrect(component: string): boolean {
-    return component.split('/')[0] === '$';
+    return component.split('|')[0] === '$';
   }
 
   getWords(component: string): string {
-    let words: string | undefined = component.split('/').pop();
+    let words: string | undefined = component.split('|').pop();
     if (this.isIncorrect(component)) words! = `*${words!}`;
     return words!;
   }
