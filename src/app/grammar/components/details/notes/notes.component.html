@@ -1,7 +1,7 @@
 <ol class="is-size-4 ml-6">
   <ng-container *ngFor="let section of notes">
     <li class="my-4">
-      <div class="is-size-4">({{ section.explanation }})</div>
+      <div class="is-size-4">{{ section.explanation }}</div>
       <div *ngIf="section.examples">
         <ul>
           <ng-container *ngFor="let example of section.examples">

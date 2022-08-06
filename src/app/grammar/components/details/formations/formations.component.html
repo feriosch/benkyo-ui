@@ -1,6 +1,8 @@
 <div *ngFor="let formation of formations" class="content">
   <div class="is-flex is-flex-direction-row is-align-items-center">
-    <div class="is-size-4 ml-4">({{ formation.rule }})</div>
+    <div class="is-size-4 ml-4 has-text-weight-semibold">
+      {{ formation.rule }}
+    </div>
   </div>
   <ul *ngFor="let example of formation.examples">
     <li>
