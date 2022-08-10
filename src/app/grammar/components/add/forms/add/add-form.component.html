@@ -1,4 +1,9 @@
-<form [formGroup]="addClauseForm" (ngSubmit)="onSubmit()" class="box">
+<form
+  [formGroup]="addClauseForm"
+  (change)="storeValues()"
+  (ngSubmit)="onSubmit()"
+  class="box"
+>
   <app-add-clause-form-title
     [formGroup]="addClauseForm"
   ></app-add-clause-form-title>

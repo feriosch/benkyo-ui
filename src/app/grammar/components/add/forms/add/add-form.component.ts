@@ -5,6 +5,7 @@ import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
 import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-values-transformer.service';
+import { AddFormService } from 'src/app/grammar/services/forms/add.service';
 
 @Component({
   selector: 'app-add-clause-form',
@@ -18,7 +19,8 @@ export class AddClauseFormComponent implements OnInit {
   constructor(
     private grammarService: GrammarService,
     private valueTransformerService: AddClauseValuesTransformerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private addFormService: AddFormService
   ) {
     this.addClauseForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
@@ -54,7 +56,9 @@ export class AddClauseFormComponent implements OnInit {
     this.initialValues = this.addClauseForm.value;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addFormService.initializeForm(this.addClauseForm);
+  }
 
   getFormGroup(formGroup: string): FormGroup {
     return this.addClauseForm.get(formGroup) as FormGroup;
@@ -64,12 +68,17 @@ export class AddClauseFormComponent implements OnInit {
     return this.addClauseForm.get(formArray) as FormArray;
   }
 
+  storeValues() {
+    this.addFormService.setCachedValues(this.addClauseForm.value);
+  }
+
   resetFormArray(name: string): void {
     const formArray = this.addClauseForm.get(name)! as FormArray;
     while (formArray.length !== 0) formArray.removeAt(0);
   }
 
   resetFormValues(): void {
+    this.addFormService.setCachedValues(null);
     this.resetFormArray('keys');
     this.resetFormArray('formations');
     this.resetFormArray('examples');
