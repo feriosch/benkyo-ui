@@ -20,8 +20,8 @@ export class AddClauseFormKeysComponent implements OnInit {
   pushExample(): void {
     this.formArray!.push(
       new FormGroup({
-        sentence: new FormControl('', [Validators.required]),
-        translation: new FormControl('', [Validators.required]),
+        sentence: new FormControl(null, [Validators.required]),
+        translation: new FormControl(null, [Validators.required]),
       })
     );
   }

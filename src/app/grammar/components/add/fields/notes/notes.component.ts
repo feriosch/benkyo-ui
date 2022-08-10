@@ -20,7 +20,7 @@ export class AddClauseFormNotesComponent implements OnInit {
   pushSection(): void {
     this.formArray!.push(
       new FormGroup({
-        explanation: new FormControl('', [Validators.required]),
+        explanation: new FormControl(null, [Validators.required]),
         examples: new FormArray([]),
       })
     );

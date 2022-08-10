@@ -34,7 +34,7 @@ export class AddClauseFormFormationsComponent implements OnInit {
   pushFormation(): void {
     this.formArray!.push(
       new FormGroup({
-        rule: new FormControl('', [Validators.required]),
+        rule: new FormControl(null, [Validators.required]),
         examples: new FormArray([]),
       })
     );
