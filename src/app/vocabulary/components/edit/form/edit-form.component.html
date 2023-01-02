@@ -1,0 +1,21 @@
+<form [formGroup]="editWordForm" (ngSubmit)="onSubmit()" class="box">
+  <app-edit-word-form-word-field
+    [formGroup]="editWordForm"
+    [word]="fullWord!.word"
+  >
+  </app-edit-word-form-word-field>
+  <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
+  </app-add-word-form-type-field>
+  <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">
+  </app-add-word-form-tags-field>
+  <app-add-word-form-notes-field [formGroup]="editWordForm">
+  </app-add-word-form-notes-field>
+  <app-add-word-form-collection-field [formGroup]="editWordForm">
+  </app-add-word-form-collection-field>
+  <app-add-word-form-sentences-field
+    [formGroup]="editWordForm"
+    [formArray]="getFormArray('sentences')"
+  ></app-add-word-form-sentences-field>
+  <app-add-word-form-submit-field [formGroup]="editWordForm">
+  </app-add-word-form-submit-field>
+</form>
