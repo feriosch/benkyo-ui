@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { OrderDirection, OrderField } from 'src/models/requests/kanji';
 import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
-import { KanjiService } from '../kanji.service';
+import { KanjiService } from '../../services/kanji.service';
 
 @Component({
   selector: 'app-kanji-home',
-  templateUrl: './kanji-home.component.html',
-  styleUrls: ['./kanji-home.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class KanjiHomeComponent implements OnInit {
+export class KanjiHomeViewComponent implements OnInit {
   nextPageNumber: string;
   totalPages: number;
   totalKanjis: number;

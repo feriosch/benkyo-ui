@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
-import { KanjiHomeComponent } from './kanji-home/kanji-home.component';
-import { KanjiTableComponent } from './kanji-home/kanji-table/kanji-table.component';
+import { KanjiHomeViewComponent } from './views/home/home.component';
+import { KanjiTableComponent } from './components/table/table.component';
 
 @NgModule({
-  declarations: [KanjiHomeComponent, KanjiTableComponent],
+  declarations: [KanjiHomeViewComponent, KanjiTableComponent],
   imports: [CommonModule, FormsModule, AgGridModule],
 })
 export class KanjiModule {}

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
-import { KanjiService } from 'src/app/kanji/kanji.service';
+import { KanjiService } from 'src/app/kanji/services/kanji.service';
 
 @Component({
   selector: 'app-kanji-modal',
