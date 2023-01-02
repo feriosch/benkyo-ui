@@ -6,8 +6,8 @@ import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Sentence, Word } from 'src/models/responses/vocabulary/word.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { VocabularyService } from '../../vocabulary.service';
-import { ValueTransformerService } from '../value-transformer.service';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { ValueTransformerService } from '../../services/forms/value-transformer.service';
 
 @Component({
   selector: 'app-edit-word-form',

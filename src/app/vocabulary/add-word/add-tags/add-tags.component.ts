@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 
-import { WordTagsMapperService } from '../../word-tags-mapper.service';
+import { TagsMapperService } from '../../services/tags-mapper.service';
 
 @Component({
   selector: 'app-add-tags',
@@ -14,7 +14,7 @@ export class AddTagsComponent implements OnInit {
 
   constructor(
     private rootFormGroup: FormGroupDirective,
-    private tagsMapperService: WordTagsMapperService
+    private tagsMapperService: TagsMapperService
   ) {
     this.tags = [];
   }

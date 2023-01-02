@@ -4,9 +4,9 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { VocabularyService } from '../../vocabulary.service';
-import { WordExistsValidator } from '../word-exists-validator.service';
-import { ValueTransformerService } from '../value-transformer.service';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { ExistsValidatorService } from '../../services/forms/exists-validator.service';
+import { ValueTransformerService } from '../../services/forms/value-transformer.service';
 
 @Component({
   selector: 'app-add-word-form',
@@ -20,7 +20,7 @@ export class AddWordFormComponent implements OnInit {
 
   constructor(
     private vocabularyService: VocabularyService,
-    private wordExistsValidator: WordExistsValidator,
+    private existsValidator: ExistsValidatorService,
     private valueTransformerService: ValueTransformerService,
     private notificationService: NotificationService
   ) {
@@ -28,7 +28,7 @@ export class AddWordFormComponent implements OnInit {
       word: new FormControl(
         null,
         [Validators.required],
-        [this.wordExistsValidator.validate.bind(this.wordExistsValidator)]
+        [this.existsValidator.validate.bind(this.existsValidator)]
       ),
       hiragana: new FormControl(''),
       spanish: new FormControl('', [Validators.required]),

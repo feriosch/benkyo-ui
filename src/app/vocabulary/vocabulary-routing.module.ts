@@ -2,9 +2,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
-import { VocabularyHomeComponent } from './home/vocabulary-home.component';
-import { AddWordComponent } from './add-word/add-word.component';
-import { WordDetailsComponent } from './word-details/word-details.component';
+import { WordsHomeViewComponent } from './views/home/home.component';
+import { AddWordViewComponent } from './views/add/add.component';
+import { WordDetailsViewComponent } from './views/details/details.component';
 import { EditWordFormComponent } from './add-word/edit-word-form/edit-word-form.component';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
@@ -12,15 +12,15 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: VocabularyHomeComponent,
+    component: WordsHomeViewComponent,
   },
   {
     path: 'add',
-    component: AddWordComponent,
+    component: AddWordViewComponent,
   },
   {
     path: 'word/:id',
-    component: WordDetailsComponent,
+    component: WordDetailsViewComponent,
   },
   {
     path: 'word/:id/edit',

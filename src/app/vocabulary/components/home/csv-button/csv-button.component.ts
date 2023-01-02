@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as fileSaver from 'file-saver';
 
-import { VocabularyService } from '../../vocabulary.service';
+import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
 
 @Component({
   selector: 'app-csv-button',

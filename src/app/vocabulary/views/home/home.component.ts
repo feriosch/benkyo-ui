@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
-import { VocabularyService } from '../vocabulary.service';
+import { VocabularyService } from '../../services/vocabulary.service';
 
 @Component({
-  selector: 'app-vocabulary-home',
-  templateUrl: './vocabulary-home.component.html',
-  styleUrls: ['./vocabulary-home.component.scss'],
+  selector: 'app-words-home-view',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class VocabularyHomeComponent implements OnInit {
+export class WordsHomeViewComponent implements OnInit {
   nextPageNumber: string;
   totalPages: number;
   totalWords: number;

@@ -3,17 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Word } from 'src/models/responses/vocabulary/word.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
-import { VocabularyService } from '../vocabulary.service';
-import { WordTypeMapperService } from '../word-type-mapper.service';
-import { WordTagsMapperService } from '../word-tags-mapper.service';
-import { KanjiModalComponent } from './kanji-modal/kanji-modal.component';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { TypeMapperService } from '../../services/type-mapper.service';
+import { TagsMapperService } from '../../services/tags-mapper.service';
+import { KanjiModalComponent } from '../../word-details/kanji-modal/kanji-modal.component';
 
 @Component({
-  selector: 'app-word-details',
-  templateUrl: './word-details.component.html',
-  styleUrls: ['./word-details.component.scss'],
+  selector: 'app-word-details-view',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
-export class WordDetailsComponent implements OnInit {
+export class WordDetailsViewComponent implements OnInit {
   id: string;
   word?: Word | null;
   collection?: Collection;
@@ -28,8 +28,8 @@ export class WordDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private vocabularyService: VocabularyService,
-    private typeMapperService: WordTypeMapperService,
-    private tagMapperService: WordTagsMapperService
+    private typeMapperService: TypeMapperService,
+    private tagMapperService: TagsMapperService
   ) {
     this.id = this.route.snapshot.params['id'];
     this.subtypes = this.typeMapperService.backendSubtypes;

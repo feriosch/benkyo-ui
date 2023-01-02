@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 
-import { WordTypeMapperService } from '../../word-type-mapper.service';
+import { TypeMapperService } from '../../services/type-mapper.service';
 
 @Component({
   selector: 'app-add-type-table',
@@ -14,7 +14,7 @@ export class AddTypeTableComponent implements OnInit {
 
   constructor(
     private rootFormGroup: FormGroupDirective,
-    private typeMapperService: WordTypeMapperService
+    private typeMapperService: TypeMapperService
   ) {
     this.subTypes = [];
   }

@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 import { VocabularyService } from '../vocabulary.service';
 
 @Injectable({ providedIn: 'root' })
-export class WordExistsValidator implements AsyncValidator {
+export class ExistsValidatorService implements AsyncValidator {
   constructor(private vocabularyService: VocabularyService) {}
 
   validate(

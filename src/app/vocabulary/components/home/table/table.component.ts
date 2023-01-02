@@ -11,8 +11,8 @@ import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.m
 
 @Component({
   selector: 'app-word-table',
-  templateUrl: './word-table.component.html',
-  styleUrls: ['./word-table.component.scss'],
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class WordTableComponent implements OnInit {
   @Input()

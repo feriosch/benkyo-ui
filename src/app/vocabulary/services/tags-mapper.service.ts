@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class WordTagsMapperService {
+export class TagsMapperService {
   getPrintingValueFromLocal(tag: string): string {
     switch (tag) {
       case 'ateji':
