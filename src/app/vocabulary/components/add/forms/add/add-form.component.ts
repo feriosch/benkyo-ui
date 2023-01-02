@@ -3,14 +3,14 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { VocabularyService } from '../../services/vocabulary.service';
-import { ExistsValidatorService } from '../../services/forms/exists-validator.service';
-import { ValueTransformerService } from '../../services/forms/value-transformer.service';
+import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
+import { ExistsValidatorService } from 'src/app/vocabulary/services/forms/exists-validator.service';
+import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value-transformer.service';
 
 @Component({
   selector: 'app-add-word-form',
-  templateUrl: './add-word-form.component.html',
-  styleUrls: ['./add-word-form.component.scss'],
+  templateUrl: './add-form.component.html',
+  styleUrls: ['./add-form.component.scss'],
 })
 export class AddWordFormComponent implements OnInit {
   addWordForm: FormGroup;

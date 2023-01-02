@@ -6,13 +6,13 @@ import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Sentence, Word } from 'src/models/responses/vocabulary/word.model';
 import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { VocabularyService } from '../../services/vocabulary.service';
-import { ValueTransformerService } from '../../services/forms/value-transformer.service';
+import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
+import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value-transformer.service';
 
 @Component({
   selector: 'app-edit-word-form',
-  templateUrl: './edit-word-form.component.html',
-  styleUrls: ['./edit-word-form.component.scss'],
+  templateUrl: './edit-form.component.html',
+  styleUrls: ['./edit-form.component.scss'],
 })
 export class EditWordFormComponent implements OnInit {
   id: string;
