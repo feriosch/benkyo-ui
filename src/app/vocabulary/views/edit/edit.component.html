@@ -1,0 +1,11 @@
+<div class="container mt-2">
+  <ng-template *ngIf="isLoading; else editForm"> Loading... </ng-template>
+  <ng-template #editForm>
+    <div class="container mb-2">
+      <button (click)="onClickCancel()" class="button is-info">
+        Back To Word
+      </button>
+    </div>
+    <app-edit-word-form [fullWord]="word!" [id]="id"></app-edit-word-form>
+  </ng-template>
+</div>

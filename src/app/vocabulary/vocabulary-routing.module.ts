@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { WordsHomeViewComponent } from './views/home/home.component';
-import { AddWordViewComponent } from './views/add/add.component';
 import { WordDetailsViewComponent } from './views/details/details.component';
-import { EditWordFormComponent } from './add-word/edit-word-form/edit-word-form.component';
+import { AddWordViewComponent } from './views/add/add.component';
+import { EditWordViewComponent } from './views/edit/edit.component';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'word/:id/edit',
-    component: EditWordFormComponent,
+    component: EditWordViewComponent,
   },
   {
     path: '**',

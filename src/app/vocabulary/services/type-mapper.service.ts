@@ -1,8 +1,25 @@
 import { Injectable } from '@angular/core';
 
+import { FromBackendTypeMap } from 'src/models/vocabulary/type';
+
 @Injectable({ providedIn: 'root' })
 export class TypeMapperService {
   constructor() {}
+
+  get frontendSubtypes(): FromBackendTypeMap {
+    return {
+      noun: 'noun',
+      suru_verb: 'suruVerb',
+      no_adjective: 'noAdjective',
+      na_adjective: 'naAdjective',
+      i_adjective: 'iAdjective',
+      adverb: 'adverb',
+      verb: 'verb',
+      adjectival_noun: 'adjectivalNoun',
+      adverbial_noun: 'adverbialNoun',
+      counter: 'counter',
+    };
+  }
 
   get backendSubtypes(): string[] {
     return [

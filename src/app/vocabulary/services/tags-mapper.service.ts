@@ -1,7 +1,25 @@
 import { Injectable } from '@angular/core';
 
+import { FromBackendTagsMap } from 'src/models/vocabulary/tags';
+
 @Injectable({ providedIn: 'root' })
 export class TagsMapperService {
+  get frontendTags(): FromBackendTagsMap {
+    return {
+      ateji: 'ateji',
+      common: 'common',
+      expression: 'expression',
+      honorific: 'honorific',
+      humble: 'humble',
+      intransitive: 'intransitive',
+      jlpt_n1: 'jlptN1',
+      joyogai: 'notJoyo',
+      onomatopeic: 'onomatopoeic',
+      transitive: 'transitive',
+      usually_kana: 'usuallyKana',
+    };
+  }
+
   getPrintingValueFromLocal(tag: string): string {
     switch (tag) {
       case 'ateji':

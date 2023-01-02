@@ -1,13 +1,8 @@
-<form
-  *ngIf="editWordForm"
-  [formGroup]="editWordForm"
-  (ngSubmit)="onSubmit()"
-  class="box"
->
+<form [formGroup]="editWordForm" (ngSubmit)="onSubmit()" class="box">
   <div class="field is-horizontal">
     <div class="field-label"></div>
     <div class="field-body">
-      <h1 class="title is-4">{{ originalWord?.word }}</h1>
+      <h1 class="title is-4">{{ fullWord!.word }}</h1>
     </div>
   </div>
   <div class="field is-horizontal">
@@ -35,115 +30,27 @@
       <div class="field">
         <div class="control">
           <input
-            [ngClass]="{
-              'is-danger': spanishControl!.touched && spanishControl!.invalid
-            }"
             formControlName="spanish"
             class="input"
             type="text"
             placeholder="Enter Spanish translation"
           />
         </div>
-        <p
-          *ngIf="spanishControl!.touched && spanishControl!.invalid"
-          class="help is-danger"
-        >
-          Spanish translation is required!
-        </p>
       </div>
     </div>
   </div>
-  <div class="field is-horizontal">
-    <div class="field-label mt-3">
-      <label class="label">Word Type</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-type-table></app-add-type-table>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label mt-4">
-      <label class="label">Word Tags</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-tags></app-add-tags>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Notes</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <input
-            formControlName="notes"
-            class="input"
-            type="text"
-            placeholder="Enter notes (Optional)"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Collection</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <div [ngClass]="{ 'is-loading': !collections }" class="select">
-            <select formControlName="collection">
-              <option
-                *ngFor="let collection of collections"
-                [value]="collection.collection_name"
-              >
-                {{ collection.printing_name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Sentences</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-sentences></app-add-sentences>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label"></div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <div class="buttons">
-            <button
-              [disabled]="editWordForm.invalid || editWordForm.pending"
-              type="submit"
-              class="button is-primary"
-            >
-              Submit
-            </button>
-            <button
-              (click)="onClickCancel()"
-              type="button"
-              class="button is-danger"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
+  </app-add-word-form-type-field>
+  <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">
+  </app-add-word-form-tags-field>
+  <app-add-word-form-notes-field [formGroup]="editWordForm">
+  </app-add-word-form-notes-field>
+  <app-add-word-form-collection-field [formGroup]="editWordForm">
+  </app-add-word-form-collection-field>
+  <app-add-word-form-sentences-field
+    [formGroup]="editWordForm"
+    [formArray]="getFormArray('sentences')"
+  ></app-add-word-form-sentences-field>
+  <app-add-word-form-submit-field [formGroup]="editWordForm">
+  </app-add-word-form-submit-field>
 </form>

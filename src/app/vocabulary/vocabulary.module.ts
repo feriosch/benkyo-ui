@@ -8,6 +8,7 @@ import { KanjiModule } from '../kanji/kanji.module';
 import { WordsHomeViewComponent } from './views/home/home.component';
 import { WordDetailsViewComponent } from './views/details/details.component';
 import { AddWordViewComponent } from './views/add/add.component';
+import { EditWordViewComponent } from './views/edit/edit.component';
 import { WordTableComponent } from './components/home/table/table.component';
 import { CollectionCardComponent } from './components/home/collection-card/collection-card.component';
 import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component';
@@ -30,6 +31,7 @@ import { AddWordFormSubmitFieldComponent } from './components/add/fields/submit/
     WordsHomeViewComponent,
     WordDetailsViewComponent,
     AddWordViewComponent,
+    EditWordViewComponent,
     WordTableComponent,
     CollectionCardComponent,
     AddTypeTableComponent,
