@@ -1,156 +1,18 @@
 <form [formGroup]="addWordForm" (ngSubmit)="onSubmit()" class="box">
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Word</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div
-          class="control has-icons-right"
-          [ngClass]="{ 'is-loading': wordControl!.pending }"
-        >
-          <input
-            [ngClass]="{
-              'is-danger': wordControl!.touched && wordControl!.invalid,
-              'is-success': wordControl!.valid
-            }"
-            formControlName="word"
-            class="input"
-            type="text"
-            placeholder="Enter the word"
-          />
-          <span class="icon is-small is-right">
-            <i
-              *ngIf="wordControl!.touched && wordControl!.invalid"
-              class="fas fa-exclamation-triangle"
-            >
-            </i>
-            <i *ngIf="wordControl!.valid" class="fas fa-check"> </i>
-          </span>
-        </div>
-        <p *ngIf="isWordRepeated()" class="help is-danger">
-          This word is repeated! {{ wordControl!.errors!.repeatedWord }}
-        </p>
-      </div>
-      <div class="field">
-        <div class="control">
-          <input
-            formControlName="hiragana"
-            class="input"
-            type="text"
-            placeholder="Enter hiragana (optional)"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Spanish</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <input
-            [ngClass]="{
-              'is-danger': spanishControl!.touched && spanishControl!.invalid
-            }"
-            formControlName="spanish"
-            class="input"
-            type="text"
-            placeholder="Enter Spanish translation"
-          />
-        </div>
-        <p
-          *ngIf="spanishControl!.touched && spanishControl!.invalid"
-          class="help is-danger"
-        >
-          Spanish translation is required!
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label mt-3">
-      <label class="label">Word Type</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-type-table></app-add-type-table>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label mt-4">
-      <label class="label">Word Tags</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-tags></app-add-tags>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Notes</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <input
-            formControlName="notes"
-            class="input"
-            type="text"
-            placeholder="Enter notes (Optional)"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Collection</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <div [ngClass]="{ 'is-loading': !collections }" class="select">
-            <select formControlName="collection">
-              <option
-                *ngFor="let collection of collections"
-                [value]="collection.collection_name"
-              >
-                {{ collection.printing_name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Sentences</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <app-add-sentences></app-add-sentences>
-      </div>
-    </div>
-  </div>
-  <div class="field is-horizontal">
-    <div class="field-label"></div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <button
-            [disabled]="addWordForm.invalid || addWordForm.pending"
-            class="button is-primary"
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-add-word-form-word-field [formGroup]="addWordForm">
+  </app-add-word-form-word-field>
+  <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
+  </app-add-word-form-type-field>
+  <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">
+  </app-add-word-form-tags-field>
+  <app-add-word-form-notes-field [formGroup]="addWordForm">
+  </app-add-word-form-notes-field>
+  <app-add-word-form-collection-field [formGroup]="addWordForm">
+  </app-add-word-form-collection-field>
+  <app-add-word-form-sentences-field
+    [formGroup]="addWordForm"
+    [formArray]="getFormArray('sentences')"
+  ></app-add-word-form-sentences-field>
+  <app-add-word-form-submit-field [formGroup]="addWordForm">
+  </app-add-word-form-submit-field>
 </form>

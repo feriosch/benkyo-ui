@@ -1,0 +1,70 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label">
+      <label class="label">Sentences</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="field mb-2">
+          <button (click)="pushSentence()" class="button mr-4" type="button">
+            Add Sentence
+          </button>
+          <button
+            (click)="popSentence()"
+            class="button is-warning mr-4"
+            type="button"
+          >
+            Remove Sentence
+          </button>
+        </div>
+        <div formArrayName="sentences">
+          <div *ngFor="let control of controls; let i = index">
+            <label class="label">Sentence {{ i + 1 }}</label>
+            <div class="field has-addons">
+              <div class="control">
+                <a class="button is-static"> Japanese </a>
+              </div>
+              <div [formGroupName]="i" class="control is-expanded mb-4">
+                <input
+                  [ngClass]="{ 'is-danger': isControlInvalid('japanese', i) }"
+                  formControlName="japanese"
+                  class="input mb-1"
+                  type="text"
+                  placeholder="Enter Japanese sentence"
+                />
+                <p
+                  *ngIf="isControlInvalid('japanese', i)"
+                  class="help is-danger mb-1"
+                >
+                  Japanese sentence is required!
+                </p>
+              </div>
+            </div>
+            <div class="field has-addons">
+              <div class="control">
+                <a class="button is-static"> Translation </a>
+              </div>
+              <div [formGroupName]="i" class="control is-expanded mb-4">
+                <input
+                  [ngClass]="{
+                    'is-danger': isControlInvalid('translation', i)
+                  }"
+                  formControlName="translation"
+                  class="input mb-1"
+                  type="text"
+                  placeholder="Enter translation sentence"
+                />
+                <p
+                  *ngIf="isControlInvalid('translation', i)"
+                  class="help is-danger mb-1"
+                >
+                  Translation sentence is required!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

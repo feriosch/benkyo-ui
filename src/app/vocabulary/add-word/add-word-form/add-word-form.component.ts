@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { ExistsValidatorService } from '../../services/forms/exists-validator.service';
@@ -15,7 +14,6 @@ import { ValueTransformerService } from '../../services/forms/value-transformer.
 })
 export class AddWordFormComponent implements OnInit {
   addWordForm: FormGroup;
-  collections?: Collection[];
   initialValues: any;
 
   constructor(
@@ -30,8 +28,8 @@ export class AddWordFormComponent implements OnInit {
         [Validators.required],
         [this.existsValidator.validate.bind(this.existsValidator)]
       ),
-      hiragana: new FormControl(''),
-      spanish: new FormControl('', [Validators.required]),
+      hiragana: new FormControl(null),
+      spanish: new FormControl(null, [Validators.required]),
       type: new FormGroup({
         noun: new FormControl(0, [Validators.required]),
         suruVerb: new FormControl(0, [Validators.required]),
@@ -57,43 +55,25 @@ export class AddWordFormComponent implements OnInit {
         transitive: new FormControl(false, [Validators.required]),
         usuallyKana: new FormControl(false, [Validators.required]),
       }),
-      notes: new FormControl('', [Validators.max(20)]),
+      notes: new FormControl(null, [Validators.max(20)]),
       collection: new FormControl(null, [Validators.required]),
       sentences: new FormArray([]),
     });
     this.initialValues = this.addWordForm.value;
   }
 
-  ngOnInit(): void {
-    this.getCollections();
+  ngOnInit(): void {}
+
+  getFormGroup(formGroup: string): FormGroup {
+    return this.addWordForm.get(formGroup) as FormGroup;
   }
 
-  get wordControl() {
-    return this.addWordForm.get('word');
-  }
-
-  get spanishControl() {
-    return this.addWordForm.get('spanish');
+  getFormArray(formArray: string): FormArray {
+    return this.addWordForm.get(formArray) as FormArray;
   }
 
   get collectionControl() {
-    return this.addWordForm.get('collection');
-  }
-
-  getCollections(): void {
-    this.vocabularyService.getCollections().subscribe((collections) => {
-      this.collections = collections;
-      if (this.collections.length > 0) {
-        this.collectionControl!.patchValue(this.collections[0].collection_name);
-      }
-    });
-  }
-
-  isWordRepeated(): boolean {
-    if (this.wordControl!.errors) {
-      return this.wordControl!.errors!.hasOwnProperty('repeatedWord');
-    }
-    return false;
+    return this.addWordForm.get('collection') as FormControl;
   }
 
   onSubmit(): void {

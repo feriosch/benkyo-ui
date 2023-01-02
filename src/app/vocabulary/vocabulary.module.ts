@@ -17,6 +17,13 @@ import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
 import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
 import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
 import { CsvButtonComponent } from './components/home/csv-button/csv-button.component';
+import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
+import { AddWordFormTypeFieldComponent } from './components/add/fields/type/type.component';
+import { AddWordFormTagsFieldComponent } from './components/add/fields/tags/tags.component';
+import { AddWordFormNotesFieldComponent } from './components/add/fields/notes/notes.component';
+import { AddWordFormCollectionFieldComponent } from './components/add/fields/collection/collection.component';
+import { AddWordFormSentencesFieldComponent } from './components/add/fields/sentences/sentences.component';
+import { AddWordFormSubmitFieldComponent } from './components/add/fields/submit/submit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +39,13 @@ import { CsvButtonComponent } from './components/home/csv-button/csv-button.comp
     AddSentencesComponent,
     KanjiModalComponent,
     CsvButtonComponent,
+    AddWordFormWordFieldComponent,
+    AddWordFormTypeFieldComponent,
+    AddWordFormTagsFieldComponent,
+    AddWordFormNotesFieldComponent,
+    AddWordFormCollectionFieldComponent,
+    AddWordFormSentencesFieldComponent,
+    AddWordFormSubmitFieldComponent,
   ],
   imports: [
     CommonModule,

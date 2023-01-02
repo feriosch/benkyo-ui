@@ -1,0 +1,23 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label">
+      <label class="label">Collection</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <div [ngClass]="{ 'is-loading': !collections }" class="select">
+            <select formControlName="collection">
+              <option
+                *ngFor="let collection of collections"
+                [value]="collection.collection_name"
+              >
+                {{ collection.printing_name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

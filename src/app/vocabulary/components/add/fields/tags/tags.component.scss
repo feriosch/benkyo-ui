@@ -1,0 +1,10 @@
+@import "src/styles";
+
+span {
+  width: 100%;
+  user-select: none;
+}
+
+.field-body {
+  flex-grow: 10;
+}

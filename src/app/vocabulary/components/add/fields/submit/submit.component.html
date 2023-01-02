@@ -1,0 +1,18 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field is-horizontal mt-1">
+    <div class="field-label"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button
+            [disabled]="formGroup!.invalid || formGroup!.pending"
+            class="button is-primary"
+            type="submit"
+          >
+            Submit Word
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
