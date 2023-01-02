@@ -11,12 +11,9 @@ import { AddWordViewComponent } from './views/add/add.component';
 import { EditWordViewComponent } from './views/edit/edit.component';
 import { WordTableComponent } from './components/home/table/table.component';
 import { CollectionCardComponent } from './components/home/collection-card/collection-card.component';
-import { AddTypeTableComponent } from './add-word/add-type-table/add-type-table.component';
-import { AddTagsComponent } from './add-word/add-tags/add-tags.component';
-import { AddSentencesComponent } from './add-word/add-sentences/add-sentences.component';
 import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
 import { CsvButtonComponent } from './components/home/csv-button/csv-button.component';
-import { AddWordFormComponent } from './components/add/forms/add/add-form.component';
+import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
 import { AddWordFormTypeFieldComponent } from './components/add/fields/type/type.component';
 import { AddWordFormTagsFieldComponent } from './components/add/fields/tags/tags.component';
@@ -35,9 +32,6 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
     EditWordViewComponent,
     WordTableComponent,
     CollectionCardComponent,
-    AddTypeTableComponent,
-    AddTagsComponent,
-    AddSentencesComponent,
     KanjiModalComponent,
     CsvButtonComponent,
     AddWordFormComponent,
