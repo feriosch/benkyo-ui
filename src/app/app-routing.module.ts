@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AuthGuardService } from './auth/auth-guard.service';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { LoginGuardService } from './auth/login-guard.service';
+import { AuthGuardService } from './auth/services/auth-guard.service';
+import { AuthInterceptorService } from './auth/services/auth-interceptor.service';
+import { LoginGuardService } from './auth/services/login-guard.service';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
@@ -17,8 +17,8 @@ const routes: Routes = [
     path: 'login',
     canActivate: [LoginGuardService],
     loadChildren: async () => {
-      const m = await import('./login/login-routing.module');
-      return m.LoginRoutingModule;
+      const m = await import('./auth/auth-routing.module');
+      return m.AuthRoutingModule;
     },
   },
   {

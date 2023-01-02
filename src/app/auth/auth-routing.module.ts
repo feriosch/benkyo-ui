@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginFormComponent } from './components/forms/login/login-form.component';
 
 const routes: Routes = [
   {
@@ -15,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LoginRoutingModule {}
+export class AuthRoutingModule {}

@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { LoginModule } from './login/login.module';
 import { VocabularyModule } from './vocabulary/vocabulary.module';
 import { KanjiModule } from './kanji/kanji.module';
 import { GrammarModule } from './grammar/grammar.module';
@@ -31,7 +30,6 @@ import { GrammarModule } from './grammar/grammar.module';
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    LoginModule,
     VocabularyModule,
     KanjiModule,
     GrammarModule,
