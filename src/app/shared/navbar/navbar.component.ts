@@ -17,35 +17,11 @@ export class NavbarComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
 
-  async onClickVocabulary() {
-    await this.router.navigateByUrl('/vocabulary');
+  async navigateTo(route: string) {
+    await this.router.navigateByUrl(route);
   }
 
-  async onClickAddWord() {
-    await this.router.navigateByUrl('/vocabulary/add');
-  }
-
-  async onClickKanji() {
-    await this.router.navigateByUrl('/kanji');
-  }
-
-  async onClickAddKanji() {
-    await this.router.navigateByUrl('/kanji/add');
-  }
-
-  async onClickGrammar() {
-    await this.router.navigateByUrl('/grammar');
-  }
-
-  async onClickAddClause() {
-    await this.router.navigateByUrl('/grammar/add');
-  }
-
-  async onClickCollections() {
-    await this.router.navigateByUrl('/collections');
-  }
-
-  async onClickLogout() {
+  async logout() {
     await this.authService.logout();
   }
 }

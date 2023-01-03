@@ -25,28 +25,38 @@
   <div class="navbar-menu">
     <div *ngIf="isAuthenticated()" class="navbar-start">
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="onClickVocabulary()"> Vocabulary </a>
+        <a class="navbar-link" (click)="navigateTo('/vocabulary')">
+          Vocabulary
+        </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="onClickAddWord()"> Add Word </a>
+          <a class="navbar-item" (click)="navigateTo('/vocabulary/add')">
+            Add Word
+          </a>
         </div>
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="onClickKanji()"> Kanji </a>
+        <a class="navbar-link" (click)="navigateTo('/kanji')"> Kanji </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="onClickAddKanji()"> Add Kanji </a>
+          <a class="navbar-item" (click)="navigateTo('/kanji/add')">
+            Add Kanji
+          </a>
         </div>
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="onClickGrammar()"> Grammar </a>
+        <a class="navbar-link" (click)="navigateTo('/grammar')"> Grammar </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="onClickAddClause()"> Add Clause </a>
+          <a class="navbar-item" (click)="navigateTo('/grammar/add')">
+            Add Clause
+          </a>
         </div>
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="onClickCollections()"> Collections </a>
+        <a class="navbar-link" (click)="navigateTo('/collections')">
+          Collections
+        </a>
         <div class="navbar-dropdown"></div>
       </div>
     </div>
@@ -62,7 +72,7 @@
           </button>
           <button
             *ngIf="isAuthenticated()"
-            (click)="onClickLogout()"
+            (click)="logout()"
             class="button is-danger"
           >
             <strong>Log Out</strong>
