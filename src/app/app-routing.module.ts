@@ -46,6 +46,14 @@ const routes: Routes = [
     },
   },
   {
+    path: 'collections',
+    canActivate: [AuthGuardService],
+    loadChildren: async () => {
+      const m = await import('./collections/collections-routing.module');
+      return m.CollectionsRoutingModule;
+    },
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },

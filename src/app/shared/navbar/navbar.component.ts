@@ -11,7 +11,9 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
-  isAuthenticated() {
+  ngOnInit(): void {}
+
+  isAuthenticated(): boolean {
     return this.authService.isAuthenticated;
   }
 
@@ -39,9 +41,11 @@ export class NavbarComponent implements OnInit {
     await this.router.navigateByUrl('/grammar/add');
   }
 
+  async onClickCollections() {
+    await this.router.navigateByUrl('/collections');
+  }
+
   async onClickLogout() {
     await this.authService.logout();
   }
-
-  ngOnInit(): void {}
 }
