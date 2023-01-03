@@ -11,7 +11,7 @@ import { AddWordViewComponent } from './views/add/add.component';
 import { EditWordViewComponent } from './views/edit/edit.component';
 import { WordTableComponent } from './components/home/table/table.component';
 import { CollectionCardComponent } from './components/home/collection-card/collection-card.component';
-import { KanjiModalComponent } from './word-details/kanji-modal/kanji-modal.component';
+import { KanjiModalComponent } from './components/details/kanji-modal/kanji-modal.component';
 import { CsvButtonComponent } from './components/home/csv-button/csv-button.component';
 import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';

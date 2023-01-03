@@ -14,7 +14,7 @@ export class KanjiService {
 
   constructor(private http: HttpClient) {
     this.kanjisUrl = `${environment.backendUrl}/kanjis`;
-    this.searchOneKanjiUrl = `${environment.backendUrl}/kanjis/searchone`;
+    this.searchOneKanjiUrl = `${environment.backendUrl}/kanjis/search`;
   }
 
   get pageSize(): number | null {

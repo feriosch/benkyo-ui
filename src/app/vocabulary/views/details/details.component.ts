@@ -6,7 +6,7 @@ import { Collection } from 'src/models/responses/vocabulary/collection.model';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { TypeMapperService } from '../../services/type-mapper.service';
 import { TagsMapperService } from '../../services/tags-mapper.service';
-import { KanjiModalComponent } from '../../word-details/kanji-modal/kanji-modal.component';
+import { KanjiModalComponent } from '../../components/details/kanji-modal/kanji-modal.component';
 
 @Component({
   selector: 'app-word-details-view',
