@@ -30,6 +30,14 @@ const routes: Routes = [
     },
   },
   {
+    path: 'collections',
+    canActivate: [AuthGuardService],
+    loadChildren: async () => {
+      const m = await import('./collections/collections-routing.module');
+      return m.CollectionsRoutingModule;
+    },
+  },
+  {
     path: 'kanji',
     canActivate: [AuthGuardService],
     loadChildren: async () => {
@@ -43,14 +51,6 @@ const routes: Routes = [
     loadChildren: async () => {
       const m = await import('./grammar/grammar-routing.module');
       return m.GrammarRoutingModule;
-    },
-  },
-  {
-    path: 'collections',
-    canActivate: [AuthGuardService],
-    loadChildren: async () => {
-      const m = await import('./collections/collections-routing.module');
-      return m.CollectionsRoutingModule;
     },
   },
   {
