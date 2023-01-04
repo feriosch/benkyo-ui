@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CollectionsRoutingModule } from './collections-routing.module';
 import { CollectionsHomeViewComponent } from './views/home/home.component';
@@ -14,6 +15,11 @@ import { AddCollectionFormComponent } from './components/add/form/form.component
     CollectionCardComponent,
     AddCollectionFormComponent,
   ],
-  imports: [CommonModule, CollectionsRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CollectionsRoutingModule,
+  ],
 })
 export class CollectionsModule {}

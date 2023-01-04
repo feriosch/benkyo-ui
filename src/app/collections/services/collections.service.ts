@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Collection } from 'src/models/collections/collection.model';
+import { AddCollectionBody } from 'src/models/collections/add.model';
 
 @Injectable({ providedIn: 'root' })
 export class CollectionsService {
@@ -34,5 +35,9 @@ export class CollectionsService {
     params = params.append('name', name);
 
     return this.http.get<Collection>(this.collectionsUrl, { params });
+  }
+
+  insertCollection(body: AddCollectionBody): Observable<any> {
+    return this.http.post(this.collectionsUrl, body);
   }
 }
