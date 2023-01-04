@@ -4,12 +4,12 @@
       class="column has-text-centered"
       *ngFor="let collection of collections$ | async"
     >
-      <app-collection-card
+      <app-vocabulary-collection-card
         [collection]="collection"
         [currentSelection]="collectionsService.currentCollection"
         (collectionSelected)="changeCollection($event)"
       >
-      </app-collection-card>
+      </app-vocabulary-collection-card>
     </div>
   </div>
 </div>

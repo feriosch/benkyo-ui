@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Collection } from 'src/models/collections/collection.model';
 
 @Component({
-  selector: 'app-collection-card',
+  selector: 'app-vocabulary-collection-card',
   templateUrl: './collection-card.component.html',
   styleUrls: ['./collection-card.component.scss'],
 })
