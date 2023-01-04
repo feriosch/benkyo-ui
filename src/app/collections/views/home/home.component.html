@@ -1,1 +1,27 @@
-<p>collection home works!</p>
+<div class="container mt-4 mb-4">
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <p class="title is-2">Collections</p>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <button class="button is-medium is-success">
+          <span class="icon is-small is-right mr-1">
+            <i class="fas fa-plus-circle"></i>
+          </span>
+          Add Collection
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="columns is-multiline is-mobile">
+    <div
+      class="column has-text-centered"
+      *ngFor="let collection of collections$ | async"
+    >
+      <app-collection-card [collection]="collection"></app-collection-card>
+    </div>
+  </div>
+</div>

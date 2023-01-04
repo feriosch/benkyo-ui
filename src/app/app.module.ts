@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { VocabularyModule } from './vocabulary/vocabulary.module';
+import { CollectionsModule } from './collections/collections.module';
 import { KanjiModule } from './kanji/kanji.module';
 import { GrammarModule } from './grammar/grammar.module';
 
@@ -31,6 +32,7 @@ import { GrammarModule } from './grammar/grammar.module';
     SharedModule,
     AuthModule,
     VocabularyModule,
+    CollectionsModule,
     KanjiModule,
     GrammarModule,
   ],

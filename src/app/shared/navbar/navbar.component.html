@@ -36,6 +36,13 @@
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" (click)="navigateTo('/collections')">
+          Collections
+        </a>
+        <div class="navbar-dropdown"></div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" (click)="navigateTo('/kanji')"> Kanji </a>
         <div class="navbar-dropdown">
           <a class="navbar-item" (click)="navigateTo('/kanji/add')">
@@ -51,13 +58,6 @@
             Add Clause
           </a>
         </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="navigateTo('/collections')">
-          Collections
-        </a>
-        <div class="navbar-dropdown"></div>
       </div>
     </div>
 
