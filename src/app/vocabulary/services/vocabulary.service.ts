@@ -7,32 +7,21 @@ import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Word } from 'src/models/responses/vocabulary/word.model';
 import { WordsResponse } from 'src/models/responses/vocabulary/words-response.model';
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { CollectionsService } from 'src/app/collections/services/collections.service';
 
 @Injectable({ providedIn: 'root' })
 export class VocabularyService {
   private readonly wordsUrl: string;
-  private readonly collectionsUrl: string;
   private readonly searchOneWordUrl: string;
   private readonly wordsCsvUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private collectionsService: CollectionsService
+  ) {
     this.wordsUrl = `${environment.backendUrl}/words`;
-    this.collectionsUrl = `${environment.backendUrl}/collections`;
     this.searchOneWordUrl = `${this.wordsUrl}/search`;
     this.wordsCsvUrl = `${this.wordsUrl}/csv`;
-  }
-
-  get currentCollection(): string | null {
-    return localStorage.getItem('collection');
-  }
-
-  set currentCollection(collection: string | null) {
-    if (collection) {
-      localStorage.setItem('collection', collection);
-    } else {
-      localStorage.removeItem('collection');
-    }
   }
 
   get pageSize(): number | null {
@@ -86,8 +75,10 @@ export class VocabularyService {
     orderDirection?: OrderDirection | null
   ): Observable<WordsResponse> {
     let params = new HttpParams();
-    if (this.currentCollection)
-      params = params.append('from', this.currentCollection);
+
+    if (this.collectionsService.currentCollection)
+      params = params.append('from', this.collectionsService.currentCollection);
+
     if (this.filter) params = params.append('filter_by', this.filter);
     if (this.pageSize) params = params.append('page_size', this.pageSize);
     if (this.pageNumber) params = params.append('page_number', this.pageNumber);
@@ -96,17 +87,6 @@ export class VocabularyService {
       params = params.append('order_direction', orderDirection);
 
     return this.http.get<WordsResponse>(this.wordsUrl, { params });
-  }
-
-  getCollections(): Observable<Collection[]> {
-    return this.http.get<Collection[]>(this.collectionsUrl);
-  }
-
-  getCollection(name: string): Observable<Collection> {
-    let params = new HttpParams();
-    params = params.append('name', name);
-
-    return this.http.get<Collection>(this.collectionsUrl, { params });
   }
 
   searchWordByWord(word: string): Observable<Word | null> {
@@ -129,8 +109,8 @@ export class VocabularyService {
 
   downloadCSVFile() {
     let params = new HttpParams();
-    if (this.currentCollection)
-      params = params.append('from', this.currentCollection);
+    if (this.collectionsService.currentCollection)
+      params = params.append('from', this.collectionsService.currentCollection);
     return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }
 }

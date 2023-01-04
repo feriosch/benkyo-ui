@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Sentence, Word } from 'src/models/responses/vocabulary/word.model';
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { Collection } from 'src/models/collections/collection.model';
 import { FromBackendTypeMap } from 'src/models/vocabulary/type';
 import { FromBackendTagsMap } from 'src/models/vocabulary/tags';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
@@ -36,6 +37,7 @@ export class EditWordFormComponent implements OnInit {
     private typeMapperService: TypeMapperService,
     private tagsMapperService: TagsMapperService,
     private valueTransformerService: ValueTransformerService,
+    private collectionsService: CollectionsService,
     private notificationService: NotificationService
   ) {
     this.editWordForm = new FormGroup({
@@ -137,7 +139,7 @@ export class EditWordFormComponent implements OnInit {
   }
 
   initializeCollections(): void {
-    this.vocabularyService.getCollections().subscribe((collections) => {
+    this.collectionsService.getCollections().subscribe((collections) => {
       this.collections = collections;
       if (this.collections.length > 0) {
         const collectionControl = this.getFormControl('collection')!;

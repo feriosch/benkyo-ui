@@ -6,7 +6,7 @@
     >
       <app-collection-card
         [collection]="collection"
-        [currentSelection]="vocabularyService.currentCollection"
+        [currentSelection]="collectionsService.currentCollection"
         (collectionSelected)="changeCollection($event)"
       >
       </app-collection-card>
@@ -40,7 +40,7 @@
   </div>
   <div class="level-right">
     <div class="level-item">
-      <app-csv-button [currentSelection]="vocabularyService.currentCollection">
+      <app-csv-button [currentSelection]="collectionsService.currentCollection">
       </app-csv-button>
     </div>
   </div>

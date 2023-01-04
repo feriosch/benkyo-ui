@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Word } from 'src/models/responses/vocabulary/word.model';
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { Collection } from 'src/models/collections/collection.model';
+import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { TypeMapperService } from '../../services/type-mapper.service';
 import { TagsMapperService } from '../../services/tags-mapper.service';
@@ -27,6 +28,7 @@ export class WordDetailsViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private collectionsService: CollectionsService,
     private vocabularyService: VocabularyService,
     private typeMapperService: TypeMapperService,
     private tagMapperService: TagsMapperService
@@ -76,7 +78,7 @@ export class WordDetailsViewComponent implements OnInit {
           this.tags.push(key);
         }
       }
-      this.vocabularyService
+      this.collectionsService
         .getCollection(this.word?.from!)
         .subscribe((response) => {
           this.collection = response;

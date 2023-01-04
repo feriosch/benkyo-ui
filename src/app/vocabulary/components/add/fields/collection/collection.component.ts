@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
-import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
+import { Collection } from 'src/models/collections/collection.model';
+import { CollectionsService } from 'src/app/collections/services/collections.service';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
@@ -15,7 +15,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
 
   collections?: Collection[];
 
-  constructor(private vocabularyService: VocabularyService) {}
+  constructor(private collectionsService: CollectionsService) {}
 
   get collectionControl() {
     return this.formGroup!.get('collection') as FormControl;
@@ -26,7 +26,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   }
 
   getCollections(): void {
-    this.vocabularyService.getCollections().subscribe((collections) => {
+    this.collectionsService.getCollections().subscribe((collections) => {
       this.collections = collections;
       if (this.collections.length > 0) {
         this.collectionControl!.patchValue(this.collections[0].collection_name);

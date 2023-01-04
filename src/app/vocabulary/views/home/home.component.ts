@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
-import { Collection } from 'src/models/responses/vocabulary/collection.model';
+import { Collection } from 'src/models/collections/collection.model';
+import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 
 @Component({
@@ -22,7 +23,10 @@ export class WordsHomeViewComponent implements OnInit {
   words: SummarizedWord[];
   collections$: Observable<Collection[]>;
 
-  constructor(public vocabularyService: VocabularyService) {
+  constructor(
+    public collectionsService: CollectionsService,
+    public vocabularyService: VocabularyService
+  ) {
     this.nextPageNumber = '';
     this.totalPages = 0;
     this.totalWords = 0;
@@ -50,13 +54,13 @@ export class WordsHomeViewComponent implements OnInit {
   }
 
   getCollections(): void {
-    this.collections$ = this.vocabularyService.getCollections();
+    this.collections$ = this.collectionsService.getCollections();
   }
 
   applyFilter(): void {
     if (this.filter) {
       this.vocabularyService.filter = this.filter;
-      this.vocabularyService.currentCollection = null;
+      this.collectionsService.currentCollection = null;
       this.vocabularyService.pageNumber = 1;
       this.getWords();
     }
@@ -71,7 +75,7 @@ export class WordsHomeViewComponent implements OnInit {
   }
 
   changeCollection(collection: string | null): void {
-    this.vocabularyService.currentCollection = collection;
+    this.collectionsService.currentCollection = collection;
     this.vocabularyService.pageNumber = 1;
     this.getWords();
   }
