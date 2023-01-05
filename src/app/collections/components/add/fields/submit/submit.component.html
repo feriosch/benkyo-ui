@@ -1,0 +1,18 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button
+            [disabled]="formGroup!.invalid || formGroup!.pending"
+            class="button is-success"
+            type="submit"
+          >
+            Submit Collection
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
