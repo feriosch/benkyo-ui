@@ -9,5 +9,10 @@ export interface AddCollectionFrontendBody {
   printingName: string;
   collectionName: string;
   group: string;
-  image: File;
+  imagePath: string;
+  imageFile: File;
+}
+
+export interface AddCollectionResponse {
+  id: string;
 }

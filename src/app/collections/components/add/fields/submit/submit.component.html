@@ -5,7 +5,8 @@
       <div class="field">
         <div class="control">
           <button
-            [disabled]="formGroup!.invalid || formGroup!.pending"
+            [disabled]="isSubmitDisabled"
+            [ngClass]="{ 'is-loading': isSubmitting! }"
             class="button is-success"
             type="submit"
           >

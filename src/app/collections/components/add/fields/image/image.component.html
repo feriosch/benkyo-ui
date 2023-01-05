@@ -8,17 +8,17 @@
         <div class="control">
           <div
             [ngClass]="{
-              'is-danger': isImageInvalid,
-              'is-success': isImageValid
+              'is-danger': isImagePathInvalid,
+              'is-success': isImagePathValid
             }"
             class="file has-name is-fullwidth"
           >
             <label class="file-label">
               <input
-                formControlName="image"
                 class="file-input"
                 type="file"
                 [accept]="this.validFileTypes"
+                (change)="uploadImage($event)"
               />
               <span class="file-cta">
                 <span class="file-icon">
@@ -27,12 +27,12 @@
                 <span class="file-label"> Choose an image </span>
               </span>
               <span class="file-name">
-                {{ imageControl.value }}
+                {{ imagePathControl.value }}
               </span>
             </label>
           </div>
         </div>
-        <p *ngIf="isImageInvalid" class="help is-danger">
+        <p *ngIf="isImagePathInvalid" class="help is-danger">
           Image is required! Accepted file types: {{ validFileTypes }}
         </p>
       </div>

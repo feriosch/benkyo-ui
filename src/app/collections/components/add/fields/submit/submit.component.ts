@@ -10,7 +10,16 @@ export class AddCollectionFormSubmitFieldComponent implements OnInit {
   @Input()
   formGroup?: FormGroup;
 
+  @Input()
+  isSubmitting?: boolean;
+
   constructor() {}
+
+  get isSubmitDisabled(): boolean {
+    return (
+      this.formGroup!.invalid || this.formGroup!.pending || this.isSubmitting!
+    );
+  }
 
   ngOnInit(): void {}
 }

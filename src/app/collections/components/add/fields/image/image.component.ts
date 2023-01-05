@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Form, FormControl, FormGroup } from '@angular/forms';
 
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 
@@ -20,15 +20,26 @@ export class AddCollectionFormImageFieldComponent implements OnInit {
     return this.fileTypeValidator.validTypes.toString();
   }
 
-  get imageControl(): FormControl {
-    return this.formGroup!.get('image')! as FormControl;
+  get imagePathControl(): FormControl {
+    return this.formGroup!.get('imagePath')! as FormControl;
   }
 
-  get isImageValid(): boolean {
-    return this.imageControl.touched && this.imageControl.valid;
+  get imageFileControl(): FormControl {
+    return this.formGroup!.get('imageFile')! as FormControl;
   }
 
-  get isImageInvalid(): boolean {
-    return this.imageControl.touched && this.imageControl.invalid;
+  get isImagePathValid(): boolean {
+    return this.imagePathControl.touched && this.imagePathControl.valid;
+  }
+
+  get isImagePathInvalid(): boolean {
+    return this.imagePathControl.touched && this.imagePathControl.invalid;
+  }
+
+  uploadImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.imagePathControl.patchValue(file.name);
+    this.imageFileControl.patchValue(file);
+    this.imageFileControl.updateValueAndValidity();
   }
 }
