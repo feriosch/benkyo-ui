@@ -1,1 +1,7 @@
-<p>form works!</p>
+<form [formGroup]="addCollectionForm" (ngSubmit)="onSubmit()" class="box">
+  <app-add-collection-form-name-field
+    [formGroup]="addCollectionForm"
+  ></app-add-collection-form-name-field>
+  <app-add-collection-form-image-field [formGroup]="addCollectionForm">
+  </app-add-collection-form-image-field>
+</form>

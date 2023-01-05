@@ -7,6 +7,8 @@ import { CollectionsHomeViewComponent } from './views/home/home.component';
 import { AddCollectionViewComponent } from './views/add/add.component';
 import { CollectionCardComponent } from './components/home/card/card.component';
 import { AddCollectionFormComponent } from './components/add/form/form.component';
+import { AddCollectionFormNameFieldComponent } from './components/add/fields/name/name.component';
+import { AddCollectionFormImageFieldComponent } from './components/add/fields/image/image.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { AddCollectionFormComponent } from './components/add/form/form.component
     AddCollectionViewComponent,
     CollectionCardComponent,
     AddCollectionFormComponent,
+    AddCollectionFormNameFieldComponent,
+    AddCollectionFormImageFieldComponent,
   ],
   imports: [
     CommonModule,

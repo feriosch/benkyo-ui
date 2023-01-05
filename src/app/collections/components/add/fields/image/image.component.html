@@ -1,0 +1,41 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label">
+      <label class="label">Image</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <div
+            [ngClass]="{
+              'is-danger': isImageInvalid,
+              'is-success': isImageValid
+            }"
+            class="file has-name is-fullwidth"
+          >
+            <label class="file-label">
+              <input
+                formControlName="image"
+                class="file-input"
+                type="file"
+                [accept]="this.validFileTypes"
+              />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Choose an image </span>
+              </span>
+              <span class="file-name">
+                {{ imageControl.value }}
+              </span>
+            </label>
+          </div>
+        </div>
+        <p *ngIf="isImageInvalid" class="help is-danger">
+          Image is required! Accepted file types: {{ validFileTypes }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-container>
