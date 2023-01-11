@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
 import { Collection } from 'src/models/collections/collection.model';
+import { CollectionsResponse } from 'src/models/collections/responses.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 
@@ -19,9 +20,10 @@ export class WordsHomeViewComponent implements OnInit {
   filter: string | null;
   orderField: OrderField | null;
   orderDirection: OrderDirection | null;
-  isWordFetchLoading: boolean;
   words: SummarizedWord[];
-  collections$: Observable<Collection[]>;
+  collections: Collection[];
+  isWordFetchLoading: boolean;
+  isCollectionFetchLoading: boolean;
 
   constructor(
     public collectionsService: CollectionsService,
@@ -33,9 +35,10 @@ export class WordsHomeViewComponent implements OnInit {
     this.filter = this.vocabularyService.filter;
     this.orderField = null;
     this.orderDirection = null;
-    this.isWordFetchLoading = false;
     this.words = [];
-    this.collections$ = new Observable<Collection[]>();
+    this.collections = [];
+    this.isWordFetchLoading = false;
+    this.isCollectionFetchLoading = false;
   }
 
   getWords(): void {
@@ -54,7 +57,15 @@ export class WordsHomeViewComponent implements OnInit {
   }
 
   getCollections(): void {
-    this.collections$ = this.collectionsService.getCollections();
+    this.isCollectionFetchLoading = true;
+    this.collectionsService
+      .getCollections()
+      .toPromise()
+      .then((response: CollectionsResponse) => {
+        this.collections = response.collections;
+      })
+      .catch((error) => console.log(error))
+      .finally(() => (this.isCollectionFetchLoading = false));
   }
 
   applyFilter(): void {

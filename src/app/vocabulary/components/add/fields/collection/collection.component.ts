@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
+import { CollectionsResponse } from 'src/models/collections/responses.model';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
@@ -26,11 +27,15 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   }
 
   getCollections(): void {
-    this.collectionsService.getCollections().subscribe((collections) => {
-      this.collections = collections;
-      if (this.collections.length > 0) {
-        this.collectionControl!.patchValue(this.collections[0].collection_name);
-      }
-    });
+    this.collectionsService
+      .getCollections()
+      .subscribe((response: CollectionsResponse) => {
+        this.collections = response.collections;
+        if (this.collections.length > 0) {
+          this.collectionControl!.patchValue(
+            this.collections[0].collection_name
+          );
+        }
+      });
   }
 }

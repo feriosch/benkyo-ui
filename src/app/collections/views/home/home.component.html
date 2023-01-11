@@ -19,7 +19,7 @@
   <div class="columns is-multiline is-mobile">
     <div
       class="column has-text-centered"
-      *ngFor="let collection of collections$ | async"
+      *ngFor="let collection of collections"
     >
       <app-collection-card [collection]="collection"></app-collection-card>
     </div>

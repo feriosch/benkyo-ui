@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from '../../services/collections.service';
+import { CollectionsResponse } from 'src/models/collections/responses.model';
 
 @Component({
   selector: 'app-collections-home-view',
@@ -11,22 +12,26 @@ import { CollectionsService } from '../../services/collections.service';
   styleUrls: ['./home.component.scss'],
 })
 export class CollectionsHomeViewComponent implements OnInit {
-  collections$: Observable<Collection[]>;
+  collections: Collection[];
 
   constructor(
     private collectionsService: CollectionsService,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.collections$ = new Observable<Collection[]>();
+    this.collections = [];
   }
 
   ngOnInit(): void {
     this.getCollections();
-  }
+  } 
 
   getCollections(): void {
-    this.collections$ = this.collectionsService.getCollections();
+    this.collectionsService
+      .getCollections()
+      .subscribe((response: CollectionsResponse) => {
+        this.collections = response.collections;
+      });
   }
 
   async navigateTo(route: string) {

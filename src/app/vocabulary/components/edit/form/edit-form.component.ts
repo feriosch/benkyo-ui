@@ -13,6 +13,7 @@ import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.servic
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
 import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value-transformer.service';
+import { CollectionsResponse } from 'src/models/collections/responses.model';
 
 @Component({
   selector: 'app-edit-word-form',
@@ -139,13 +140,15 @@ export class EditWordFormComponent implements OnInit {
   }
 
   initializeCollections(): void {
-    this.collectionsService.getCollections().subscribe((collections) => {
-      this.collections = collections;
-      if (this.collections.length > 0) {
-        const collectionControl = this.getFormControl('collection')!;
-        collectionControl.patchValue(this.collections[0].collection_name);
-      }
-    });
+    this.collectionsService
+      .getCollections()
+      .subscribe((response: CollectionsResponse) => {
+        this.collections = response.collections;
+        if (this.collections.length > 0) {
+          const collectionControl = this.getFormControl('collection')!;
+          collectionControl.patchValue(this.collections[0].collection_name);
+        }
+      });
   }
 
   initializeSentenceControls(): void {
