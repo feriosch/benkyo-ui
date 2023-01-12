@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
-import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
@@ -18,12 +16,8 @@ export class WordsHomeViewComponent implements OnInit {
   totalPages: number;
   totalWords: number;
   filter: string | null;
-  orderField: OrderField | null;
-  orderDirection: OrderDirection | null;
   words: SummarizedWord[];
   collections: Collection[];
-  isWordFetchLoading: boolean;
-  isCollectionFetchLoading: boolean;
 
   constructor(
     public collectionsService: CollectionsService,
@@ -33,39 +27,29 @@ export class WordsHomeViewComponent implements OnInit {
     this.totalPages = 0;
     this.totalWords = 0;
     this.filter = this.vocabularyService.filter;
-    this.orderField = null;
-    this.orderDirection = null;
     this.words = [];
     this.collections = [];
-    this.isWordFetchLoading = false;
-    this.isCollectionFetchLoading = false;
   }
 
   getWords(): void {
-    this.isWordFetchLoading = true;
-    this.vocabularyService
-      .getWords(this.orderField, this.orderDirection)
-      .toPromise()
-      .then((response) => {
+    this.vocabularyService.getWords().subscribe(
+      (response) => {
         this.words = response.words;
         this.nextPageNumber = response.next_page_number;
         this.totalPages = response.total_pages;
         this.totalWords = response.total_words;
-      })
-      .catch((error) => console.log(error))
-      .finally(() => (this.isWordFetchLoading = false));
+      },
+      (error) => console.log(error)
+    );
   }
 
   getCollections(): void {
-    this.isCollectionFetchLoading = true;
-    this.collectionsService
-      .getCollections()
-      .toPromise()
-      .then((response: CollectionsResponse) => {
+    this.collectionsService.getCollections().subscribe(
+      (response: CollectionsResponse) => {
         this.collections = response.collections;
-      })
-      .catch((error) => console.log(error))
-      .finally(() => (this.isCollectionFetchLoading = false));
+      },
+      (error) => console.log(error)
+    );
   }
 
   applyFilter(): void {
