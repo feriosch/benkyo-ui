@@ -78,6 +78,11 @@ export class KanjiService {
     return this.http.get<KanjisResponse>(this.kanjisUrl, { params });
   }
 
+  getKanjiById(id: string): Observable<Kanji | null> {
+    let params = new HttpParams().append('kanji_id', id);
+    return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });
+  }
+
   getKanjiByKanji(kanji: string): Observable<Kanji | null> {
     let params = new HttpParams().append('kanji', kanji);
     return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });

@@ -1,1 +1,14 @@
-<p>detail works!</p>
+<ng-template *ngIf="isLoading; else details">
+  <div class="container mx-6 my-5">
+    <h1>Loading...</h1>
+  </div>
+</ng-template>
+<ng-template #details>
+  <div class="container mx-6 my-5">
+    <div class="buttons">
+      <button (click)="onClickBack()" class="button is-info">
+        Back To Kanji
+      </button>
+    </div>
+  </div>
+</ng-template>

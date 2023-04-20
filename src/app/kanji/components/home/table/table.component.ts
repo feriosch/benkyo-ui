@@ -14,7 +14,7 @@ import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class KanjiTableComponent implements OnInit {
+export class KanjiHomeTableComponent implements OnInit {
   @Input()
   kanjis?: SummarizedKanji[];
 

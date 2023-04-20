@@ -5,13 +5,13 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { KanjiHomeViewComponent } from './views/home/home.component';
 import { KanjiDetailViewComponent } from './views/detail/detail.component';
-import { KanjiTableComponent } from './components/table/table.component';
+import { KanjiHomeTableComponent } from './components/home/table/table.component';
 
 @NgModule({
   declarations: [
     KanjiHomeViewComponent,
     KanjiDetailViewComponent,
-    KanjiTableComponent,
+    KanjiHomeTableComponent,
   ],
   imports: [CommonModule, FormsModule, AgGridModule],
 })
