@@ -119,6 +119,6 @@ export class KanjiTableComponent implements OnInit {
   ngOnInit(): void {}
 
   async onRowClicked(event: RowDoubleClickedEvent) {
-    await this.router.navigateByUrl(`kanjis/searchone/${event.data.id}`);
+    await this.router.navigateByUrl(`kanji/${event.data.id}`);
   }
 }
