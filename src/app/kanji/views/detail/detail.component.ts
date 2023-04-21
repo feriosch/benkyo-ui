@@ -5,7 +5,7 @@ import { Kanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../../services/kanji.service';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-kanji-detail-view',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })

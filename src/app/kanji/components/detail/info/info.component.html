@@ -1,0 +1,14 @@
+<div class="has-text-centered">
+  <p class="is-size-1 mb-4 has-text-weight-medium">
+    {{ this.kanji }}
+  </p>
+  <p class="is-size-2 mb-4">
+    {{ spanish }}
+  </p>
+  <p *ngIf="this.on" class="is-size-3 on-yomi">
+    {{ on }}
+  </p>
+  <p *ngIf="this.kun" class="is-size-3 kun-yomi">
+    {{ kun }}
+  </p>
+</div>
