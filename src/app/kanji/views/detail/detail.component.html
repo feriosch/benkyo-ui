@@ -19,4 +19,13 @@
       [kun]="fullKanji!.kun"
     ></app-kanji-detail-info>
   </div>
+  <div class="container mt-5">
+    <app-kanji-detail-radicals
+      [components]="fullKanji!.components"
+      [radicals]="fullKanji!.radicals"
+      [isRecursive]="fullKanji!.recursive"
+      [story]="fullKanji!.story"
+    >
+    </app-kanji-detail-radicals>
+  </div>
 </ng-template>
