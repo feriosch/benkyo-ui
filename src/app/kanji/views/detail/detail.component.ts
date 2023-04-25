@@ -29,7 +29,6 @@ export class KanjiDetailViewComponent implements OnInit {
     this.kanjiService.getKanjiById(this.id).subscribe((response) => {
       this.fullKanji = response;
       this.isLoading = false;
-      console.log(this.fullKanji);
     });
   }
 

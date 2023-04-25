@@ -88,6 +88,8 @@ export class KanjiHomeTableComponent implements OnInit {
     this.rowHeight = 50;
   }
 
+  ngOnInit(): void {}
+
   isBackwardPossible(): boolean {
     return this.currentPage! > 1 && !this.isKanjiFetchLoading!;
   }
@@ -116,9 +118,7 @@ export class KanjiHomeTableComponent implements OnInit {
     params.api.sizeColumnsToFit();
   }
 
-  ngOnInit(): void {}
-
   async onRowClicked(event: RowDoubleClickedEvent) {
-    await this.router.navigateByUrl(`kanji/${event.data.id}`);
+    await this.router.navigateByUrl(`kanji/detail/${event.data.id}`);
   }
 }

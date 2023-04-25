@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { KanjiHomeViewComponent } from './views/home/home.component';
 import { KanjiDetailViewComponent } from './views/detail/detail.component';
+import { KanjiRadicalsViewComponent } from './views/radicals/radicals.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,12 @@ const routes: Routes = [
     component: KanjiHomeViewComponent,
   },
   {
-    path: ':id',
+    path: 'detail/:id',
     component: KanjiDetailViewComponent,
+  },
+  {
+    path: 'radicals',
+    component: KanjiRadicalsViewComponent,
   },
   {
     path: '**',
