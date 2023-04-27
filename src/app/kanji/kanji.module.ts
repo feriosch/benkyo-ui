@@ -9,6 +9,7 @@ import { KanjiRadicalsViewComponent } from './views/radicals/radicals.component'
 import { KanjiHomeTableComponent } from './components/home/table/table.component';
 import { KanjiDetailInfoComponent } from './components/detail/info/info.component';
 import { KanjiDetailRadicalsComponent } from './components/detail/radicals/radicals.component';
+import { KanjiRadicalsSearchComponent } from './components/radicals/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { KanjiDetailRadicalsComponent } from './components/detail/radicals/radic
     KanjiHomeTableComponent,
     KanjiDetailInfoComponent,
     KanjiDetailRadicalsComponent,
+    KanjiRadicalsSearchComponent,
   ],
   imports: [CommonModule, FormsModule, AgGridModule],
 })
