@@ -12,7 +12,7 @@ export class KanjiComponentService {
 
   constructor(private http: HttpClient) {
     this.componentsUrl = `${environment.backendUrl}/kanjis/components`;
-    this.pageSize = 10;
+    this.pageSize = 5;
   }
 
   get pageNumber(): number | null {

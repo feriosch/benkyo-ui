@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 import { KanjiHomeViewComponent } from './views/home/home.component';
 import { KanjiDetailViewComponent } from './views/detail/detail.component';
@@ -21,6 +22,6 @@ import { KanjiRadicalsSearchComponent } from './components/radicals/search/searc
     KanjiDetailRadicalsComponent,
     KanjiRadicalsSearchComponent,
   ],
-  imports: [CommonModule, FormsModule, AgGridModule],
+  imports: [CommonModule, FormsModule, AgGridModule, AutocompleteLibModule],
 })
 export class KanjiModule {}
