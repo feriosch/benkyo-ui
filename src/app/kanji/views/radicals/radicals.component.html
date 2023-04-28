@@ -2,12 +2,16 @@
   <p class="title is-2">Kanji search by components / radicals</p>
 </div>
 
-<div class="container mb-4">
+<div class="container mb-5">
   <app-kanji-radicals-search
     (componentSelected)="addComponent($event)"
   ></app-kanji-radicals-search>
 </div>
 
-<div class="container mb-4">
-  {{ selectedComponents.toString() }}
+<div class="container mb-5">
+  <app-kanji-radicals-tags
+    [components]="selectedComponents"
+    (componentDeselected)="removeComponent($event)"
+  >
+  </app-kanji-radicals-tags>
 </div>

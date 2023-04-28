@@ -1,0 +1,9 @@
+<div class="tags are-large is-centered">
+  <span
+    *ngFor="let component of components; index as i"
+    class="tag is-rounded is-warning ml-2 mr-2"
+  >
+    {{ component }}
+    <button class="delete ml-2" (click)="onDeselectComponent(i)"></button>
+  </span>
+</div>

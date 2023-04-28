@@ -17,4 +17,8 @@ export class KanjiRadicalsViewComponent implements OnInit {
   addComponent(component: string): void {
     this.selectedComponents.push(component);
   }
+
+  removeComponent(index: number): void {
+    this.selectedComponents.splice(index, 1);
+  }
 }
