@@ -1,0 +1,24 @@
+@import "node_modules/bulma/bulma";
+
+a {
+  color: $black;
+}
+
+figure {
+  border: 3px solid;
+  border-radius: 8px;
+  margin: auto;
+}
+
+figure:hover {
+  cursor: pointer;
+  background-color: $warning;
+}
+
+figure > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
