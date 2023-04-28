@@ -7,9 +7,12 @@
   <div class="column is-9 is-centered">
     <div class="ng-autocomplete">
       <ng-autocomplete
+        #autocomplete
         [data]="suggestedComponents"
         [itemTemplate]="itemTemplate"
+        [isLoading]="isSuggestionLoading"
         (inputChanged)="onChangeSearch($event)"
+        (selected)="onComponentSelected($event)"
         placeholder="Enter component"
       >
       </ng-autocomplete>

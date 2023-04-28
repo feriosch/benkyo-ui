@@ -3,13 +3,18 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-kanji-radicals-view',
   templateUrl: './radicals.component.html',
-  styleUrls: ['./radicals.component.scss']
+  styleUrls: ['./radicals.component.scss'],
 })
 export class KanjiRadicalsViewComponent implements OnInit {
+  selectedComponents: string[];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.selectedComponents = [];
   }
 
+  ngOnInit(): void {}
+
+  addComponent(component: string): void {
+    this.selectedComponents.push(component);
+  }
 }
