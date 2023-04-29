@@ -4,11 +4,11 @@
       <i class="fas fa-search" aria-hidden="true"></i>
     </span>
   </div>
-  <div class="column is-9 is-centered">
+  <div class="column is-8 is-centered">
     <div class="ng-autocomplete">
       <ng-autocomplete
         #autocomplete
-        [data]="suggestedComponents"
+        [data]="suggestions"
         [itemTemplate]="itemTemplate"
         [isLoading]="isSuggestionLoading"
         (inputChanged)="onChangeSearch($event)"
@@ -26,12 +26,28 @@
       </ng-template>
     </div>
   </div>
-  <div class="column is-2 is-1-mobile">
-    <button class="button is-fullwidth is-rounded is-info">
-      <span class="icon">
-        <i class="fas fa-search"></i>
-      </span>
-      <span class="is-hidden-mobile">Search</span>
-    </button>
+  <div class="column is-3">
+    <div class="buttons has-addons is-centered">
+      <button
+        class="button"
+        [ngClass]="{
+          'is-active': isComponentMode,
+          'is-info': isComponentMode
+        }"
+        (click)="switchMode(true)"
+      >
+        Components
+      </button>
+      <button
+        class="button"
+        [ngClass]="{
+          'is-active': !isComponentMode,
+          'is-warning': !isComponentMode
+        }"
+        (click)="switchMode(false)"
+      >
+        Radicals
+      </button>
+    </div>
   </div>
 </div>

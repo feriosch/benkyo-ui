@@ -4,13 +4,15 @@
 
 <div class="container mb-5">
   <app-kanji-radicals-search
+    [isComponentMode]="isComponentMode"
+    (modeSwitched)="switchMode()"
     (componentSelected)="addComponent($event)"
   ></app-kanji-radicals-search>
 </div>
 
 <div class="container mb-5">
   <app-kanji-radicals-tags
-    [components]="selectedComponents"
+    [components]="components"
     (componentDeselected)="removeComponent($event)"
   >
   </app-kanji-radicals-tags>

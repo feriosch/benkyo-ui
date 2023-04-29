@@ -3,32 +3,30 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { KanjiComponentsResponse } from 'src/models/kanji/components/responses.model';
+import { KanjiRadicalsResponse } from 'src/models/kanji/components/responses.model';
 import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
 
 @Injectable({ providedIn: 'root' })
-export class KanjiComponentService {
+export class KanjiRadicalService {
   private readonly kanjisUrl: string;
-  private readonly componentsUrl: string;
+  private readonly radicalsUrl: string;
   private readonly pageSize: number;
 
   constructor(private http: HttpClient) {
     this.kanjisUrl = `${environment.backendUrl}/kanjis`;
-    this.componentsUrl = `${environment.backendUrl}/kanjis/components`;
+    this.radicalsUrl = `${this.kanjisUrl}/radicals`;
     this.pageSize = 5;
   }
 
-  getSuggestedComponents(prefix: string): Observable<KanjiComponentsResponse> {
+  getSuggestedRadicals(prefix?: string): Observable<KanjiRadicalsResponse> {
     let params = new HttpParams();
-    params = params.append('prefix', prefix);
+    if (prefix) params = params.append('prefix', prefix);
     params = params.append('page_size', this.pageSize);
 
-    return this.http.get<KanjiComponentsResponse>(this.componentsUrl, {
-      params,
-    });
+    return this.http.get<KanjiRadicalsResponse>(this.radicalsUrl, { params });
   }
 
-  getKanjiByComponents(
+  getKanjiByRadicals(
     components: string[],
     pageSize: number,
     pageNumber: number
@@ -40,6 +38,7 @@ export class KanjiComponentService {
       params = params.append(parameter, component);
     });
 
+    params = params.append('radicalize', true);
     params = params.append('page_size', pageSize);
     params = params.append('page_number', pageNumber);
     params = params.append('compact', true);
