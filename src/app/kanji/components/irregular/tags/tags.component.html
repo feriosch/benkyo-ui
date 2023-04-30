@@ -1,0 +1,38 @@
+<div class="columns">
+  <div class="column is-8">
+    <div class="tags are-large is-centered">
+      <span
+        *ngFor="let component of components"
+        class="tag is-rounded m-3"
+        (click)="selectComponent(component)"
+      >
+        {{ component.component }}
+      </span>
+    </div>
+  </div>
+  <div class="column">
+    <ng-template [ngIf]="selectedComponent" [ngIfElse]="pleaseSelect">
+      <div class="is-flex is-flex-direction-column">
+        <span class="tag is-large is-rounded is-warning is-size-4 mb-4">
+          {{ selectedComponent.component }}
+        </span>
+
+        <table class="table is-bordered is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th class="is-size-5">Radicals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let radical of selectedComponent.radicals">
+              <td class="is-size-5">{{ radical }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <ng-template #pleaseSelect>
+      <p class="is-size-4 has-text-centered">Select a component</p>
+    </ng-template>
+  </div>
+</div>

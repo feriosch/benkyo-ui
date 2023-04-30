@@ -14,6 +14,7 @@ import { KanjiDetailRadicalsComponent } from './components/detail/radicals/radic
 import { KanjiRadicalsSearchComponent } from './components/radicals/search/search.component';
 import { KanjiRadicalsTagsComponent } from './components/radicals/tags/tags.component';
 import { KanjiRadicalsCardsComponent } from './components/radicals/cards/cards.component';
+import { KanjiIrregularComponentsTagsComponent } from './components/irregular/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { KanjiRadicalsCardsComponent } from './components/radicals/cards/cards.c
     KanjiRadicalsSearchComponent,
     KanjiRadicalsTagsComponent,
     KanjiRadicalsCardsComponent,
+    KanjiIrregularComponentsTagsComponent,
   ],
   imports: [CommonModule, FormsModule, AgGridModule, AutocompleteLibModule],
 })
