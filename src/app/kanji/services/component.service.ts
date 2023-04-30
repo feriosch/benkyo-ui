@@ -3,18 +3,23 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { KanjiComponentsResponse } from 'src/models/kanji/components/responses.model';
+import {
+  KanjiComponentsResponse,
+  KanjiIrregularComponentsResponse,
+} from 'src/models/kanji/components/responses.model';
 import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
 
 @Injectable({ providedIn: 'root' })
 export class KanjiComponentService {
   private readonly kanjisUrl: string;
   private readonly componentsUrl: string;
+  private readonly irregularComponentsUrl: string;
   private readonly pageSize: number;
 
   constructor(private http: HttpClient) {
     this.kanjisUrl = `${environment.backendUrl}/kanjis`;
     this.componentsUrl = `${environment.backendUrl}/kanjis/components`;
+    this.irregularComponentsUrl = `${this.componentsUrl}/irregular`;
     this.pageSize = 5;
   }
 
@@ -45,5 +50,11 @@ export class KanjiComponentService {
     params = params.append('compact', true);
 
     return this.http.get<CompactedKanjiResponse>(this.kanjisUrl, { params });
+  }
+
+  getIrregularComponents(): Observable<KanjiIrregularComponentsResponse> {
+    return this.http.get<KanjiIrregularComponentsResponse>(
+      this.irregularComponentsUrl
+    );
   }
 }

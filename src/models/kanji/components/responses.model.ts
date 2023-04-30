@@ -1,3 +1,5 @@
+import { KanjiIrregularComponent } from './irregular.model';
+
 export interface KanjiComponentsResponse {
   components: string[];
   next_page_number: number | null;
@@ -10,4 +12,8 @@ export interface KanjiRadicalsResponse {
   next_page_number: number | null;
   total_pages: number;
   total_components: number;
+}
+
+export interface KanjiIrregularComponentsResponse {
+  components: KanjiIrregularComponent[];
 }
