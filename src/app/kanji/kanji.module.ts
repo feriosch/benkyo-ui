@@ -7,6 +7,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { KanjiHomeViewComponent } from './views/home/home.component';
 import { KanjiDetailViewComponent } from './views/detail/detail.component';
 import { KanjiRadicalsViewComponent } from './views/radicals/radicals.component';
+import { KanjiIrregularComponentsViewComponent } from './views/irregular/irregular.component';
 import { KanjiHomeTableComponent } from './components/home/table/table.component';
 import { KanjiDetailInfoComponent } from './components/detail/info/info.component';
 import { KanjiDetailRadicalsComponent } from './components/detail/radicals/radicals.component';
@@ -19,6 +20,7 @@ import { KanjiRadicalsCardsComponent } from './components/radicals/cards/cards.c
     KanjiHomeViewComponent,
     KanjiDetailViewComponent,
     KanjiRadicalsViewComponent,
+    KanjiIrregularComponentsViewComponent,
     KanjiHomeTableComponent,
     KanjiDetailInfoComponent,
     KanjiDetailRadicalsComponent,
