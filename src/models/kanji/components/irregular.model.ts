@@ -3,3 +3,8 @@ export interface KanjiIrregularComponent {
   component: string;
   radicals: string[];
 }
+
+export interface KanjiAddIrregularComponentBody {
+  component: string;
+  radicals: string[];
+}

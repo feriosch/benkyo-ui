@@ -17,3 +17,7 @@ export interface KanjiRadicalsResponse {
 export interface KanjiIrregularComponentsResponse {
   components: KanjiIrregularComponent[];
 }
+
+export interface KanjiAddIrregularComponentResponse {
+  id: string;
+}
