@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { KanjiIrregularComponent } from 'src/models/kanji/components/irregular.model';
-import { KanjiComponentService } from '../../services/component.service';
 import { KanjiIrregularComponentsResponse } from 'src/models/kanji/components/responses.model';
+import { KanjiComponentService } from '../../services/component.service';
+import { KanjiIrregularComponentsAddModalComponent } from '../../components/irregular/add-modal/add-modal.component';
 
 @Component({
   selector: 'app-kanji-irregular-components-view',
@@ -10,6 +11,9 @@ import { KanjiIrregularComponentsResponse } from 'src/models/kanji/components/re
   styleUrls: ['./irregular.component.scss'],
 })
 export class KanjiIrregularComponentsViewComponent implements OnInit {
+  @ViewChild('addModal')
+  addModal!: KanjiIrregularComponentsAddModalComponent;
+
   components: KanjiIrregularComponent[];
 
   constructor(private componentService: KanjiComponentService) {
@@ -26,5 +30,9 @@ export class KanjiIrregularComponentsViewComponent implements OnInit {
       .subscribe((response: KanjiIrregularComponentsResponse) => {
         this.components = response.components;
       });
+  }
+
+  onClickAddComponent(): void {
+    this.addModal.openModal();
   }
 }

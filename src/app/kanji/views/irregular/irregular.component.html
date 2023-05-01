@@ -3,6 +3,15 @@
 </div>
 
 <div class="container mb-5">
+  <button class="button is-info" (click)="onClickAddComponent()">
+    Add Irregular Component
+  </button>
+</div>
+
+<div class="container mb-5">
   <app-kanji-irregular-components-tags [components]="components">
   </app-kanji-irregular-components-tags>
 </div>
+
+<app-kanji-irregular-components-add-modal #addModal>
+</app-kanji-irregular-components-add-modal>

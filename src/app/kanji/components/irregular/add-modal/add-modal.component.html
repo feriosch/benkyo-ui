@@ -1,0 +1,55 @@
+<div [ngClass]="{ 'is-active': isOpen }" class="modal">
+  <div (click)="closeModal()" class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add Irregular Component</p>
+      <button (click)="closeModal()" class="delete" aria-label="close"></button>
+    </header>
+    <form [formGroup]="this.form" (ngSubmit)="onSubmit()">
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Component</label>
+          <div class="control">
+            <input
+              [ngClass]="{ 'is-danger': isComponentControlInvalid }"
+              formControlName="component"
+              class="input"
+              type="text"
+              placeholder="Enter the component"
+            />
+            <p *ngIf="isComponentControlInvalid" class="help is-danger">
+              Component is required!
+            </p>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Radicals</label>
+          <div formArrayName="radicals">
+            <div class="columns is-multiline">
+              <div
+                *ngFor="let radical of radicalsArray.controls; let i = index"
+                class="column is-half control"
+              >
+                <input
+                  [formControlName]="i"
+                  class="input mb-1"
+                  type="text"
+                  placeholder="Enter radical {{ i + 1 }}"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button
+          [disabled]="form.invalid || form.pending"
+          class="button is-info"
+          type="submit"
+        >
+          Sumbit Component
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
@@ -15,6 +15,7 @@ import { KanjiRadicalsSearchComponent } from './components/radicals/search/searc
 import { KanjiRadicalsTagsComponent } from './components/radicals/tags/tags.component';
 import { KanjiRadicalsCardsComponent } from './components/radicals/cards/cards.component';
 import { KanjiIrregularComponentsTagsComponent } from './components/irregular/tags/tags.component';
+import { KanjiIrregularComponentsAddModalComponent } from './components/irregular/add-modal/add-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,14 @@ import { KanjiIrregularComponentsTagsComponent } from './components/irregular/ta
     KanjiRadicalsTagsComponent,
     KanjiRadicalsCardsComponent,
     KanjiIrregularComponentsTagsComponent,
+    KanjiIrregularComponentsAddModalComponent,
   ],
-  imports: [CommonModule, FormsModule, AgGridModule, AutocompleteLibModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AgGridModule,
+    AutocompleteLibModule,
+  ],
 })
 export class KanjiModule {}
