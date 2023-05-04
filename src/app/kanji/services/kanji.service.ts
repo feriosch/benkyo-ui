@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/kanji';
+import { FullKanji } from 'src/models/kanji/kanji.model';
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjisResponse } from 'src/models/responses/kanji/kanjis-response.model';
 
@@ -78,9 +79,9 @@ export class KanjiService {
     return this.http.get<KanjisResponse>(this.kanjisUrl, { params });
   }
 
-  getKanjiById(id: string): Observable<Kanji | null> {
+  getKanjiById(id: string): Observable<FullKanji> {
     let params = new HttpParams().append('kanji_id', id);
-    return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });
+    return this.http.get<FullKanji>(this.searchOneKanjiUrl, { params });
   }
 
   getKanjiByKanji(kanji: string): Observable<Kanji | null> {
