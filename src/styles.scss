@@ -19,6 +19,14 @@ $orange-cell: #ffdea6;
   @include ag-theme-alpine(());
 }
 
+.ng-autocomplete {
+  width: 100% !important;
+}
+
+.is-flex-grow-8 {
+  flex-grow: 8;
+}
+
 .on-yomi {
   color: #800000;
 }
