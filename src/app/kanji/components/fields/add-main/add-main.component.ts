@@ -12,8 +12,6 @@ export class AddKanjiFormMainFieldComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
-
   // TODO: Spanish Repetition validation
   get isSpanishInvalid(): boolean {
     const spanishControl: FormControl = this.formGroup.get(
@@ -21,4 +19,6 @@ export class AddKanjiFormMainFieldComponent implements OnInit {
     )! as FormControl;
     return spanishControl.touched && spanishControl.invalid;
   }
+
+  ngOnInit(): void {}
 }

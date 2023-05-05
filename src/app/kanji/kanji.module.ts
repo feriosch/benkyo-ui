@@ -19,6 +19,7 @@ import { KanjiIrregularComponentsTagsComponent } from './components/irregular/ta
 import { KanjiIrregularComponentsAddModalComponent } from './components/irregular/add-modal/add-modal.component';
 import { AddKanjiFormMainFieldComponent } from './components/fields/add-main/add-main.component';
 import { AddKanjiFormComponentsFieldComponent } from './components/fields/add-components/add-components.component';
+import { AddKanjiFormStoryFieldComponent } from './components/fields/add-story/add-story.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddKanjiFormComponentsFieldComponent } from './components/fields/add-co
     KanjiIrregularComponentsAddModalComponent,
     AddKanjiFormMainFieldComponent,
     AddKanjiFormComponentsFieldComponent,
+    AddKanjiFormStoryFieldComponent,
   ],
   imports: [
     CommonModule,

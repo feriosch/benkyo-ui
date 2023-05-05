@@ -31,6 +31,7 @@
           <button
             class="button is-success is-rounded is-fullwidth"
             type="button"
+            [disabled]="!this.autocomplete.query"
             (click)="onAddComponent(this.autocomplete!.query)"
           >
             <span class="icon is-small is-right mr-1">
