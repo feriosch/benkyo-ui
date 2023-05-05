@@ -38,7 +38,6 @@ export class EditKanjiViewComponent implements OnInit {
     this.kanjiService.getKanjiById(this.id).subscribe((response: FullKanji) => {
       this.isLoading = false;
       this.initializeControls(response);
-      console.log(this.form);
     });
   }
 
@@ -63,5 +62,9 @@ export class EditKanjiViewComponent implements OnInit {
     info.components?.forEach((component: string) => {
       componentsFormArray.push(new FormControl(component));
     });
+  }
+
+  onSubmit(): void {
+    console.log(this.form);
   }
 }

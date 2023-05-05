@@ -1,8 +1,14 @@
-<div class="container mt-2">
-  <div class="container mb-2">
+<div class="container m-5">
+  <div class="container mb-5">
     <span class="title mr-4">Edit Kanji</span>
     <button (click)="onClickCancel()" class="button is-info">
       Back To Kanji
     </button>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="box">
+      <app-add-kanji-form-main-field [formGroup]="form">
+      </app-add-kanji-form-main-field>
+    </form>
   </div>
 </div>
