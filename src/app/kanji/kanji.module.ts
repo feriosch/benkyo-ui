@@ -18,6 +18,7 @@ import { KanjiRadicalsCardsComponent } from './components/radicals/cards/cards.c
 import { KanjiIrregularComponentsTagsComponent } from './components/irregular/tags/tags.component';
 import { KanjiIrregularComponentsAddModalComponent } from './components/irregular/add-modal/add-modal.component';
 import { AddKanjiFormMainFieldComponent } from './components/fields/add-main/add-main.component';
+import { AddKanjiFormComponentsFieldComponent } from './components/fields/add-components/add-components.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddKanjiFormMainFieldComponent } from './components/fields/add-main/add
     KanjiIrregularComponentsTagsComponent,
     KanjiIrregularComponentsAddModalComponent,
     AddKanjiFormMainFieldComponent,
+    AddKanjiFormComponentsFieldComponent,
   ],
   imports: [
     CommonModule,

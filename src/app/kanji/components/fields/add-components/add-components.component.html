@@ -1,0 +1,61 @@
+<div class="field is-horizontal is-align-items-center mt-3">
+  <div class="field-label">
+    <label class="label">Components</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="columns is-vcentered">
+        <div class="column is-10">
+          <div class="ng-autocomplete">
+            <ng-autocomplete
+              #autocomplete
+              [data]="suggestions"
+              [itemTemplate]="itemTemplate"
+              [isLoading]="isSuggestionLoading"
+              (inputChanged)="onChangeSearch($event)"
+              (selected)="onAddComponent($event)"
+              placeholder="Enter component"
+            >
+            </ng-autocomplete>
+            <ng-template #itemTemplate let-item>
+              <a class="panel-block">
+                <span class="panel-icon">
+                  <i class="fas fa-book" aria-hidden="true"></i>
+                </span>
+                <span [innerHTML]="item"></span>
+              </a>
+            </ng-template>
+          </div>
+        </div>
+        <div class="column">
+          <button
+            class="button is-success is-rounded is-fullwidth"
+            type="button"
+            (click)="onAddComponent(this.autocomplete!.query)"
+          >
+            <span class="icon is-small is-right mr-1">
+              <i class="fas fa-plus-circle"></i>
+            </span>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="field is-horizontal mt-4">
+  <div class="field-label"></div>
+  <div class="field-body">
+    <div class="field">
+      <div class="tags are-medium is-centered">
+        <span
+          *ngFor="let component of components; index as i"
+          class="tag is-rounded is-info ml-2 mr-2"
+        >
+          {{ component }}
+          <button class="delete ml-2" (click)="onDeleteComponent(i)"></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

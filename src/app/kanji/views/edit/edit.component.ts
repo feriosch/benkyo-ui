@@ -41,6 +41,10 @@ export class EditKanjiViewComponent implements OnInit {
     });
   }
 
+  get componentsFormArray(): FormArray {
+    return this.form.get('components')! as FormArray;
+  }
+
   getFormControl(control: string): FormControl {
     return this.form.get(control) as FormControl;
   }
@@ -56,11 +60,10 @@ export class EditKanjiViewComponent implements OnInit {
     this.getFormControl('spanish').setValue(info.spanish);
     this.getFormControl('story').setValue(info.story);
 
-    const componentsFormArray: FormArray = this.form.get(
-      'components'
-    ) as FormArray;
     info.components?.forEach((component: string) => {
-      componentsFormArray.push(new FormControl(component));
+      this.componentsFormArray.push(
+        new FormControl(component, [Validators.required])
+      );
     });
   }
 
