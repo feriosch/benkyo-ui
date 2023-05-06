@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-add-kanji-form-story-field',
   templateUrl: './add-story.component.html',
-  styleUrls: ['./add-story.component.scss'],
 })
 export class AddKanjiFormStoryFieldComponent implements OnInit {
   @Input()

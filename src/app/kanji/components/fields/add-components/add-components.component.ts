@@ -9,7 +9,6 @@ import { KanjiComponentService } from 'src/app/kanji/services/component.service'
 @Component({
   selector: 'app-add-kanji-form-components-field',
   templateUrl: './add-components.component.html',
-  styleUrls: ['./add-components.component.scss'],
 })
 export class AddKanjiFormComponentsFieldComponent implements OnInit {
   @ViewChild('autocomplete')

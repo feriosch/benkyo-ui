@@ -6,7 +6,6 @@ import { FormService } from 'src/app/shared/services/form.service';
 @Component({
   selector: 'app-add-kanji-form-main-field',
   templateUrl: './add-main.component.html',
-  styleUrls: ['./add-main.component.scss'],
 })
 export class AddKanjiFormMainFieldComponent implements OnInit {
   @Input()

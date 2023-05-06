@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-kanji-form-submit-field',
   templateUrl: './add-submit.component.html',
-  styleUrls: ['./add-submit.component.scss'],
 })
 export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()
