@@ -1,0 +1,27 @@
+<ng-container [formGroup]="form">
+  <div class="field is-horizontal mt-4">
+    <div class="field-label"></div>
+    <div class="field-body is-flex-grow-8">
+      <div class="field">
+        <div class="control">
+          <div class="buttons">
+            <button
+              [disabled]="form.invalid || form.pending"
+              class="button is-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              (click)="onClickCancel()"
+              class="button is-danger"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

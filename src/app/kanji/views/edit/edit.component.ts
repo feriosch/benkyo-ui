@@ -17,7 +17,6 @@ export class EditKanjiViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private kanjiService: KanjiService
   ) {
     // TODO: Async validity for repeated spanish
@@ -33,6 +32,10 @@ export class EditKanjiViewComponent implements OnInit {
     });
   }
 
+  get componentsFormArray(): FormArray {
+    return this.form.get('components')! as FormArray;
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
     this.kanjiService.getKanjiById(this.id).subscribe((response: FullKanji) => {
@@ -41,16 +44,8 @@ export class EditKanjiViewComponent implements OnInit {
     });
   }
 
-  get componentsFormArray(): FormArray {
-    return this.form.get('components')! as FormArray;
-  }
-
   getFormControl(control: string): FormControl {
     return this.form.get(control) as FormControl;
-  }
-
-  async onClickCancel() {
-    await this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   initializeControls(info: FullKanji): void {
