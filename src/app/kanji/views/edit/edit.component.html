@@ -4,7 +4,7 @@
   </div>
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="box">
-      <app-add-kanji-form-main-field [formGroup]="form">
+      <app-add-kanji-form-main-field [form]="form">
       </app-add-kanji-form-main-field>
       <app-add-kanji-form-components-field [form]="form">
       </app-add-kanji-form-components-field>

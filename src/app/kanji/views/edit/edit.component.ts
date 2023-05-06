@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FullKanji } from 'src/models/kanji/kanji.model';
-import { getControl } from 'src/app/shared/form';
+import { UpdateRequest } from 'src/models/kanji/requests.model';
+import { FormService } from 'src/app/shared/services/form.service';
 import { KanjiService } from '../../services/kanji.service';
 import { UpdateKanjiService } from '../../services/update.service';
-import { UpdateRequest } from 'src/models/kanji/requests.model';
 
 @Component({
   selector: 'app-edit-kanji-view',
@@ -20,6 +20,7 @@ export class EditKanjiViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private formService: FormService,
     private kanjiService: KanjiService,
     private updateService: UpdateKanjiService
   ) {
@@ -47,18 +48,26 @@ export class EditKanjiViewComponent implements OnInit {
   }
 
   initializeControls(info: FullKanji): void {
-    getControl<FormControl>(this.form, 'v1').setValue(info.v1);
-    getControl<FormControl>(this.form, 'v2').setValue(info.v2);
-    getControl<FormControl>(this.form, 'kanji').setValue(info.kanji);
-    getControl<FormControl>(this.form, 'on').setValue(info.on);
-    getControl<FormControl>(this.form, 'kun').setValue(info.kun);
-    getControl<FormControl>(this.form, 'spanish').setValue(info.spanish);
-    getControl<FormControl>(this.form, 'story').setValue(info.story);
+    this.formService.getControl<FormControl>(this.form, 'v1').setValue(info.v1);
+    this.formService.getControl<FormControl>(this.form, 'v2').setValue(info.v2);
+    this.formService
+      .getControl<FormControl>(this.form, 'kanji')
+      .setValue(info.kanji);
+    this.formService.getControl<FormControl>(this.form, 'on').setValue(info.on);
+    this.formService
+      .getControl<FormControl>(this.form, 'kun')
+      .setValue(info.kun);
+    this.formService
+      .getControl<FormControl>(this.form, 'spanish')
+      .setValue(info.spanish);
+    this.formService
+      .getControl<FormControl>(this.form, 'story')
+      .setValue(info.story);
 
     info.components?.forEach((component: string) => {
-      getControl<FormArray>(this.form, 'components').push(
-        new FormControl(component, [Validators.required])
-      );
+      this.formService
+        .getControl<FormArray>(this.form, 'components')
+        .push(new FormControl(component, [Validators.required]));
     });
   }
 
