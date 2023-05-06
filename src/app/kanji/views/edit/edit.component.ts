@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FullKanji } from 'src/models/kanji/kanji.model';
@@ -20,6 +20,7 @@ export class EditKanjiViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private formService: FormService,
     private kanjiService: KanjiService,
     private updateService: UpdateKanjiService
@@ -76,6 +77,14 @@ export class EditKanjiViewComponent implements OnInit {
       this.id,
       this.form
     );
-    console.log(requestBody);
+    this.updateService.updateWord(requestBody).subscribe(
+      async (_response) => {
+        await this.router.navigate(['../'], { relativeTo: this.route });
+        console.log(_response);
+      },
+      (error) => {
+        console.log(error.error.error);
+      }
+    );
   }
 }
