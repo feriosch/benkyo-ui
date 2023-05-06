@@ -9,7 +9,6 @@ import { AddIrregularComponentService } from 'src/app/kanji/services/forms/compo
 @Component({
   selector: 'app-kanji-irregular-components-add-modal',
   templateUrl: './add-modal.component.html',
-  styleUrls: ['./add-modal.component.scss'],
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
   isOpen: boolean;

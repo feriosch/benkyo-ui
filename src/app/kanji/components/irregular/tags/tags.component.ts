@@ -8,12 +8,11 @@ import { KanjiIrregularComponent } from 'src/models/kanji/components/irregular.m
 })
 export class KanjiIrregularComponentsTagsComponent implements OnInit {
   @Input()
-  components: KanjiIrregularComponent[];
+  components!: KanjiIrregularComponent[];
 
   selectedComponent: KanjiIrregularComponent | null;
 
   constructor() {
-    this.components = [];
     this.selectedComponent = null;
   }
 
