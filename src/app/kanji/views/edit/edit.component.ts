@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FullKanji } from 'src/models/kanji/kanji.model';
+import { getControl } from 'src/app/shared/form';
 import { KanjiService } from '../../services/kanji.service';
+import { UpdateKanjiService } from '../../services/update.service';
+import { UpdateRequest } from 'src/models/kanji/requests.model';
 
 @Component({
   selector: 'app-edit-kanji-view',
@@ -17,23 +20,22 @@ export class EditKanjiViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private kanjiService: KanjiService
+    private kanjiService: KanjiService,
+    private updateService: UpdateKanjiService
   ) {
     // TODO: Async validity for repeated spanish
     this.id = this.route.snapshot.params['id'];
     this.isLoading = false;
     this.form = new FormGroup({
+      v1: new FormControl(null, [Validators.required]),
       v2: new FormControl(null),
       on: new FormControl(null),
+      kanji: new FormControl(null, [Validators.required]),
       kun: new FormControl(null),
       spanish: new FormControl(null, [Validators.required]),
       components: new FormArray([]),
       story: new FormControl(null),
     });
-  }
-
-  get componentsFormArray(): FormArray {
-    return this.form.get('components')! as FormArray;
   }
 
   ngOnInit(): void {
@@ -44,25 +46,27 @@ export class EditKanjiViewComponent implements OnInit {
     });
   }
 
-  getFormControl(control: string): FormControl {
-    return this.form.get(control) as FormControl;
-  }
-
   initializeControls(info: FullKanji): void {
-    this.getFormControl('v2').setValue(info.v2);
-    this.getFormControl('on').setValue(info.on);
-    this.getFormControl('kun').setValue(info.kun);
-    this.getFormControl('spanish').setValue(info.spanish);
-    this.getFormControl('story').setValue(info.story);
+    getControl<FormControl>(this.form, 'v1').setValue(info.v1);
+    getControl<FormControl>(this.form, 'v2').setValue(info.v2);
+    getControl<FormControl>(this.form, 'kanji').setValue(info.kanji);
+    getControl<FormControl>(this.form, 'on').setValue(info.on);
+    getControl<FormControl>(this.form, 'kun').setValue(info.kun);
+    getControl<FormControl>(this.form, 'spanish').setValue(info.spanish);
+    getControl<FormControl>(this.form, 'story').setValue(info.story);
 
     info.components?.forEach((component: string) => {
-      this.componentsFormArray.push(
+      getControl<FormArray>(this.form, 'components').push(
         new FormControl(component, [Validators.required])
       );
     });
   }
 
   onSubmit(): void {
-    console.log(this.form);
+    const requestBody: UpdateRequest = this.updateService.getUpdateRequestBody(
+      this.id,
+      this.form
+    );
+    console.log(requestBody);
   }
 }
