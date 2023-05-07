@@ -1,4 +1,14 @@
 <div class="container mt-2">
   <h1 class="title">Add new collection</h1>
-  <app-add-collection-form></app-add-collection-form>
+  <form [formGroup]="addCollectionForm" (ngSubmit)="onSubmit()" class="box">
+    <app-add-collection-form-name-field [form]="addCollectionForm">
+    </app-add-collection-form-name-field>
+    <app-add-collection-form-image-field [form]="addCollectionForm">
+    </app-add-collection-form-image-field>
+    <app-add-collection-form-submit-field
+      [form]="addCollectionForm"
+      [isSubmitting]="isSubmitting"
+    >
+    </app-add-collection-form-submit-field>
+  </form>
 </div>
