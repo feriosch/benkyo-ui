@@ -9,11 +9,9 @@ import { CompactedKanji } from 'src/models/kanji/kanji.model';
 })
 export class KanjiRadicalsCardsComponent implements OnInit {
   @Input()
-  kanjis: CompactedKanji[];
+  kanjis!: CompactedKanji[];
 
-  constructor() {
-    this.kanjis = [];
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

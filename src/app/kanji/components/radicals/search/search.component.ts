@@ -18,14 +18,13 @@ import {
 @Component({
   selector: 'app-kanji-radicals-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
 })
 export class KanjiRadicalsSearchComponent implements OnInit {
   @ViewChild('autocomplete')
-  autocomplete: AutocompleteComponent | undefined;
+  autocomplete!: AutocompleteComponent;
 
   @Input()
-  isComponentMode: boolean;
+  isComponentMode!: boolean;
 
   @Output()
   modeSwitched: EventEmitter<boolean>;
@@ -41,7 +40,6 @@ export class KanjiRadicalsSearchComponent implements OnInit {
     private componentService: KanjiComponentService,
     private radicalService: KanjiRadicalService
   ) {
-    this.isComponentMode = true;
     this.modeSwitched = new EventEmitter<boolean>();
     this.componentSelected = new EventEmitter<string>();
     this.suggestions = [];
@@ -57,7 +55,7 @@ export class KanjiRadicalsSearchComponent implements OnInit {
       !isComponentModeDesired && this.isComponentMode;
     if (componentSwitch || radicalSwitch) {
       this.suggestions = [];
-      this.autocomplete!.clear();
+      this.autocomplete.clear();
       this.modeSwitched.emit(true);
     }
   }
@@ -96,7 +94,7 @@ export class KanjiRadicalsSearchComponent implements OnInit {
 
   onComponentSelected(component: string): void {
     this.componentSelected.emit(component);
-    this.autocomplete!.clear();
+    this.autocomplete.clear();
     this.suggestions = [];
   }
 }
