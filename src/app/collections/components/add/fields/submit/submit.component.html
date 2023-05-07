@@ -1,12 +1,12 @@
-<ng-container [formGroup]="formGroup!">
+<ng-container [formGroup]="form">
   <div class="field is-horizontal mt-4">
     <div class="field-label"></div>
-    <div class="field-body">
+    <div class="field-body is-flex-grow-6">
       <div class="field">
         <div class="control">
           <button
             [disabled]="isSubmitDisabled"
-            [ngClass]="{ 'is-loading': isSubmitting! }"
+            [ngClass]="{ 'is-loading': isSubmitting }"
             class="button is-success"
             type="submit"
           >

@@ -12,7 +12,6 @@ import { FileTypeValidatorService } from 'src/app/collections/services/validator
 @Component({
   selector: 'app-add-collection-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
 })
 export class AddCollectionFormComponent implements OnInit {
   addCollectionForm: FormGroup;
