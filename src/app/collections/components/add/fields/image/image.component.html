@@ -1,15 +1,15 @@
-<ng-container [formGroup]="formGroup!">
+<ng-container [formGroup]="form">
   <div class="field is-horizontal mt-4">
     <div class="field-label">
       <label class="label">Image</label>
     </div>
-    <div class="field-body">
+    <div class="field-body is-flex-grow-6">
       <div class="field">
         <div class="control">
           <div
             [ngClass]="{
-              'is-danger': isImagePathInvalid,
-              'is-success': isImagePathValid
+              'is-danger': isPathInvalid,
+              'is-success': isPathValid
             }"
             class="file has-name is-fullwidth"
           >
@@ -17,7 +17,7 @@
               <input
                 class="file-input"
                 type="file"
-                [accept]="this.validFileTypes"
+                [accept]="fileTypes"
                 (change)="uploadImage($event)"
               />
               <span class="file-cta">
@@ -27,13 +27,13 @@
                 <span class="file-label"> Choose an image </span>
               </span>
               <span class="file-name">
-                {{ imagePathControl.value }}
+                {{ pathControl.value }}
               </span>
             </label>
           </div>
         </div>
-        <p *ngIf="isImagePathInvalid" class="help is-danger">
-          Image is required! Accepted file types: {{ validFileTypes }}
+        <p *ngIf="isPathInvalid" class="help is-danger">
+          Image is required! Accepted file types: {{ fileTypes }}
         </p>
       </div>
     </div>
