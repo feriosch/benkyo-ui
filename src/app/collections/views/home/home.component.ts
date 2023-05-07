@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from '../../services/collections.service';
@@ -9,7 +8,6 @@ import { CollectionsResponse } from 'src/models/collections/responses.model';
 @Component({
   selector: 'app-collections-home-view',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
 })
 export class CollectionsHomeViewComponent implements OnInit {
   collections: Collection[];
@@ -24,7 +22,7 @@ export class CollectionsHomeViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCollections();
-  } 
+  }
 
   getCollections(): void {
     this.collectionsService
@@ -34,7 +32,7 @@ export class CollectionsHomeViewComponent implements OnInit {
       });
   }
 
-  async navigateTo(route: string) {
-    await this.router.navigate([`./${route}`], { relativeTo: this.route });
+  async navigateToAdd() {
+    await this.router.navigate(['add'], { relativeTo: this.route });
   }
 }

@@ -9,9 +9,17 @@ import { Collection } from 'src/models/collections/collection.model';
 })
 export class CollectionCardComponent implements OnInit {
   @Input()
-  collection?: Collection;
+  collection!: Collection;
 
   constructor() {}
+
+  get imageUrl(): string {
+    return this.collection.image_url;
+  }
+
+  get printingName(): string {
+    return this.collection.printing_name;
+  }
 
   ngOnInit(): void {}
 }
