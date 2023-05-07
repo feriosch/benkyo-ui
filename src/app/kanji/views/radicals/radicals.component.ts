@@ -8,7 +8,6 @@ import { KanjiRadicalService } from '../../services/radicals.service';
 @Component({
   selector: 'app-kanji-radicals-view',
   templateUrl: './radicals.component.html',
-  styleUrls: ['./radicals.component.scss'],
 })
 export class KanjiRadicalsViewComponent implements OnInit {
   isComponentMode: boolean;

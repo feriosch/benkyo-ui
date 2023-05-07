@@ -11,7 +11,6 @@ import { UpdateKanjiService } from '../../services/update.service';
 @Component({
   selector: 'app-edit-kanji-view',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
 })
 export class EditKanjiViewComponent implements OnInit {
   id: string;

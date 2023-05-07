@@ -7,7 +7,6 @@ import { KanjiService } from '../../services/kanji.service';
 @Component({
   selector: 'app-kanji-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
 })
 export class KanjiHomeViewComponent implements OnInit {
   nextPageNumber: string;

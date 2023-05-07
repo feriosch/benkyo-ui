@@ -7,7 +7,6 @@ import { KanjiService } from '../../services/kanji.service';
 @Component({
   selector: 'app-kanji-detail-view',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
 })
 export class KanjiDetailViewComponent implements OnInit {
   private readonly id: string;
