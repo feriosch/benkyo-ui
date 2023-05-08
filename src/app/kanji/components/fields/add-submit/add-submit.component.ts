@@ -10,6 +10,9 @@ export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()
   form!: FormGroup;
 
+  @Input()
+  isLoading!: boolean;
+
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {}

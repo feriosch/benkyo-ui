@@ -6,7 +6,8 @@
         <div class="control">
           <div class="buttons">
             <button
-              [disabled]="form.invalid || form.pending"
+              [disabled]="form.invalid || form.pending || isLoading"
+              [ngClass]="{ 'is-loading': isLoading }"
               class="button is-primary"
               type="submit"
             >
