@@ -34,8 +34,4 @@ export class KanjiDetailViewComponent implements OnInit {
   async onClickEdit() {
     await this.router.navigate(['edit'], { relativeTo: this.route });
   }
-
-  async onClickBack() {
-    await this.router.navigateByUrl('/kanji');
-  }
 }

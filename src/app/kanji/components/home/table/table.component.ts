@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   AgGridEvent,
   ColDef,
   GridOptions,
-  RowDoubleClickedEvent,
+  RowClickedEvent,
 } from 'ag-grid-community';
 
 import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
@@ -16,19 +15,19 @@ import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
 })
 export class KanjiHomeTableComponent implements OnInit {
   @Input()
-  kanjis?: SummarizedKanji[];
+  kanjis!: SummarizedKanji[];
 
   @Input()
-  currentPage?: number;
+  currentPage!: number;
 
   @Input()
-  totalPages?: number;
+  totalPages!: number;
 
   @Input()
-  totalKanjis?: number;
+  totalKanjis!: number;
 
   @Input()
-  isKanjiFetchLoading?: boolean;
+  isKanjiFetchLoading!: boolean;
 
   @Output()
   clickedPreviousPage: EventEmitter<any>;
@@ -46,7 +45,7 @@ export class KanjiHomeTableComponent implements OnInit {
   gridOptions: GridOptions;
   rowHeight: number;
 
-  constructor(private router: Router) {
+  constructor() {
     this.clickedPreviousPage = new EventEmitter();
     this.clickedNextPage = new EventEmitter();
     this.clickedFirstPage = new EventEmitter();
@@ -91,11 +90,11 @@ export class KanjiHomeTableComponent implements OnInit {
   ngOnInit(): void {}
 
   isBackwardPossible(): boolean {
-    return this.currentPage! > 1 && !this.isKanjiFetchLoading!;
+    return this.currentPage > 1 && !this.isKanjiFetchLoading;
   }
 
   isForwardPossible(): boolean {
-    return this.currentPage! < this.totalPages! && !this.isKanjiFetchLoading!;
+    return this.currentPage < this.totalPages && !this.isKanjiFetchLoading;
   }
 
   onClickPreviousPage(): void {
@@ -114,11 +113,11 @@ export class KanjiHomeTableComponent implements OnInit {
     if (this.isForwardPossible()) this.clickedLastPage.emit();
   }
 
-  onGridReady(params: AgGridEvent) {
+  onGridReady(params: AgGridEvent): void {
     params.api.sizeColumnsToFit();
   }
 
-  async onRowClicked(event: RowDoubleClickedEvent) {
-    await this.router.navigateByUrl(`kanji/detail/${event.data.id}`);
+  onRowClicked(event: RowClickedEvent): void {
+    window.open(`kanji/detail/${event.data.id}`);
   }
 }
