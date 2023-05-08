@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { KanjiAddIrregularComponentBody } from 'src/models/kanji/components/irregular.model';
 import { KanjiAddIrregularComponentResponse } from 'src/models/kanji/components/responses.model';
-import { NotificationService } from 'src/app/shared/notification.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { AddIrregularComponentService } from 'src/app/kanji/services/forms/component.service';
 
 @Component({
@@ -11,14 +11,17 @@ import { AddIrregularComponentService } from 'src/app/kanji/services/forms/compo
   templateUrl: './add-modal.component.html',
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
-  isOpen: boolean;
   form: FormGroup;
+  isOpen: boolean;
+  isSubmitting: boolean;
+
+  @Output()
+  componentAdded: EventEmitter<null>;
 
   constructor(
     private addService: AddIrregularComponentService,
     private notificationService: NotificationService
   ) {
-    this.isOpen = false;
     this.form = new FormGroup({
       component: new FormControl(null, [Validators.required]),
       radicals: new FormArray([]),
@@ -27,6 +30,9 @@ export class KanjiIrregularComponentsAddModalComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       this.radicalsArray.push(new FormControl(null));
     }
+    this.isOpen = false;
+    this.isSubmitting = false;
+    this.componentAdded = new EventEmitter();
   }
 
   get componentControl(): FormControl {
@@ -52,6 +58,7 @@ export class KanjiIrregularComponentsAddModalComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isSubmitting = true;
     const addComponentBody: KanjiAddIrregularComponentBody =
       this.addService.transform(this.form.value);
 
@@ -59,11 +66,13 @@ export class KanjiIrregularComponentsAddModalComponent implements OnInit {
       (_response: KanjiAddIrregularComponentResponse) => {
         this.form.reset();
         this.closeModal();
-        this.addService.toastSuccess();
+        this.componentAdded.emit();
+        this.notificationService.toastSuccess(
+          `Irregular component created successfully!`
+        );
       },
-      (error) => {
-        this.notificationService.toastErrorNotification(error.error.error);
-      }
+      (error) => this.notificationService.toastError(error.error.error),
+      () => (this.isSubmitting = false)
     );
   }
 }

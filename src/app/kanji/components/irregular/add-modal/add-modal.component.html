@@ -43,7 +43,8 @@
       </section>
       <footer class="modal-card-foot">
         <button
-          [disabled]="form.invalid || form.pending"
+          [ngClass]="{ 'is-loading': isSubmitting }"
+          [disabled]="form.invalid || form.pending || isSubmitting"
           class="button is-info"
           type="submit"
         >

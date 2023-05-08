@@ -13,5 +13,8 @@
   </app-kanji-irregular-components-tags>
 </div>
 
-<app-kanji-irregular-components-add-modal #addModal>
+<app-kanji-irregular-components-add-modal
+  (componentAdded)="getComponents()"
+  #addModal
+>
 </app-kanji-irregular-components-add-modal>

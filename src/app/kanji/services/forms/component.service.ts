@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {
-  DialogLayoutDisplay,
-  ToastNotificationInitializer,
-  ToastPositionEnum,
-  ToastProgressBarEnum,
-  ToastUserViewTypeEnum,
-} from '@costlydeveloper/ngx-awesome-popup';
 
 import { environment } from 'src/environments/environment';
 import { KanjiAddIrregularComponentBody } from 'src/models/kanji/components/irregular.model';
@@ -43,21 +36,5 @@ export class AddIrregularComponentService {
       this.irregularComponentsUrl,
       body
     );
-  }
-
-  toastSuccess(): void {
-    const notification = new ToastNotificationInitializer();
-    notification.setTitle('Success!');
-    notification.setMessage('Irregular component created successfully!');
-
-    notification.setConfig({
-      AutoCloseDelay: 3000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
-    });
-
-    notification.openToastNotification$();
   }
 }
