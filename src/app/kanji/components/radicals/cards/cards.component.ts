@@ -14,4 +14,8 @@ export class KanjiRadicalsCardsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  openLink(id: string): void {
+    window.open(`kanji/detail/${id}`);
+  }
 }
