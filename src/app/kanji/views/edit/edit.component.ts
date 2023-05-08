@@ -5,6 +5,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FullKanji } from 'src/models/kanji/kanji.model';
 import { UpdateRequest } from 'src/models/kanji/requests.model';
 import { FormService } from 'src/app/shared/services/form.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { KanjiService } from '../../services/kanji.service';
 import { UpdateKanjiService } from '../../services/update.service';
 
@@ -21,6 +22,7 @@ export class EditKanjiViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formService: FormService,
+    private notificationService: NotificationService,
     private kanjiService: KanjiService,
     private updateService: UpdateKanjiService
   ) {
@@ -76,13 +78,20 @@ export class EditKanjiViewComponent implements OnInit {
       this.id,
       this.form
     );
+    this.isLoading = true;
     this.updateService.updateWord(requestBody).subscribe(
-      async (_response) => {
+      async (_response: boolean) => {
         await this.router.navigate(['../'], { relativeTo: this.route });
-        console.log(_response);
+        this.notificationService.toastSuccess(
+          `Kanji ${this.id} succesfully edited.`
+        );
       },
       (error) => {
         console.log(error.error.error);
+        this.notificationService.toastError(error.error.error);
+      },
+      () => {
+        this.isLoading = false;
       }
     );
   }
