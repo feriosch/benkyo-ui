@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../../services/kanji.service';
@@ -9,14 +10,15 @@ import { KanjiService } from '../../services/kanji.service';
   templateUrl: './detail.component.html',
 })
 export class KanjiDetailViewComponent implements OnInit {
-  private readonly id: string;
+  id: string;
   // TODO: Loading is not working as expected
   isLoading: boolean;
   fullKanji?: Kanji | null;
+  v1?: number;
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
-    private router: Router,
     private kanjiService: KanjiService
   ) {
     this.isLoading = true;
@@ -27,11 +29,29 @@ export class KanjiDetailViewComponent implements OnInit {
     this.isLoading = true;
     this.kanjiService.getKanjiById(this.id).subscribe((response) => {
       this.fullKanji = response;
+      this.v1 = this.fullKanji!.v1;
       this.isLoading = false;
     });
   }
 
-  async onClickEdit() {
-    await this.router.navigate(['edit'], { relativeTo: this.route });
+  private loadKanji(): void {
+    this.kanjiService.getKanjiByV1(this.v1!).subscribe((response) => {
+      this.fullKanji = response;
+      this.id = response!.id;
+      this.location.replaceState(`kanji/detail/${this.id}`);
+      this.isLoading = false;
+    });
+  }
+
+  getPreviousKanji(): void {
+    this.isLoading = true;
+    this.v1! -= 1;
+    this.loadKanji();
+  }
+
+  getNextKanji(): void {
+    this.isLoading = true;
+    this.v1! += 1;
+    this.loadKanji();
   }
 }

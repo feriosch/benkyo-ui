@@ -88,4 +88,9 @@ export class KanjiService {
     let params = new HttpParams().append('kanji', kanji);
     return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });
   }
+
+  getKanjiByV1(v1: number): Observable<Kanji | null> {
+    let params = new HttpParams().append('v1', v1);
+    return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });
+  }
 }

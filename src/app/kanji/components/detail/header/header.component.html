@@ -1,0 +1,40 @@
+<div class="columns is-centered is-vcentered">
+  <div class="column is-3">
+    <button
+      [disabled]="isKanjiLoading"
+      (click)="onClickEdit()"
+      class="button is-fullwidth is-info"
+    >
+      Edit
+    </button>
+  </div>
+  <div class="column is-3">
+    <div class="columns is-mobile is-centered is-vcentered">
+      <div class="column is-3 has-text-centered">
+        <button
+          [disabled]="isFirstElement || isKanjiLoading"
+          (click)="onClickPrevious()"
+          class="button is-rounded is-info"
+        >
+          <span class="icon is-small">
+            <i class="fas fa-chevron-left"></i>
+          </span>
+        </button>
+      </div>
+      <div class="column is-3 has-text-centered">
+        <span class="has-text-weight-medium">{{ v1 }}</span>
+      </div>
+      <div class="column is-3 has-text-centered">
+        <button
+          [disabled]="isLastElement || isKanjiLoading"
+          (click)="onClickNext()"
+          class="button is-rounded is-info"
+        >
+          <span class="icon is-small">
+            <i class="fas fa-chevron-right"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

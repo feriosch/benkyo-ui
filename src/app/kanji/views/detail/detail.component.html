@@ -1,18 +1,18 @@
+<div class="container mx-6 mt-5">
+  <app-kanji-detail-header
+    [id]="id"
+    [v1]="v1!"
+    [isKanjiLoading]="isLoading"
+    (clickPrevious)="getPreviousKanji()"
+    (clickNext)="getNextKanji()"
+  ></app-kanji-detail-header>
+</div>
 <ng-template *ngIf="isLoading; else details">
   <div class="container mx-6 my-5">
     <h1>Loading...</h1>
   </div>
 </ng-template>
 <ng-template #details>
-  <div class="container mx-6 mt-5">
-    <div class="columns is-centered">
-      <div class="column is-3">
-        <button (click)="onClickEdit()" class="button is-fullwidth is-info">
-          Edit
-        </button>
-      </div>
-    </div>
-  </div>
   <div class="container mt-5">
     <app-kanji-detail-info
       [kanji]="fullKanji!.kanji"
