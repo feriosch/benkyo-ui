@@ -45,6 +45,7 @@ export class KanjiComponentService {
       params = params.append(parameter, component);
     });
 
+    params = params.append('order_field', 'v1');
     params = params.append('page_size', pageSize);
     params = params.append('page_number', pageNumber);
     params = params.append('compact', true);
