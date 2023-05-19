@@ -12,10 +12,12 @@ import { KanjisResponse } from 'src/models/responses/kanji/kanjis-response.model
 export class KanjiService {
   private readonly kanjisUrl: string;
   private readonly searchOneKanjiUrl: string;
+  private readonly kanjiCsvUrl: string;
 
   constructor(private http: HttpClient) {
     this.kanjisUrl = `${environment.backendUrl}/kanjis`;
     this.searchOneKanjiUrl = `${environment.backendUrl}/kanjis/search`;
+    this.kanjiCsvUrl = `${environment.backendUrl}/kanjis/csv`;
   }
 
   get pageSize(): number | null {
@@ -92,5 +94,9 @@ export class KanjiService {
   getKanjiByV1(v1: number): Observable<Kanji | null> {
     let params = new HttpParams().append('v1', v1);
     return this.http.get<Kanji | null>(this.searchOneKanjiUrl, { params });
+  }
+
+  getCSVFile(): Observable<any> {
+    return this.http.get(this.kanjiCsvUrl, { responseType: 'blob' });
   }
 }

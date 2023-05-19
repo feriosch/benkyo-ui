@@ -10,6 +10,7 @@ import { KanjiRadicalsViewComponent } from './views/radicals/radicals.component'
 import { EditKanjiViewComponent } from './views/edit/edit.component';
 import { KanjiIrregularComponentsViewComponent } from './views/irregular/irregular.component';
 import { KanjiHomeTableComponent } from './components/home/table/table.component';
+import { KanjiHomeCsvButtonComponent } from './components/home/csv-button/csv-button.component';
 import { KanjiDetailHeaderComponent } from './components/detail/header/header.component';
 import { KanjiDetailInfoComponent } from './components/detail/info/info.component';
 import { KanjiDetailRadicalsComponent } from './components/detail/radicals/radicals.component';
@@ -31,6 +32,7 @@ import { AddKanjiFormSubmitFieldComponent } from './components/fields/add-submit
     EditKanjiViewComponent,
     KanjiIrregularComponentsViewComponent,
     KanjiHomeTableComponent,
+    KanjiHomeCsvButtonComponent,
     KanjiDetailHeaderComponent,
     KanjiDetailInfoComponent,
     KanjiDetailRadicalsComponent,
