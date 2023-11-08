@@ -79,7 +79,7 @@ export class WordDetailsViewComponent implements OnInit {
         }
       }
       this.collectionsService
-        .getCollection(this.word?.from!)
+        .getCollection(this.word?.group!)
         .subscribe((response) => {
           this.collection = response;
         });

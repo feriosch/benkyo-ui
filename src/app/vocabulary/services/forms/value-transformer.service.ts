@@ -20,7 +20,7 @@ export class ValueTransformerService {
 
     const addWordBody: AddWordBody = {
       spanish: spanish!,
-      from: collection!,
+      group: collection!,
     };
 
     if (id) {

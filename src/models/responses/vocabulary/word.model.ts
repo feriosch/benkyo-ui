@@ -3,7 +3,7 @@ export interface Word {
   word: string;
   hiragana?: string;
   spanish: string;
-  from: string;
+  group: string;
   level: number;
   notes?: string;
   type: Type;

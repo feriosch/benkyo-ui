@@ -4,7 +4,7 @@ export interface AddWordBody {
   word_id?: string;
   word?: string;
   spanish?: string;
-  from?: string;
+  group?: string;
   hiragana?: string;
   word_type?: Type;
   tags?: Tags;

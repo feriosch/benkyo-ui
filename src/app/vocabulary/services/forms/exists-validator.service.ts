@@ -19,7 +19,7 @@ export class ExistsValidatorService implements AsyncValidator {
     return this.vocabularyService.searchWordByWord(control.value!).pipe(
       map((response) => {
         if (response != null) {
-          return { repeatedWord: response.from };
+          return { repeatedWord: response.group };
         }
         return null;
       }),

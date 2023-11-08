@@ -77,7 +77,7 @@ export class VocabularyService {
     let params = new HttpParams();
 
     if (this.collectionsService.currentCollection)
-      params = params.append('from', this.collectionsService.currentCollection);
+      params = params.append('group', this.collectionsService.currentCollection);
 
     if (this.filter) params = params.append('filter_by', this.filter);
     if (this.pageSize) params = params.append('page_size', this.pageSize);
@@ -110,7 +110,7 @@ export class VocabularyService {
   downloadCSVFile() {
     let params = new HttpParams();
     if (this.collectionsService.currentCollection)
-      params = params.append('from', this.collectionsService.currentCollection);
+      params = params.append('group', this.collectionsService.currentCollection);
     return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }
 }
