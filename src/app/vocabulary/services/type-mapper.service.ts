@@ -9,14 +9,14 @@ export class TypeMapperService {
   get frontendSubtypes(): FromBackendTypeMap {
     return {
       noun: 'noun',
-      suru_verb: 'suruVerb',
-      no_adjective: 'noAdjective',
-      na_adjective: 'naAdjective',
-      i_adjective: 'iAdjective',
-      adverb: 'adverb',
+      suru: 'suru',
+      no_adj: 'noAdj',
+      na_adj: 'naAdj',
+      i_adj: 'iAdj',
+      adv: 'adverb',
       verb: 'verb',
-      adjectival_noun: 'adjectivalNoun',
-      adverbial_noun: 'adverbialNoun',
+      adj_noun: 'adjNoun',
+      adv_noun: 'advNoun',
       counter: 'counter',
     };
   }
@@ -24,14 +24,14 @@ export class TypeMapperService {
   get backendSubtypes(): string[] {
     return [
       'noun',
-      'suru_verb',
-      'no_adjective',
-      'na_adjective',
-      'i_adjective',
-      'adverb',
+      'suru',
+      'no_adj',
+      'na_adj',
+      'i_adj',
+      'adv',
       'verb',
-      'adjectival_noun',
-      'adverbial_noun',
+      'adj_noun',
+      'adv_noun',
       'counter',
     ];
   }
@@ -40,21 +40,21 @@ export class TypeMapperService {
     switch (subType) {
       case 'noun':
         return '名';
-      case 'suruVerb':
+      case 'suru':
         return 'する';
-      case 'noAdjective':
+      case 'noAdj':
         return 'の形';
-      case 'naAdjective':
+      case 'naAdj':
         return 'な形';
-      case 'iAdjective':
+      case 'iAdj':
         return 'い形';
-      case 'adverb':
+      case 'adv':
         return '副';
       case 'verb':
         return '動';
-      case 'adjectivalNoun':
+      case 'adjNoun':
         return '名形';
-      case 'adverbialNoun':
+      case 'advNoun':
         return '副名';
       case 'counter':
         return '回';
@@ -67,21 +67,21 @@ export class TypeMapperService {
     switch (subType) {
       case 'noun':
         return '名';
-      case 'suru_verb':
+      case 'suru':
         return 'する';
-      case 'no_adjective':
+      case 'no_adj':
         return 'の形';
-      case 'na_adjective':
+      case 'na_adj':
         return 'な形';
-      case 'i_adjective':
+      case 'i_adj':
         return 'い形';
-      case 'adverb':
+      case 'adv':
         return '副';
       case 'verb':
         return '動';
-      case 'adjectival_noun':
+      case 'adj_noun':
         return '名形';
-      case 'adverbial_noun':
+      case 'adv_noun':
         return '副名';
       case 'counter':
         return '回';

@@ -7,7 +7,7 @@ export interface FromBackendTagsMap {
   intransitive: string;
   jlpt_n1: string;
   joyogai: string;
-  onomatopeic: string;
+  onomatopoeic: string;
   transitive: string;
   usually_kana: string;
 }

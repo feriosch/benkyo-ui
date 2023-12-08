@@ -1,12 +1,12 @@
 export interface FromBackendTypeMap {
   noun: string;
-  suru_verb: string;
-  no_adjective: string;
-  na_adjective: string;
-  i_adjective: string;
-  adverb: string;
+  suru: string;
+  no_adj: string;
+  na_adj: string;
+  i_adj: string;
+  adv: string;
   verb: string;
-  adjectival_noun: string;
-  adverbial_noun: string;
+  adj_noun: string;
+  adv_noun: string;
   counter: string;
 }

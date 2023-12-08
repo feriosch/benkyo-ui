@@ -36,31 +36,31 @@ export class ValueTransformerService {
       if (value.type.hasOwnProperty('noun')) {
         if (value.type.noun) type.noun = value.type.noun;
       }
-      if (value.type.hasOwnProperty('suruVerb')) {
-        if (value.type.suruVerb) type.suru_verb = value.type.suruVerb;
+      if (value.type.hasOwnProperty('suru')) {
+        if (value.type.suru) type.suru = value.type.suru;
       }
-      if (value.type.hasOwnProperty('noAdjective')) {
-        if (value.type.noAdjective) type.no_adjective = value.type.noAdjective;
+      if (value.type.hasOwnProperty('noAdj')) {
+        if (value.type.noAdj) type.no_adj = value.type.noAdj;
       }
-      if (value.type.hasOwnProperty('naAdjective')) {
-        if (value.type.naAdjective) type.na_adjective = value.type.naAdjective;
+      if (value.type.hasOwnProperty('naAdj')) {
+        if (value.type.naAdj) type.na_adj = value.type.naAdj;
       }
-      if (value.type.hasOwnProperty('iAdjective')) {
-        if (value.type.iAdjective) type.i_adjective = value.type.iAdjective;
+      if (value.type.hasOwnProperty('iAdj')) {
+        if (value.type.iAdj) type.i_adj = value.type.iAdj;
       }
-      if (value.type.hasOwnProperty('adverb')) {
-        if (value.type.adverb) type.adverb = value.type.adverb;
+      if (value.type.hasOwnProperty('adv')) {
+        if (value.type.adv) type.adv = value.type.adv;
       }
       if (value.type.hasOwnProperty('verb')) {
         if (value.type.verb) type.verb = value.type.verb;
       }
-      if (value.type.hasOwnProperty('adjectivalNoun')) {
-        if (value.type.adjectivalNoun)
-          type.adjectival_noun = value.type.adjectivalNoun;
+      if (value.type.hasOwnProperty('adjNoun')) {
+        if (value.type.adjNoun)
+          type.adj_noun = value.type.adjNoun;
       }
-      if (value.type.hasOwnProperty('adverbialNoun')) {
-        if (value.type.adverbialNoun)
-          type.adverbial_noun = value.type.adverbialNoun;
+      if (value.type.hasOwnProperty('advNoun')) {
+        if (value.type.advNoun)
+          type.adv_noun = value.type.advNoun;
       }
       if (value.type.hasOwnProperty('counter')) {
         if (value.type.counter) type.counter = value.type.counter;
@@ -99,7 +99,7 @@ export class ValueTransformerService {
         if (value.tags.notJoyo) tags.joyogai = true;
       }
       if (value.tags.hasOwnProperty('onomatopoeic')) {
-        if (value.tags.onomatopoeic) tags.onomatopeic = true;
+        if (value.tags.onomatopoeic) tags.onomatopoeic = true;
       }
       if (value.tags.hasOwnProperty('transitive')) {
         if (value.tags.transitive) tags.transitive = true;

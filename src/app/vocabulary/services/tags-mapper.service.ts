@@ -14,7 +14,7 @@ export class TagsMapperService {
       intransitive: 'intransitive',
       jlpt_n1: 'jlptN1',
       joyogai: 'notJoyo',
-      onomatopeic: 'onomatopoeic',
+      onomatopoeic: 'onomatopoeic',
       transitive: 'transitive',
       usually_kana: 'usuallyKana',
     };
@@ -67,7 +67,7 @@ export class TagsMapperService {
         return 'JLPT N1';
       case 'joyogai':
         return 'Not Joyo';
-      case 'onomatopeic':
+      case 'onomatopoeic':
         return 'Onomatopoeic';
       case 'transitive':
         return 'Transitive';

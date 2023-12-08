@@ -4,7 +4,6 @@ export interface Word {
   hiragana?: string;
   spanish: string;
   group: string;
-  level: number;
   notes?: string;
   type: Type;
   tags?: Tags;
@@ -13,14 +12,14 @@ export interface Word {
 
 export interface Type {
   noun?: number;
-  suru_verb?: number;
-  no_adjective?: number;
-  na_adjective?: number;
-  i_adjective?: number;
-  adverb?: number;
+  suru?: number;
+  no_adj?: number;
+  na_adj?: number;
+  i_adj?: number;
+  adv?: number;
   verb?: number;
-  adjectival_noun?: number;
-  adverbial_noun?: number;
+  adj_noun?: number;
+  adv_noun?: number;
   counter?: number;
 }
 
@@ -33,7 +32,7 @@ export interface Tags {
   intransitive?: boolean;
   jlpt_n1?: boolean;
   joyogai?: boolean;
-  onomatopeic?: boolean;
+  onomatopoeic?: boolean;
   transitive?: boolean;
   usually_kana?: boolean;
 }
