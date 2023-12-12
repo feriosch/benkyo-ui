@@ -5,7 +5,6 @@ import { VocabularyCsvService } from 'src/app/vocabulary/services/csv.service';
 @Component({
   selector: 'app-vocabulary-csv-button',
   templateUrl: './csv-button.component.html',
-  styleUrls: ['./csv-button.component.scss'],
 })
 export class WordCsvButtonComponent implements OnInit {
   @Input()
