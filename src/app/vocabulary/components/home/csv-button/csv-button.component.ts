@@ -4,11 +4,11 @@ import * as fileSaver from 'file-saver';
 import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
 
 @Component({
-  selector: 'app-csv-button',
+  selector: 'app-vocabulary-csv-button',
   templateUrl: './csv-button.component.html',
   styleUrls: ['./csv-button.component.scss'],
 })
-export class CsvButtonComponent implements OnInit {
+export class WordCsvButtonComponent implements OnInit {
   @Input()
   currentSelection?: string | null;
 

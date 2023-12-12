@@ -12,7 +12,8 @@ import { EditWordViewComponent } from './views/edit/edit.component';
 import { WordTableComponent } from './components/home/table/table.component';
 import { CollectionCardComponent } from './components/home/collection-card/collection-card.component';
 import { KanjiModalComponent } from './components/details/kanji-modal/kanji-modal.component';
-import { CsvButtonComponent } from './components/home/csv-button/csv-button.component';
+import { WordCsvButtonComponent } from './components/home/csv-button/csv-button.component';
+import { WordCsvJlptButtonComponent } from './components/home/csv-jlpt-button/csv-jlpt-button.component';
 import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
 import { AddWordFormTypeFieldComponent } from './components/add/fields/type/type.component';
@@ -33,7 +34,8 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
     WordTableComponent,
     CollectionCardComponent,
     KanjiModalComponent,
-    CsvButtonComponent,
+    WordCsvButtonComponent,
+    WordCsvJlptButtonComponent,
     AddWordFormComponent,
     AddWordFormWordFieldComponent,
     AddWordFormTypeFieldComponent,
