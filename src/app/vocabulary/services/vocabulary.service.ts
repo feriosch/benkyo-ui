@@ -13,7 +13,6 @@ import { CollectionsService } from 'src/app/collections/services/collections.ser
 export class VocabularyService {
   private readonly wordsUrl: string;
   private readonly searchOneWordUrl: string;
-  private readonly wordsCsvUrl: string;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +20,6 @@ export class VocabularyService {
   ) {
     this.wordsUrl = `${environment.backendUrl}/words`;
     this.searchOneWordUrl = `${this.wordsUrl}/search`;
-    this.wordsCsvUrl = `${this.wordsUrl}/csv`;
   }
 
   get pageSize(): number | null {
@@ -105,12 +103,5 @@ export class VocabularyService {
   getWordById(id: string): Observable<Word | null> {
     let params = new HttpParams().append('word_id', id);
     return this.http.get<Word | null>(this.searchOneWordUrl, { params });
-  }
-
-  downloadCSVFile() {
-    let params = new HttpParams();
-    if (this.collectionsService.currentCollection)
-      params = params.append('group', this.collectionsService.currentCollection);
-    return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }
 }

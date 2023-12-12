@@ -1,6 +1,10 @@
-<button class="button is-info">
+<button
+  class="button is-info"
+  [disabled]="isLoading"
+  (click)="downloadJlptCsvFile()"
+>
   <span class="icon is-small is-right mr-1">
-    <i class="fas fa-download"></i>
+    <i class="fas fa-pen-square"></i>
   </span>
   JLPT
 </button>
