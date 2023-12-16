@@ -4,6 +4,7 @@ export interface SummarizedWord {
   hiragana?: string;
   spanish: string;
   from: string;
+  tags?: string;
 }
 
 export interface WordsResponse {

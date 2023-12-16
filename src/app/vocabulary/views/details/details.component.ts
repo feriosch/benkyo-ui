@@ -73,10 +73,8 @@ export class WordDetailsViewComponent implements OnInit {
   ngOnInit(): void {
     this.vocabularyService.getWordById(this.id).subscribe((response) => {
       this.word = response;
-      if (this.word?.tags) {
-        for (const [key] of Object.entries(this.word?.tags)) {
-          this.tags.push(key);
-        }
+      if (this.word!.tags) {
+        this.tags = this.word!.tags
       }
       this.collectionsService
         .getCollection(this.word?.group!)

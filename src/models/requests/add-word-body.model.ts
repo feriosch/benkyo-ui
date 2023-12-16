@@ -1,4 +1,4 @@
-import { Sentence, Tags, Type } from '../responses/vocabulary/word.model';
+import { Sentence, Type } from '../responses/vocabulary/word.model';
 
 export interface AddWordBody {
   word_id?: string;
@@ -7,7 +7,7 @@ export interface AddWordBody {
   group?: string;
   hiragana?: string;
   word_type?: Type;
-  tags?: Tags;
+  tags?: string[];
   sentences?: Sentence[];
   notes?: string;
 }

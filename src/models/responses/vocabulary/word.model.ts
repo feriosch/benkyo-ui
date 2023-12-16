@@ -6,7 +6,7 @@ export interface Word {
   group: string;
   notes?: string;
   type: Type;
-  tags?: Tags;
+  tags?: string[];
   sentences?: Sentence[];
 }
 
@@ -21,20 +21,6 @@ export interface Type {
   adj_noun?: number;
   adv_noun?: number;
   counter?: number;
-}
-
-export interface Tags {
-  ateji?: boolean;
-  common?: boolean;
-  expression?: boolean;
-  honorific?: boolean;
-  humble?: boolean;
-  intransitive?: boolean;
-  jlpt_n1?: boolean;
-  joyogai?: boolean;
-  onomatopoeic?: boolean;
-  transitive?: boolean;
-  usually_kana?: boolean;
 }
 
 export interface Sentence {
