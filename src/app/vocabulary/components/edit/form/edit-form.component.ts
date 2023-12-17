@@ -121,11 +121,7 @@ export class EditWordFormComponent implements OnInit {
   }
 
   initializeTagControls(): void {
-    const backendTags: string[] = [];
-    for (const [key] of Object.entries(this.fullWord!.tags!))
-      backendTags.push(key);
-
-    backendTags.forEach((backendTag: string) => {
+    this.fullWord!.tags!.forEach((backendTag: string) => {
       const frontendTag: string =
         this.tagsMapperService.frontendTags[
           backendTag as keyof FromBackendTagsMap
