@@ -16,6 +16,7 @@ import { WordCsvButtonComponent } from './components/home/csv-button/csv-button.
 import { WordCsvJlptButtonComponent } from './components/home/csv-jlpt-button/csv-jlpt-button.component';
 import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
+import { AddWordFormSpanishFieldComponent } from './components/add/fields/spanish/spanish.component';
 import { AddWordFormTypeFieldComponent } from './components/add/fields/type/type.component';
 import { AddWordFormTagsFieldComponent } from './components/add/fields/tags/tags.component';
 import { AddWordFormNotesFieldComponent } from './components/add/fields/notes/notes.component';
@@ -38,6 +39,7 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
     WordCsvJlptButtonComponent,
     AddWordFormComponent,
     AddWordFormWordFieldComponent,
+    AddWordFormSpanishFieldComponent,
     AddWordFormTypeFieldComponent,
     AddWordFormTagsFieldComponent,
     AddWordFormNotesFieldComponent,

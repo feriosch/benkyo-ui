@@ -16,10 +16,6 @@ export class AddWordFormWordFieldComponent implements OnInit {
     return this.formGroup!.get('word');
   }
 
-  get spanishControl() {
-    return this.formGroup!.get('spanish');
-  }
-
   isWordRepeated(): boolean {
     if (this.wordControl!.errors) {
       return this.wordControl!.errors!.hasOwnProperty('repeatedWord');

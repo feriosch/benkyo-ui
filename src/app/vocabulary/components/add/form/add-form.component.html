@@ -1,6 +1,8 @@
 <form [formGroup]="addWordForm" (ngSubmit)="onSubmit()" class="box">
   <app-add-word-form-word-field [formGroup]="addWordForm">
   </app-add-word-form-word-field>
+  <app-add-word-form-spanish-field [formGroup]="addWordForm">
+  </app-add-word-form-spanish-field>
   <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
   </app-add-word-form-type-field>
   <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">

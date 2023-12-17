@@ -44,30 +44,4 @@
       </div>
     </div>
   </div>
-  <div class="field is-horizontal">
-    <div class="field-label">
-      <label class="label">Spanish</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="control">
-          <input
-            [ngClass]="{
-              'is-danger': spanishControl!.touched && spanishControl!.invalid
-            }"
-            formControlName="spanish"
-            class="input"
-            type="text"
-            placeholder="Enter Spanish translation"
-          />
-        </div>
-        <p
-          *ngIf="spanishControl!.touched && spanishControl!.invalid"
-          class="help is-danger"
-        >
-          Spanish translation is required!
-        </p>
-      </div>
-    </div>
-  </div>
 </ng-container>

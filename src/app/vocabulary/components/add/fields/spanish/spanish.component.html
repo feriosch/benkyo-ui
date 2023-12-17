@@ -1,0 +1,37 @@
+<ng-container [formGroup]="formGroup!">
+  <div class="field has-addons mt-4">
+    <div class="field-label">
+      <label class="label">Spanish</label>
+    </div>
+    <div class="field-body">
+      <div class="field is-grouped">
+        <div class="control is-expanded">
+          <input
+            [ngClass]="{
+              'is-danger': spanishControl!.touched && spanishControl!.invalid
+            }"
+            formControlName="spanish"
+            class="input"
+            type="text"
+            placeholder="Enter Spanish translation"
+          />
+        </div>
+        <p
+          *ngIf="spanishControl!.touched && spanishControl!.invalid"
+          class="help is-danger mr-3"
+        >
+          Spanish translation is required!
+        </p>
+        <div class="control">
+          <button
+            class="button is-info is-light"
+            type="button"
+            (click)="addSpanishN()"
+          >
+            ñ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
