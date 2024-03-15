@@ -4,14 +4,24 @@
       <label class="label">Notes</label>
     </div>
     <div class="field-body">
-      <div class="field">
-        <div class="control">
+      <div class="field is-grouped">
+        <div class="control is-expanded">
           <input
             formControlName="notes"
             class="input"
             type="text"
             placeholder="Enter notes (Optional)"
           />
+        </div>
+        <div class="control">
+          <button
+            class="button is-info is-light"
+            type="button"
+            [disabled]="isSpanishNDisabled"
+            (click)="addSpanishN()"
+          >
+            ñ
+          </button>
         </div>
       </div>
     </div>
