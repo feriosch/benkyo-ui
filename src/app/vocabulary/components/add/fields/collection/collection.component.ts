@@ -14,6 +14,9 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()
   formGroup?: FormGroup;
 
+  @Input()
+  currentGroup?: string;
+
   collections?: Collection[];
 
   constructor(private collectionsService: CollectionsService) {}
@@ -29,12 +32,21 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   getCollections(): void {
     this.collectionsService
       .getCollections()
-      .subscribe((response: CollectionsResponse) => {
+      .toPromise()
+      .then((response: CollectionsResponse) => {
         this.collections = response.collections;
         if (this.collections.length > 0) {
-          this.collectionControl!.patchValue(
+          this.collectionControl.patchValue(
             this.collections[0].collection_name
           );
+        }
+      })
+      .then(() => {
+        if (this.currentGroup) {
+          this.collections?.forEach((collection: Collection) => {
+            if (collection.collection_name === this.currentGroup)
+              this.collectionControl.patchValue(collection.collection_name);
+          });
         }
       });
   }

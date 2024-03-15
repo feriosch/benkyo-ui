@@ -10,7 +10,10 @@
   </app-add-word-form-tags-field>
   <app-add-word-form-notes-field [formGroup]="editWordForm">
   </app-add-word-form-notes-field>
-  <app-add-word-form-collection-field [formGroup]="editWordForm">
+  <app-add-word-form-collection-field
+    [formGroup]="editWordForm"
+    [currentGroup]="fullWord!.group"
+  >
   </app-add-word-form-collection-field>
   <app-add-word-form-sentences-field
     [formGroup]="editWordForm"

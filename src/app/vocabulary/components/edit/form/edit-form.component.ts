@@ -80,7 +80,6 @@ export class EditWordFormComponent implements OnInit {
     this.initializeBasicControls();
     this.initializeTypeControls();
     if (this.fullWord!.tags) this.initializeTagControls();
-    this.initializeCollections();
     if (this.fullWord!.sentences) this.initializeSentenceControls();
   }
 
@@ -133,18 +132,6 @@ export class EditWordFormComponent implements OnInit {
 
       if (tagControl) tagControl.setValue(true);
     });
-  }
-
-  initializeCollections(): void {
-    this.collectionsService
-      .getCollections()
-      .subscribe((response: CollectionsResponse) => {
-        this.collections = response.collections;
-        if (this.collections.length > 0) {
-          const collectionControl = this.getFormControl('collection')!;
-          collectionControl.patchValue(this.collections[0].collection_name);
-        }
-      });
   }
 
   initializeSentenceControls(): void {

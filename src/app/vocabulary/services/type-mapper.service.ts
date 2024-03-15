@@ -13,7 +13,7 @@ export class TypeMapperService {
       no_adj: 'noAdj',
       na_adj: 'naAdj',
       i_adj: 'iAdj',
-      adv: 'adverb',
+      adv: 'adv',
       verb: 'verb',
       adj_noun: 'adjNoun',
       adv_noun: 'advNoun',
