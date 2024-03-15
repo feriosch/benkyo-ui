@@ -1,4 +1,9 @@
-<form [formGroup]="editWordForm" (ngSubmit)="onSubmit()" class="box">
+<form
+  [formGroup]="editWordForm"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="$event.preventDefault()"
+  class="box"
+>
   <app-edit-word-form-word-field
     [formGroup]="editWordForm"
     [word]="fullWord!.word"

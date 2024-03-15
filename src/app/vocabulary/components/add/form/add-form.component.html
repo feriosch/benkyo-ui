@@ -1,4 +1,9 @@
-<form [formGroup]="addWordForm" (ngSubmit)="onSubmit()" class="box">
+<form
+  [formGroup]="addWordForm"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="$event.preventDefault()"
+  class="box"
+>
   <app-add-word-form-word-field [formGroup]="addWordForm">
   </app-add-word-form-word-field>
   <app-add-word-form-spanish-field [formGroup]="addWordForm">
