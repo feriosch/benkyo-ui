@@ -6,7 +6,9 @@ It allows me to keep track of my progress, where I can create and store vocabula
 
 ## Demo
 
-If the video is not available in this file, you can check the demo in Google Cloud [here](https://storage.googleapis.com/benkyo/github/demo1.mp4).
+If the demo video is not available in Github, you can check the demo in Google Cloud [here](https://storage.googleapis.com/benkyo/github/demo1.mp4).
+
+https://github.com/feriosch/benkyo-ui/assets/47795404/92e5086e-af76-48f4-8235-3fe701b32f6a
 
 ## Words
 
