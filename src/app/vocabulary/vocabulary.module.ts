@@ -17,6 +17,7 @@ import { WordCsvJlptButtonComponent } from './components/home/csv-jlpt-button/cs
 import { WordDetailsMainInfoComponent } from './components/details/main-info/main-info.component';
 import { WordDetailsTypeTableComponent } from './components/details/type-table/type-table.component';
 import { WordDetailsTagsComponent } from './components/details/tags/tags.component';
+import { WordDetailsDeleteModalComponent } from './components/details/delete-modal/delete-modal.component';
 import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
 import { AddWordFormSpanishFieldComponent } from './components/add/fields/spanish/spanish.component';
@@ -43,6 +44,7 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
     WordDetailsMainInfoComponent,
     WordDetailsTypeTableComponent,
     WordDetailsTagsComponent,
+    WordDetailsDeleteModalComponent,
     AddWordFormComponent,
     AddWordFormWordFieldComponent,
     AddWordFormSpanishFieldComponent,

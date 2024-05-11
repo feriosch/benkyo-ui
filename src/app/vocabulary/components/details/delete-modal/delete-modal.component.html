@@ -1,0 +1,18 @@
+<div [ngClass]="{ 'is-active': isActive }" class="modal">
+  <div (click)="closeModal()" class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Delete word <b>{{ word }}</b>?</p>
+    </header>
+    <section class="modal-card-body">
+      <div class="buttons">
+        <button (click)="closeModal()" class="button is-info">
+          Cancel
+        </button>
+        <button (click)="onClickDelete()" class="button is-danger">
+          Delete
+        </button>
+      </div>
+    </section>
+  </div>
+</div>

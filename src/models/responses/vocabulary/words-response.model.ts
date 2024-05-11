@@ -13,3 +13,7 @@ export interface WordsResponse {
   total_words: number;
   words: SummarizedWord[];
 }
+
+export interface DeletedResponse {
+  id: string;
+}

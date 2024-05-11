@@ -6,7 +6,10 @@ import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Word } from 'src/models/responses/vocabulary/word.model';
-import { WordsResponse } from 'src/models/responses/vocabulary/words-response.model';
+import {
+  DeletedResponse,
+  WordsResponse,
+} from 'src/models/responses/vocabulary/words-response.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 
 @Injectable({ providedIn: 'root' })
@@ -16,7 +19,7 @@ export class VocabularyService {
 
   constructor(
     private http: HttpClient,
-    private collectionsService: CollectionsService
+    private collectionsService: CollectionsService,
   ) {
     this.wordsUrl = `${environment.backendUrl}/words`;
     this.searchOneWordUrl = `${this.wordsUrl}/search`;
@@ -70,12 +73,15 @@ export class VocabularyService {
 
   getWords(
     orderField?: OrderField | null,
-    orderDirection?: OrderDirection | null
+    orderDirection?: OrderDirection | null,
   ): Observable<WordsResponse> {
     let params = new HttpParams();
 
     if (this.collectionsService.currentCollection)
-      params = params.append('group', this.collectionsService.currentCollection);
+      params = params.append(
+        'group',
+        this.collectionsService.currentCollection,
+      );
 
     if (this.filter) params = params.append('filter_by', this.filter);
     if (this.pageSize) params = params.append('page_size', this.pageSize);
@@ -85,6 +91,11 @@ export class VocabularyService {
       params = params.append('order_direction', orderDirection);
 
     return this.http.get<WordsResponse>(this.wordsUrl, { params });
+  }
+
+  getWordById(id: string): Observable<Word | null> {
+    let params = new HttpParams().append('word_id', id);
+    return this.http.get<Word | null>(this.searchOneWordUrl, { params });
   }
 
   searchWordByWord(word: string): Observable<Word | null> {
@@ -100,8 +111,8 @@ export class VocabularyService {
     return this.http.put(this.wordsUrl, body);
   }
 
-  getWordById(id: string): Observable<Word | null> {
+  deleteWord(id: string): Observable<DeletedResponse> {
     let params = new HttpParams().append('word_id', id);
-    return this.http.get<Word | null>(this.searchOneWordUrl, { params });
+    return this.http.delete<DeletedResponse>(this.wordsUrl, { params });
   }
 }
