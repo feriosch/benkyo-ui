@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Word } from 'src/models/responses/vocabulary/word.model';
@@ -7,7 +7,6 @@ import { CollectionsService } from 'src/app/collections/services/collections.ser
 import { VocabularyService } from '../../services/vocabulary.service';
 import { TypeMapperService } from '../../services/type-mapper.service';
 import { TagsMapperService } from '../../services/tags-mapper.service';
-import { KanjiModalComponent } from '../../components/details/kanji-modal/kanji-modal.component';
 
 @Component({
   selector: 'app-word-details-view',
@@ -20,10 +19,6 @@ export class WordDetailsViewComponent implements OnInit {
   collection?: Collection;
   subtypes: string[];
   tags: string[];
-  selectedKanji: string | null;
-
-  @ViewChild('kanjiModal')
-  kanjiModal!: KanjiModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,12 +26,11 @@ export class WordDetailsViewComponent implements OnInit {
     private collectionsService: CollectionsService,
     private vocabularyService: VocabularyService,
     private typeMapperService: TypeMapperService,
-    private tagMapperService: TagsMapperService
+    private tagMapperService: TagsMapperService,
   ) {
     this.id = this.route.snapshot.params['id'];
     this.subtypes = this.typeMapperService.backendSubtypes;
     this.tags = [];
-    this.selectedKanji = null;
   }
 
   getCellValue(name: string): number {
@@ -65,16 +59,11 @@ export class WordDetailsViewComponent implements OnInit {
     await this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
-  onClickCharacter(character: string): void {
-    this.selectedKanji = character;
-    this.kanjiModal.openModal();
-  }
-
   ngOnInit(): void {
     this.vocabularyService.getWordById(this.id).subscribe((response) => {
       this.word = response;
       if (this.word!.tags) {
-        this.tags = this.word!.tags
+        this.tags = this.word!.tags;
       }
       this.collectionsService
         .getCollection(this.word?.group!)

@@ -4,46 +4,10 @@
       Back To Words
     </button>
   </div>
-  <div class="tile is-ancestor">
-    <div class="tile is-vertical">
-      <div class="tile">
-        <div class="tile is-parent is-9 is-vertical">
-          <div class="tile is-child has-text-centered-mobile">
-            <span
-              *ngFor="let character of word?.word?.split('')"
-              (click)="onClickCharacter(character)"
-              class="title is-1 is-inline-block character"
-            >
-              {{ character }}
-            </span>
-            <span *ngIf="word?.hiragana" class="subtitle is-3 ml-4">
-              ( {{ word?.hiragana }} )
-            </span>
-          </div>
-          <div class="tile is-child has-text-centered-mobile">
-            <p class="subtitle is-2">
-              {{ word?.spanish }}
-            </p>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <div *ngIf="collection" class="tile is-child has-text-centered">
-            <p class="title is-4">
-              {{ collection.printing_name }}
-            </p>
-            <figure
-              class="image is-96x96 is-inline-block"
-              id="collection-figure"
-            >
-              <img
-                [src]="collection!.image_url"
-                [alt]="collection!.printing_name"
-              />
-            </figure>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div *ngIf="word && collection">
+    <app-word-details-main-info [word]="word!.word" [hiragana]="word!.hiragana"
+                                [spanish]="word!.spanish" [collection]="collection">
+    </app-word-details-main-info>
   </div>
   <div class="columns is-centered is-mobile is-multiline">
     <div *ngFor="let subtype of subtypes" class="column has-text-centered">
@@ -100,4 +64,3 @@
     </div>
   </div>
 </div>
-<app-kanji-modal #kanjiModal [character]="selectedKanji"> </app-kanji-modal>

@@ -25,6 +25,7 @@ import { AddWordFormSentencesFieldComponent } from './components/add/fields/sent
 import { AddWordFormSubmitFieldComponent } from './components/add/fields/submit/submit.component';
 import { EditWordFormComponent } from './components/edit/form/edit-form.component';
 import { EditWordFormWordFieldComponent } from './components/edit/fields/word/word.component';
+import { WordDetailsMainInfoComponent } from './components/details/main-info/main-info.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
     KanjiModalComponent,
     WordCsvButtonComponent,
     WordCsvJlptButtonComponent,
+    WordDetailsMainInfoComponent,
     AddWordFormComponent,
     AddWordFormWordFieldComponent,
     AddWordFormSpanishFieldComponent,
