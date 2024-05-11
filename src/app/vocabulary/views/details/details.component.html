@@ -8,22 +8,7 @@
     <app-word-details-main-info [word]="word!.word" [hiragana]="word!.hiragana"
                                 [spanish]="word!.spanish" [collection]="collection">
     </app-word-details-main-info>
-  </div>
-  <div class="columns is-centered is-mobile is-multiline">
-    <div *ngFor="let subtype of subtypes" class="column has-text-centered">
-      <figure
-        [ngClass]="{
-          'common-cell': getCellValue(subtype) === 1,
-          'rare-cell': getCellValue(subtype) === 2,
-          'extra-cell': getCellValue(subtype) > 2
-        }"
-        class="image is-64x64 is-inline-block"
-      >
-        <div>
-          {{ getSubtypeValueText(getCellValue(subtype), subtype) }}
-        </div>
-      </figure>
-    </div>
+    <app-word-details-type-table [type]="word!.type"></app-word-details-type-table>
   </div>
   <div *ngIf="word?.tags" class="tags are-large is-centered">
     <span

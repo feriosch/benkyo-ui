@@ -14,6 +14,8 @@ import { CollectionCardComponent } from './components/home/collection-card/colle
 import { KanjiModalComponent } from './components/details/kanji-modal/kanji-modal.component';
 import { WordCsvButtonComponent } from './components/home/csv-button/csv-button.component';
 import { WordCsvJlptButtonComponent } from './components/home/csv-jlpt-button/csv-jlpt-button.component';
+import { WordDetailsMainInfoComponent } from './components/details/main-info/main-info.component';
+import { WordDetailsTypeTableComponent } from './components/details/type-table/type-table.component';
 import { AddWordFormComponent } from './components/add/form/add-form.component';
 import { AddWordFormWordFieldComponent } from './components/add/fields/word/word.component';
 import { AddWordFormSpanishFieldComponent } from './components/add/fields/spanish/spanish.component';
@@ -25,7 +27,6 @@ import { AddWordFormSentencesFieldComponent } from './components/add/fields/sent
 import { AddWordFormSubmitFieldComponent } from './components/add/fields/submit/submit.component';
 import { EditWordFormComponent } from './components/edit/form/edit-form.component';
 import { EditWordFormWordFieldComponent } from './components/edit/fields/word/word.component';
-import { WordDetailsMainInfoComponent } from './components/details/main-info/main-info.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { WordDetailsMainInfoComponent } from './components/details/main-info/mai
     WordCsvButtonComponent,
     WordCsvJlptButtonComponent,
     WordDetailsMainInfoComponent,
+    WordDetailsTypeTableComponent,
     AddWordFormComponent,
     AddWordFormWordFieldComponent,
     AddWordFormSpanishFieldComponent,
