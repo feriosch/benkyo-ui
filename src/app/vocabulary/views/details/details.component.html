@@ -5,41 +5,27 @@
     </button>
   </div>
   <div *ngIf="word && collection">
-    <app-word-details-main-info [word]="word!.word" [hiragana]="word!.hiragana"
-                                [spanish]="word!.spanish" [collection]="collection">
+    <app-word-details-main-info [word]="word.word" [hiragana]="word.hiragana"
+                                [spanish]="word.spanish" [collection]="collection">
     </app-word-details-main-info>
-    <app-word-details-type-table [type]="word!.type"></app-word-details-type-table>
-  </div>
-  <div *ngIf="word?.tags" class="tags are-large is-centered">
-    <span
-      *ngFor="let tag of tags"
-      [ngClass]="{
-        'is-success': tag === 'common',
-        'is-info':
-          tag === 'expression' || tag === 'usually_kana' || tag === 'jlpt_n1',
-        'is-warning': tag === 'honorific' || tag === 'humble',
-        'is-danger': tag === 'joyogai' || tag === 'ateji',
-        'is-link': tag === 'intransitive' || tag === 'transitive',
-        'is-primary': tag === 'onomatopoeic'
-      }"
-      class="tag is-rounded ml-2 mr-2"
-    >
-      {{ getTagValueText(tag) }}
-    </span>
-  </div>
-  <div *ngIf="word?.notes" class="block has-text-centered">
-    <p class="subtitle is-4">
-      {{ word?.notes }}
-    </p>
-  </div>
-  <div *ngIf="word?.sentences" class="block">
-    <div *ngFor="let sentence of word?.sentences" class="block">
-      <p class="title is-4">
-        {{ sentence.sentence }}
-      </p>
+    <app-word-details-type-table [type]="word.type"></app-word-details-type-table>
+    <div *ngIf="word.tags" class="block mt-4">
+      <app-word-details-tags [tags]="word.tags"></app-word-details-tags>
+    </div>
+    <div *ngIf="word.notes" class="block has-text-centered mt-4">
       <p class="subtitle is-4">
-        {{ sentence.translation }}
+        {{ word.notes }}
       </p>
+    </div>
+    <div *ngIf="word.sentences" class="block">
+      <div *ngFor="let sentence of word.sentences" class="block">
+        <p class="title is-4">
+          {{ sentence.sentence }}
+        </p>
+        <p class="subtitle is-4">
+          {{ sentence.translation }}
+        </p>
+      </div>
     </div>
   </div>
   <div class="block">
