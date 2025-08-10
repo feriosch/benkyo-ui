@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup } from '@angular/forms';
+import { Form, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 import { FormService } from 'src/app/shared/services/form.service';
@@ -10,7 +10,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class AddCollectionFormImageFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   constructor(
     private fileTypeValidator: FileTypeValidatorService,
@@ -21,12 +21,12 @@ export class AddCollectionFormImageFieldComponent implements OnInit {
     return this.fileTypeValidator.validTypes.toString();
   }
 
-  get pathControl(): FormControl {
-    return this.formService.getControl<FormControl>(this.form, 'imagePath');
+  get pathControl(): UntypedFormControl {
+    return this.formService.getControl<UntypedFormControl>(this.form, 'imagePath');
   }
 
-  get fileControl(): FormControl {
-    return this.formService.getControl<FormControl>(this.form, 'imageFile');
+  get fileControl(): UntypedFormControl {
+    return this.formService.getControl<UntypedFormControl>(this.form, 'imageFile');
   }
 
   get isPathValid(): boolean {

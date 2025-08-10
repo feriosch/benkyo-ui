@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   @Input()
   isLoading!: boolean;

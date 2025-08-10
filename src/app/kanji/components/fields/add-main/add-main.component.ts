@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { FormService } from 'src/app/shared/services/form.service';
 
@@ -9,14 +9,14 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class AddKanjiFormMainFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   constructor(private formService: FormService) {}
 
   // TODO: Spanish Repetition validation
   get isSpanishInvalid(): boolean {
-    const spanishControl: FormControl =
-      this.formService.getControl<FormControl>(this.form, 'spanish');
+    const spanishControl: UntypedFormControl =
+      this.formService.getControl<UntypedFormControl>(this.form, 'spanish');
     return spanishControl.touched && spanishControl.invalid;
   }
 

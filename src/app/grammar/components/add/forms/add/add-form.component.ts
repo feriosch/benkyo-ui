@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -13,7 +13,7 @@ import { AddFormService } from 'src/app/grammar/services/forms/add.service';
   styleUrls: ['./add-form.component.scss'],
 })
 export class AddClauseFormComponent implements OnInit {
-  addClauseForm: FormGroup;
+  addClauseForm: UntypedFormGroup;
   initialValues: any;
 
   constructor(
@@ -22,36 +22,36 @@ export class AddClauseFormComponent implements OnInit {
     private notificationService: NotificationService,
     private addFormService: AddFormService
   ) {
-    this.addClauseForm = new FormGroup({
-      title: new FormControl(null, [Validators.required]),
-      hiragana: new FormControl(null),
-      translation: new FormControl(null, [Validators.required]),
-      level: new FormControl('intermediate', [Validators.required]),
-      type: new FormGroup({
-        adjective: new FormControl(false),
-        adverb: new FormControl(false),
-        auxiliary: new FormControl(false),
-        conjunction: new FormControl(false),
-        modifier: new FormControl(false),
-        noun: new FormControl(false),
-        particle: new FormControl(false),
-        phrase: new FormControl(false),
-        structure: new FormControl(false),
-        suffix: new FormControl(false),
+    this.addClauseForm = new UntypedFormGroup({
+      title: new UntypedFormControl(null, [Validators.required]),
+      hiragana: new UntypedFormControl(null),
+      translation: new UntypedFormControl(null, [Validators.required]),
+      level: new UntypedFormControl('intermediate', [Validators.required]),
+      type: new UntypedFormGroup({
+        adjective: new UntypedFormControl(false),
+        adverb: new UntypedFormControl(false),
+        auxiliary: new UntypedFormControl(false),
+        conjunction: new UntypedFormControl(false),
+        modifier: new UntypedFormControl(false),
+        noun: new UntypedFormControl(false),
+        particle: new UntypedFormControl(false),
+        phrase: new UntypedFormControl(false),
+        structure: new UntypedFormControl(false),
+        suffix: new UntypedFormControl(false),
       }),
-      tags: new FormGroup({
-        spoken: new FormControl(false),
-        written: new FormControl(false),
-        formal: new FormControl(false),
-        colloquial: new FormControl(false),
-        interrogative: new FormControl(false),
+      tags: new UntypedFormGroup({
+        spoken: new UntypedFormControl(false),
+        written: new UntypedFormControl(false),
+        formal: new UntypedFormControl(false),
+        colloquial: new UntypedFormControl(false),
+        interrogative: new UntypedFormControl(false),
       }),
-      definition: new FormControl(null, [Validators.required]),
-      keys: new FormArray([]),
-      formations: new FormArray([]),
-      examples: new FormArray([]),
-      notes: new FormArray([]),
-      related: new FormArray([]),
+      definition: new UntypedFormControl(null, [Validators.required]),
+      keys: new UntypedFormArray([]),
+      formations: new UntypedFormArray([]),
+      examples: new UntypedFormArray([]),
+      notes: new UntypedFormArray([]),
+      related: new UntypedFormArray([]),
     });
     this.initialValues = this.addClauseForm.value;
   }
@@ -60,12 +60,12 @@ export class AddClauseFormComponent implements OnInit {
     this.addFormService.initializeForm(this.addClauseForm);
   }
 
-  getFormGroup(formGroup: string): FormGroup {
-    return this.addClauseForm.get(formGroup) as FormGroup;
+  getFormGroup(formGroup: string): UntypedFormGroup {
+    return this.addClauseForm.get(formGroup) as UntypedFormGroup;
   }
 
-  getFormArray(formArray: string): FormArray {
-    return this.addClauseForm.get(formArray) as FormArray;
+  getFormArray(formArray: string): UntypedFormArray {
+    return this.addClauseForm.get(formArray) as UntypedFormArray;
   }
 
   storeValues() {
@@ -73,7 +73,7 @@ export class AddClauseFormComponent implements OnInit {
   }
 
   resetFormArray(name: string): void {
-    const formArray = this.addClauseForm.get(name)! as FormArray;
+    const formArray = this.addClauseForm.get(name)! as UntypedFormArray;
     while (formArray.length !== 0) formArray.removeAt(0);
   }
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-clause-example',
@@ -10,20 +10,20 @@ export class AddClauseFormExampleComponent implements OnInit {
   @Input()
   control?: AbstractControl;
 
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup = this.control! as FormGroup;
+    this.formGroup = this.control! as UntypedFormGroup;
   }
 
-  get sentenceControl(): FormControl {
-    return this.control!.get('sentence') as FormControl;
+  get sentenceControl(): UntypedFormControl {
+    return this.control!.get('sentence') as UntypedFormControl;
   }
 
-  get translationControl(): FormControl {
-    return this.control!.get('translation') as FormControl;
+  get translationControl(): UntypedFormControl {
+    return this.control!.get('translation') as UntypedFormControl;
   }
 
   addFormatToSentence(format: number): void {

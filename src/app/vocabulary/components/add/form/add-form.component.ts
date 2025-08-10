@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -13,7 +13,7 @@ import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value
   styleUrls: ['./add-form.component.scss'],
 })
 export class AddWordFormComponent implements OnInit {
-  addWordForm: FormGroup;
+  addWordForm: UntypedFormGroup;
   initialValues: any;
 
   constructor(
@@ -22,58 +22,58 @@ export class AddWordFormComponent implements OnInit {
     private valueTransformerService: ValueTransformerService,
     private notificationService: NotificationService
   ) {
-    this.addWordForm = new FormGroup({
-      word: new FormControl(
+    this.addWordForm = new UntypedFormGroup({
+      word: new UntypedFormControl(
         null,
         [Validators.required],
         [this.existsValidator.validate.bind(this.existsValidator)]
       ),
-      hiragana: new FormControl(null),
-      spanish: new FormControl(null, [Validators.required]),
-      type: new FormGroup({
-        noun: new FormControl(0, [Validators.required]),
-        suru: new FormControl(0, [Validators.required]),
-        noAdj: new FormControl(0, [Validators.required]),
-        naAdj: new FormControl(0, [Validators.required]),
-        iAdj: new FormControl(0, [Validators.required]),
-        adv: new FormControl(0, [Validators.required]),
-        verb: new FormControl(0, [Validators.required]),
-        adjNoun: new FormControl(0, [Validators.required]),
-        advNoun: new FormControl(0, [Validators.required]),
-        counter: new FormControl(0, [Validators.required]),
+      hiragana: new UntypedFormControl(null),
+      spanish: new UntypedFormControl(null, [Validators.required]),
+      type: new UntypedFormGroup({
+        noun: new UntypedFormControl(0, [Validators.required]),
+        suru: new UntypedFormControl(0, [Validators.required]),
+        noAdj: new UntypedFormControl(0, [Validators.required]),
+        naAdj: new UntypedFormControl(0, [Validators.required]),
+        iAdj: new UntypedFormControl(0, [Validators.required]),
+        adv: new UntypedFormControl(0, [Validators.required]),
+        verb: new UntypedFormControl(0, [Validators.required]),
+        adjNoun: new UntypedFormControl(0, [Validators.required]),
+        advNoun: new UntypedFormControl(0, [Validators.required]),
+        counter: new UntypedFormControl(0, [Validators.required]),
       }),
-      tags: new FormGroup({
-        ateji: new FormControl(false, [Validators.required]),
-        common: new FormControl(false, [Validators.required]),
-        expression: new FormControl(false, [Validators.required]),
-        honorific: new FormControl(false, [Validators.required]),
-        humble: new FormControl(false, [Validators.required]),
-        intransitive: new FormControl(false, [Validators.required]),
-        jlptN1: new FormControl(false, [Validators.required]),
-        notJoyo: new FormControl(false, [Validators.required]),
-        onomatopoeic: new FormControl(false, [Validators.required]),
-        transitive: new FormControl(false, [Validators.required]),
-        usuallyKana: new FormControl(false, [Validators.required]),
+      tags: new UntypedFormGroup({
+        ateji: new UntypedFormControl(false, [Validators.required]),
+        common: new UntypedFormControl(false, [Validators.required]),
+        expression: new UntypedFormControl(false, [Validators.required]),
+        honorific: new UntypedFormControl(false, [Validators.required]),
+        humble: new UntypedFormControl(false, [Validators.required]),
+        intransitive: new UntypedFormControl(false, [Validators.required]),
+        jlptN1: new UntypedFormControl(false, [Validators.required]),
+        notJoyo: new UntypedFormControl(false, [Validators.required]),
+        onomatopoeic: new UntypedFormControl(false, [Validators.required]),
+        transitive: new UntypedFormControl(false, [Validators.required]),
+        usuallyKana: new UntypedFormControl(false, [Validators.required]),
       }),
-      notes: new FormControl(null, [Validators.max(20)]),
-      collection: new FormControl(null, [Validators.required]),
-      sentences: new FormArray([]),
+      notes: new UntypedFormControl(null, [Validators.max(20)]),
+      collection: new UntypedFormControl(null, [Validators.required]),
+      sentences: new UntypedFormArray([]),
     });
     this.initialValues = this.addWordForm.value;
   }
 
   ngOnInit(): void {}
 
-  getFormGroup(formGroup: string): FormGroup {
-    return this.addWordForm.get(formGroup) as FormGroup;
+  getFormGroup(formGroup: string): UntypedFormGroup {
+    return this.addWordForm.get(formGroup) as UntypedFormGroup;
   }
 
-  getFormArray(formArray: string): FormArray {
-    return this.addWordForm.get(formArray) as FormArray;
+  getFormArray(formArray: string): UntypedFormArray {
+    return this.addWordForm.get(formArray) as UntypedFormArray;
   }
 
   get collectionControl() {
-    return this.addWordForm.get('collection') as FormControl;
+    return this.addWordForm.get('collection') as UntypedFormControl;
   }
 
   onSubmit(): void {

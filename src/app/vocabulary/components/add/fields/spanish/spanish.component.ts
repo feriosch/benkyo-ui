@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-word-form-spanish-field',
@@ -8,14 +8,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddWordFormSpanishFieldComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  get spanishControl(): FormControl {
-    return this.formGroup!.get('spanish') as FormControl;
+  get spanishControl(): UntypedFormControl {
+    return this.formGroup!.get('spanish') as UntypedFormControl;
   }
 
   get isSpanishNDisabled(): boolean {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import {
@@ -27,7 +27,7 @@ export class EditClauseFormComponent implements OnInit {
   @Input()
   id?: string;
 
-  editClauseForm: FormGroup;
+  editClauseForm: UntypedFormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,36 +37,36 @@ export class EditClauseFormComponent implements OnInit {
     private grammarService: GrammarService,
     private notificationService: NotificationService
   ) {
-    this.editClauseForm = new FormGroup({
-      title: new FormControl(null, [Validators.required]),
-      hiragana: new FormControl(null),
-      translation: new FormControl(null, [Validators.required]),
-      level: new FormControl(null, [Validators.required]),
-      type: new FormGroup({
-        adjective: new FormControl(false),
-        adverb: new FormControl(false),
-        auxiliary: new FormControl(false),
-        conjunction: new FormControl(false),
-        modifier: new FormControl(false),
-        noun: new FormControl(false),
-        particle: new FormControl(false),
-        phrase: new FormControl(false),
-        structure: new FormControl(false),
-        suffix: new FormControl(false),
+    this.editClauseForm = new UntypedFormGroup({
+      title: new UntypedFormControl(null, [Validators.required]),
+      hiragana: new UntypedFormControl(null),
+      translation: new UntypedFormControl(null, [Validators.required]),
+      level: new UntypedFormControl(null, [Validators.required]),
+      type: new UntypedFormGroup({
+        adjective: new UntypedFormControl(false),
+        adverb: new UntypedFormControl(false),
+        auxiliary: new UntypedFormControl(false),
+        conjunction: new UntypedFormControl(false),
+        modifier: new UntypedFormControl(false),
+        noun: new UntypedFormControl(false),
+        particle: new UntypedFormControl(false),
+        phrase: new UntypedFormControl(false),
+        structure: new UntypedFormControl(false),
+        suffix: new UntypedFormControl(false),
       }),
-      tags: new FormGroup({
-        spoken: new FormControl(false),
-        written: new FormControl(false),
-        formal: new FormControl(false),
-        colloquial: new FormControl(false),
-        interrogative: new FormControl(false),
+      tags: new UntypedFormGroup({
+        spoken: new UntypedFormControl(false),
+        written: new UntypedFormControl(false),
+        formal: new UntypedFormControl(false),
+        colloquial: new UntypedFormControl(false),
+        interrogative: new UntypedFormControl(false),
       }),
-      definition: new FormControl(null, [Validators.required]),
-      keys: new FormArray([]),
-      formations: new FormArray([]),
-      examples: new FormArray([]),
-      notes: new FormArray([]),
-      related: new FormArray([]),
+      definition: new UntypedFormControl(null, [Validators.required]),
+      keys: new UntypedFormArray([]),
+      formations: new UntypedFormArray([]),
+      examples: new UntypedFormArray([]),
+      notes: new UntypedFormArray([]),
+      related: new UntypedFormArray([]),
     });
   }
 
@@ -81,30 +81,30 @@ export class EditClauseFormComponent implements OnInit {
     if (this.clause!.related) this.initializeRelatedControls();
   }
 
-  getFormControl(control: string): FormControl {
-    return this.editClauseForm.get(control) as FormControl;
+  getFormControl(control: string): UntypedFormControl {
+    return this.editClauseForm.get(control) as UntypedFormControl;
   }
 
-  getFormGroup(group: string): FormGroup {
-    return this.editClauseForm.get(group) as FormGroup;
+  getFormGroup(group: string): UntypedFormGroup {
+    return this.editClauseForm.get(group) as UntypedFormGroup;
   }
 
-  getFormArray(array: string): FormArray {
-    return this.editClauseForm.get(array) as FormArray;
+  getFormArray(array: string): UntypedFormArray {
+    return this.editClauseForm.get(array) as UntypedFormArray;
   }
 
   getNewExampleFormGroup(
     sentenceComponents: string[],
     translation: string
-  ): FormGroup {
-    return new FormGroup({
-      sentence: new FormControl(
+  ): UntypedFormGroup {
+    return new UntypedFormGroup({
+      sentence: new UntypedFormControl(
         this.sentenceFormatterService.getFrontFormattedSentence(
           sentenceComponents
         ),
         [Validators.required]
       ),
-      translation: new FormControl(translation, [Validators.required]),
+      translation: new UntypedFormControl(translation, [Validators.required]),
     });
   }
 
@@ -146,12 +146,12 @@ export class EditClauseFormComponent implements OnInit {
 
   initializeFormationControls(): void {
     this.clause!.formations.forEach((formation: Formation) => {
-      const formGroup: FormGroup = new FormGroup({
-        rule: new FormControl(formation.rule, [Validators.required]),
-        examples: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        rule: new UntypedFormControl(formation.rule, [Validators.required]),
+        examples: new UntypedFormArray([]),
       });
       this.getFormArray('formations')!.push(formGroup);
-      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      const examplesArray: UntypedFormArray = formGroup.get('examples') as UntypedFormArray;
       formation.examples.forEach((example: Example) => {
         examplesArray.push(
           this.getNewExampleFormGroup(example.sentence, example.translation)
@@ -170,12 +170,12 @@ export class EditClauseFormComponent implements OnInit {
 
   initializeNoteControls(): void {
     this.clause!.notes.forEach((note: Section) => {
-      const formGroup: FormGroup = new FormGroup({
-        explanation: new FormControl(note.explanation, [Validators.required]),
-        examples: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        explanation: new UntypedFormControl(note.explanation, [Validators.required]),
+        examples: new UntypedFormArray([]),
       });
       this.getFormArray('notes')!.push(formGroup);
-      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      const examplesArray: UntypedFormArray = formGroup.get('examples') as UntypedFormArray;
       if (note.examples) {
         note.examples!.forEach((example: Example) => {
           examplesArray!.push(
@@ -188,25 +188,25 @@ export class EditClauseFormComponent implements OnInit {
 
   initializeRelatedControls(): void {
     this.clause!.related!.forEach((related: Related) => {
-      const formGroup: FormGroup = new FormGroup({
-        title: new FormControl(related.title, [Validators.required]),
-        hiragana: new FormControl(related.hiragana || null),
-        reference: new FormControl(related.reference || null),
-        sections: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        title: new UntypedFormControl(related.title, [Validators.required]),
+        hiragana: new UntypedFormControl(related.hiragana || null),
+        reference: new UntypedFormControl(related.reference || null),
+        sections: new UntypedFormArray([]),
       });
       this.getFormArray('related')!.push(formGroup);
-      const sectionsArray: FormArray = formGroup.get('sections') as FormArray;
+      const sectionsArray: UntypedFormArray = formGroup.get('sections') as UntypedFormArray;
       related.sections.forEach((section: Section) => {
-        const sectionFormGroup: FormGroup = new FormGroup({
-          explanation: new FormControl(section.explanation, [
+        const sectionFormGroup: UntypedFormGroup = new UntypedFormGroup({
+          explanation: new UntypedFormControl(section.explanation, [
             Validators.required,
           ]),
-          examples: new FormArray([]),
+          examples: new UntypedFormArray([]),
         });
         sectionsArray.push(sectionFormGroup);
-        const examplesArray: FormArray = sectionFormGroup.get(
+        const examplesArray: UntypedFormArray = sectionFormGroup.get(
           'examples'
-        ) as FormArray;
+        ) as UntypedFormArray;
         if (section.examples) {
           section.examples!.forEach((example: Example) => {
             examplesArray!.push(

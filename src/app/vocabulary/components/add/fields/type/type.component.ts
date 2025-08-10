@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.servi
 })
 export class AddWordFormTypeFieldComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   subtypes: string[];
 

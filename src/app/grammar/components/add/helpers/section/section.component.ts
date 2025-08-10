@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -16,23 +16,23 @@ export class AddClauseFormSectionComponent implements OnInit {
   @Input()
   control?: AbstractControl;
 
-  formGroup?: FormGroup;
-  explanationControl?: FormControl;
-  examplesArray?: FormArray;
+  formGroup?: UntypedFormGroup;
+  explanationControl?: UntypedFormControl;
+  examplesArray?: UntypedFormArray;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup = this.control! as FormGroup;
-    this.explanationControl = this.control!.get('explanation') as FormControl;
-    this.examplesArray = this.control!.get('examples') as FormArray;
+    this.formGroup = this.control! as UntypedFormGroup;
+    this.explanationControl = this.control!.get('explanation') as UntypedFormControl;
+    this.examplesArray = this.control!.get('examples') as UntypedFormArray;
   }
 
   pushExample(): void {
     this.examplesArray!.push(
-      new FormGroup({
-        sentence: new FormControl('', [Validators.required]),
-        translation: new FormControl('', [Validators.required]),
+      new UntypedFormGroup({
+        sentence: new UntypedFormControl('', [Validators.required]),
+        translation: new UntypedFormControl('', [Validators.required]),
       })
     );
   }

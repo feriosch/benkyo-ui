@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
@@ -15,7 +15,7 @@ export class UpdateKanjiService {
     this.updateEndpoint = `${environment.backendUrl}/kanjis`;
   }
 
-  getUpdateRequestBody(id: string, form: FormGroup): UpdateRequest {
+  getUpdateRequestBody(id: string, form: UntypedFormGroup): UpdateRequest {
     const v1: number = this.formService.getValue(form, 'v1');
     const v2: number | null = this.formService.getValue(form, 'v2');
 

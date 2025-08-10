@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/form.service';
 
 @Component({
@@ -8,12 +8,12 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class AddCollectionFormNameFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   constructor(private formService: FormService) {}
 
   get isPrintingNameInvalid(): boolean {
-    const control = this.formService.getControl<FormControl>(
+    const control = this.formService.getControl<UntypedFormControl>(
       this.form,
       'printingName'
     );
@@ -21,7 +21,7 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   }
 
   get isCollectionNameInvalid(): boolean {
-    const control = this.formService.getControl<FormControl>(
+    const control = this.formService.getControl<UntypedFormControl>(
       this.form,
       'collectionName'
     );
@@ -29,7 +29,7 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   }
 
   get isGroupInvalid(): boolean {
-    const control = this.formService.getControl<FormControl>(
+    const control = this.formService.getControl<UntypedFormControl>(
       this.form,
       'group'
     );
@@ -39,7 +39,7 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   ngOnInit(): void {}
 
   isControlInvalid(name: string): boolean {
-    const control = this.formService.getControl<FormControl>(this.form, name);
+    const control = this.formService.getControl<UntypedFormControl>(this.form, name);
     return control.touched && control.invalid;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-kanji-form-story-field',
@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AddKanjiFormStoryFieldComponent implements OnInit {
   @Input()
-  formGroup!: FormGroup;
+  formGroup!: UntypedFormGroup;
 
   constructor() {}
 

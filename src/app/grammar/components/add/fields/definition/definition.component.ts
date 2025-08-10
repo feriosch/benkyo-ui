@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-definition',
@@ -8,12 +8,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddClauseFormDefinitionComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   constructor() {}
 
-  get control(): FormControl {
-    return this.formGroup!.get('definition') as FormControl;
+  get control(): UntypedFormControl {
+    return this.formGroup!.get('definition') as UntypedFormControl;
   }
 
   ngOnInit(): void {}

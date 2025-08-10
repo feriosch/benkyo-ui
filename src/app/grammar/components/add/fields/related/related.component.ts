@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -14,10 +14,10 @@ import {
 })
 export class AddClauseFormRelatedComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   @Input()
-  formArray?: FormArray;
+  formArray?: UntypedFormArray;
 
   constructor() {}
 
@@ -25,11 +25,11 @@ export class AddClauseFormRelatedComponent implements OnInit {
 
   pushRelated(): void {
     this.formArray!.push(
-      new FormGroup({
-        title: new FormControl(null, [Validators.required]),
-        hiragana: new FormControl(null),
-        reference: new FormControl(null),
-        sections: new FormArray([]),
+      new UntypedFormGroup({
+        title: new UntypedFormControl(null, [Validators.required]),
+        hiragana: new UntypedFormControl(null),
+        reference: new UntypedFormControl(null),
+        sections: new UntypedFormArray([]),
       })
     );
   }
@@ -39,23 +39,23 @@ export class AddClauseFormRelatedComponent implements OnInit {
       this.formArray!.removeAt(this.formArray!.length - 1);
   }
 
-  getFormGroupFromControl(control: AbstractControl): FormGroup {
-    return control as FormGroup;
+  getFormGroupFromControl(control: AbstractControl): UntypedFormGroup {
+    return control as UntypedFormGroup;
   }
 
-  getTitleControl(control: AbstractControl): FormControl {
-    return control!.get('title') as FormControl;
+  getTitleControl(control: AbstractControl): UntypedFormControl {
+    return control!.get('title') as UntypedFormControl;
   }
 
-  getSectionsArray(control: AbstractControl): FormArray {
-    return control!.get('sections') as FormArray;
+  getSectionsArray(control: AbstractControl): UntypedFormArray {
+    return control!.get('sections') as UntypedFormArray;
   }
 
   pushSection(control: AbstractControl): void {
     this.getSectionsArray(control!).push(
-      new FormGroup({
-        explanation: new FormControl('', [Validators.required]),
-        examples: new FormArray([]),
+      new UntypedFormGroup({
+        explanation: new UntypedFormControl('', [Validators.required]),
+        examples: new UntypedFormArray([]),
       })
     );
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
@@ -12,7 +12,7 @@ import { CollectionsResponse } from 'src/models/collections/responses.model';
 })
 export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   @Input()
   currentGroup?: string;
@@ -22,7 +22,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   constructor(private collectionsService: CollectionsService) {}
 
   get collectionControl() {
-    return this.formGroup!.get('collection') as FormControl;
+    return this.formGroup!.get('collection') as UntypedFormControl;
   }
 
   ngOnInit(): void {

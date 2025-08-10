@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-clause-form-keys',
@@ -8,10 +8,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddClauseFormKeysComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   @Input()
-  formArray?: FormArray;
+  formArray?: UntypedFormArray;
 
   constructor() {}
 
@@ -19,9 +19,9 @@ export class AddClauseFormKeysComponent implements OnInit {
 
   pushExample(): void {
     this.formArray!.push(
-      new FormGroup({
-        sentence: new FormControl(null, [Validators.required]),
-        translation: new FormControl(null, [Validators.required]),
+      new UntypedFormGroup({
+        sentence: new UntypedFormControl(null, [Validators.required]),
+        translation: new UntypedFormControl(null, [Validators.required]),
       })
     );
   }

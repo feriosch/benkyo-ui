@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { KanjiAddIrregularComponentBody } from 'src/models/kanji/components/irregular.model';
 import { KanjiAddIrregularComponentResponse } from 'src/models/kanji/components/responses.model';
@@ -11,7 +11,7 @@ import { AddIrregularComponentService } from 'src/app/kanji/services/forms/compo
   templateUrl: './add-modal.component.html',
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   isOpen: boolean;
   isSubmitting: boolean;
 
@@ -22,29 +22,29 @@ export class KanjiIrregularComponentsAddModalComponent implements OnInit {
     private addService: AddIrregularComponentService,
     private notificationService: NotificationService
   ) {
-    this.form = new FormGroup({
-      component: new FormControl(null, [Validators.required]),
-      radicals: new FormArray([]),
+    this.form = new UntypedFormGroup({
+      component: new UntypedFormControl(null, [Validators.required]),
+      radicals: new UntypedFormArray([]),
     });
-    this.radicalsArray.push(new FormControl(null, [Validators.required]));
+    this.radicalsArray.push(new UntypedFormControl(null, [Validators.required]));
     for (let i = 0; i < 5; i++) {
-      this.radicalsArray.push(new FormControl(null));
+      this.radicalsArray.push(new UntypedFormControl(null));
     }
     this.isOpen = false;
     this.isSubmitting = false;
     this.componentAdded = new EventEmitter();
   }
 
-  get componentControl(): FormControl {
-    return this.form.get('component') as FormControl;
+  get componentControl(): UntypedFormControl {
+    return this.form.get('component') as UntypedFormControl;
   }
 
   get isComponentControlInvalid(): boolean {
     return this.componentControl.touched && this.componentControl.invalid;
   }
 
-  get radicalsArray(): FormArray {
-    return this.form.get('radicals') as FormArray;
+  get radicalsArray(): UntypedFormArray {
+    return this.form.get('radicals') as UntypedFormArray;
   }
 
   ngOnInit(): void {}

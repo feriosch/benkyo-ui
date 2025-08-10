@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -14,28 +14,28 @@ import {
 })
 export class AddClauseFormFormationsComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   @Input()
-  formArray?: FormArray;
+  formArray?: UntypedFormArray;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  getFormGroupFromControl(control: AbstractControl): FormGroup {
-    return control as FormGroup;
+  getFormGroupFromControl(control: AbstractControl): UntypedFormGroup {
+    return control as UntypedFormGroup;
   }
 
-  getExamplesFormArray(control: AbstractControl): FormArray {
-    return control!.get('examples') as FormArray;
+  getExamplesFormArray(control: AbstractControl): UntypedFormArray {
+    return control!.get('examples') as UntypedFormArray;
   }
 
   pushFormation(): void {
     this.formArray!.push(
-      new FormGroup({
-        rule: new FormControl(null, [Validators.required]),
-        examples: new FormArray([]),
+      new UntypedFormGroup({
+        rule: new UntypedFormControl(null, [Validators.required]),
+        examples: new UntypedFormArray([]),
       })
     );
   }
@@ -47,15 +47,15 @@ export class AddClauseFormFormationsComponent implements OnInit {
 
   pushExample(control: AbstractControl): void {
     this.getExamplesFormArray(control)!.push(
-      new FormGroup({
-        sentence: new FormControl('', [Validators.required]),
-        translation: new FormControl('', [Validators.required]),
+      new UntypedFormGroup({
+        sentence: new UntypedFormControl('', [Validators.required]),
+        translation: new UntypedFormControl('', [Validators.required]),
       })
     );
   }
 
   popExample(control: AbstractControl): void {
-    const examplesFormArray: FormArray = this.getExamplesFormArray(control)!;
+    const examplesFormArray: UntypedFormArray = this.getExamplesFormArray(control)!;
     if (examplesFormArray!.length > 0) {
       examplesFormArray!.removeAt(examplesFormArray!.length - 1);
     }

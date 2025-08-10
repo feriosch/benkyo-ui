@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.servi
 })
 export class AddWordFormTagsFieldComponent implements OnInit {
   @Input()
-  formGroup?: FormGroup;
+  formGroup?: UntypedFormGroup;
 
   tags: string[];
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import {
   AddCollectionFrontendBody,
@@ -14,7 +14,7 @@ import { FileTypeValidatorService } from 'src/app/collections/services/validator
   templateUrl: './add.component.html',
 })
 export class AddCollectionViewComponent implements OnInit {
-  addCollectionForm: FormGroup;
+  addCollectionForm: UntypedFormGroup;
   isSubmitting: boolean;
 
   constructor(
@@ -22,15 +22,15 @@ export class AddCollectionViewComponent implements OnInit {
     private notificationService: CollectionNotificationService,
     fileTypeValidator: FileTypeValidatorService
   ) {
-    this.addCollectionForm = new FormGroup({
-      printingName: new FormControl(null, [Validators.required]),
-      collectionName: new FormControl(null, [Validators.required]),
-      group: new FormControl(null, [Validators.required]),
-      imagePath: new FormControl(null, [
+    this.addCollectionForm = new UntypedFormGroup({
+      printingName: new UntypedFormControl(null, [Validators.required]),
+      collectionName: new UntypedFormControl(null, [Validators.required]),
+      group: new UntypedFormControl(null, [Validators.required]),
+      imagePath: new UntypedFormControl(null, [
         Validators.required,
         fileTypeValidator.validate,
       ]),
-      imageFile: new FormControl(null, [Validators.required]),
+      imageFile: new UntypedFormControl(null, [Validators.required]),
     });
     this.isSubmitting = false;
   }

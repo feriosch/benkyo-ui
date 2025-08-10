@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-collection-form-submit-field',
@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AddCollectionFormSubmitFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   @Input()
   isSubmitting!: boolean;

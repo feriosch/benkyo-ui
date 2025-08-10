@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { ClauseFormValues } from 'src/models/grammar/forms/form';
 import {
@@ -11,18 +11,18 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class AddFormService {
-  _form?: FormGroup;
+  _form?: UntypedFormGroup;
   addFormDataKey: string;
 
   constructor() {
     this.addFormDataKey = 'add_clause_form';
   }
 
-  private get form(): FormGroup {
+  private get form(): UntypedFormGroup {
     return this._form!;
   }
 
-  private set form(formGroup: FormGroup) {
+  private set form(formGroup: UntypedFormGroup) {
     this._form = formGroup;
   }
 
@@ -41,22 +41,22 @@ export class AddFormService {
     else localStorage.removeItem(this.addFormDataKey);
   }
 
-  private getFormControl(control: string): FormControl {
-    return this.form.get(control)! as FormControl;
+  private getFormControl(control: string): UntypedFormControl {
+    return this.form.get(control)! as UntypedFormControl;
   }
 
-  private getFormGroup(group: string): FormGroup {
-    return this.form.get(group)! as FormGroup;
+  private getFormGroup(group: string): UntypedFormGroup {
+    return this.form.get(group)! as UntypedFormGroup;
   }
 
-  private getFormArray(array: string): FormArray {
-    return this.form.get(array)! as FormArray;
+  private getFormArray(array: string): UntypedFormArray {
+    return this.form.get(array)! as UntypedFormArray;
   }
 
-  private getNewExampleFormGroup(example: Example): FormGroup {
-    return new FormGroup({
-      sentence: new FormControl(example.sentence, [Validators.required]),
-      translation: new FormControl(example.translation, [Validators.required]),
+  private getNewExampleFormGroup(example: Example): UntypedFormGroup {
+    return new UntypedFormGroup({
+      sentence: new UntypedFormControl(example.sentence, [Validators.required]),
+      translation: new UntypedFormControl(example.translation, [Validators.required]),
     });
   }
 
@@ -71,20 +71,20 @@ export class AddFormService {
   }
 
   private initializeKeyControls(): void {
-    const keysArray: FormArray = this.getFormArray('keys');
+    const keysArray: UntypedFormArray = this.getFormArray('keys');
     this.cachedData!.keys.forEach((key: Example) => {
       keysArray.push(this.getNewExampleFormGroup(key));
     });
   }
 
   private initializeFormationControls(): void {
-    const formationsArray: FormArray = this.getFormArray('formations');
+    const formationsArray: UntypedFormArray = this.getFormArray('formations');
     this.cachedData!.formations.forEach((formation: Formation) => {
-      const formGroup: FormGroup = new FormGroup({
-        rule: new FormControl(formation.rule, [Validators.required]),
-        examples: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        rule: new UntypedFormControl(formation.rule, [Validators.required]),
+        examples: new UntypedFormArray([]),
       });
-      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      const examplesArray: UntypedFormArray = formGroup.get('examples') as UntypedFormArray;
       formation.examples.forEach((example: Example) => {
         examplesArray.push(this.getNewExampleFormGroup(example));
       });
@@ -93,7 +93,7 @@ export class AddFormService {
   }
 
   private initializeExampleControls(): void {
-    const examplesArray: FormArray = this.getFormArray('examples');
+    const examplesArray: UntypedFormArray = this.getFormArray('examples');
     this.cachedData!.examples!.forEach((example: Example) => {
       examplesArray.push(this.getNewExampleFormGroup(example));
     });
@@ -101,11 +101,11 @@ export class AddFormService {
 
   private initializeNoteControls(): void {
     this.cachedData!.notes.forEach((note: Section) => {
-      const formGroup: FormGroup = new FormGroup({
-        explanation: new FormControl(note.explanation, [Validators.required]),
-        examples: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        explanation: new UntypedFormControl(note.explanation, [Validators.required]),
+        examples: new UntypedFormArray([]),
       });
-      const examplesArray: FormArray = formGroup.get('examples') as FormArray;
+      const examplesArray: UntypedFormArray = formGroup.get('examples') as UntypedFormArray;
       note.examples!.forEach((example: Example) => {
         examplesArray!.push(this.getNewExampleFormGroup(example));
       });
@@ -115,23 +115,23 @@ export class AddFormService {
 
   private initializeRelatedControls(): void {
     this.cachedData!.related!.forEach((related: Related) => {
-      const formGroup: FormGroup = new FormGroup({
-        title: new FormControl(related.title, [Validators.required]),
-        hiragana: new FormControl(related.hiragana),
-        reference: new FormControl(related.reference),
-        sections: new FormArray([]),
+      const formGroup: UntypedFormGroup = new UntypedFormGroup({
+        title: new UntypedFormControl(related.title, [Validators.required]),
+        hiragana: new UntypedFormControl(related.hiragana),
+        reference: new UntypedFormControl(related.reference),
+        sections: new UntypedFormArray([]),
       });
-      const sectionsArray: FormArray = formGroup.get('sections') as FormArray;
+      const sectionsArray: UntypedFormArray = formGroup.get('sections') as UntypedFormArray;
       related.sections.forEach((section: Section) => {
-        const sectionFormGroup: FormGroup = new FormGroup({
-          explanation: new FormControl(section.explanation, [
+        const sectionFormGroup: UntypedFormGroup = new UntypedFormGroup({
+          explanation: new UntypedFormControl(section.explanation, [
             Validators.required,
           ]),
-          examples: new FormArray([]),
+          examples: new UntypedFormArray([]),
         });
-        const examplesArray: FormArray = sectionFormGroup.get(
+        const examplesArray: UntypedFormArray = sectionFormGroup.get(
           'examples'
-        ) as FormArray;
+        ) as UntypedFormArray;
         if (section.examples) {
           section.examples!.forEach((example: Example) => {
             examplesArray!.push(this.getNewExampleFormGroup(example));
@@ -143,7 +143,7 @@ export class AddFormService {
     });
   }
 
-  initializeForm(form: FormGroup): void {
+  initializeForm(form: UntypedFormGroup): void {
     this.form = form;
     if (this.cachedData) {
       this.initializeBasicControls();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { FullKanji } from 'src/models/kanji/kanji.model';
 import { UpdateRequest } from 'src/models/kanji/requests.model';
@@ -16,7 +16,7 @@ import { UpdateKanjiService } from '../../services/update.service';
 export class EditKanjiViewComponent implements OnInit {
   id: string;
   isLoading: boolean;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,15 +29,15 @@ export class EditKanjiViewComponent implements OnInit {
     // TODO: Async validity for repeated spanish
     this.id = this.route.snapshot.params['id'];
     this.isLoading = false;
-    this.form = new FormGroup({
-      v1: new FormControl(null, [Validators.required]),
-      v2: new FormControl(null),
-      on: new FormControl(null),
-      kanji: new FormControl(null, [Validators.required]),
-      kun: new FormControl(null),
-      spanish: new FormControl(null, [Validators.required]),
-      components: new FormArray([]),
-      story: new FormControl(null),
+    this.form = new UntypedFormGroup({
+      v1: new UntypedFormControl(null, [Validators.required]),
+      v2: new UntypedFormControl(null),
+      on: new UntypedFormControl(null),
+      kanji: new UntypedFormControl(null, [Validators.required]),
+      kun: new UntypedFormControl(null),
+      spanish: new UntypedFormControl(null, [Validators.required]),
+      components: new UntypedFormArray([]),
+      story: new UntypedFormControl(null),
     });
   }
 
@@ -50,26 +50,26 @@ export class EditKanjiViewComponent implements OnInit {
   }
 
   initializeControls(info: FullKanji): void {
-    this.formService.getControl<FormControl>(this.form, 'v1').setValue(info.v1);
-    this.formService.getControl<FormControl>(this.form, 'v2').setValue(info.v2);
+    this.formService.getControl<UntypedFormControl>(this.form, 'v1').setValue(info.v1);
+    this.formService.getControl<UntypedFormControl>(this.form, 'v2').setValue(info.v2);
     this.formService
-      .getControl<FormControl>(this.form, 'kanji')
+      .getControl<UntypedFormControl>(this.form, 'kanji')
       .setValue(info.kanji);
-    this.formService.getControl<FormControl>(this.form, 'on').setValue(info.on);
+    this.formService.getControl<UntypedFormControl>(this.form, 'on').setValue(info.on);
     this.formService
-      .getControl<FormControl>(this.form, 'kun')
+      .getControl<UntypedFormControl>(this.form, 'kun')
       .setValue(info.kun);
     this.formService
-      .getControl<FormControl>(this.form, 'spanish')
+      .getControl<UntypedFormControl>(this.form, 'spanish')
       .setValue(info.spanish);
     this.formService
-      .getControl<FormControl>(this.form, 'story')
+      .getControl<UntypedFormControl>(this.form, 'story')
       .setValue(info.story);
 
     info.components?.forEach((component: string) => {
       this.formService
-        .getControl<FormArray>(this.form, 'components')
-        .push(new FormControl(component, [Validators.required]));
+        .getControl<UntypedFormArray>(this.form, 'components')
+        .push(new UntypedFormControl(component, [Validators.required]));
     });
   }
 
