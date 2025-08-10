@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {
-  AddCollectionFrontendBody,
-  AddCollectionResponse,
-} from 'src/models/collections/add.model';
+import { AddCollectionResponse } from 'src/models/collections/add.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { CollectionNotificationService } from 'src/app/collections/services/notification.service';
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
+
+// Define the form structure with proper control types
+interface CollectionForm {
+  printingName: FormControl<string | null>;
+  collectionName: FormControl<string | null>;
+  group: FormControl<string | null>;
+  imagePath: FormControl<string | null>;
+  imageFile: FormControl<File | null>;
+}
 
 @Component({
   selector: 'app-add-collection-view',
   templateUrl: './add.component.html',
 })
 export class AddCollectionViewComponent implements OnInit {
-  addCollectionForm: UntypedFormGroup;
+  addCollectionForm: FormGroup<CollectionForm>;
   isSubmitting: boolean;
 
   constructor(
@@ -22,15 +28,15 @@ export class AddCollectionViewComponent implements OnInit {
     private notificationService: CollectionNotificationService,
     fileTypeValidator: FileTypeValidatorService
   ) {
-    this.addCollectionForm = new UntypedFormGroup({
-      printingName: new UntypedFormControl(null, [Validators.required]),
-      collectionName: new UntypedFormControl(null, [Validators.required]),
-      group: new UntypedFormControl(null, [Validators.required]),
-      imagePath: new UntypedFormControl(null, [
+    this.addCollectionForm = new FormGroup<CollectionForm>({
+      printingName: new FormControl<string | null>(null, [Validators.required]),
+      collectionName: new FormControl<string | null>(null, [Validators.required]),
+      group: new FormControl<string | null>(null, [Validators.required]),
+      imagePath: new FormControl<string | null>(null, [
         Validators.required,
         fileTypeValidator.validate,
       ]),
-      imageFile: new UntypedFormControl(null, [Validators.required]),
+      imageFile: new FormControl<File | null>(null, [Validators.required]),
     });
     this.isSubmitting = false;
   }
@@ -42,7 +48,15 @@ export class AddCollectionViewComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitting = true;
 
-    const formValue: AddCollectionFrontendBody = this.addCollectionForm.value;
+    const formValue = this.addCollectionForm.value;
+
+    // Add type safety checks for required fields
+    if (!formValue.printingName || !formValue.collectionName || !formValue.group || !formValue.imageFile) {
+      console.error('Required form fields are missing');
+      this.isSubmitting = false;
+      return;
+    }
+
     const formData: FormData = new FormData();
 
     formData.append('printing_name', formValue.printingName);
@@ -53,7 +67,7 @@ export class AddCollectionViewComponent implements OnInit {
     this.collectionsService.insertCollection(formData).subscribe(
       (response: AddCollectionResponse) => {
         this.notificationService.toastCollectionCreationSuccess(
-          formValue.printingName,
+          formValue.printingName!,
           response.id
         );
         this.addCollectionForm.reset();

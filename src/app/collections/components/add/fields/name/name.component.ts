@@ -1,6 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/form.service';
+
+// Define the form structure for the name fields
+interface CollectionNameForm {
+  printingName: FormControl<string | null>;
+  collectionName: FormControl<string | null>;
+  group: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-add-collection-form-name-field',
@@ -8,12 +15,12 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class AddCollectionFormNameFieldComponent implements OnInit {
   @Input()
-  form!: UntypedFormGroup;
+  form!: FormGroup<CollectionNameForm>;
 
   constructor(private formService: FormService) {}
 
   get isPrintingNameInvalid(): boolean {
-    const control = this.formService.getControl<UntypedFormControl>(
+    const control = this.formService.getControl<FormControl<string | null>>(
       this.form,
       'printingName'
     );
@@ -21,7 +28,7 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   }
 
   get isCollectionNameInvalid(): boolean {
-    const control = this.formService.getControl<UntypedFormControl>(
+    const control = this.formService.getControl<FormControl<string | null>>(
       this.form,
       'collectionName'
     );
@@ -29,7 +36,7 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   }
 
   get isGroupInvalid(): boolean {
-    const control = this.formService.getControl<UntypedFormControl>(
+    const control = this.formService.getControl<FormControl<string | null>>(
       this.form,
       'group'
     );
@@ -37,9 +44,4 @@ export class AddCollectionFormNameFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  isControlInvalid(name: string): boolean {
-    const control = this.formService.getControl<UntypedFormControl>(this.form, name);
-    return control.touched && control.invalid;
-  }
 }

@@ -1,8 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Form, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 import { FormService } from 'src/app/shared/services/form.service';
+
+// Define the form structure for the image fields
+interface CollectionImageForm {
+  imagePath: FormControl<string | null>;
+  imageFile: FormControl<File | null>;
+}
 
 @Component({
   selector: 'app-add-collection-form-image-field',
@@ -10,7 +16,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class AddCollectionFormImageFieldComponent implements OnInit {
   @Input()
-  form!: UntypedFormGroup;
+  form!: FormGroup<CollectionImageForm>;
 
   constructor(
     private fileTypeValidator: FileTypeValidatorService,
@@ -21,12 +27,12 @@ export class AddCollectionFormImageFieldComponent implements OnInit {
     return this.fileTypeValidator.validTypes.toString();
   }
 
-  get pathControl(): UntypedFormControl {
-    return this.formService.getControl<UntypedFormControl>(this.form, 'imagePath');
+  get pathControl(): FormControl<string | null> {
+    return this.formService.getControl<FormControl<string | null>>(this.form, 'imagePath');
   }
 
-  get fileControl(): UntypedFormControl {
-    return this.formService.getControl<UntypedFormControl>(this.form, 'imageFile');
+  get fileControl(): FormControl<File | null> {
+    return this.formService.getControl<FormControl<File | null>>(this.form, 'imageFile');
   }
 
   get isPathValid(): boolean {
