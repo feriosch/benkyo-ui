@@ -49,9 +49,7 @@
       </div>
     </div>
   </div>
-  <div
-    *ngFor="let exampleControl of this.examplesArray!.controls; let i = index"
-  >
+  <div *ngFor="let exampleControl of this.examplesArray!.controls">
     <app-add-clause-form-clause-example
       [control]="exampleControl"
     ></app-add-clause-form-clause-example>

@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormArray,
+  FormControl,
+  FormGroup,
   Validators,
 } from '@angular/forms';
+
+import { ExampleForm } from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-section',
@@ -16,24 +18,28 @@ export class AddClauseFormSectionComponent implements OnInit {
   @Input()
   control?: AbstractControl;
 
-  formGroup?: UntypedFormGroup;
-  explanationControl?: UntypedFormControl;
-  examplesArray?: UntypedFormArray;
+  formGroup?: FormGroup;
+  explanationControl?: FormControl;
+  examplesArray?: FormArray<FormGroup<ExampleForm>>;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup = this.control! as UntypedFormGroup;
-    this.explanationControl = this.control!.get('explanation') as UntypedFormControl;
-    this.examplesArray = this.control!.get('examples') as UntypedFormArray;
+    this.formGroup = this.control! as FormGroup;
+    this.explanationControl = this.control!.get('explanation') as FormControl;
+    this.examplesArray = this.control!.get('examples') as FormArray<
+      FormGroup<ExampleForm>
+    >;
   }
 
   pushExample(): void {
     this.examplesArray!.push(
-      new UntypedFormGroup({
-        sentence: new UntypedFormControl('', [Validators.required]),
-        translation: new UntypedFormControl('', [Validators.required]),
-      })
+      new FormGroup<ExampleForm>({
+        sentence: new FormControl<string | null>(null, [Validators.required]),
+        translation: new FormControl<string | null>(null, [
+          Validators.required,
+        ]),
+      }),
     );
   }
 

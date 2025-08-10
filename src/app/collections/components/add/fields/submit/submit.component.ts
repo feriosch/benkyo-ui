@@ -1,14 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-// Define the form structure for the submit field
-interface CollectionSubmitForm {
-  printingName: FormControl<string | null>;
-  collectionName: FormControl<string | null>;
-  group: FormControl<string | null>;
-  imagePath: FormControl<string | null>;
-  imageFile: FormControl<File | null>;
-}
+import { CollectionForm } from 'src/models/collections/form.model';
 
 @Component({
   selector: 'app-add-collection-form-submit-field',
@@ -16,7 +9,7 @@ interface CollectionSubmitForm {
 })
 export class AddCollectionFormSubmitFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup<CollectionSubmitForm>;
+  form!: FormGroup<CollectionForm>;
 
   @Input()
   isSubmitting!: boolean;

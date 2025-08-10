@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+
+import { TypeForm } from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-type',
@@ -8,7 +10,7 @@ import { UntypedFormGroup } from '@angular/forms';
 })
 export class AddClauseFormTypeComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<TypeForm>;
 
   subtypes: string[];
 

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { MainForm } from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-title',
@@ -8,20 +10,16 @@ import { UntypedFormGroup } from '@angular/forms';
 })
 export class AddClauseFormTitleComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<MainForm>;
 
   constructor() {}
 
   get titleControl() {
-    return this.formGroup!.get('title');
-  }
-
-  get hiraganaControl() {
-    return this.formGroup!.get('hiragana');
+    return this.formGroup!.get('title') as FormControl<string | null>;
   }
 
   get translationControl() {
-    return this.formGroup!.get('translation');
+    return this.formGroup!.get('translation') as FormControl<string | null>;
   }
 
   ngOnInit(): void {}

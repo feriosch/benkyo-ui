@@ -3,12 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 import { FormService } from 'src/app/shared/services/form.service';
-
-// Define the form structure for the image fields
-interface CollectionImageForm {
-  imagePath: FormControl<string | null>;
-  imageFile: FormControl<File | null>;
-}
+import { CollectionForm } from 'src/models/collections/form.model';
 
 @Component({
   selector: 'app-add-collection-form-image-field',
@@ -16,11 +11,11 @@ interface CollectionImageForm {
 })
 export class AddCollectionFormImageFieldComponent implements OnInit {
   @Input()
-  form!: FormGroup<CollectionImageForm>;
+  form!: FormGroup<CollectionForm>;
 
   constructor(
     private fileTypeValidator: FileTypeValidatorService,
-    private formService: FormService
+    private formService: FormService,
   ) {}
 
   get fileTypes(): string {
@@ -28,11 +23,17 @@ export class AddCollectionFormImageFieldComponent implements OnInit {
   }
 
   get pathControl(): FormControl<string | null> {
-    return this.formService.getControl<FormControl<string | null>>(this.form, 'imagePath');
+    return this.formService.getControl<FormControl<string | null>>(
+      this.form,
+      'imagePath',
+    );
   }
 
   get fileControl(): FormControl<File | null> {
-    return this.formService.getControl<FormControl<File | null>>(this.form, 'imageFile');
+    return this.formService.getControl<FormControl<File | null>>(
+      this.form,
+      'imageFile',
+    );
   }
 
   get isPathValid(): boolean {

@@ -6,14 +6,7 @@ import { CollectionsService } from 'src/app/collections/services/collections.ser
 import { CollectionNotificationService } from 'src/app/collections/services/notification.service';
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 
-// Define the form structure with proper control types
-interface CollectionForm {
-  printingName: FormControl<string | null>;
-  collectionName: FormControl<string | null>;
-  group: FormControl<string | null>;
-  imagePath: FormControl<string | null>;
-  imageFile: FormControl<File | null>;
-}
+import { CollectionForm } from 'src/models/collections/form.model';
 
 @Component({
   selector: 'app-add-collection-view',
@@ -26,11 +19,13 @@ export class AddCollectionViewComponent implements OnInit {
   constructor(
     private collectionsService: CollectionsService,
     private notificationService: CollectionNotificationService,
-    fileTypeValidator: FileTypeValidatorService
+    fileTypeValidator: FileTypeValidatorService,
   ) {
     this.addCollectionForm = new FormGroup<CollectionForm>({
       printingName: new FormControl<string | null>(null, [Validators.required]),
-      collectionName: new FormControl<string | null>(null, [Validators.required]),
+      collectionName: new FormControl<string | null>(null, [
+        Validators.required,
+      ]),
       group: new FormControl<string | null>(null, [Validators.required]),
       imagePath: new FormControl<string | null>(null, [
         Validators.required,
@@ -51,7 +46,12 @@ export class AddCollectionViewComponent implements OnInit {
     const formValue = this.addCollectionForm.value;
 
     // Add type safety checks for required fields
-    if (!formValue.printingName || !formValue.collectionName || !formValue.group || !formValue.imageFile) {
+    if (
+      !formValue.printingName ||
+      !formValue.collectionName ||
+      !formValue.group ||
+      !formValue.imageFile
+    ) {
       console.error('Required form fields are missing');
       this.isSubmitting = false;
       return;
@@ -68,7 +68,7 @@ export class AddCollectionViewComponent implements OnInit {
       (response: AddCollectionResponse) => {
         this.notificationService.toastCollectionCreationSuccess(
           formValue.printingName!,
-          response.id
+          response.id,
         );
         this.addCollectionForm.reset();
       },
@@ -76,7 +76,7 @@ export class AddCollectionViewComponent implements OnInit {
         this.notificationService.toastCollectionCreationError(error.toString());
         console.log(error);
       },
-      () => (this.isSubmitting = false)
+      () => (this.isSubmitting = false),
     );
   }
 }

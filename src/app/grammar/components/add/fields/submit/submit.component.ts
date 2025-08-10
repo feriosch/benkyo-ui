@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+
+import { MainForm } from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-submit-button',
@@ -8,7 +10,10 @@ import { UntypedFormGroup } from '@angular/forms';
 })
 export class AddClauseFormSubmitButtonComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<MainForm>;
+
+  @Input()
+  isSubmitting?: boolean;
 
   constructor() {}
 

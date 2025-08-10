@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { MainForm, ExampleForm } from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-examples-field',
@@ -8,10 +10,10 @@ import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } fr
 })
 export class AddClauseFormExamplesFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<MainForm>;
 
   @Input()
-  formArray?: UntypedFormArray;
+  formArray?: FormArray<FormGroup<ExampleForm>>;
 
   constructor() {}
 
@@ -19,10 +21,12 @@ export class AddClauseFormExamplesFieldComponent implements OnInit {
 
   pushExample(): void {
     this.formArray!.push(
-      new UntypedFormGroup({
-        sentence: new UntypedFormControl(null, [Validators.required]),
-        translation: new UntypedFormControl(null, [Validators.required]),
-      })
+      new FormGroup<ExampleForm>({
+        sentence: new FormControl<string | null>(null, [Validators.required]),
+        translation: new FormControl<string | null>(null, [
+          Validators.required,
+        ]),
+      }),
     );
   }
 

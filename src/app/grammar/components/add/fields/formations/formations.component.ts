@@ -1,11 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormArray,
+  FormControl,
+  FormGroup,
   Validators,
 } from '@angular/forms';
+
+import {
+  MainForm,
+  ExampleForm,
+  FormationForm,
+} from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-formations',
@@ -14,48 +20,54 @@ import {
 })
 export class AddClauseFormFormationsComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<MainForm>;
 
   @Input()
-  formArray?: UntypedFormArray;
+  formArray?: FormArray<FormGroup<FormationForm>>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  getFormGroupFromControl(control: AbstractControl): UntypedFormGroup {
-    return control as UntypedFormGroup;
+  getFormGroupFromControl(control: AbstractControl): FormGroup {
+    return control as FormGroup;
   }
 
-  getExamplesFormArray(control: AbstractControl): UntypedFormArray {
-    return control!.get('examples') as UntypedFormArray;
+  getExamplesFormArray(
+    control: AbstractControl,
+  ): FormArray<FormGroup<ExampleForm>> {
+    return control!.get('examples') as FormArray<FormGroup<ExampleForm>>;
   }
 
   pushFormation(): void {
     this.formArray!.push(
-      new UntypedFormGroup({
-        rule: new UntypedFormControl(null, [Validators.required]),
-        examples: new UntypedFormArray([]),
-      })
+      new FormGroup<FormationForm>({
+        rule: new FormControl<string | null>(null, [Validators.required]),
+        examples: new FormArray<FormGroup<ExampleForm>>([]),
+      }),
     );
   }
 
   popFormation(): void {
     if (this.formArray!.length > 0)
       this.formArray!.removeAt(this.formArray!.length - 1);
+    ``;
   }
 
   pushExample(control: AbstractControl): void {
     this.getExamplesFormArray(control)!.push(
-      new UntypedFormGroup({
-        sentence: new UntypedFormControl('', [Validators.required]),
-        translation: new UntypedFormControl('', [Validators.required]),
-      })
+      new FormGroup<ExampleForm>({
+        sentence: new FormControl<string | null>(null, [Validators.required]),
+        translation: new FormControl<string | null>(null, [
+          Validators.required,
+        ]),
+      }),
     );
   }
 
   popExample(control: AbstractControl): void {
-    const examplesFormArray: UntypedFormArray = this.getExamplesFormArray(control)!;
+    const examplesFormArray: FormArray<FormGroup<ExampleForm>> =
+      this.getExamplesFormArray(control)!;
     if (examplesFormArray!.length > 0) {
       examplesFormArray!.removeAt(examplesFormArray!.length - 1);
     }

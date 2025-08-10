@@ -1,11 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  UntypedFormArray,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormArray,
+  FormControl,
+  FormGroup,
   Validators,
 } from '@angular/forms';
+
+import {
+  MainForm,
+  ExampleForm,
+  RelatedSectionForm,
+  RelatedForm,
+} from 'src/models/grammar/forms/form';
 
 @Component({
   selector: 'app-add-clause-form-related',
@@ -14,10 +21,10 @@ import {
 })
 export class AddClauseFormRelatedComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<MainForm>;
 
   @Input()
-  formArray?: UntypedFormArray;
+  formArray?: FormArray<FormGroup<RelatedForm>>;
 
   constructor() {}
 
@@ -25,12 +32,12 @@ export class AddClauseFormRelatedComponent implements OnInit {
 
   pushRelated(): void {
     this.formArray!.push(
-      new UntypedFormGroup({
-        title: new UntypedFormControl(null, [Validators.required]),
-        hiragana: new UntypedFormControl(null),
-        reference: new UntypedFormControl(null),
-        sections: new UntypedFormArray([]),
-      })
+      new FormGroup<RelatedForm>({
+        title: new FormControl<string | null>(null, [Validators.required]),
+        hiragana: new FormControl<string | null>(null),
+        reference: new FormControl<string | null>(null),
+        sections: new FormArray<FormGroup<RelatedSectionForm>>([]),
+      }),
     );
   }
 
@@ -39,31 +46,35 @@ export class AddClauseFormRelatedComponent implements OnInit {
       this.formArray!.removeAt(this.formArray!.length - 1);
   }
 
-  getFormGroupFromControl(control: AbstractControl): UntypedFormGroup {
-    return control as UntypedFormGroup;
+  getFormGroupFromControl(control: AbstractControl): FormGroup {
+    return control as FormGroup;
   }
 
-  getTitleControl(control: AbstractControl): UntypedFormControl {
-    return control!.get('title') as UntypedFormControl;
+  getTitleControl(control: AbstractControl): FormControl<string | null> {
+    return control!.get('title') as FormControl<string | null>;
   }
 
-  getSectionsArray(control: AbstractControl): UntypedFormArray {
-    return control!.get('sections') as UntypedFormArray;
+  getSectionsArray(
+    control: AbstractControl,
+  ): FormArray<FormGroup<RelatedSectionForm>> {
+    return control!.get('sections') as FormArray<FormGroup<RelatedSectionForm>>;
   }
 
   pushSection(control: AbstractControl): void {
     this.getSectionsArray(control!).push(
-      new UntypedFormGroup({
-        explanation: new UntypedFormControl('', [Validators.required]),
-        examples: new UntypedFormArray([]),
-      })
+      new FormGroup<RelatedSectionForm>({
+        explanation: new FormControl<string | null>(null, [
+          Validators.required,
+        ]),
+        examples: new FormArray<FormGroup<ExampleForm>>([]),
+      }),
     );
   }
 
   popSection(control: AbstractControl): void {
     if (this.getSectionsArray(control!).length > 0) {
       this.getSectionsArray(control!).removeAt(
-        this.getSectionsArray(control!).length - 1
+        this.getSectionsArray(control!).length - 1,
       );
     }
   }
