@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AutocompleteComponent } from 'angular-ng-autocomplete';
 
 import { KanjiComponentsResponse } from 'src/models/kanji/components/responses.model';
+import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 import { FormService } from 'src/app/shared/services/form.service';
 import { KanjiComponentService } from 'src/app/kanji/services/component.service';
 
@@ -15,7 +16,7 @@ export class AddKanjiFormComponentsFieldComponent implements OnInit {
   autocomplete!: AutocompleteComponent;
 
   @Input()
-  form!: UntypedFormGroup;
+  form!: FormGroup<KanjiMainForm>;
 
   suggestions: string[];
 
@@ -23,14 +24,14 @@ export class AddKanjiFormComponentsFieldComponent implements OnInit {
 
   constructor(
     private formService: FormService,
-    private componentService: KanjiComponentService
+    private componentService: KanjiComponentService,
   ) {
     this.suggestions = [];
     this.isSuggestionLoading = false;
   }
 
-  get formArray(): UntypedFormArray {
-    return this.formService.getControl<UntypedFormArray>(this.form, 'components');
+  get formArray(): FormArray {
+    return this.formService.getControl<FormArray>(this.form, 'components');
   }
 
   get components(): string[] {
@@ -55,7 +56,9 @@ export class AddKanjiFormComponentsFieldComponent implements OnInit {
   }
 
   onAddComponent(component: string): void {
-    this.formArray.push(new UntypedFormControl(component, [Validators.required]));
+    this.formArray.push(
+      new FormControl<string | null>(component, [Validators.required]),
+    );
     this.autocomplete.clear();
     this.suggestions = [];
   }

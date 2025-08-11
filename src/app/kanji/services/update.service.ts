@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { UpdateRequest } from 'src/models/kanji/requests.model';
+import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 import { FormService } from 'src/app/shared/services/form.service';
 
 @Injectable({ providedIn: 'root' })
 export class UpdateKanjiService {
   private readonly updateEndpoint: string;
 
-  constructor(private http: HttpClient, private formService: FormService) {
+  constructor(
+    private http: HttpClient,
+    private formService: FormService,
+  ) {
     this.updateEndpoint = `${environment.backendUrl}/kanjis`;
   }
 
-  getUpdateRequestBody(id: string, form: UntypedFormGroup): UpdateRequest {
+  getUpdateRequestBody(
+    id: string,
+    form: FormGroup<KanjiMainForm>,
+  ): UpdateRequest {
     const v1: number = this.formService.getValue(form, 'v1');
     const v2: number | null = this.formService.getValue(form, 'v2');
 

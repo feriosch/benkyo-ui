@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 
 @Component({
   selector: 'app-add-kanji-form-submit-field',
@@ -8,12 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()
-  form!: UntypedFormGroup;
+  form!: FormGroup<KanjiMainForm>;
 
   @Input()
   isLoading!: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {}
 
