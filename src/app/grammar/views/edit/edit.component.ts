@@ -17,7 +17,7 @@ export class EditClauseViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService
+    private grammarService: GrammarService,
   ) {
     this.id = this.route.snapshot.params['id'];
     this.isLoading = true;

@@ -36,7 +36,7 @@ export class KanjiComponentService {
   getKanjiByComponents(
     components: string[],
     pageSize: number,
-    pageNumber: number
+    pageNumber: number,
   ): Observable<CompactedKanjiResponse> {
     let params = new HttpParams();
 
@@ -55,7 +55,7 @@ export class KanjiComponentService {
 
   getIrregularComponents(): Observable<KanjiIrregularComponentsResponse> {
     return this.http.get<KanjiIrregularComponentsResponse>(
-      this.irregularComponentsUrl
+      this.irregularComponentsUrl,
     );
   }
 }

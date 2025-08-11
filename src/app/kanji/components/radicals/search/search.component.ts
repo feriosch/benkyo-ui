@@ -38,7 +38,7 @@ export class KanjiRadicalsSearchComponent implements OnInit {
 
   constructor(
     private componentService: KanjiComponentService,
-    private radicalService: KanjiRadicalService
+    private radicalService: KanjiRadicalService,
   ) {
     this.modeSwitched = new EventEmitter<boolean>();
     this.componentSelected = new EventEmitter<string>();

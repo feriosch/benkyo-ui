@@ -20,7 +20,7 @@ export class DeleteClauseModalComponent implements OnInit {
     private router: Router,
     private grammarService: GrammarService,
     private grammarNotificationService: GrammarNotificationService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     this.isActive = false;
   }
@@ -40,12 +40,12 @@ export class DeleteClauseModalComponent implements OnInit {
       (_response) => {
         this.router.navigateByUrl('/grammar');
         this.grammarNotificationService.toastClauseDeletionNotification(
-          this.id!
+          this.id!,
         );
       },
       (error) => {
         this.notificationService.toastErrorNotification(error);
-      }
+      },
     );
   }
 }

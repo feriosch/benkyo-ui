@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { KanjiMainForm, KanjiFormValues } from 'src/models/kanji/forms/form.model';
+import {
+  KanjiMainForm,
+  KanjiFormValues,
+} from 'src/models/kanji/forms/form.model';
 
 @Injectable({ providedIn: 'root' })
 export class KanjiFormService {
@@ -34,7 +37,9 @@ export class KanjiFormService {
     return this.form.get(array)! as FormArray;
   }
 
-  private getNewComponentFormControl(component: string): FormControl<string | null> {
+  private getNewComponentFormControl(
+    component: string,
+  ): FormControl<string | null> {
     return new FormControl<string | null>(component, [Validators.required]);
   }
 
@@ -49,9 +54,8 @@ export class KanjiFormService {
   }
 
   private initializeComponentControls(): void {
-    const componentsArray: FormArray<FormControl<string | null>> = this.getFormArray(
-      'components',
-    ) as FormArray<FormControl<string | null>>;
+    const componentsArray: FormArray<FormControl<string | null>> =
+      this.getFormArray('components') as FormArray<FormControl<string | null>>;
 
     this.cachedData!.components.forEach((component: string) => {
       componentsArray.push(this.getNewComponentFormControl(component));

@@ -69,7 +69,7 @@ export class GrammarService {
 
   getClauses(
     orderField?: OrderField | null,
-    orderDirection?: OrderDirection | null
+    orderDirection?: OrderDirection | null,
   ): Observable<ClausesResponse> {
     let params = new HttpParams();
     if (this.filter) params = params.append('filter_by', this.filter);

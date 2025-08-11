@@ -15,7 +15,7 @@ export class CollectionsHomeViewComponent implements OnInit {
   constructor(
     private collectionsService: CollectionsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.collections = [];
   }

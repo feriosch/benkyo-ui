@@ -10,7 +10,10 @@ import { LoginResponse } from 'src/models/responses/login';
 export class AuthService {
   private _isAuthenticated: boolean;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {
     this._isAuthenticated = false;
   }
 
@@ -24,7 +27,7 @@ export class AuthService {
 
   submitCredentials(
     username: string,
-    password: string
+    password: string,
   ): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(environment.backendUrl + '/login', {
       username: username,

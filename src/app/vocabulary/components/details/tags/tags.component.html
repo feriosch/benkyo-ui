@@ -1,17 +1,17 @@
 <div class="tags are-large is-centered">
-    <span
-      *ngFor="let tag of tags"
-      [ngClass]="{
-        'is-success': tag === 'common',
-        'is-info':
-          tag === 'expression' || tag === 'usually_kana' || tag === 'jlpt_n1',
-        'is-warning': tag === 'honorific' || tag === 'humble',
-        'is-danger': tag === 'joyogai' || tag === 'ateji',
-        'is-link': tag === 'intransitive' || tag === 'transitive',
-        'is-primary': tag === 'onomatopoeic'
-      }"
-      class="tag is-rounded ml-2 mr-2"
-    >
-      {{ getTagValueText(tag) }}
-    </span>
+  <span
+    *ngFor="let tag of tags"
+    [ngClass]="{
+      'is-success': tag === 'common',
+      'is-info':
+        tag === 'expression' || tag === 'usually_kana' || tag === 'jlpt_n1',
+      'is-warning': tag === 'honorific' || tag === 'humble',
+      'is-danger': tag === 'joyogai' || tag === 'ateji',
+      'is-link': tag === 'intransitive' || tag === 'transitive',
+      'is-primary': tag === 'onomatopoeic'
+    }"
+    class="tag is-rounded ml-2 mr-2"
+  >
+    {{ getTagValueText(tag) }}
+  </span>
 </div>

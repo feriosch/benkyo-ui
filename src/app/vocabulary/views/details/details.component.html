@@ -5,10 +5,16 @@
     </button>
   </div>
   <div *ngIf="word && collection">
-    <app-word-details-main-info [word]="word.word" [hiragana]="word.hiragana"
-                                [spanish]="word.spanish" [collection]="collection">
+    <app-word-details-main-info
+      [word]="word.word"
+      [hiragana]="word.hiragana"
+      [spanish]="word.spanish"
+      [collection]="collection"
+    >
     </app-word-details-main-info>
-    <app-word-details-type-table [type]="word.type"></app-word-details-type-table>
+    <app-word-details-type-table
+      [type]="word.type"
+    ></app-word-details-type-table>
     <div *ngIf="word.tags" class="block mt-4">
       <app-word-details-tags [tags]="word.tags"></app-word-details-tags>
     </div>
@@ -34,10 +40,6 @@
       <button (click)="onClickDelete()" class="button is-danger">Delete</button>
     </div>
   </div>
-  <app-word-details-delete-modal
-    #deleteModal
-    [id]="id"
-    [word]="word?.word"
-  >
+  <app-word-details-delete-modal #deleteModal [id]="id" [word]="word?.word">
   </app-word-details-delete-modal>
 </div>

@@ -21,7 +21,7 @@ export class WordsHomeViewComponent implements OnInit {
 
   constructor(
     public collectionsService: CollectionsService,
-    public vocabularyService: VocabularyService
+    public vocabularyService: VocabularyService,
   ) {
     this.nextPageNumber = '';
     this.totalPages = 0;
@@ -39,7 +39,7 @@ export class WordsHomeViewComponent implements OnInit {
         this.totalPages = response.total_pages;
         this.totalWords = response.total_words;
       },
-      (error) => console.log(error)
+      (error) => console.log(error),
     );
   }
 
@@ -48,7 +48,7 @@ export class WordsHomeViewComponent implements OnInit {
       (response: CollectionsResponse) => {
         this.collections = response.collections;
       },
-      (error) => console.log(error)
+      (error) => console.log(error),
     );
   }
 

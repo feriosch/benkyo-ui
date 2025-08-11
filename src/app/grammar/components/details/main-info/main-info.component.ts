@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 import { Type } from 'src/models/responses/grammar/clause.model';
 import { ClauseTypeMapperService } from 'src/app/grammar/services/type-mapper.service';
@@ -30,12 +36,8 @@ export class MainInfoComponent implements OnInit, OnChanges {
     this.fullType = '';
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.fullType = this.typeMapperService.getFullType(this.type!)
+    this.fullType = this.typeMapperService.getFullType(this.type!);
   }
 
-  ngOnInit(): void {
-  }
-
-
-
+  ngOnInit(): void {}
 }

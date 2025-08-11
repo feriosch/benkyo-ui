@@ -48,6 +48,6 @@ export class WordDetailsViewComponent implements OnInit {
 
   onClickDelete() {
     this.deleteModal.openModal();
-    console.log('dfojsid')
+    console.log('dfojsid');
   }
 }

@@ -68,7 +68,7 @@ export class KanjiService {
 
   getKanjis(
     orderField?: OrderField | null,
-    orderDirection?: OrderDirection | null
+    orderDirection?: OrderDirection | null,
   ): Observable<KanjisResponse> {
     let params = new HttpParams();
     if (this.filter) params = params.append('filter_by', this.filter);

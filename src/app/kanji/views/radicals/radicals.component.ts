@@ -19,7 +19,7 @@ export class KanjiRadicalsViewComponent implements OnInit {
 
   constructor(
     private componentService: KanjiComponentService,
-    private radicalService: KanjiRadicalService
+    private radicalService: KanjiRadicalService,
   ) {
     this.isComponentMode = true;
     this.components = [];
@@ -42,7 +42,7 @@ export class KanjiRadicalsViewComponent implements OnInit {
         .getKanjiByComponents(
           this.components,
           this.kanjisPageSize,
-          this.kanjisPage
+          this.kanjisPage,
         )
         .toPromise()
         .then((response: CompactedKanjiResponse) => {
@@ -55,7 +55,7 @@ export class KanjiRadicalsViewComponent implements OnInit {
         .getKanjiByRadicals(
           this.components,
           this.kanjisPageSize,
-          this.kanjisPage
+          this.kanjisPage,
         )
         .toPromise()
         .then((response: CompactedKanjiResponse) => {

@@ -29,7 +29,7 @@ export class KanjiRadicalService {
   getKanjiByRadicals(
     components: string[],
     pageSize: number,
-    pageNumber: number
+    pageNumber: number,
   ): Observable<CompactedKanjiResponse> {
     let params = new HttpParams();
 

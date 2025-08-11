@@ -12,7 +12,7 @@ $orange-cell: #ffdea6;
 @import "node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import "node_modules/ag-grid-community/dist/styles/ag-grid";
 @import "node_modules/ag-grid-community/dist/styles/ag-theme-alpine";
-@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+@import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 
 .ag-theme-alpine {
   //alpine-active-color: deeppink

@@ -14,7 +14,7 @@ export class CollectionNotificationService {
 
     notification.setTitle('Success!');
     notification.setMessage(
-      `Collection ${name} was created successfully. ID: ${id}.`
+      `Collection ${name} was created successfully. ID: ${id}.`,
     );
 
     notification.setConfig({

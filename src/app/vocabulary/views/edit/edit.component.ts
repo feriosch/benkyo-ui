@@ -17,7 +17,7 @@ export class EditWordViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private vocabularyService: VocabularyService
+    private vocabularyService: VocabularyService,
   ) {
     this.id = this.route.snapshot.params['id'];
     this.isLoading = true;

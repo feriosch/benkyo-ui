@@ -12,7 +12,7 @@ export class VocabularyCsvService {
 
   constructor(
     private http: HttpClient,
-    private collectionsService: CollectionsService
+    private collectionsService: CollectionsService,
   ) {
     this.wordsCsvUrl = `${environment.backendUrl}/words/csv`;
     this.jlptCsvUrl = `${this.wordsCsvUrl}/jlpt`;
@@ -23,7 +23,7 @@ export class VocabularyCsvService {
     if (this.collectionsService.currentCollection)
       params = params.append(
         'group',
-        this.collectionsService.currentCollection
+        this.collectionsService.currentCollection,
       );
     return this.http.get(this.wordsCsvUrl, { params, responseType: 'blob' });
   }

@@ -51,7 +51,7 @@ export class KanjiModalComponent implements OnInit, OnChanges {
         this.error = error.error.error;
         this.kanjiInfo = null;
         this.isLoading = false;
-      }
+      },
     );
   }
 

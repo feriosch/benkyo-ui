@@ -19,7 +19,7 @@ export class KanjiDetailViewComponent implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
-    private kanjiService: KanjiService
+    private kanjiService: KanjiService,
   ) {
     this.isLoading = true;
     this.id = this.route.snapshot.params['id'];

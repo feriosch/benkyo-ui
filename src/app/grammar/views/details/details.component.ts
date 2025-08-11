@@ -24,7 +24,7 @@ export class ClauseDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private grammarService: GrammarService
+    private grammarService: GrammarService,
   ) {
     this.isLoading = true;
     this.id = this.route.snapshot.params['id'];

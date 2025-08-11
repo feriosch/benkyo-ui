@@ -30,11 +30,11 @@ export class AddIrregularComponentService {
   }
 
   postComponent(
-    body: KanjiAddIrregularComponentBody
+    body: KanjiAddIrregularComponentBody,
   ): Observable<KanjiAddIrregularComponentResponse> {
     return this.http.post<KanjiAddIrregularComponentResponse>(
       this.irregularComponentsUrl,
-      body
+      body,
     );
   }
 }

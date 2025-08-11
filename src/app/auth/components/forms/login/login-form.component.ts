@@ -23,19 +23,17 @@ export class LoginFormComponent implements OnInit {
     // Now TypeScript knows the exact structure
     const username = this.loginForm.get('username')?.value;
     const password = this.loginForm.get('password')?.value;
-    
+
     // Add type safety checks
     if (username && password) {
-      this.authService
-        .submitCredentials(username, password)
-        .subscribe(
-          async (response: LoginResponse) => {
-            await this.authService.login(response.token);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      this.authService.submitCredentials(username, password).subscribe(
+        async (response: LoginResponse) => {
+          await this.authService.login(response.token);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
     }
   }
 

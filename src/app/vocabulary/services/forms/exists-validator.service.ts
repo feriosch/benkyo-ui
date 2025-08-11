@@ -14,7 +14,7 @@ export class ExistsValidatorService implements AsyncValidator {
   constructor(private vocabularyService: VocabularyService) {}
 
   validate(
-    control: AbstractControl
+    control: AbstractControl,
   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
     return this.vocabularyService.searchWordByWord(control.value!).pipe(
       map((response) => {
@@ -23,7 +23,7 @@ export class ExistsValidatorService implements AsyncValidator {
         }
         return null;
       }),
-      catchError((error) => of({ repeatedWord: error }))
+      catchError((error) => of({ repeatedWord: error })),
     );
   }
 }
