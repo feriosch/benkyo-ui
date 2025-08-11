@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import { Sentence, Type } from 'src/models/responses/vocabulary/word.model';
+import { VocabularyFormValues } from 'src/models/vocabulary/forms/form.model';
 
 @Injectable({ providedIn: 'root' })
 export class ValueTransformerService {
-  transform(value: any, id?: string): AddWordBody {
+  transform(value: VocabularyFormValues, id?: string): AddWordBody {
     let spanish: string;
     let collection: string;
     let type: Type;

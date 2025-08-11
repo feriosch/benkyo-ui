@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import {
+  VocabularyMainForm,
+  VocabularySentenceForm,
+} from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-sentences-field',
@@ -8,10 +13,10 @@ import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } fr
 })
 export class AddWordFormSentencesFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyMainForm>;
 
   @Input()
-  formArray?: UntypedFormArray;
+  formArray?: FormArray<FormGroup<VocabularySentenceForm>>;
 
   constructor() {}
 
@@ -23,10 +28,12 @@ export class AddWordFormSentencesFieldComponent implements OnInit {
 
   pushSentence(): void {
     this.formArray!.push(
-      new UntypedFormGroup({
-        japanese: new UntypedFormControl('', [Validators.required]),
-        translation: new UntypedFormControl('', [Validators.required]),
-      })
+      new FormGroup<VocabularySentenceForm>({
+        japanese: new FormControl<string | null>(null, [Validators.required]),
+        translation: new FormControl<string | null>(null, [
+          Validators.required,
+        ]),
+      }),
     );
   }
 
@@ -37,7 +44,9 @@ export class AddWordFormSentencesFieldComponent implements OnInit {
   }
 
   isControlInvalid(name: string, index: number): boolean {
-    const control: UntypedFormControl = this.controls[index].get(name)! as UntypedFormControl;
+    const control: FormControl<string | null> = this.controls[index].get(
+      name,
+    )! as FormControl<string | null>;
     return control.touched && control.invalid;
   }
 }

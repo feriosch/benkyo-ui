@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
@@ -8,12 +8,18 @@ import { Collection } from 'src/models/collections/collection.model';
 import { FromBackendTypeMap } from 'src/models/vocabulary/type';
 import { FromBackendTagsMap } from 'src/models/vocabulary/tags';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
 import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value-transformer.service';
-import { CollectionsResponse } from 'src/models/collections/responses.model';
+import { VocabularyFormService } from 'src/app/vocabulary/services/forms/form.service';
+import {
+  VocabularyMainForm,
+  VocabularyTypeForm,
+  VocabularyTagsForm,
+  VocabularySentenceForm,
+  VocabularyFormValues,
+} from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-edit-word-form',
@@ -27,7 +33,7 @@ export class EditWordFormComponent implements OnInit {
   @Input()
   id?: string;
 
-  editWordForm: UntypedFormGroup;
+  editWordForm: FormGroup<VocabularyMainForm>;
   collections?: Collection[];
   originalTags: string[];
 
@@ -38,41 +44,10 @@ export class EditWordFormComponent implements OnInit {
     private typeMapperService: TypeMapperService,
     private tagsMapperService: TagsMapperService,
     private valueTransformerService: ValueTransformerService,
-    private collectionsService: CollectionsService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private vocabularyFormService: VocabularyFormService,
   ) {
-    this.editWordForm = new UntypedFormGroup({
-      hiragana: new UntypedFormControl(null),
-      spanish: new UntypedFormControl(null, [Validators.required]),
-      type: new UntypedFormGroup({
-        noun: new UntypedFormControl(0, [Validators.required]),
-        suru: new UntypedFormControl(0, [Validators.required]),
-        noAdj: new UntypedFormControl(0, [Validators.required]),
-        naAdj: new UntypedFormControl(0, [Validators.required]),
-        iAdj: new UntypedFormControl(0, [Validators.required]),
-        adv: new UntypedFormControl(0, [Validators.required]),
-        verb: new UntypedFormControl(0, [Validators.required]),
-        adjNoun: new UntypedFormControl(0, [Validators.required]),
-        advNoun: new UntypedFormControl(0, [Validators.required]),
-        counter: new UntypedFormControl(0, [Validators.required]),
-      }),
-      tags: new UntypedFormGroup({
-        ateji: new UntypedFormControl(false, [Validators.required]),
-        common: new UntypedFormControl(false, [Validators.required]),
-        expression: new UntypedFormControl(false, [Validators.required]),
-        honorific: new UntypedFormControl(false, [Validators.required]),
-        humble: new UntypedFormControl(false, [Validators.required]),
-        intransitive: new UntypedFormControl(false, [Validators.required]),
-        jlptN1: new UntypedFormControl(false, [Validators.required]),
-        notJoyo: new UntypedFormControl(false, [Validators.required]),
-        onomatopoeic: new UntypedFormControl(false, [Validators.required]),
-        transitive: new UntypedFormControl(false, [Validators.required]),
-        usuallyKana: new UntypedFormControl(false, [Validators.required]),
-      }),
-      notes: new UntypedFormControl(null, [Validators.max(20)]),
-      collection: new UntypedFormControl(null, [Validators.required]),
-      sentences: new UntypedFormArray([]),
-    });
+    this.editWordForm = this.vocabularyFormService.createNewForm();
     this.originalTags = [];
   }
 
@@ -83,26 +58,37 @@ export class EditWordFormComponent implements OnInit {
     if (this.fullWord!.sentences) this.initializeSentenceControls();
   }
 
-  getFormControl(control: string): UntypedFormControl {
-    return this.editWordForm.get(control) as UntypedFormControl;
+  getFormControl(control: string): FormControl {
+    return this.editWordForm.get(control) as FormControl;
   }
 
-  getFormGroup(group: string): UntypedFormGroup {
-    return this.editWordForm.get(group) as UntypedFormGroup;
+  getFormGroup(group: string): FormGroup {
+    return this.editWordForm.get(group) as FormGroup;
   }
 
-  getFormArray(formArray: string): UntypedFormArray {
-    return this.editWordForm.get(formArray) as UntypedFormArray;
+  getFormArray(formArray: string): FormArray {
+    return this.editWordForm.get(formArray) as FormArray;
   }
 
   initializeBasicControls(): void {
-    this.getFormControl('spanish')!.setValue(this.fullWord!.spanish);
+    const spanishControl: FormControl<string | null> = this.getFormControl(
+      'spanish',
+    ) as FormControl<string | null>;
+    spanishControl.setValue(this.fullWord!.spanish);
 
-    if (this.fullWord!.hiragana)
-      this.getFormControl('hiragana')!.setValue(this.fullWord!.hiragana);
+    if (this.fullWord!.hiragana) {
+      const hiraganaControl: FormControl<string | null> = this.getFormControl(
+        'hiragana',
+      ) as FormControl<string | null>;
+      hiraganaControl.setValue(this.fullWord!.hiragana);
+    }
 
-    if (this.fullWord!.notes)
-      this.getFormControl('notes')!.setValue(this.fullWord!.notes);
+    if (this.fullWord!.notes) {
+      const notesControl: FormControl<string | null> = this.getFormControl(
+        'notes',
+      ) as FormControl<string | null>;
+      notesControl.setValue(this.fullWord!.notes);
+    }
   }
 
   initializeTypeControls(): void {
@@ -111,9 +97,12 @@ export class EditWordFormComponent implements OnInit {
         this.typeMapperService.frontendSubtypes[
           subtype as keyof FromBackendTypeMap
         ];
-      const subtypeControl: UntypedFormControl = this.getFormGroup('type')!.get(
-        frontendSubtype
-      ) as UntypedFormControl;
+      const typeGroup: FormGroup<VocabularyTypeForm> = this.getFormGroup(
+        'type',
+      ) as FormGroup<VocabularyTypeForm>;
+      const subtypeControl: FormControl<number> = typeGroup.get(
+        frontendSubtype,
+      ) as FormControl<number>;
 
       if (subtypeControl) subtypeControl.setValue(parseInt(value));
     }
@@ -126,45 +115,51 @@ export class EditWordFormComponent implements OnInit {
           backendTag as keyof FromBackendTagsMap
         ];
 
-      const tagControl: UntypedFormControl = this.getFormControl('tags')!.get(
-        frontendTag
-      ) as UntypedFormControl;
+      const tagsGroup: FormGroup<VocabularyTagsForm> = this.getFormGroup(
+        'tags',
+      ) as FormGroup<VocabularyTagsForm>;
+      const tagControl: FormControl<boolean> = tagsGroup.get(
+        frontendTag,
+      ) as FormControl<boolean>;
 
       if (tagControl) tagControl.setValue(true);
     });
   }
 
   initializeSentenceControls(): void {
-    const sentencesArray: UntypedFormArray = this.editWordForm.get(
-      'sentences'
-    )! as UntypedFormArray;
+    const sentencesArray: FormArray<FormGroup<VocabularySentenceForm>> =
+      this.editWordForm.get('sentences')! as FormArray<
+        FormGroup<VocabularySentenceForm>
+      >;
     this.fullWord!.sentences!.forEach((sentence: Sentence) => {
       sentencesArray.push(
-        new UntypedFormGroup({
-          japanese: new UntypedFormControl(sentence.sentence, [Validators.required]),
-          translation: new UntypedFormControl(sentence.translation, [
+        new FormGroup<VocabularySentenceForm>({
+          japanese: new FormControl<string | null>(sentence.sentence, [
             Validators.required,
           ]),
-        })
+          translation: new FormControl<string | null>(sentence.translation, [
+            Validators.required,
+          ]),
+        }),
       );
     });
   }
 
   onSubmit(): void {
     const editWordBody: AddWordBody = this.valueTransformerService.transform(
-      this.editWordForm.value,
-      this.id
+      this.editWordForm.value as VocabularyFormValues,
+      this.id,
     );
     this.vocabularyService.updateWord(editWordBody).subscribe(
       async (_response) => {
         await this.router.navigate(['../'], { relativeTo: this.route });
         this.notificationService.toastWordUpdateNotification(
-          this.fullWord!.word
+          this.fullWord!.word,
         );
       },
       (error) => {
         this.notificationService.toastErrorNotification(error.error.error);
-      }
+      },
     );
   }
 }

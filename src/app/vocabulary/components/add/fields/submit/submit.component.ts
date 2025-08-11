@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+
+import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-submit-field',
@@ -8,7 +10,7 @@ import { UntypedFormGroup } from '@angular/forms';
 })
 export class AddWordFormSubmitFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyMainForm>;
 
   constructor() {}
 

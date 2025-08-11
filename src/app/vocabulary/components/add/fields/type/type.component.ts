@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
+import { VocabularyTypeForm } from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-type-field',
@@ -9,7 +11,7 @@ import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.servi
 })
 export class AddWordFormTypeFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyTypeForm>;
 
   subtypes: string[];
 
@@ -24,21 +26,30 @@ export class AddWordFormTypeFieldComponent implements OnInit {
   }
 
   getSubtypeValue(name: string): number {
-    if (this.formGroup!.controls.hasOwnProperty(name)) {
-      return this.formGroup!.controls[name].value;
+    const subtype = name as keyof VocabularyTypeForm;
+    if (this.formGroup!.controls.hasOwnProperty(subtype)) {
+      const control: FormControl<number> = this.formGroup!.controls[
+        subtype
+      ] as FormControl<number>;
+
+      return control.value;
     }
     return 0;
   }
 
-  onClickSubtype(subtype: string): void {
+  onClickSubtype(name: string): void {
+    const subtype = name as keyof VocabularyTypeForm;
     if (this.formGroup!.controls.hasOwnProperty(subtype)) {
-      let control = this.formGroup!.controls[subtype];
+      const control: FormControl<number> = this.formGroup!.controls[
+        subtype
+      ] as FormControl<number>;
       control.setValue((control.value + 1) % 9);
     }
   }
 
   getMappedText(value: number, subtype: string): string {
-    let subtypeName = this.typeMapperService.getPrintingValueFromLocal(subtype);
+    const subtypeName =
+      this.typeMapperService.getPrintingValueFromLocal(subtype);
     return this.typeMapperService.getValueText(value, subtypeName);
   }
 }

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
+import { VocabularyTagsForm } from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-tags-field',
@@ -9,7 +11,7 @@ import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.servi
 })
 export class AddWordFormTagsFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyTagsForm>;
 
   tags: string[];
 
@@ -25,7 +27,10 @@ export class AddWordFormTagsFieldComponent implements OnInit {
 
   getTagValue(tag: string): boolean {
     if (this.formGroup!.controls.hasOwnProperty(tag)) {
-      return this.formGroup!.controls[tag].value;
+      const control: FormControl<boolean> = this.formGroup!.controls[
+        tag as keyof VocabularyTagsForm
+      ] as FormControl<boolean>;
+      return control.value;
     }
     return false;
   }
@@ -36,7 +41,9 @@ export class AddWordFormTagsFieldComponent implements OnInit {
 
   onClickTag(tag: string): void {
     if (this.formGroup!.controls.hasOwnProperty(tag)) {
-      let control = this.formGroup!.controls[tag];
+      let control: FormControl<boolean> = this.formGroup!.controls[
+        tag as keyof VocabularyTagsForm
+      ] as FormControl<boolean>;
       control.setValue(!control.value);
     }
   }

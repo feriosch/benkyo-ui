@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-notes-field',
@@ -8,14 +10,14 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class AddWordFormNotesFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyMainForm>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  get notesControl(): UntypedFormControl {
-    return this.formGroup!.get('notes') as UntypedFormControl;
+  get notesControl(): FormControl<string | null> {
+    return this.formGroup!.get('notes') as FormControl<string | null>;
   }
 
   get isSpanishNDisabled(): boolean {

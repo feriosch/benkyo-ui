@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
+import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
@@ -12,7 +13,7 @@ import { CollectionsResponse } from 'src/models/collections/responses.model';
 })
 export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()
-  formGroup?: UntypedFormGroup;
+  formGroup?: FormGroup<VocabularyMainForm>;
 
   @Input()
   currentGroup?: string;
@@ -22,7 +23,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   constructor(private collectionsService: CollectionsService) {}
 
   get collectionControl() {
-    return this.formGroup!.get('collection') as UntypedFormControl;
+    return this.formGroup!.get('collection') as FormControl<string | null>;
   }
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
         this.collections = response.collections;
         if (this.collections.length > 0) {
           this.collectionControl.patchValue(
-            this.collections[0].collection_name
+            this.collections[0].collection_name,
           );
         }
       })
