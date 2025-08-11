@@ -11,6 +11,11 @@ export interface KanjiMainForm {
   story: FormControl<string | null>;
 }
 
+export interface IrregularComponentForm {
+  component: FormControl<string | null>;
+  radicals: FormArray<FormControl<string | null>>;
+}
+
 export interface KanjiFormValues {
   v1: number | null;
   v2: number | null;
