@@ -10,13 +10,11 @@ $orange-cell: #ffdea6;
 @import "node_modules/@fortawesome/fontawesome-free/scss/solid";
 @import "node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "node_modules/@fortawesome/fontawesome-free/scss/brands";
-@import "node_modules/ag-grid-community/dist/styles/ag-grid";
-@import "node_modules/ag-grid-community/dist/styles/ag-theme-alpine";
-@import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+@import "node_modules/ag-grid-community/styles/ag-grid.css";
+@import "node_modules/ag-grid-community/styles/ag-theme-alpine.css";
 
 .ag-theme-alpine {
   //alpine-active-color: deeppink
-  @include ag-theme-alpine(());
 }
 
 .ng-autocomplete {

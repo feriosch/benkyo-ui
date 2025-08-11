@@ -70,7 +70,7 @@ export class GrammarTableComponent implements OnInit {
       },
     ];
     this.gridOptions = {
-      suppressCellSelection: true,
+      suppressRowDeselection: true,
       rowClass: ['is-size-5'],
     };
     this.rowHeight = 50;

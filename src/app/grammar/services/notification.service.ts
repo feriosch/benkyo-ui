@@ -16,11 +16,11 @@ export class GrammarNotificationService {
     notification.setMessage(`Clause was deleted successfully: ${id}.`);
 
     notification.setConfig({
-      AutoCloseDelay: 2000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
+      autoCloseDelay: 2000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
     });
 
     notification.openToastNotification$();

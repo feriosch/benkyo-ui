@@ -64,7 +64,7 @@ export class WordTableComponent implements OnInit {
       { field: 'spanish' },
     ];
     this.gridOptions = {
-      suppressCellSelection: true,
+      suppressRowDeselection: true,
       rowClass: 'is-size-5',
     };
     this.rowHeight = 50;

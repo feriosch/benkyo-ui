@@ -18,11 +18,11 @@ export class CollectionNotificationService {
     );
 
     notification.setConfig({
-      AutoCloseDelay: 5000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
+      autoCloseDelay: 5000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
     });
 
     notification.openToastNotification$();
@@ -34,11 +34,11 @@ export class CollectionNotificationService {
     notification.setMessage(`Error: ${error}`);
 
     notification.setConfig({
-      AutoCloseDelay: 3000,
-      LayoutType: DialogLayoutDisplay.DANGER,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_RIGHT,
+      autoCloseDelay: 3000,
+      layoutType: DialogLayoutDisplay.DANGER,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_RIGHT,
     });
 
     notification.openToastNotification$();

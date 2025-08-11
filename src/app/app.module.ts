@@ -19,13 +19,13 @@ import { GrammarModule } from './grammar/grammar.module';
   imports: [
     BrowserModule,
     NgxAwesomePopupModule.forRoot({
-      ColorList: {
-        Success: '#00d1b2',
+      colorList: {
+        success: '#00d1b2',
       },
     }),
     ToastNotificationConfigModule.forRoot({
-      GlobalSettings: {
-        AllowedNotificationsAtOnce: 5,
+      globalSettings: {
+        allowedNotificationsAtOnce: 5,
       },
     }),
     AppRoutingModule,

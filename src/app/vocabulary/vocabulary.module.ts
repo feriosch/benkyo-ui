@@ -59,7 +59,7 @@ import { EditWordFormWordFieldComponent } from './components/edit/fields/word/wo
   ],
   imports: [
     CommonModule,
-    AgGridModule.withComponents([]),
+    AgGridModule,
     SharedModule,
     KanjiModule,
     ReactiveFormsModule,

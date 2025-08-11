@@ -15,11 +15,11 @@ export class NotificationService {
     notification.setMessage(`Error: ${error}`);
 
     notification.setConfig({
-      AutoCloseDelay: 5000,
-      LayoutType: DialogLayoutDisplay.DANGER,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_RIGHT,
+      autoCloseDelay: 5000,
+      layoutType: DialogLayoutDisplay.DANGER,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_RIGHT,
     });
 
     notification.openToastNotification$();
@@ -31,11 +31,11 @@ export class NotificationService {
     notification.setMessage(`Word was created successfully in: ${collection}.`);
 
     notification.setConfig({
-      AutoCloseDelay: 3000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
+      autoCloseDelay: 3000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
     });
 
     notification.openToastNotification$();
@@ -47,11 +47,11 @@ export class NotificationService {
     notification.setMessage(`${word} was edited successfully.`);
 
     notification.setConfig({
-      AutoCloseDelay: 3000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
+      autoCloseDelay: 3000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
     });
 
     notification.openToastNotification$();
@@ -63,11 +63,11 @@ export class NotificationService {
     notification.setMessage(`Clause was created successfully!.`);
 
     notification.setConfig({
-      AutoCloseDelay: 3000,
-      LayoutType: DialogLayoutDisplay.SUCCESS,
-      ProgressBar: ToastProgressBarEnum.NONE,
-      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
-      ToastPosition: ToastPositionEnum.TOP_CENTER,
+      autoCloseDelay: 3000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
     });
 
     notification.openToastNotification$();
