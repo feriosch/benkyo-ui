@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "benkyo-ui:build:production"
+              "buildTarget": "benkyo-ui:build:production"
             },
             "development": {
-              "browserTarget": "benkyo-ui:build:development"
+              "buildTarget": "benkyo-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "benkyo-ui:build"
+            "buildTarget": "benkyo-ui:build"
           }
         },
         "test": {
