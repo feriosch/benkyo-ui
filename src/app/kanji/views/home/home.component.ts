@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import { OrderDirection, OrderField } from 'src/models/requests/kanji';
 import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../../services/kanji.service';
+import { KanjisResponse } from '../../../../models/responses/kanji/kanjis-response.model';
 
 @Component({
   selector: 'app-kanji-home',
@@ -31,10 +33,10 @@ export class KanjiHomeViewComponent implements OnInit {
 
   getKanjis(): void {
     this.isKanjiFetchLoading = true;
-    this.kanjiService
-      .getKanjis(this.orderField, this.orderDirection)
-      .toPromise()
-      .then((response) => {
+    firstValueFrom(
+      this.kanjiService.getKanjis(this.orderField, this.orderDirection),
+    )
+      .then((response: KanjisResponse) => {
         this.kanjis = response.kanjis;
         this.nextPageNumber = response.next_page_number;
         this.totalPages = response.total_pages;

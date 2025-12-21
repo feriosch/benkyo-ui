@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
-import { CollectionsResponse } from 'src/models/collections/responses.model';
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
+import { CollectionsResponse } from 'src/models/collections/responses.model';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
@@ -31,9 +32,7 @@ export class AddWordFormCollectionFieldComponent implements OnInit {
   }
 
   getCollections(): void {
-    this.collectionsService
-      .getCollections()
-      .toPromise()
+    firstValueFrom(this.collectionsService.getCollections())
       .then((response: CollectionsResponse) => {
         this.collections = response.collections;
         if (this.collections.length > 0) {

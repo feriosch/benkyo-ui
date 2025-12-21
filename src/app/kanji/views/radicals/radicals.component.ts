@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import { CompactedKanji } from 'src/models/kanji/kanji.model';
-import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
 import { KanjiComponentService } from '../../services/component.service';
 import { KanjiRadicalService } from '../../services/radicals.service';
+import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
 
 @Component({
   selector: 'app-kanji-radicals-view',
@@ -38,26 +39,26 @@ export class KanjiRadicalsViewComponent implements OnInit {
   getKanjis(): void {
     this.isKanjiFetchLoading = true;
     if (this.isComponentMode && this.isComponentSelected) {
-      this.componentService
-        .getKanjiByComponents(
+      firstValueFrom(
+        this.componentService.getKanjiByComponents(
           this.components,
           this.kanjisPageSize,
           this.kanjisPage,
-        )
-        .toPromise()
+        ),
+      )
         .then((response: CompactedKanjiResponse) => {
           this.compactedKanjis = response.kanjis;
         })
         .catch((error) => console.log(error))
         .finally(() => (this.isKanjiFetchLoading = false));
     } else if (!this.isComponentMode && this.isComponentSelected) {
-      this.radicalService
-        .getKanjiByRadicals(
+      firstValueFrom(
+        this.radicalService.getKanjiByRadicals(
           this.components,
           this.kanjisPageSize,
           this.kanjisPage,
-        )
-        .toPromise()
+        ),
+      )
         .then((response: CompactedKanjiResponse) => {
           this.compactedKanjis = response.kanjis;
         })

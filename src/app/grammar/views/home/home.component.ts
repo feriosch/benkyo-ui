@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import { OrderDirection, OrderField } from 'src/models/requests/grammar';
-import { SummarizedClause } from 'src/models/responses/grammar/clauses-response.model';
+import {
+  ClausesResponse,
+  SummarizedClause,
+} from 'src/models/responses/grammar/clauses-response.model';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
 
 @Component({
@@ -32,10 +36,10 @@ export class GrammarHomeComponent implements OnInit {
 
   getClauses(): void {
     this.isClauseFetchLoading = true;
-    this.grammarService
-      .getClauses(this.orderField, this.orderDirection)
-      .toPromise()
-      .then((response) => {
+    firstValueFrom(
+      this.grammarService.getClauses(this.orderField, this.orderDirection),
+    )
+      .then((response: ClausesResponse) => {
         this.clauses = response.clauses;
         this.nextPageNumber = response.next_page_number;
         this.totalPages = response.total_pages;

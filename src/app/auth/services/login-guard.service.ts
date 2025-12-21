@@ -4,7 +4,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 import { AuthService } from './auth.service';
 
@@ -18,10 +18,8 @@ export class LoginGuardService {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService
-      .verifySession()
-      .toPromise()
+  ): Promise<boolean> {
+    return firstValueFrom(this.authService.verifySession())
       .then(async () => {
         this.authService.isAuthenticated = true;
         await this.router.navigate(['/vocabulary']);
