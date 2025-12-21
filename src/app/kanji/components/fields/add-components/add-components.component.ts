@@ -1,16 +1,20 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AutocompleteComponent } from 'angular-ng-autocomplete';
+import {
+  AutocompleteComponent,
+  AutocompleteLibModule,
+} from 'angular-ng-autocomplete';
 
 import { KanjiComponentsResponse } from 'src/models/kanji/components/responses.model';
 import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 import { FormService } from 'src/app/shared/services/form.service';
 import { KanjiComponentService } from 'src/app/kanji/services/component.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-add-kanji-form-components-field',
   templateUrl: './add-components.component.html',
-  standalone: false,
+  imports: [AutocompleteLibModule, NgFor],
 })
 export class AddKanjiFormComponentsFieldComponent implements OnInit {
   @ViewChild('autocomplete')

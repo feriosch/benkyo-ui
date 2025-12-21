@@ -6,11 +6,22 @@ import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { WordDetailsDeleteModalComponent } from '../../components/details/delete-modal/delete-modal.component';
+import { NgIf, NgFor } from '@angular/common';
+import { WordDetailsMainInfoComponent } from '../../components/details/main-info/main-info.component';
+import { WordDetailsTypeTableComponent } from '../../components/details/type-table/type-table.component';
+import { WordDetailsTagsComponent } from '../../components/details/tags/tags.component';
 
 @Component({
   selector: 'app-word-details-view',
   templateUrl: './details.component.html',
-  standalone: false,
+  imports: [
+    NgIf,
+    WordDetailsMainInfoComponent,
+    WordDetailsTypeTableComponent,
+    WordDetailsTagsComponent,
+    NgFor,
+    WordDetailsDeleteModalComponent,
+  ],
 })
 export class WordDetailsViewComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal!: WordDetailsDeleteModalComponent;

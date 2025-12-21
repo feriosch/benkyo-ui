@@ -7,12 +7,14 @@ import {
 } from 'ag-grid-community';
 
 import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  standalone: false,
+  imports: [AgGridAngular, NgIf, NgClass],
 })
 export class KanjiHomeTableComponent implements OnInit {
   @Input()

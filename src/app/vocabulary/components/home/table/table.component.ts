@@ -8,12 +8,14 @@ import {
 } from 'ag-grid-community';
 
 import { SummarizedWord } from 'src/models/responses/vocabulary/words-response.model';
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-word-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  standalone: false,
+  imports: [AgGridAngular, NgIf, NgClass],
 })
 export class WordTableComponent implements OnInit {
   @Input()

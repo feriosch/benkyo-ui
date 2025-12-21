@@ -4,11 +4,15 @@ import { KanjiIrregularComponent } from 'src/models/kanji/components/irregular.m
 import { KanjiIrregularComponentsResponse } from 'src/models/kanji/components/responses.model';
 import { KanjiComponentService } from '../../services/component.service';
 import { KanjiIrregularComponentsAddModalComponent } from '../../components/irregular/add-modal/add-modal.component';
+import { KanjiIrregularComponentsTagsComponent } from '../../components/irregular/tags/tags.component';
 
 @Component({
   selector: 'app-kanji-irregular-components-view',
   templateUrl: './irregular.component.html',
-  standalone: false,
+  imports: [
+    KanjiIrregularComponentsTagsComponent,
+    KanjiIrregularComponentsAddModalComponent,
+  ],
 })
 export class KanjiIrregularComponentsViewComponent implements OnInit {
   @ViewChild('addModal')

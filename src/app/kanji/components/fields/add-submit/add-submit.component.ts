@@ -1,13 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-kanji-form-submit-field',
   templateUrl: './add-submit.component.html',
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()

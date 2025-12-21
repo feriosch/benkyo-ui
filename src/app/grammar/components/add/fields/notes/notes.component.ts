@@ -1,13 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { MainForm, NoteForm, ExampleForm } from 'src/models/grammar/forms/form';
+import { NgFor } from '@angular/common';
+import { AddClauseFormSectionComponent } from '../../helpers/section/section.component';
 
 @Component({
   selector: 'app-add-clause-form-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    AddClauseFormSectionComponent,
+  ],
 })
 export class AddClauseFormNotesComponent implements OnInit {
   @Input()

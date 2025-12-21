@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-example-sentence',
   templateUrl: './example-sentence.component.html',
   styleUrls: ['./example-sentence.component.scss'],
-  standalone: false,
+  imports: [NgFor, NgClass],
 })
 export class ExampleSentenceComponent implements OnInit {
   @Input()

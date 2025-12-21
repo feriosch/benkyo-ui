@@ -8,12 +8,13 @@ import {
 
 import { Type } from 'src/models/responses/grammar/clause.model';
 import { ClauseTypeMapperService } from 'src/app/grammar/services/type-mapper.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-clause-main-info',
   templateUrl: './main-info.component.html',
   styleUrls: ['./main-info.component.scss'],
-  standalone: false,
+  imports: [NgIf],
 })
 export class MainInfoComponent implements OnInit, OnChanges {
   @Input()

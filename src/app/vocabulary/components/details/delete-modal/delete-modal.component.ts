@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../../../../shared/notification.service';
 import { VocabularyService } from '../../../services/vocabulary.service';
 import { VocabularyNotificationService } from '../../../services/notification.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-word-details-delete-modal',
   templateUrl: './delete-modal.component.html',
-  standalone: false,
+  imports: [NgClass],
 })
 export class WordDetailsDeleteModalComponent implements OnInit {
   @Input() id!: string;

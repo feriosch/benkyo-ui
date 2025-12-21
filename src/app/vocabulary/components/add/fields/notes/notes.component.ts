@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 
@@ -7,7 +12,7 @@ import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
   selector: 'app-add-word-form-notes-field',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class AddWordFormNotesFieldComponent implements OnInit {
   @Input()

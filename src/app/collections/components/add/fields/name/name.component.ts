@@ -1,13 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { FormService } from 'src/app/shared/services/form.service';
 import { CollectionForm } from 'src/models/collections/form.model';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-collection-form-name-field',
   templateUrl: './name.component.html',
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
 })
 export class AddCollectionFormNameFieldComponent implements OnInit {
   @Input()

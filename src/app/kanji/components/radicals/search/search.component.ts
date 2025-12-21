@@ -6,7 +6,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { AutocompleteComponent } from 'angular-ng-autocomplete';
+import {
+  AutocompleteComponent,
+  AutocompleteLibModule,
+} from 'angular-ng-autocomplete';
 
 import { KanjiComponentService } from 'src/app/kanji/services/component.service';
 import { KanjiRadicalService } from 'src/app/kanji/services/radicals.service';
@@ -14,11 +17,12 @@ import {
   KanjiComponentsResponse,
   KanjiRadicalsResponse,
 } from 'src/models/kanji/components/responses.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-radicals-search',
   templateUrl: './search.component.html',
-  standalone: false,
+  imports: [AutocompleteLibModule, NgClass],
 })
 export class KanjiRadicalsSearchComponent implements OnInit {
   @ViewChild('autocomplete')

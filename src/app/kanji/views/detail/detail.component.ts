@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../../services/kanji.service';
+import { KanjiDetailHeaderComponent } from '../../components/detail/header/header.component';
+import { KanjiDetailInfoComponent } from '../../components/detail/info/info.component';
+import { KanjiDetailRadicalsComponent } from '../../components/detail/radicals/radicals.component';
 
 @Component({
   selector: 'app-kanji-detail-view',
   templateUrl: './detail.component.html',
-  standalone: false,
+  imports: [
+    KanjiDetailHeaderComponent,
+    NgIf,
+    KanjiDetailInfoComponent,
+    KanjiDetailRadicalsComponent,
+  ],
 })
 export class KanjiDetailViewComponent implements OnInit {
   id: string;

@@ -7,12 +7,14 @@ import {
   SummarizedClause,
 } from 'src/models/responses/grammar/clauses-response.model';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
+import { FormsModule } from '@angular/forms';
+import { GrammarTableComponent } from '../../components/home/table/table.component';
 
 @Component({
   selector: 'app-grammar-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false,
+  imports: [FormsModule, GrammarTableComponent],
 })
 export class GrammarHomeComponent implements OnInit {
   nextPageNumber: string;

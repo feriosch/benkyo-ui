@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-kanji-detail-header',
   templateUrl: './header.component.html',
-  standalone: false,
 })
 export class KanjiDetailHeaderComponent implements OnInit {
   @Input()

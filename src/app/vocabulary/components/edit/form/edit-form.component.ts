@@ -1,5 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
@@ -20,12 +27,29 @@ import {
   VocabularySentenceForm,
   VocabularyFormValues,
 } from 'src/models/vocabulary/forms/form.model';
+import { EditWordFormWordFieldComponent } from '../fields/word/word.component';
+import { AddWordFormTypeFieldComponent } from '../../add/fields/type/type.component';
+import { AddWordFormTagsFieldComponent } from '../../add/fields/tags/tags.component';
+import { AddWordFormNotesFieldComponent } from '../../add/fields/notes/notes.component';
+import { AddWordFormCollectionFieldComponent } from '../../add/fields/collection/collection.component';
+import { AddWordFormSentencesFieldComponent } from '../../add/fields/sentences/sentences.component';
+import { AddWordFormSubmitFieldComponent } from '../../add/fields/submit/submit.component';
 
 @Component({
   selector: 'app-edit-word-form',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    EditWordFormWordFieldComponent,
+    AddWordFormTypeFieldComponent,
+    AddWordFormTagsFieldComponent,
+    AddWordFormNotesFieldComponent,
+    AddWordFormCollectionFieldComponent,
+    AddWordFormSentencesFieldComponent,
+    AddWordFormSubmitFieldComponent,
+  ],
 })
 export class EditWordFormComponent implements OnInit {
   @Input()

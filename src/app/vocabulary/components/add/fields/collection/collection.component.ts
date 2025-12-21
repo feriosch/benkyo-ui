@@ -1,17 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgFor],
 })
 export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()

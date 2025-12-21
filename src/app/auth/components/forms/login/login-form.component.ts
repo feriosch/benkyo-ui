@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { LoginResponse } from 'src/models/responses/login';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -13,7 +19,7 @@ interface LoginForm {
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup<LoginForm>;

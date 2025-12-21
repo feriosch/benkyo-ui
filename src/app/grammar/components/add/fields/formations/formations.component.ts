@@ -5,6 +5,8 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import {
@@ -12,12 +14,19 @@ import {
   ExampleForm,
   FormationForm,
 } from 'src/models/grammar/forms/form';
+import { NgFor } from '@angular/common';
+import { AddClauseFormExampleComponent } from '../../helpers/example/example.component';
 
 @Component({
   selector: 'app-add-clause-form-formations',
   templateUrl: './formations.component.html',
   styleUrls: ['./formations.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    AddClauseFormExampleComponent,
+  ],
 })
 export class AddClauseFormFormationsComponent implements OnInit {
   @Input()

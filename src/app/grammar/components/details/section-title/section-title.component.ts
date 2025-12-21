@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-clause-section-title',
   templateUrl: './section-title.component.html',
   styleUrls: ['./section-title.component.scss'],
-  standalone: false,
+  imports: [NgClass],
 })
 export class SectionTitleComponent implements OnInit {
   @Input()

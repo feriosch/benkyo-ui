@@ -5,12 +5,25 @@ import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyService } from '../../services/vocabulary.service';
+import { NgFor } from '@angular/common';
+import { CollectionCardComponent } from '../../components/home/collection-card/collection-card.component';
+import { FormsModule } from '@angular/forms';
+import { WordCsvJlptButtonComponent } from '../../components/home/csv-jlpt-button/csv-jlpt-button.component';
+import { WordCsvButtonComponent } from '../../components/home/csv-button/csv-button.component';
+import { WordTableComponent } from '../../components/home/table/table.component';
 
 @Component({
   selector: 'app-words-home-view',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false,
+  imports: [
+    NgFor,
+    CollectionCardComponent,
+    FormsModule,
+    WordCsvJlptButtonComponent,
+    WordCsvButtonComponent,
+    WordTableComponent,
+  ],
 })
 export class WordsHomeViewComponent implements OnInit {
   nextPageNumber: string;

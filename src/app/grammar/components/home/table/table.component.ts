@@ -8,12 +8,14 @@ import {
 } from 'ag-grid-community';
 
 import { SummarizedClause } from 'src/models/responses/grammar/clauses-response.model';
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-grammar-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  standalone: false,
+  imports: [AgGridAngular, NgIf, NgClass],
 })
 export class GrammarTableComponent implements OnInit {
   @Input()

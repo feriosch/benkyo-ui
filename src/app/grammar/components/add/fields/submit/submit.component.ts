@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MainForm } from 'src/models/grammar/forms/form';
 
@@ -7,7 +7,7 @@ import { MainForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-submit-button',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class AddClauseFormSubmitButtonComponent implements OnInit {
   @Input()

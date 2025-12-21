@@ -3,12 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { GrammarService } from '../../services/grammar.service';
+import { NgIf } from '@angular/common';
+import { EditClauseFormComponent } from '../../components/add/forms/edit/edit.component';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  standalone: false,
+  imports: [NgIf, EditClauseFormComponent],
 })
 export class EditClauseViewComponent implements OnInit {
   id: string;

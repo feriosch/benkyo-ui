@@ -5,15 +5,26 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { ExampleForm } from 'src/models/grammar/forms/form';
+import { NgClass, NgIf, NgFor } from '@angular/common';
+import { AddClauseFormExampleComponent } from '../example/example.component';
 
 @Component({
   selector: 'app-add-clause-form-section',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    NgIf,
+    NgFor,
+    AddClauseFormExampleComponent,
+  ],
 })
 export class AddClauseFormSectionComponent implements OnInit {
   @Input()

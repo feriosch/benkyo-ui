@@ -1,14 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { TypeMapperService } from 'src/app/vocabulary/services/type-mapper.service';
 import { VocabularyTypeForm } from 'src/models/vocabulary/forms/form.model';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-type-field',
   templateUrl: './type.component.html',
   styleUrls: ['./type.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass],
 })
 export class AddWordFormTypeFieldComponent implements OnInit {
   @Input()

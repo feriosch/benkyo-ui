@@ -5,6 +5,8 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import {
@@ -13,12 +15,21 @@ import {
   RelatedSectionForm,
   RelatedForm,
 } from 'src/models/grammar/forms/form';
+import { NgFor, NgClass, NgIf } from '@angular/common';
+import { AddClauseFormSectionComponent } from '../../helpers/section/section.component';
 
 @Component({
   selector: 'app-add-clause-form-related',
   templateUrl: './related.component.html',
   styleUrls: ['./related.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    NgClass,
+    NgIf,
+    AddClauseFormSectionComponent,
+  ],
 })
 export class AddClauseFormRelatedComponent implements OnInit {
   @Input()

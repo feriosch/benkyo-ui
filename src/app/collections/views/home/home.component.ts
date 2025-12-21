@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from '../../services/collections.service';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
+import { NgFor } from '@angular/common';
+import { CollectionCardComponent } from '../../components/home/card/card.component';
 
 @Component({
   selector: 'app-collections-home-view',
   templateUrl: './home.component.html',
-  standalone: false,
+  imports: [NgFor, CollectionCardComponent],
 })
 export class CollectionsHomeViewComponent implements OnInit {
   collections: Collection[];

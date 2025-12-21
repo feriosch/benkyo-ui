@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { AddClauseBody } from 'src/models/requests/grammar/add-clause.model';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -15,12 +22,35 @@ import {
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
 import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-values-transformer.service';
 import { AddFormService } from 'src/app/grammar/services/forms/add.service';
+import { AddClauseFormTitleComponent } from '../../fields/title/title.component';
+import { AddClauseFormTypeComponent } from '../../fields/type/type.component';
+import { AddClauseFormTagsComponent } from '../../fields/tags/tags.component';
+import { AddClauseFormDefinitionComponent } from '../../fields/definition/definition.component';
+import { AddClauseFormKeysComponent } from '../../fields/keys/keys.component';
+import { AddClauseFormFormationsComponent } from '../../fields/formations/formations.component';
+import { AddClauseFormExamplesFieldComponent } from '../../fields/examples/examples.component';
+import { AddClauseFormNotesComponent } from '../../fields/notes/notes.component';
+import { AddClauseFormRelatedComponent } from '../../fields/related/related.component';
+import { AddClauseFormSubmitButtonComponent } from '../../fields/submit/submit.component';
 
 @Component({
   selector: 'app-add-clause-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AddClauseFormTitleComponent,
+    AddClauseFormTypeComponent,
+    AddClauseFormTagsComponent,
+    AddClauseFormDefinitionComponent,
+    AddClauseFormKeysComponent,
+    AddClauseFormFormationsComponent,
+    AddClauseFormExamplesFieldComponent,
+    AddClauseFormNotesComponent,
+    AddClauseFormRelatedComponent,
+    AddClauseFormSubmitButtonComponent,
+  ],
 })
 export class AddClauseFormComponent implements OnInit {
   addClauseForm: FormGroup<MainForm>;

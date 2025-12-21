@@ -1,7 +1,5 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 
-import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { KanjiHomeViewComponent } from './views/home/home.component';
 import { KanjiDetailViewComponent } from './views/detail/detail.component';
@@ -9,7 +7,7 @@ import { EditKanjiViewComponent } from './views/edit/edit.component';
 import { KanjiRadicalsViewComponent } from './views/radicals/radicals.component';
 import { KanjiIrregularComponentsViewComponent } from './views/irregular/irregular.component';
 
-const routes: Routes = [
+export const kanjiRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -37,8 +35,3 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes), SharedModule],
-  exports: [RouterModule],
-})
-export class KanjiRoutingModule {}

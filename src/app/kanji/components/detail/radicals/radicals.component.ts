@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-detail-radicals',
   templateUrl: './radicals.component.html',
-  standalone: false,
+  imports: [NgIf, NgFor],
 })
 export class KanjiDetailRadicalsComponent implements OnInit {
   @Input()

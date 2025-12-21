@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { FullKanji } from 'src/models/kanji/kanji.model';
 import { UpdateRequest } from 'src/models/kanji/requests.model';
@@ -10,11 +17,22 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { KanjiService } from '../../services/kanji.service';
 import { UpdateKanjiService } from '../../services/update.service';
 import { KanjiFormService } from '../../services/forms/form.service';
+import { AddKanjiFormMainFieldComponent } from '../../components/fields/add-main/add-main.component';
+import { AddKanjiFormComponentsFieldComponent } from '../../components/fields/add-components/add-components.component';
+import { AddKanjiFormStoryFieldComponent } from '../../components/fields/add-story/add-story.component';
+import { AddKanjiFormSubmitFieldComponent } from '../../components/fields/add-submit/add-submit.component';
 
 @Component({
   selector: 'app-edit-kanji-view',
   templateUrl: './edit.component.html',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AddKanjiFormMainFieldComponent,
+    AddKanjiFormComponentsFieldComponent,
+    AddKanjiFormStoryFieldComponent,
+    AddKanjiFormSubmitFieldComponent,
+  ],
 })
 export class EditKanjiViewComponent implements OnInit {
   id: string;

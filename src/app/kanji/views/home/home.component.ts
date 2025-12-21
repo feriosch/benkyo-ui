@@ -5,11 +5,14 @@ import { OrderDirection, OrderField } from 'src/models/requests/kanji';
 import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from '../../services/kanji.service';
 import { KanjisResponse } from '../../../../models/responses/kanji/kanjis-response.model';
+import { FormsModule } from '@angular/forms';
+import { KanjiHomeCsvButtonComponent } from '../../components/home/csv-button/csv-button.component';
+import { KanjiHomeTableComponent } from '../../components/home/table/table.component';
 
 @Component({
   selector: 'app-kanji-home',
   templateUrl: './home.component.html',
-  standalone: false,
+  imports: [FormsModule, KanjiHomeCsvButtonComponent, KanjiHomeTableComponent],
 })
 export class KanjiHomeViewComponent implements OnInit {
   nextPageNumber: string;

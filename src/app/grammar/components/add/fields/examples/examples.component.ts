@@ -1,13 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { MainForm, ExampleForm } from 'src/models/grammar/forms/form';
+import { NgFor } from '@angular/common';
+import { AddClauseFormExampleComponent } from '../../helpers/example/example.component';
 
 @Component({
   selector: 'app-add-clause-form-examples-field',
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    AddClauseFormExampleComponent,
+  ],
 })
 export class AddClauseFormExamplesFieldComponent implements OnInit {
   @Input()

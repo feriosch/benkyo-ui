@@ -1,5 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import {
@@ -24,12 +31,35 @@ import { NotificationService } from 'src/app/shared/notification.service';
 import { SentenceFormatterService } from 'src/app/grammar/services/sentence-formatter.service';
 import { AddClauseValuesTransformerService } from 'src/app/grammar/services/add-values-transformer.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
+import { AddClauseFormTitleComponent } from '../../fields/title/title.component';
+import { AddClauseFormTypeComponent } from '../../fields/type/type.component';
+import { AddClauseFormTagsComponent } from '../../fields/tags/tags.component';
+import { AddClauseFormDefinitionComponent } from '../../fields/definition/definition.component';
+import { AddClauseFormKeysComponent } from '../../fields/keys/keys.component';
+import { AddClauseFormFormationsComponent } from '../../fields/formations/formations.component';
+import { AddClauseFormExamplesFieldComponent } from '../../fields/examples/examples.component';
+import { AddClauseFormNotesComponent } from '../../fields/notes/notes.component';
+import { AddClauseFormRelatedComponent } from '../../fields/related/related.component';
+import { AddClauseFormSubmitButtonComponent } from '../../fields/submit/submit.component';
 
 @Component({
   selector: 'app-edit-clause-form',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AddClauseFormTitleComponent,
+    AddClauseFormTypeComponent,
+    AddClauseFormTagsComponent,
+    AddClauseFormDefinitionComponent,
+    AddClauseFormKeysComponent,
+    AddClauseFormFormationsComponent,
+    AddClauseFormExamplesFieldComponent,
+    AddClauseFormNotesComponent,
+    AddClauseFormRelatedComponent,
+    AddClauseFormSubmitButtonComponent,
+  ],
 })
 export class EditClauseFormComponent implements OnInit {
   @Input()

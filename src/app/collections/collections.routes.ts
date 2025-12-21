@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { CollectionsHomeViewComponent } from './views/home/home.component';
 import { AddCollectionViewComponent } from './views/add/add.component';
 
-const routes: Routes = [
+export const collectionsRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -16,8 +15,3 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class CollectionsRoutingModule {}

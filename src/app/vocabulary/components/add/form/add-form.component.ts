@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
 import {
@@ -10,12 +16,31 @@ import { NotificationService } from 'src/app/shared/notification.service';
 import { VocabularyService } from 'src/app/vocabulary/services/vocabulary.service';
 import { VocabularyFormService } from 'src/app/vocabulary/services/forms/form.service';
 import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value-transformer.service';
+import { AddWordFormWordFieldComponent } from '../fields/word/word.component';
+import { AddWordFormSpanishFieldComponent } from '../fields/spanish/spanish.component';
+import { AddWordFormTypeFieldComponent } from '../fields/type/type.component';
+import { AddWordFormTagsFieldComponent } from '../fields/tags/tags.component';
+import { AddWordFormNotesFieldComponent } from '../fields/notes/notes.component';
+import { AddWordFormCollectionFieldComponent } from '../fields/collection/collection.component';
+import { AddWordFormSentencesFieldComponent } from '../fields/sentences/sentences.component';
+import { AddWordFormSubmitFieldComponent } from '../fields/submit/submit.component';
 
 @Component({
   selector: 'app-add-word-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AddWordFormWordFieldComponent,
+    AddWordFormSpanishFieldComponent,
+    AddWordFormTypeFieldComponent,
+    AddWordFormTagsFieldComponent,
+    AddWordFormNotesFieldComponent,
+    AddWordFormCollectionFieldComponent,
+    AddWordFormSentencesFieldComponent,
+    AddWordFormSubmitFieldComponent,
+  ],
 })
 export class AddWordFormComponent implements OnInit {
   addWordForm: FormGroup<VocabularyMainForm>;

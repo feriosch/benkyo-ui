@@ -5,11 +5,18 @@ import { CompactedKanji } from 'src/models/kanji/kanji.model';
 import { KanjiComponentService } from '../../services/component.service';
 import { KanjiRadicalService } from '../../services/radicals.service';
 import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
+import { KanjiRadicalsSearchComponent } from '../../components/radicals/search/search.component';
+import { KanjiRadicalsTagsComponent } from '../../components/radicals/tags/tags.component';
+import { KanjiRadicalsCardsComponent } from '../../components/radicals/cards/cards.component';
 
 @Component({
   selector: 'app-kanji-radicals-view',
   templateUrl: './radicals.component.html',
-  standalone: false,
+  imports: [
+    KanjiRadicalsSearchComponent,
+    KanjiRadicalsTagsComponent,
+    KanjiRadicalsCardsComponent,
+  ],
 })
 export class KanjiRadicalsViewComponent implements OnInit {
   isComponentMode: boolean;

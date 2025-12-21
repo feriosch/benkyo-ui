@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { AddCollectionResponse } from 'src/models/collections/add.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
@@ -7,11 +13,20 @@ import { CollectionNotificationService } from 'src/app/collections/services/noti
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 
 import { CollectionForm } from 'src/models/collections/form.model';
+import { AddCollectionFormNameFieldComponent } from '../../components/add/fields/name/name.component';
+import { AddCollectionFormImageFieldComponent } from '../../components/add/fields/image/image.component';
+import { AddCollectionFormSubmitFieldComponent } from '../../components/add/fields/submit/submit.component';
 
 @Component({
   selector: 'app-add-collection-view',
   templateUrl: './add.component.html',
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AddCollectionFormNameFieldComponent,
+    AddCollectionFormImageFieldComponent,
+    AddCollectionFormSubmitFieldComponent,
+  ],
 })
 export class AddCollectionViewComponent implements OnInit {
   addCollectionForm: FormGroup<CollectionForm>;

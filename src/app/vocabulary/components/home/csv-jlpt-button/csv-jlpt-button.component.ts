@@ -6,7 +6,6 @@ import { VocabularyCsvService } from 'src/app/vocabulary/services/csv.service';
 @Component({
   selector: 'app-vocabulary-csv-jlpt-button',
   templateUrl: './csv-jlpt-button.component.html',
-  standalone: false,
 })
 export class WordCsvJlptButtonComponent implements OnInit {
   isLoading: boolean;

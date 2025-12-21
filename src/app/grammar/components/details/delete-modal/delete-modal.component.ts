@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { GrammarService } from 'src/app/grammar/services/grammar.service';
 import { GrammarNotificationService } from 'src/app/grammar/services/notification.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-delete-clause-modal',
   templateUrl: './delete-modal.component.html',
   styleUrls: ['./delete-modal.component.scss'],
-  standalone: false,
+  imports: [NgClass],
 })
 export class DeleteClauseModalComponent implements OnInit {
   @Input() id?: string;

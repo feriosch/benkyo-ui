@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CollectionForm } from 'src/models/collections/form.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-collection-form-submit-field',
   templateUrl: './submit.component.html',
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddCollectionFormSubmitFieldComponent implements OnInit {
   @Input()

@@ -1,16 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import {
   VocabularyMainForm,
   VocabularySentenceForm,
 } from 'src/models/vocabulary/forms/form.model';
+import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-sentences-field',
   templateUrl: './sentences.component.html',
   styleUrls: ['./sentences.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass, NgIf],
 })
 export class AddWordFormSentencesFieldComponent implements OnInit {
   @Input()

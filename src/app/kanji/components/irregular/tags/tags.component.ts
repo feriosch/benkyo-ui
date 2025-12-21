@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { KanjiIrregularComponent } from 'src/models/kanji/components/irregular.model';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-irregular-components-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  standalone: false,
+  imports: [NgFor, NgIf],
 })
 export class KanjiIrregularComponentsTagsComponent implements OnInit {
   @Input()

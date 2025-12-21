@@ -1,11 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { NgClass, NgIf } from '@angular/common';
+import { ExampleSentenceComponent } from '../../../details/example-sentence/example-sentence.component';
 
 @Component({
   selector: 'app-add-clause-form-clause-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    NgIf,
+    ExampleSentenceComponent,
+  ],
 })
 export class AddClauseFormExampleComponent implements OnInit {
   @Input()

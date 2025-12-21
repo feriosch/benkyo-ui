@@ -1,16 +1,24 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { KanjiAddIrregularComponentBody } from 'src/models/kanji/components/irregular.model';
 import { KanjiAddIrregularComponentResponse } from 'src/models/kanji/components/responses.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { AddIrregularComponentService } from 'src/app/kanji/services/forms/component.service';
 import { IrregularComponentForm } from 'src/models/kanji/forms/form.model';
+import { NgClass, NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-irregular-components-add-modal',
   templateUrl: './add-modal.component.html',
-  standalone: false,
+  imports: [NgClass, FormsModule, ReactiveFormsModule, NgIf, NgFor],
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
   form: FormGroup<IrregularComponentForm>;

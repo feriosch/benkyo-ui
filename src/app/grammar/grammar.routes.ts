@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { SharedModule } from '../shared/shared.module';
 import { GrammarHomeComponent } from './views/home/home.component';
 import { ClauseDetailsComponent } from './views/details/details.component';
 import { GrammarAddViewComponent } from './views/add/add.component';
 import { EditClauseViewComponent } from './views/edit/edit.component';
 
-const routes: Routes = [
+export const grammarRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -27,8 +25,3 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes), SharedModule],
-  exports: [RouterModule],
-})
-export class GrammarRoutingModule {}

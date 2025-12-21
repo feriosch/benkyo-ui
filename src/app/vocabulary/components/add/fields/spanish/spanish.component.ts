@@ -1,13 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-spanish-field',
   templateUrl: './spanish.component.html',
   styleUrls: ['./spanish.component.scss'],
-  standalone: false,
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
 })
 export class AddWordFormSpanishFieldComponent implements OnInit {
   @Input()
