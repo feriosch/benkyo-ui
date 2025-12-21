@@ -9,6 +9,7 @@ import { CompactedKanjiResponse } from 'src/models/kanji/responses.model';
 @Component({
   selector: 'app-kanji-radicals-view',
   templateUrl: './radicals.component.html',
+  standalone: false,
 })
 export class KanjiRadicalsViewComponent implements OnInit {
   isComponentMode: boolean;

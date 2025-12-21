@@ -13,6 +13,7 @@ import { SummarizedClause } from 'src/models/responses/grammar/clauses-response.
   selector: 'app-grammar-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  standalone: false,
 })
 export class GrammarTableComponent implements OnInit {
   @Input()

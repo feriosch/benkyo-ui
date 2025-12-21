@@ -9,6 +9,7 @@ import { GrammarNotificationService } from 'src/app/grammar/services/notificatio
   selector: 'app-delete-clause-modal',
   templateUrl: './delete-modal.component.html',
   styleUrls: ['./delete-modal.component.scss'],
+  standalone: false,
 })
 export class DeleteClauseModalComponent implements OnInit {
   @Input() id?: string;

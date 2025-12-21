@@ -8,6 +8,7 @@ import { KanjiIrregularComponentsAddModalComponent } from '../../components/irre
 @Component({
   selector: 'app-kanji-irregular-components-view',
   templateUrl: './irregular.component.html',
+  standalone: false,
 })
 export class KanjiIrregularComponentsViewComponent implements OnInit {
   @ViewChild('addModal')

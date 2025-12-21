@@ -5,6 +5,7 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
   selector: 'app-add-clause-form-clause-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormExampleComponent implements OnInit {
   @Input()

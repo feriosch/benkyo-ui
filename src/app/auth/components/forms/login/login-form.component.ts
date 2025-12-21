@@ -13,6 +13,7 @@ interface LoginForm {
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
+  standalone: false,
 })
 export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup<LoginForm>;

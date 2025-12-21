@@ -8,6 +8,7 @@ import { VocabularyTypeForm } from 'src/models/vocabulary/forms/form.model';
   selector: 'app-add-word-form-type-field',
   templateUrl: './type.component.html',
   styleUrls: ['./type.component.scss'],
+  standalone: false,
 })
 export class AddWordFormTypeFieldComponent implements OnInit {
   @Input()

@@ -8,6 +8,7 @@ import { VocabularyTagsForm } from 'src/models/vocabulary/forms/form.model';
   selector: 'app-add-word-form-tags-field',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
+  standalone: false,
 })
 export class AddWordFormTagsFieldComponent implements OnInit {
   @Input()

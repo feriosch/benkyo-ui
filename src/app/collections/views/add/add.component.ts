@@ -11,6 +11,7 @@ import { CollectionForm } from 'src/models/collections/form.model';
 @Component({
   selector: 'app-add-collection-view',
   templateUrl: './add.component.html',
+  standalone: false,
 })
 export class AddCollectionViewComponent implements OnInit {
   addCollectionForm: FormGroup<CollectionForm>;

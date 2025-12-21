@@ -18,6 +18,7 @@ import {
   selector: 'app-add-clause-form-related',
   templateUrl: './related.component.html',
   styleUrls: ['./related.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormRelatedComponent implements OnInit {
   @Input()

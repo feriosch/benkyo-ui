@@ -9,6 +9,7 @@ import { KanjisResponse } from '../../../../models/responses/kanji/kanjis-respon
 @Component({
   selector: 'app-kanji-home',
   templateUrl: './home.component.html',
+  standalone: false,
 })
 export class KanjiHomeViewComponent implements OnInit {
   nextPageNumber: string;

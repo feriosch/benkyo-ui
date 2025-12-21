@@ -5,6 +5,7 @@ import { Section } from 'src/models/responses/grammar/clause.model';
   selector: 'app-clause-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
+  standalone: false,
 })
 export class NotesComponent implements OnInit {
   @Input()

@@ -7,6 +7,7 @@ import { TagsForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormTagsComponent implements OnInit {
   @Input()

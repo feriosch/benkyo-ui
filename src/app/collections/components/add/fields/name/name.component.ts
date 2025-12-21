@@ -7,6 +7,7 @@ import { CollectionForm } from 'src/models/collections/form.model';
 @Component({
   selector: 'app-add-collection-form-name-field',
   templateUrl: './name.component.html',
+  standalone: false,
 })
 export class AddCollectionFormNameFieldComponent implements OnInit {
   @Input()

@@ -5,6 +5,7 @@ import { Related } from 'src/models/responses/grammar/clause.model';
   selector: 'app-clause-related',
   templateUrl: './related.component.html',
   styleUrls: ['./related.component.scss'],
+  standalone: false,
 })
 export class RelatedComponent implements OnInit {
   @Input()

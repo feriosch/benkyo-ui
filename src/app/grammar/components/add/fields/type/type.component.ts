@@ -7,6 +7,7 @@ import { TypeForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-type',
   templateUrl: './type.component.html',
   styleUrls: ['./type.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormTypeComponent implements OnInit {
   @Input()

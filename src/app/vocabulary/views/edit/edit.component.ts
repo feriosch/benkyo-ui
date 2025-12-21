@@ -8,6 +8,7 @@ import { VocabularyService } from '../../services/vocabulary.service';
   selector: 'app-edit-word-view',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
+  standalone: false,
 })
 export class EditWordViewComponent implements OnInit {
   id: string;

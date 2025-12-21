@@ -5,6 +5,7 @@ import { TagsMapperService } from '../../../services/tags-mapper.service';
 @Component({
   selector: 'app-word-details-tags',
   templateUrl: './tags.component.html',
+  standalone: false,
 })
 export class WordDetailsTagsComponent implements OnInit {
   @Input()

@@ -13,6 +13,7 @@ import { ClauseTypeMapperService } from 'src/app/grammar/services/type-mapper.se
   selector: 'app-clause-main-info',
   templateUrl: './main-info.component.html',
   styleUrls: ['./main-info.component.scss'],
+  standalone: false,
 })
 export class MainInfoComponent implements OnInit, OnChanges {
   @Input()

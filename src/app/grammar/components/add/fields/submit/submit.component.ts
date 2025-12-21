@@ -7,6 +7,7 @@ import { MainForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-submit-button',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormSubmitButtonComponent implements OnInit {
   @Input()

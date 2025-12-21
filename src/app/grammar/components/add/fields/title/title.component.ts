@@ -7,6 +7,7 @@ import { MainForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-title',
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormTitleComponent implements OnInit {
   @Input()

@@ -5,6 +5,7 @@ import { Example } from 'src/models/responses/grammar/clause.model';
   selector: 'app-clause-examples',
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
+  standalone: false,
 })
 export class ExamplesComponent implements OnInit {
   @Input()

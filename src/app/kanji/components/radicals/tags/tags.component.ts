@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-kanji-radicals-tags',
   templateUrl: './tags.component.html',
+  standalone: false,
 })
 export class KanjiRadicalsTagsComponent implements OnInit {
   @Input()

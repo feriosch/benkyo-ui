@@ -7,6 +7,7 @@ import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
   selector: 'app-add-word-form-submit-field',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss'],
+  standalone: false,
 })
 export class AddWordFormSubmitFieldComponent implements OnInit {
   @Input()

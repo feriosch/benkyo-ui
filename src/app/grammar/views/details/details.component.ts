@@ -10,6 +10,7 @@ import { DeleteClauseModalComponent } from '../../components/details/delete-moda
   selector: 'app-clause-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
+  standalone: false,
 })
 export class ClauseDetailsComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal!: DeleteClauseModalComponent;

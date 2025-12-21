@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-kanji-detail-radicals',
   templateUrl: './radicals.component.html',
+  standalone: false,
 })
 export class KanjiDetailRadicalsComponent implements OnInit {
   @Input()

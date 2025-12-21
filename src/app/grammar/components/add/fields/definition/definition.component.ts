@@ -7,6 +7,7 @@ import { MainForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-definition',
   templateUrl: './definition.component.html',
   styleUrls: ['./definition.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormDefinitionComponent implements OnInit {
   @Input()

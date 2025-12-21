@@ -8,6 +8,7 @@ import { CollectionForm } from 'src/models/collections/form.model';
 @Component({
   selector: 'app-add-collection-form-image-field',
   templateUrl: './image.component.html',
+  standalone: false,
 })
 export class AddCollectionFormImageFieldComponent implements OnInit {
   @Input()

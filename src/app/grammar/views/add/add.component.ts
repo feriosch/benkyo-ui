@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-add-clause-view',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
+  standalone: false,
 })
 export class GrammarAddViewComponent implements OnInit {
   constructor() {}

@@ -13,6 +13,7 @@ import { ExampleForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-section',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormSectionComponent implements OnInit {
   @Input()

@@ -12,6 +12,7 @@ import { SummarizedKanji } from 'src/models/responses/kanji/kanji.model';
   selector: 'app-kanji-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  standalone: false,
 })
 export class KanjiHomeTableComponent implements OnInit {
   @Input()

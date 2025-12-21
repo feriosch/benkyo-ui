@@ -18,6 +18,7 @@ import {
 @Component({
   selector: 'app-kanji-radicals-search',
   templateUrl: './search.component.html',
+  standalone: false,
 })
 export class KanjiRadicalsSearchComponent implements OnInit {
   @ViewChild('autocomplete')

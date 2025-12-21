@@ -7,6 +7,7 @@ import { MainForm, ExampleForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-examples-field',
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormExamplesFieldComponent implements OnInit {
   @Input()

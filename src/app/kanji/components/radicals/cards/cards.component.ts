@@ -6,6 +6,7 @@ import { CompactedKanji } from 'src/models/kanji/kanji.model';
   selector: 'app-kanji-radicals-cards',
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.scss'],
+  standalone: false,
 })
 export class KanjiRadicalsCardsComponent implements OnInit {
   @Input()

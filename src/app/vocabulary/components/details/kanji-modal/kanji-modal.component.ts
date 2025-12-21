@@ -13,6 +13,7 @@ import { KanjiService } from 'src/app/kanji/services/kanji.service';
   selector: 'app-kanji-modal',
   templateUrl: './kanji-modal.component.html',
   styleUrls: ['./kanji-modal.component.scss'],
+  standalone: false,
 })
 export class KanjiModalComponent implements OnInit, OnChanges {
   @Input()

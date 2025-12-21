@@ -10,6 +10,7 @@ import { VocabularyService } from '../../services/vocabulary.service';
   selector: 'app-words-home-view',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: false,
 })
 export class WordsHomeViewComponent implements OnInit {
   nextPageNumber: string;

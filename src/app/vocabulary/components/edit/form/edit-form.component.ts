@@ -25,6 +25,7 @@ import {
   selector: 'app-edit-word-form',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.scss'],
+  standalone: false,
 })
 export class EditWordFormComponent implements OnInit {
   @Input()

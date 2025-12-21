@@ -5,6 +5,7 @@ import { KanjiIrregularComponent } from 'src/models/kanji/components/irregular.m
   selector: 'app-kanji-irregular-components-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
+  standalone: false,
 })
 export class KanjiIrregularComponentsTagsComponent implements OnInit {
   @Input()

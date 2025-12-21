@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-example-sentence',
   templateUrl: './example-sentence.component.html',
   styleUrls: ['./example-sentence.component.scss'],
+  standalone: false,
 })
 export class ExampleSentenceComponent implements OnInit {
   @Input()

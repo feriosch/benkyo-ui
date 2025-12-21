@@ -6,6 +6,7 @@ import { Collection } from 'src/models/collections/collection.model';
   selector: 'app-vocabulary-collection-card',
   templateUrl: './collection-card.component.html',
   styleUrls: ['./collection-card.component.scss'],
+  standalone: false,
 })
 export class CollectionCardComponent implements OnInit {
   @Input()

@@ -8,6 +8,7 @@ import { GrammarService } from '../../services/grammar.service';
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
+  standalone: false,
 })
 export class EditClauseViewComponent implements OnInit {
   id: string;

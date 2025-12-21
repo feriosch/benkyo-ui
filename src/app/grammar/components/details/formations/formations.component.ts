@@ -5,6 +5,7 @@ import { Formation } from 'src/models/responses/grammar/clause.model';
   selector: 'app-clause-formations',
   templateUrl: './formations.component.html',
   styleUrls: ['./formations.component.scss'],
+  standalone: false,
 })
 export class FormationsComponent implements OnInit {
   @Input()

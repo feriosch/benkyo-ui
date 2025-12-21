@@ -12,6 +12,7 @@ import { GrammarService } from 'src/app/grammar/services/grammar.service';
   selector: 'app-grammar-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: false,
 })
 export class GrammarHomeComponent implements OnInit {
   nextPageNumber: string;

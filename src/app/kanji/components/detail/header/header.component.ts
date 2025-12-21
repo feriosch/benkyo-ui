@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kanji-detail-header',
   templateUrl: './header.component.html',
+  standalone: false,
 })
 export class KanjiDetailHeaderComponent implements OnInit {
   @Input()

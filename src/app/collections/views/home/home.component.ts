@@ -8,6 +8,7 @@ import { CollectionsResponse } from 'src/models/collections/responses.model';
 @Component({
   selector: 'app-collections-home-view',
   templateUrl: './home.component.html',
+  standalone: false,
 })
 export class CollectionsHomeViewComponent implements OnInit {
   collections: Collection[];

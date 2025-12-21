@@ -29,6 +29,7 @@ import { GrammarService } from 'src/app/grammar/services/grammar.service';
   selector: 'app-edit-clause-form',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
+  standalone: false,
 })
 export class EditClauseFormComponent implements OnInit {
   @Input()

@@ -6,6 +6,7 @@ import { KanjiService } from 'src/app/kanji/services/kanji.service';
 @Component({
   selector: 'app-kanji-csv-button',
   templateUrl: './csv-button.component.html',
+  standalone: false,
 })
 export class KanjiHomeCsvButtonComponent implements OnInit {
   constructor(private kanjiService: KanjiService) {}

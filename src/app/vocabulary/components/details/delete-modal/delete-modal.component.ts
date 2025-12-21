@@ -8,6 +8,7 @@ import { VocabularyNotificationService } from '../../../services/notification.se
 @Component({
   selector: 'app-word-details-delete-modal',
   templateUrl: './delete-modal.component.html',
+  standalone: false,
 })
 export class WordDetailsDeleteModalComponent implements OnInit {
   @Input() id!: string;

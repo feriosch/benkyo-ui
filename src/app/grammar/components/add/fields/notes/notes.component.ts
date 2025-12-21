@@ -7,6 +7,7 @@ import { MainForm, NoteForm, ExampleForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormNotesComponent implements OnInit {
   @Input()

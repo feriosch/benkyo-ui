@@ -17,6 +17,7 @@ import {
   selector: 'app-add-clause-form-formations',
   templateUrl: './formations.component.html',
   styleUrls: ['./formations.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormFormationsComponent implements OnInit {
   @Input()

@@ -7,6 +7,7 @@ import { MainForm, ExampleForm } from 'src/models/grammar/forms/form';
   selector: 'app-add-clause-form-keys',
   templateUrl: './keys.component.html',
   styleUrls: ['./keys.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormKeysComponent implements OnInit {
   @Input()

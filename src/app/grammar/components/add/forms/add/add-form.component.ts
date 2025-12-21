@@ -20,6 +20,7 @@ import { AddFormService } from 'src/app/grammar/services/forms/add.service';
   selector: 'app-add-clause-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss'],
+  standalone: false,
 })
 export class AddClauseFormComponent implements OnInit {
   addClauseForm: FormGroup<MainForm>;

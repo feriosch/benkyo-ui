@@ -6,6 +6,7 @@ import { Collection } from 'src/models/collections/collection.model';
   selector: 'app-collection-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  standalone: false,
 })
 export class CollectionCardComponent implements OnInit {
   @Input()

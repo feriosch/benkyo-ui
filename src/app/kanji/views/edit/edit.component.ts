@@ -14,6 +14,7 @@ import { KanjiFormService } from '../../services/forms/form.service';
 @Component({
   selector: 'app-edit-kanji-view',
   templateUrl: './edit.component.html',
+  standalone: false,
 })
 export class EditKanjiViewComponent implements OnInit {
   id: string;

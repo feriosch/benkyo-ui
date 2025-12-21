@@ -7,6 +7,7 @@ import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 @Component({
   selector: 'app-add-kanji-form-submit-field',
   templateUrl: './add-submit.component.html',
+  standalone: false,
 })
 export class AddKanjiFormSubmitFieldComponent implements OnInit {
   @Input()

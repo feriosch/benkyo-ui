@@ -6,6 +6,7 @@ import { CollectionForm } from 'src/models/collections/form.model';
 @Component({
   selector: 'app-add-collection-form-submit-field',
   templateUrl: './submit.component.html',
+  standalone: false,
 })
 export class AddCollectionFormSubmitFieldComponent implements OnInit {
   @Input()

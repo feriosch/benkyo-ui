@@ -10,6 +10,7 @@ import { IrregularComponentForm } from 'src/models/kanji/forms/form.model';
 @Component({
   selector: 'app-kanji-irregular-components-add-modal',
   templateUrl: './add-modal.component.html',
+  standalone: false,
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
   form: FormGroup<IrregularComponentForm>;

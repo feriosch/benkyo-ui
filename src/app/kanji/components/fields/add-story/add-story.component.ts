@@ -6,6 +6,7 @@ import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 @Component({
   selector: 'app-add-kanji-form-story-field',
   templateUrl: './add-story.component.html',
+  standalone: false,
 })
 export class AddKanjiFormStoryFieldComponent implements OnInit {
   @Input()

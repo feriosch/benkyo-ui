@@ -15,6 +15,7 @@ import { ValueTransformerService } from 'src/app/vocabulary/services/forms/value
   selector: 'app-add-word-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss'],
+  standalone: false,
 })
 export class AddWordFormComponent implements OnInit {
   addWordForm: FormGroup<VocabularyMainForm>;

@@ -8,6 +8,7 @@ import { KanjiService } from '../../services/kanji.service';
 @Component({
   selector: 'app-kanji-detail-view',
   templateUrl: './detail.component.html',
+  standalone: false,
 })
 export class KanjiDetailViewComponent implements OnInit {
   id: string;

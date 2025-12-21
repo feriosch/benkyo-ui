@@ -7,6 +7,7 @@ import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
   selector: 'app-add-word-form-notes-field',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
+  standalone: false,
 })
 export class AddWordFormNotesFieldComponent implements OnInit {
   @Input()

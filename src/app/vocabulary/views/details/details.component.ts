@@ -10,6 +10,7 @@ import { WordDetailsDeleteModalComponent } from '../../components/details/delete
 @Component({
   selector: 'app-word-details-view',
   templateUrl: './details.component.html',
+  standalone: false,
 })
 export class WordDetailsViewComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal!: WordDetailsDeleteModalComponent;

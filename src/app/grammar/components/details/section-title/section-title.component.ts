@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   selector: 'app-clause-section-title',
   templateUrl: './section-title.component.html',
   styleUrls: ['./section-title.component.scss'],
+  standalone: false,
 })
 export class SectionTitleComponent implements OnInit {
   @Input()

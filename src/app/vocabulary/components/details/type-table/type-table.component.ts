@@ -7,6 +7,7 @@ import { TypeMapperService } from '../../../services/type-mapper.service';
   selector: 'app-word-details-type-table',
   templateUrl: './type-table.component.html',
   styleUrls: ['./type-table.component.scss'],
+  standalone: false,
 })
 export class WordDetailsTypeTableComponent implements OnInit {
   @Input()

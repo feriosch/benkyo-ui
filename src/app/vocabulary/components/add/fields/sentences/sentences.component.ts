@@ -10,6 +10,7 @@ import {
   selector: 'app-add-word-form-sentences-field',
   templateUrl: './sentences.component.html',
   styleUrls: ['./sentences.component.scss'],
+  standalone: false,
 })
 export class AddWordFormSentencesFieldComponent implements OnInit {
   @Input()

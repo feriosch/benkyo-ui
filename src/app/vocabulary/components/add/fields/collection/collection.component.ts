@@ -11,6 +11,7 @@ import { CollectionsResponse } from 'src/models/collections/responses.model';
   selector: 'app-add-word-form-collection-field',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss'],
+  standalone: false,
 })
 export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()
