@@ -1,0 +1,18 @@
+// Custom application variables
+$lilac-cell: #fad7ff;
+$green-cell: #abff97;
+$orange-cell: #ffdea6;
+
+// Define Bulma-compatible color values directly
+// This avoids conflicts from Bulma's internal module structure
+$black: hsl(0, 0%, 4%);
+$white: hsl(0, 0%, 100%);
+$grey-darker: hsl(0, 0%, 21%);
+
+// Derived colors (matching Bulma defaults)
+$primary: hsl(171, 100%, 41%);
+$link: hsl(229, 53%, 53%);
+$info: hsl(207, 61%, 53%);
+$success: hsl(153, 53%, 53%);
+$warning: hsl(44, 100%, 77%);
+$danger: hsl(348, 86%, 61%);

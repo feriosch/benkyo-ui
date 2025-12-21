@@ -1,15 +1,18 @@
 @charset "utf-8";
 
+// Custom variables (defined before Bulma for potential overrides)
 $lilac-cell: #fad7ff;
 $green-cell: #abff97;
 $orange-cell: #ffdea6;
-// $primary: $purple;
 
-@import "node_modules/bulma/bulma";
-@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
+// Using @use for Sass modules (Dart Sass 3.0 compatible)
+@use "node_modules/bulma/bulma" as *;
+@use "node_modules/@fortawesome/fontawesome-free/scss/fontawesome" as fa;
+@use "node_modules/@fortawesome/fontawesome-free/scss/solid" as fa-solid;
+@use "node_modules/@fortawesome/fontawesome-free/scss/regular" as fa-regular;
+@use "node_modules/@fortawesome/fontawesome-free/scss/brands" as fa-brands;
+
+// CSS files don't need @use namespacing
 @import "node_modules/ag-grid-community/styles/ag-grid.css";
 @import "node_modules/ag-grid-community/styles/ag-theme-alpine.css";
 
