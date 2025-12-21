@@ -19,6 +19,7 @@ import {
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { AuthInterceptorService } from './app/auth/services/auth-interceptor.service';
+import { LoadingInterceptorService } from './app/shared/services/loading-interceptor.service';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -30,6 +31,11 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptorService,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
