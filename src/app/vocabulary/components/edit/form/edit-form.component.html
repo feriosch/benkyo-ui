@@ -2,28 +2,81 @@
   [formGroup]="editWordForm"
   (ngSubmit)="onSubmit()"
   (keydown.enter)="$event.preventDefault()"
-  class="box"
+  class="edit-word-form"
 >
-  <app-edit-word-form-word-field
-    [formGroup]="editWordForm"
-    [word]="fullWord!.word"
-  >
-  </app-edit-word-form-word-field>
-  <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
-  </app-add-word-form-type-field>
-  <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">
-  </app-add-word-form-tags-field>
-  <app-add-word-form-notes-field [formGroup]="editWordForm">
-  </app-add-word-form-notes-field>
-  <app-add-word-form-collection-field
-    [formGroup]="editWordForm"
-    [currentGroup]="fullWord!.group"
-  >
-  </app-add-word-form-collection-field>
-  <app-add-word-form-sentences-field
-    [formGroup]="editWordForm"
-    [formArray]="getFormArray('sentences')"
-  ></app-add-word-form-sentences-field>
-  <app-add-word-form-submit-field [formGroup]="editWordForm">
-  </app-add-word-form-submit-field>
+  <!-- Word Info Section -->
+  <div class="form-section">
+    <div class="section-header">
+      <span class="icon"><i class="fas fa-language"></i></span>
+      <span>Word Information</span>
+    </div>
+    <div class="section-content">
+      <app-edit-word-form-word-field
+        [formGroup]="editWordForm"
+        [word]="fullWord!.word"
+      >
+      </app-edit-word-form-word-field>
+    </div>
+  </div>
+
+  <!-- Type Section -->
+  <div class="form-section">
+    <div class="section-header">
+      <span class="icon"><i class="fas fa-tags"></i></span>
+      <span>Word Type</span>
+    </div>
+    <div class="section-content">
+      <app-add-word-form-type-field [formGroup]="getFormGroup('type')">
+      </app-add-word-form-type-field>
+    </div>
+  </div>
+
+  <!-- Tags & Notes Section -->
+  <div class="form-section">
+    <div class="section-header">
+      <span class="icon"><i class="fas fa-bookmark"></i></span>
+      <span>Tags & Notes</span>
+    </div>
+    <div class="section-content">
+      <app-add-word-form-tags-field [formGroup]="getFormGroup('tags')">
+      </app-add-word-form-tags-field>
+      <app-add-word-form-notes-field [formGroup]="editWordForm">
+      </app-add-word-form-notes-field>
+    </div>
+  </div>
+
+  <!-- Collection Section -->
+  <div class="form-section">
+    <div class="section-header">
+      <span class="icon"><i class="fas fa-folder"></i></span>
+      <span>Collection</span>
+    </div>
+    <div class="section-content">
+      <app-add-word-form-collection-field
+        [formGroup]="editWordForm"
+        [currentGroup]="fullWord!.group"
+      >
+      </app-add-word-form-collection-field>
+    </div>
+  </div>
+
+  <!-- Sentences Section -->
+  <div class="form-section">
+    <div class="section-header">
+      <span class="icon"><i class="fas fa-quote-left"></i></span>
+      <span>Example Sentences</span>
+    </div>
+    <div class="section-content">
+      <app-add-word-form-sentences-field
+        [formGroup]="editWordForm"
+        [formArray]="getFormArray('sentences')"
+      ></app-add-word-form-sentences-field>
+    </div>
+  </div>
+
+  <!-- Submit Section -->
+  <div class="form-submit">
+    <app-add-word-form-submit-field [formGroup]="editWordForm">
+    </app-add-word-form-submit-field>
+  </div>
 </form>

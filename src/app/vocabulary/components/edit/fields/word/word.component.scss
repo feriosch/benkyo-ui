@@ -1,3 +1,18 @@
+@use "src/variables" as *;
+
+.word-display {
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px dashed rgba($info, 0.2);
+}
+
+.word-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $grey-darker;
+  letter-spacing: 0.02em;
+}
+
 .field-body {
   flex-grow: 10;
 }

@@ -1,0 +1,21 @@
+@use "src/variables" as *;
+
+.edit-word-view {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.view-header {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $grey-darker;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba($info, 0.2);
+
+  .icon {
+    color: $info;
+    margin-right: 0.5rem;
+  }
+}
