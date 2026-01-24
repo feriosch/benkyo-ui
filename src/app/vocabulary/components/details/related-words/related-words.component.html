@@ -12,9 +12,22 @@
     @for (rel of related; track rel) {
       <div class="related-word-card" (click)="onClickWord(rel.wordId)">
         <div class="card-content">
-          <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
-            {{ getTypeLabel(rel.type) }}
-          </span>
+          <div class="tags-row">
+            <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
+              {{ getTypeLabel(rel.type) }}
+            </span>
+            @if (rel.tags && rel.tags.length > 0) {
+              @for (nuance of rel.tags; track nuance) {
+                <span
+                  class="tag is-small nuance-tag has-tooltip"
+                  [ngClass]="getNuanceClass(nuance)"
+                  [attr.data-tooltip]="nuance"
+                >
+                  {{ getNuanceLabel(nuance) }}
+                </span>
+              }
+            }
+          </div>
           <p class="word-text">{{ rel.word }}</p>
           @if (rel.hiragana) {
             <p class="hiragana-text">

@@ -18,7 +18,19 @@ export interface RelatedWord {
   word?: string;
   hiragana?: string;
   spanish?: string;
+  tags?: NuanceTag[];
 }
+
+export type NuanceTag =
+  | 'formal'
+  | 'casual'
+  | 'spoken'
+  | 'written'
+  | 'literary'
+  | 'technical'
+  | 'polite'
+  | 'humble'
+  | 'archaic';
 
 export interface Type {
   noun?: number;
