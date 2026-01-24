@@ -1,16 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { OrderDirection, OrderField } from 'src/models/requests/vocabulary';
 import { AddWordBody } from 'src/models/requests/add-word-body.model';
-import { Word } from 'src/models/responses/vocabulary/word.model';
+import { Word, NuanceTag } from 'src/models/responses/vocabulary/word.model';
 import {
   DeletedResponse,
   WordsResponse,
 } from 'src/models/responses/vocabulary/words-response.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
+
+export interface AddRelatedWordBody {
+  relatedWordId: string;
+  type: 'related' | 'synonym' | 'antonym';
+  tags?: NuanceTag[];
+  note?: string;
+}
+
+interface SearchResult {
+  id: string;
+  word: string;
+  hiragana?: string;
+  spanish: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class VocabularyService {
@@ -114,5 +129,34 @@ export class VocabularyService {
   deleteWord(id: string): Observable<DeletedResponse> {
     let params = new HttpParams().append('word_id', id);
     return this.http.delete<DeletedResponse>(this.wordsUrl, { params });
+  }
+
+  // Search words by query (for related words modal)
+  searchWords(query: string): Observable<SearchResult[]> {
+    let params = new HttpParams()
+      .append('filter_by', query)
+      .append('page_size', '15');
+    return this.http.get<WordsResponse>(this.wordsUrl, { params }).pipe(
+      map((response) =>
+        response.words.map((w) => ({
+          id: w.id,
+          word: w.word,
+          hiragana: w.hiragana,
+          spanish: w.spanish,
+        })),
+      ),
+    );
+  }
+
+  // Add a related word
+  addRelatedWord(wordId: string, body: AddRelatedWordBody): Observable<any> {
+    return this.http.post(`${this.wordsUrl}/${wordId}/related`, body);
+  }
+
+  // Remove a related word
+  removeRelatedWord(wordId: string, relatedWordId: string): Observable<any> {
+    return this.http.delete(
+      `${this.wordsUrl}/${wordId}/related/${relatedWordId}`,
+    );
   }
 }

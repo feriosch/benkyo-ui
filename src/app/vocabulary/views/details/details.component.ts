@@ -68,6 +68,10 @@ export class WordDetailsViewComponent implements OnInit {
 
   onClickDelete() {
     this.deleteModal.openModal();
-    console.log('dfojsid');
+  }
+
+  onRelationshipChanged() {
+    // Reload the word to get updated related words
+    this.loadWord();
   }
 }

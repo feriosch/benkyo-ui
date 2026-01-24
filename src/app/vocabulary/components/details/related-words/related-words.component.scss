@@ -12,6 +12,30 @@
   border: 1px solid rgba($info, 0.15);
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba($info, 0.15);
+
+  .icon-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $grey-darker;
+
+    .icon {
+      color: $info;
+    }
+  }
+
+  .add-btn {
+    border-radius: 6px;
+    font-weight: 500;
+  }
+}
+
 .related-words-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -22,18 +46,48 @@
   background: $white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba($black, 0.08);
-  cursor: pointer;
   transition: all 0.2s ease;
   overflow: hidden;
+  position: relative;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba($info, 0.2);
     border-color: $info;
+
+    .remove-btn {
+      opacity: 1;
+    }
+  }
+
+  .remove-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: rgba($danger, 0.9);
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    z-index: 10;
+
+    &:hover {
+      background: $danger;
+      transform: scale(1.1);
+    }
   }
 
   .card-content {
     padding: 1rem;
+    cursor: pointer;
 
     .tags-row {
       display: flex;
@@ -183,5 +237,161 @@
 
   .related-word-card .card-content .word-text {
     font-size: 1.25rem;
+  }
+
+  .related-word-card .remove-btn {
+    opacity: 1;
+  }
+}
+
+// Modal styles
+.modal-card {
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-card-head {
+  background: linear-gradient(135deg, $info 0%, darken($info, 10%) 100%);
+  border-bottom: none;
+
+  .modal-card-title {
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .delete {
+    background-color: rgba(white, 0.2);
+
+    &:hover {
+      background-color: rgba(white, 0.3);
+    }
+  }
+
+  &.is-warning-header {
+    background: linear-gradient(
+      135deg,
+      $warning 0%,
+      darken($warning, 10%) 100%
+    );
+
+    .modal-card-title {
+      color: $grey-darker;
+    }
+  }
+}
+
+// Remove modal specific
+.remove-modal {
+  max-width: 400px;
+
+  .modal-card-body {
+    padding: 2rem;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .modal-card-foot {
+    gap: 1rem;
+  }
+}
+
+.modal-card-body {
+  padding: 1.5rem;
+}
+
+.modal-card-foot {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  justify-content: flex-end;
+}
+
+.search-results {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.15s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: rgba($info, 0.05);
+  }
+
+  &.is-selected {
+    background-color: rgba($info, 0.15);
+    border-left: 3px solid $info;
+  }
+
+  .result-word {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: $grey-darker;
+    margin-right: 0.5rem;
+  }
+
+  .result-hiragana {
+    font-size: 0.85rem;
+    color: $link;
+    margin-right: 0.5rem;
+  }
+
+  .result-spanish {
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+.selected-word-preview {
+  padding: 0.75rem 1rem;
+  background-color: rgba($success, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba($success, 0.3);
+
+  .label {
+    margin-bottom: 0;
+    color: darken($success, 15%);
+  }
+}
+
+.nuance-tags-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .nuance-selector-tag {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #f0f0f0;
+    color: #666;
+
+    small {
+      margin-left: 0.25rem;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    &.is-selected {
+      background-color: $info;
+      color: white;
+    }
   }
 }

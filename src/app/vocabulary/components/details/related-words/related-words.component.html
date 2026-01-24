@@ -1,17 +1,30 @@
 <div class="related-words-section">
-  <p class="title is-5 has-text-centered mb-4">
+  <div class="section-header">
     <span class="icon-text">
       <span class="icon">
         <i class="fas fa-link"></i>
       </span>
       <span>Related Words</span>
     </span>
-  </p>
+    <button class="button is-info is-small add-btn" (click)="onClickAdd()">
+      <span class="icon is-small">
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>Add</span>
+    </button>
+  </div>
 
   <div class="related-words-grid">
-    @for (rel of related; track rel) {
-      <div class="related-word-card" (click)="onClickWord(rel.wordId)">
-        <div class="card-content">
+    @for (rel of related; track rel.wordId) {
+      <div class="related-word-card">
+        <button
+          class="remove-btn"
+          (click)="onClickRemove($event, rel)"
+          title="Remove relationship"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="card-content" (click)="onClickWord(rel.wordId)">
           <div class="tags-row">
             <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
               {{ getTypeLabel(rel.type) }}
@@ -49,3 +62,167 @@
     }
   </div>
 </div>
+
+<!-- Remove Confirmation Modal -->
+@if (showRemoveModal) {
+  <div class="modal is-active">
+    <div class="modal-background" (click)="closeRemoveModal()"></div>
+    <div class="modal-card remove-modal">
+      <header class="modal-card-head is-warning-header">
+        <p class="modal-card-title">
+          <span class="icon"><i class="fas fa-exclamation-triangle"></i></span>
+          <span>Remove Relationship</span>
+        </p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="closeRemoveModal()"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <p class="has-text-centered">
+          Are you sure you want to remove the relationship with
+          <strong>{{ wordToRemove?.word }}</strong
+          >?
+        </p>
+        <p class="has-text-centered has-text-grey mt-2">
+          This will also remove the reverse relationship.
+        </p>
+      </section>
+      <footer class="modal-card-foot is-justify-content-center">
+        <button class="button" (click)="closeRemoveModal()">Cancel</button>
+        <button
+          class="button is-danger"
+          [ngClass]="{ 'is-loading': isRemoving }"
+          (click)="confirmRemove()"
+        >
+          <span class="icon"><i class="fas fa-trash"></i></span>
+          <span>Remove</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+}
+
+<!-- Add Related Word Modal -->
+@if (showAddModal) {
+  <div class="modal is-active">
+    <div class="modal-background" (click)="closeAddModal()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add Related Word</p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="closeAddModal()"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Search input -->
+        <div class="field">
+          <label class="label">Search Word</label>
+          <div
+            class="control has-icons-left"
+            [ngClass]="{ 'is-loading': isSearching }"
+          >
+            <input
+              class="input"
+              type="text"
+              placeholder="Type to search..."
+              [(ngModel)]="searchQuery"
+              (input)="onSearchInput()"
+            />
+            <span class="icon is-left">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Search results -->
+        @if (searchResults.length > 0) {
+          <div class="search-results">
+            @for (result of searchResults; track result.id) {
+              <div
+                class="search-result-item"
+                [ngClass]="{ 'is-selected': selectedWord?.id === result.id }"
+                (click)="selectWord(result)"
+              >
+                <span class="result-word">{{ result.word }}</span>
+                @if (result.hiragana) {
+                  <span class="result-hiragana">{{ result.hiragana }}</span>
+                }
+                <span class="result-spanish">{{ result.spanish }}</span>
+              </div>
+            }
+          </div>
+        }
+
+        @if (selectedWord) {
+          <div class="selected-word-preview">
+            <p class="label">
+              Selected: <strong>{{ selectedWord.word }}</strong>
+            </p>
+          </div>
+
+          <!-- Relationship type -->
+          <div class="field">
+            <label class="label">Relationship Type</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select [(ngModel)]="selectedType">
+                  <option value="related">Related</option>
+                  <option value="synonym">Synonym</option>
+                  <option value="antonym">Antonym</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nuance tags -->
+          <div class="field">
+            <label class="label">Nuance Tags (optional)</label>
+            <div class="nuance-tags-selector">
+              @for (tag of availableNuanceTags; track tag) {
+                <span
+                  class="tag is-medium nuance-selector-tag"
+                  [ngClass]="{
+                    'is-selected': selectedNuanceTags.includes(tag)
+                  }"
+                  (click)="toggleNuanceTag(tag)"
+                >
+                  {{ getNuanceLabel(tag) }} <small>({{ tag }})</small>
+                </span>
+              }
+            </div>
+          </div>
+
+          <!-- Note -->
+          <div class="field">
+            <label class="label">Note (optional)</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="e.g., more formal in business contexts"
+                [(ngModel)]="selectedNote"
+              />
+            </div>
+          </div>
+        }
+      </section>
+      <footer class="modal-card-foot">
+        <div class="buttons">
+          <button
+            class="button is-info"
+            [disabled]="!selectedWord || isSaving"
+            [ngClass]="{ 'is-loading': isSaving }"
+            (click)="saveRelatedWord()"
+          >
+            Add Relationship
+          </button>
+          <button class="button" (click)="closeAddModal()">Cancel</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+}

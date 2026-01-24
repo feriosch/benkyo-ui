@@ -42,13 +42,14 @@
           }
         </div>
       }
-      @if (word.related && word.related.length > 0) {
-        <div class="block">
-          <app-word-details-related-words
-            [related]="word.related"
-          ></app-word-details-related-words>
-        </div>
-      }
+      <div class="block">
+        <app-word-details-related-words
+          [related]="word.related || []"
+          [wordId]="word.id"
+          (relationshipAdded)="onRelationshipChanged()"
+          (relationshipRemoved)="onRelationshipChanged()"
+        ></app-word-details-related-words>
+      </div>
     </div>
   }
   <div class="block">
