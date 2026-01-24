@@ -10,6 +10,7 @@ import { NgIf, NgFor } from '@angular/common';
 import { WordDetailsMainInfoComponent } from '../../components/details/main-info/main-info.component';
 import { WordDetailsTypeTableComponent } from '../../components/details/type-table/type-table.component';
 import { WordDetailsTagsComponent } from '../../components/details/tags/tags.component';
+import { WordDetailsRelatedWordsComponent } from '../../components/details/related-words/related-words.component';
 
 @Component({
   selector: 'app-word-details-view',
@@ -19,6 +20,7 @@ import { WordDetailsTagsComponent } from '../../components/details/tags/tags.com
     WordDetailsMainInfoComponent,
     WordDetailsTypeTableComponent,
     WordDetailsTagsComponent,
+    WordDetailsRelatedWordsComponent,
     NgFor,
     WordDetailsDeleteModalComponent,
   ],
@@ -40,6 +42,14 @@ export class WordDetailsViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Subscribe to route param changes to handle navigation between related words
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.loadWord();
+    });
+  }
+
+  private loadWord(): void {
     this.vocabularyService.getWordById(this.id).subscribe((response) => {
       this.word = response;
       this.collectionsService

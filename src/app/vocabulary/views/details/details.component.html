@@ -33,6 +33,11 @@
         </p>
       </div>
     </div>
+    <div *ngIf="word.related && word.related.length > 0" class="block">
+      <app-word-details-related-words
+        [related]="word.related"
+      ></app-word-details-related-words>
+    </div>
   </div>
   <div class="block">
     <div class="buttons">

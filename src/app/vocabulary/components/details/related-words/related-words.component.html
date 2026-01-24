@@ -1,0 +1,38 @@
+<div class="related-words-section">
+  <p class="title is-5 has-text-centered mb-4">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-link"></i>
+      </span>
+      <span>Related Words</span>
+    </span>
+  </p>
+  
+  <div class="related-words-grid">
+    <div
+      *ngFor="let rel of related"
+      class="related-word-card"
+      (click)="onClickWord(rel.wordId)"
+    >
+      <div class="card-content">
+        <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
+          {{ getTypeLabel(rel.type) }}
+        </span>
+        
+        <p class="word-text">{{ rel.word }}</p>
+        
+        <p *ngIf="rel.hiragana" class="hiragana-text">
+          {{ rel.hiragana }}
+        </p>
+        
+        <p *ngIf="rel.spanish" class="spanish-text">
+          {{ rel.spanish }}
+        </p>
+        
+        <p *ngIf="rel.note" class="note-text">
+          {{ rel.note }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

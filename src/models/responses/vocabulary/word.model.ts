@@ -8,6 +8,16 @@ export interface Word {
   type: Type;
   tags?: string[];
   sentences?: Sentence[];
+  related?: RelatedWord[];
+}
+
+export interface RelatedWord {
+  wordId: string;
+  type: 'related' | 'synonym' | 'antonym';
+  note?: string;
+  word?: string;
+  hiragana?: string;
+  spanish?: string;
 }
 
 export interface Type {
