@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ExampleSentenceComponent } from '../../../details/example-sentence/example-sentence.component';
 
 @Component({
@@ -17,7 +17,6 @@ import { ExampleSentenceComponent } from '../../../details/example-sentence/exam
     FormsModule,
     ReactiveFormsModule,
     NgClass,
-    NgIf,
     ExampleSentenceComponent,
   ],
 })

@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-word-field',
   templateUrl: './word.component.html',
   styleUrls: ['./word.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddWordFormWordFieldComponent implements OnInit {
   @Input()

@@ -6,21 +6,20 @@
     <div class="field-body">
       <div class="field">
         <div class="columns is-centered is-multiline is-mobile">
-          <div
-            *ngFor="let tag of tags"
-            class="column is-2-desktop has-text-centered"
-          >
-            <span
-              [ngClass]="{
-                'is-white': !getTagValue(tag),
-                'is-warning': getTagValue(tag)
-              }"
-              (click)="onClickTag(tag)"
-              class="tag is-medium is-rounded is-capitalized px-5"
-            >
-              {{ tag }}
-            </span>
-          </div>
+          @for (tag of tags; track tag) {
+            <div class="column is-2-desktop has-text-centered">
+              <span
+                [ngClass]="{
+                  'is-white': !getTagValue(tag),
+                  'is-warning': getTagValue(tag)
+                }"
+                (click)="onClickTag(tag)"
+                class="tag is-medium is-rounded is-capitalized px-5"
+              >
+                {{ tag }}
+              </span>
+            </div>
+          }
         </div>
       </div>
     </div>

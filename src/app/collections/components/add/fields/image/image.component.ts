@@ -9,12 +9,12 @@ import {
 import { FileTypeValidatorService } from 'src/app/collections/services/validators/file-type.service';
 import { FormService } from 'src/app/shared/services/form.service';
 import { CollectionForm } from 'src/models/collections/form.model';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-collection-form-image-field',
   templateUrl: './image.component.html',
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddCollectionFormImageFieldComponent implements OnInit {
   @Input()

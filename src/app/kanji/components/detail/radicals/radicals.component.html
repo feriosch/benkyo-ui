@@ -19,41 +19,37 @@
   </div>
 </div>
 <div class="block">
-  <ng-template [ngIf]="isComponentsSelected" [ngIfElse]="radicalTags">
-    <ng-template [ngIf]="components" [ngIfElse]="noComponents">
+  @if (isComponentsSelected) {
+    @if (components) {
       <div class="tags are-large is-centered">
-        <span
-          *ngFor="let component of components"
-          class="tag is-rounded is-light is-info ml-4 mr-4"
-        >
-          &nbsp;{{ component }}&nbsp;
-        </span>
+        @for (component of components; track component) {
+          <span class="tag is-rounded is-light is-info ml-4 mr-4">
+            &nbsp;{{ component }}&nbsp;
+          </span>
+        }
       </div>
-    </ng-template>
-    <ng-template #noComponents>
+    } @else {
       <div class="has-text-centered has-text-weight-medium">
         No components, this is a radical kanji.
       </div>
-    </ng-template>
-  </ng-template>
-  <ng-template #radicalTags>
+    }
+  } @else {
     <div class="tags are-large is-centered">
-      <span
-        *ngFor="let radical of radicals"
-        class="tag is-rounded is-light is-warning ml-4 mr-4"
-      >
-        &nbsp;{{ radical }}&nbsp;
-      </span>
+      @for (radical of radicals; track radical) {
+        <span class="tag is-rounded is-light is-warning ml-4 mr-4">
+          &nbsp;{{ radical }}&nbsp;
+        </span>
+      }
     </div>
-  </ng-template>
-  <ng-template [ngIf]="isRecursive">
+  }
+  @if (isRecursive) {
     <div class="block has-text-centered">
       <span class="tag is-large is-rounded is-light is-danger">
         &nbsp;Recursive&nbsp;
       </span>
     </div>
-  </ng-template>
-  <ng-template [ngIf]="story">
+  }
+  @if (story) {
     <div class="columns is-centered">
       <div class="column is-two-thirds">
         <p class="is-size-4">
@@ -61,5 +57,5 @@
         </p>
       </div>
     </div>
-  </ng-template>
+  }
 </div>

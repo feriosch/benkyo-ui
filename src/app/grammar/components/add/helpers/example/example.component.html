@@ -40,21 +40,14 @@
           </div>
         </div>
         <div class="column">
-          <p
-            *ngIf="
-              sentenceControl.touched && sentenceControl.invalid;
-              else formatted
-            "
-            class="help is-danger"
-          >
-            Sentence is required!
-          </p>
-          <ng-template #formatted>
+          @if (sentenceControl.touched && sentenceControl.invalid) {
+            <p class="help is-danger">Sentence is required!</p>
+          } @else {
             <app-example-sentence
               [components]="getFormattedComponents()"
               sizeClass="is-size-5"
             ></app-example-sentence>
-          </ng-template>
+          }
         </div>
       </div>
     </div>
@@ -73,12 +66,9 @@
         type="text"
         placeholder="Enter translation sentence"
       />
-      <p
-        *ngIf="translationControl.touched && translationControl.invalid"
-        class="help is-danger mb-1"
-      >
-        Translation sentence is required!
-      </p>
+      @if (translationControl.touched && translationControl.invalid) {
+        <p class="help is-danger mb-1">Translation sentence is required!</p>
+      }
     </div>
   </div>
 </ng-container>

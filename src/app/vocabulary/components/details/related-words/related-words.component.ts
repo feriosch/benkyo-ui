@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgFor, NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 import { RelatedWord } from 'src/models/responses/vocabulary/word.model';
 
@@ -8,7 +8,7 @@ import { RelatedWord } from 'src/models/responses/vocabulary/word.model';
   selector: 'app-word-details-related-words',
   templateUrl: './related-words.component.html',
   styleUrls: ['./related-words.component.scss'],
-  imports: [NgFor, NgIf, NgClass],
+  imports: [NgClass],
 })
 export class WordDetailsRelatedWordsComponent {
   @Input()

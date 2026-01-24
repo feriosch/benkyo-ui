@@ -5,10 +5,14 @@
   <p class="is-size-2 mb-4">
     {{ spanish }}
   </p>
-  <p *ngIf="this.on" class="is-size-3 on-yomi">
-    {{ on }}
-  </p>
-  <p *ngIf="this.kun" class="is-size-3 kun-yomi">
-    {{ kun }}
-  </p>
+  @if (this.on) {
+    <p class="is-size-3 on-yomi">
+      {{ on }}
+    </p>
+  }
+  @if (this.kun) {
+    <p class="is-size-3 kun-yomi">
+      {{ kun }}
+    </p>
+  }
 </div>

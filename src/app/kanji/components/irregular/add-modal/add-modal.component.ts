@@ -13,12 +13,12 @@ import { KanjiAddIrregularComponentResponse } from 'src/models/kanji/components/
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { AddIrregularComponentService } from 'src/app/kanji/services/forms/component.service';
 import { IrregularComponentForm } from 'src/models/kanji/forms/form.model';
-import { NgClass, NgIf, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-irregular-components-add-modal',
   templateUrl: './add-modal.component.html',
-  imports: [NgClass, FormsModule, ReactiveFormsModule, NgIf, NgFor],
+  imports: [NgClass, FormsModule, ReactiveFormsModule],
 })
 export class KanjiIrregularComponentsAddModalComponent implements OnInit {
   form: FormGroup<IrregularComponentForm>;

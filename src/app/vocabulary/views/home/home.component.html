@@ -1,16 +1,15 @@
 <div class="container mt-4 mb-4">
   <div class="columns is-multiline is-mobile is-centered">
-    <div
-      class="column has-text-centered"
-      *ngFor="let collection of collections"
-    >
-      <app-vocabulary-collection-card
-        [collection]="collection"
-        [currentSelection]="collectionsService.currentCollection"
-        (collectionSelected)="changeCollection($event)"
-      >
-      </app-vocabulary-collection-card>
-    </div>
+    @for (collection of collections; track collection) {
+      <div class="column has-text-centered">
+        <app-vocabulary-collection-card
+          [collection]="collection"
+          [currentSelection]="collectionsService.currentCollection"
+          (collectionSelected)="changeCollection($event)"
+        >
+        </app-vocabulary-collection-card>
+      </div>
+    }
   </div>
 </div>
 <div class="level">

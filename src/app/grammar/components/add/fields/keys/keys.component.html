@@ -20,12 +20,14 @@
           Remove Key Sentence
         </button>
         <div formArrayName="keys" class="mt-4">
-          <div *ngFor="let control of formArray!.controls; let i = index">
-            <label class="label">Key Sentence {{ i + 1 }}</label>
-            <app-add-clause-form-clause-example
-              [control]="control"
-            ></app-add-clause-form-clause-example>
-          </div>
+          @for (control of formArray!.controls; track control; let i = $index) {
+            <div>
+              <label class="label">Key Sentence {{ i + 1 }}</label>
+              <app-add-clause-form-clause-example
+                [control]="control"
+              ></app-add-clause-form-clause-example>
+            </div>
+          }
         </div>
       </div>
     </div>

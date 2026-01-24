@@ -49,13 +49,12 @@
   <div class="field-body">
     <div class="field">
       <div class="tags are-medium is-centered">
-        <span
-          *ngFor="let component of components; index as i"
-          class="tag is-rounded is-info ml-2 mr-2"
-        >
-          {{ component }}
-          <button class="delete ml-2" (click)="onDeleteComponent(i)"></button>
-        </span>
+        @for (component of components; track component; let i = $index) {
+          <span class="tag is-rounded is-info ml-2 mr-2">
+            {{ component }}
+            <button class="delete ml-2" (click)="onDeleteComponent(i)"></button>
+          </span>
+        }
       </div>
     </div>
   </div>

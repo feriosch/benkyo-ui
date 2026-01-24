@@ -8,12 +8,12 @@ import {
 
 import { FormService } from 'src/app/shared/services/form.service';
 import { CollectionForm } from 'src/models/collections/form.model';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-collection-form-name-field',
   templateUrl: './name.component.html',
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddCollectionFormNameFieldComponent implements OnInit {
   @Input()

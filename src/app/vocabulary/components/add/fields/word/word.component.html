@@ -20,17 +20,19 @@
             placeholder="Enter the word"
           />
           <span class="icon is-small is-right">
-            <i
-              *ngIf="wordControl!.touched && wordControl!.invalid"
-              class="fas fa-exclamation-triangle"
-            >
-            </i>
-            <i *ngIf="wordControl!.valid" class="fas fa-check"> </i>
+            @if (wordControl!.touched && wordControl!.invalid) {
+              <i class="fas fa-exclamation-triangle"> </i>
+            }
+            @if (wordControl!.valid) {
+              <i class="fas fa-check"> </i>
+            }
           </span>
         </div>
-        <p *ngIf="isWordRepeated()" class="help is-danger">
-          This word is repeated! {{ wordControl!.errors!.repeatedWord }}
-        </p>
+        @if (isWordRepeated()) {
+          <p class="help is-danger">
+            This word is repeated! {{ wordControl!.errors!.repeatedWord }}
+          </p>
+        }
       </div>
       <div class="field">
         <div class="control">

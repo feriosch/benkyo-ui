@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TagsForm } from 'src/models/grammar/forms/form';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-clause-form-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddClauseFormTagsComponent implements OnInit {
   @Input()

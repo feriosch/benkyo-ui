@@ -7,32 +7,32 @@
       <span>Related Words</span>
     </span>
   </p>
-  
+
   <div class="related-words-grid">
-    <div
-      *ngFor="let rel of related"
-      class="related-word-card"
-      (click)="onClickWord(rel.wordId)"
-    >
-      <div class="card-content">
-        <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
-          {{ getTypeLabel(rel.type) }}
-        </span>
-        
-        <p class="word-text">{{ rel.word }}</p>
-        
-        <p *ngIf="rel.hiragana" class="hiragana-text">
-          {{ rel.hiragana }}
-        </p>
-        
-        <p *ngIf="rel.spanish" class="spanish-text">
-          {{ rel.spanish }}
-        </p>
-        
-        <p *ngIf="rel.note" class="note-text">
-          {{ rel.note }}
-        </p>
+    @for (rel of related; track rel) {
+      <div class="related-word-card" (click)="onClickWord(rel.wordId)">
+        <div class="card-content">
+          <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
+            {{ getTypeLabel(rel.type) }}
+          </span>
+          <p class="word-text">{{ rel.word }}</p>
+          @if (rel.hiragana) {
+            <p class="hiragana-text">
+              {{ rel.hiragana }}
+            </p>
+          }
+          @if (rel.spanish) {
+            <p class="spanish-text">
+              {{ rel.spanish }}
+            </p>
+          }
+          @if (rel.note) {
+            <p class="note-text">
+              {{ rel.note }}
+            </p>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
 </div>

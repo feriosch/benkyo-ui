@@ -39,12 +39,9 @@
             placeholder="Enter Spanish translation"
           />
         </div>
-        <p
-          *ngIf="spanishControl!.touched && spanishControl!.invalid"
-          class="help is-danger"
-        >
-          Spanish translation is required!
-        </p>
+        @if (spanishControl!.touched && spanishControl!.invalid) {
+          <p class="help is-danger">Spanish translation is required!</p>
+        }
         <div class="control">
           <button
             class="button is-info is-light"

@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 
 import { ExampleForm } from 'src/models/grammar/forms/form';
-import { NgClass, NgIf, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { AddClauseFormExampleComponent } from '../example/example.component';
 
 @Component({
@@ -21,8 +21,6 @@ import { AddClauseFormExampleComponent } from '../example/example.component';
     FormsModule,
     ReactiveFormsModule,
     NgClass,
-    NgIf,
-    NgFor,
     AddClauseFormExampleComponent,
   ],
 })

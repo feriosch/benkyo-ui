@@ -11,13 +11,13 @@ import { Collection } from 'src/models/collections/collection.model';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { VocabularyMainForm } from 'src/models/vocabulary/forms/form.model';
 import { CollectionsResponse } from 'src/models/collections/responses.model';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-collection-field',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgFor],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddWordFormCollectionFieldComponent implements OnInit {
   @Input()

@@ -5,39 +5,52 @@
       <p class="modal-card-title">{{ character }}</p>
       <button (click)="closeModal()" class="delete" aria-label="close"></button>
     </header>
-    <section *ngIf="isLoading" class="modal-card-body">
-      <p class="subtitle is-4">Retrieving data...</p>
-    </section>
-    <section *ngIf="kanjiInfo && !isLoading" class="modal-card-body">
-      <p class="block title is-2">
-        {{ kanjiInfo.kanji }}
-      </p>
-      <p class="block subtitle is-3">
-        {{ kanjiInfo.spanish }}
-      </p>
-      <div *ngIf="kanjiInfo.components" class="block tags are-large">
-        <span
-          *ngFor="let component of kanjiInfo.components"
-          class="tag is-rounded is-light is-info ml-2 mr-2"
-        >
-          {{ component }}
-        </span>
-      </div>
-      <p *ngIf="kanjiInfo.on" class="block title is-5 on-yomi">
-        {{ kanjiInfo.on }}
-      </p>
-      <p *ngIf="kanjiInfo.kun" class="block title is-5 kun-yomi">
-        {{ kanjiInfo.kun }}
-      </p>
-      <p *ngIf="kanjiInfo.story" class="block subtitle mt-2 is-4">
-        {{ kanjiInfo.story }}
-      </p>
-    </section>
-    <section *ngIf="error && !isLoading" class="modal-card-body">
-      <p class="subtitle is-4">
-        {{ error }}
-      </p>
-    </section>
+    @if (isLoading) {
+      <section class="modal-card-body">
+        <p class="subtitle is-4">Retrieving data...</p>
+      </section>
+    }
+    @if (kanjiInfo && !isLoading) {
+      <section class="modal-card-body">
+        <p class="block title is-2">
+          {{ kanjiInfo.kanji }}
+        </p>
+        <p class="block subtitle is-3">
+          {{ kanjiInfo.spanish }}
+        </p>
+        @if (kanjiInfo.components) {
+          <div class="block tags are-large">
+            @for (component of kanjiInfo.components; track component) {
+              <span class="tag is-rounded is-light is-info ml-2 mr-2">
+                {{ component }}
+              </span>
+            }
+          </div>
+        }
+        @if (kanjiInfo.on) {
+          <p class="block title is-5 on-yomi">
+            {{ kanjiInfo.on }}
+          </p>
+        }
+        @if (kanjiInfo.kun) {
+          <p class="block title is-5 kun-yomi">
+            {{ kanjiInfo.kun }}
+          </p>
+        }
+        @if (kanjiInfo.story) {
+          <p class="block subtitle mt-2 is-4">
+            {{ kanjiInfo.story }}
+          </p>
+        }
+      </section>
+    }
+    @if (error && !isLoading) {
+      <section class="modal-card-body">
+        <p class="subtitle is-4">
+          {{ error }}
+        </p>
+      </section>
+    }
     <footer class="modal-card-foot">
       <button (click)="closeModal()" class="button">Close</button>
     </footer>

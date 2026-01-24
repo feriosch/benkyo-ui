@@ -16,9 +16,9 @@
             placeholder="Enter definition"
           />
         </div>
-        <p *ngIf="control!.touched && control!.invalid" class="help is-danger">
-          Definition is required!
-        </p>
+        @if (control!.touched && control!.invalid) {
+          <p class="help is-danger">Definition is required!</p>
+        }
       </div>
     </div>
   </div>

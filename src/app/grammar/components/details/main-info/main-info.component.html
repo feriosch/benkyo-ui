@@ -4,9 +4,11 @@
       <span class="title is-1 is-inline-block character has-text-danger">
         {{ title }}
       </span>
-      <span *ngIf="hiragana" class="subtitle is-3 ml-4 is-hidden-mobile">
-        ( {{ hiragana }} )
-      </span>
+      @if (hiragana) {
+        <span class="subtitle is-3 ml-4 is-hidden-mobile">
+          ( {{ hiragana }} )
+        </span>
+      }
     </div>
     <div class="block has-text-centered-mobile">
       <p class="is-italic is-lowercase is-size-3">

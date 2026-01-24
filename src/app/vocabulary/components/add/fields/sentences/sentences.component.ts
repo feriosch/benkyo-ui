@@ -12,13 +12,13 @@ import {
   VocabularyMainForm,
   VocabularySentenceForm,
 } from 'src/models/vocabulary/forms/form.model';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-sentences-field',
   templateUrl: './sentences.component.html',
   styleUrls: ['./sentences.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddWordFormSentencesFieldComponent implements OnInit {
   @Input()

@@ -1,11 +1,13 @@
 <div class="columns is-multiline is-mobile">
-  <div class="column is-1-desktop is-3-mobile" *ngFor="let kanji of kanjis">
-    <a (click)="openLink(kanji.id)">
-      <figure class="image is-64x64">
-        <div class="is-size-3 has-text-weight-medium">
-          {{ kanji.kanji }}
-        </div>
-      </figure>
-    </a>
-  </div>
+  @for (kanji of kanjis; track kanji) {
+    <div class="column is-1-desktop is-3-mobile">
+      <a (click)="openLink(kanji.id)">
+        <figure class="image is-64x64">
+          <div class="is-size-3 has-text-weight-medium">
+            {{ kanji.kanji }}
+          </div>
+        </figure>
+      </a>
+    </div>
+  }
 </div>

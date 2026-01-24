@@ -17,12 +17,9 @@
             type="text"
             placeholder="Enter explanation"
           ></textarea>
-          <p
-            *ngIf="explanationControl!.touched && explanationControl!.invalid"
-            class="help is-danger mb-1"
-          >
-            Explanation is required!
-          </p>
+          @if (explanationControl!.touched && explanationControl!.invalid) {
+            <p class="help is-danger mb-1">Explanation is required!</p>
+          }
         </div>
       </div>
     </div>
@@ -49,9 +46,11 @@
       </div>
     </div>
   </div>
-  <div *ngFor="let exampleControl of this.examplesArray!.controls">
-    <app-add-clause-form-clause-example
-      [control]="exampleControl"
-    ></app-add-clause-form-clause-example>
-  </div>
+  @for (exampleControl of this.examplesArray!.controls; track exampleControl) {
+    <div>
+      <app-add-clause-form-clause-example
+        [control]="exampleControl"
+      ></app-add-clause-form-clause-example>
+    </div>
+  }
 </ng-container>

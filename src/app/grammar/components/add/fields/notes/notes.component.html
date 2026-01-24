@@ -20,12 +20,14 @@
           Remove Section
         </button>
         <div formArrayName="notes" class="mt-4">
-          <div *ngFor="let control of formArray!.controls; let i = index">
-            <label class="label"> Section {{ i + 1 }} </label>
-            <app-add-clause-form-section
-              [control]="control"
-            ></app-add-clause-form-section>
-          </div>
+          @for (control of formArray!.controls; track control; let i = $index) {
+            <div>
+              <label class="label"> Section {{ i + 1 }} </label>
+              <app-add-clause-form-section
+                [control]="control"
+              ></app-add-clause-form-section>
+            </div>
+          }
         </div>
       </div>
     </div>

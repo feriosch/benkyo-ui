@@ -6,21 +6,20 @@
     <div class="field-body">
       <div class="field">
         <div class="columns is-centered is-multiline is-mobile">
-          <div
-            *ngFor="let subtype of subtypes"
-            class="column is-2-desktop has-text-centered"
-          >
-            <span
-              [ngClass]="{
-                'is-white': !getSubtypeValue(subtype),
-                'is-primary': getSubtypeValue(subtype)
-              }"
-              (click)="onClickSubtype(subtype)"
-              class="tag is-medium is-rounded is-capitalized px-5"
-            >
-              {{ subtype }}
-            </span>
-          </div>
+          @for (subtype of subtypes; track subtype) {
+            <div class="column is-2-desktop has-text-centered">
+              <span
+                [ngClass]="{
+                  'is-white': !getSubtypeValue(subtype),
+                  'is-primary': getSubtypeValue(subtype)
+                }"
+                (click)="onClickSubtype(subtype)"
+                class="tag is-medium is-rounded is-capitalized px-5"
+              >
+                {{ subtype }}
+              </span>
+            </div>
+          }
         </div>
       </div>
     </div>

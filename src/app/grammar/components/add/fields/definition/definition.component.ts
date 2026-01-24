@@ -7,13 +7,13 @@ import {
 } from '@angular/forms';
 
 import { MainForm } from 'src/models/grammar/forms/form';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-clause-form-definition',
   templateUrl: './definition.component.html',
   styleUrls: ['./definition.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddClauseFormDefinitionComponent implements OnInit {
   @Input()

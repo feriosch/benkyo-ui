@@ -6,24 +6,23 @@
     <div class="field-body">
       <div class="field">
         <div class="columns is-centered is-mobile is-multiline">
-          <div
-            *ngFor="let subtype of subtypes"
-            class="column has-text-centered"
-          >
-            <figure
-              (click)="onClickSubtype(subtype)"
-              [ngClass]="{
-                'common-cell': getSubtypeValue(subtype) === 1,
-                'rare-cell': getSubtypeValue(subtype) === 2,
-                'extra-cell': getSubtypeValue(subtype) > 2
-              }"
-              class="image is-64x64 is-inline-block"
-            >
-              <div>
-                {{ getMappedText(getSubtypeValue(subtype), subtype) }}
-              </div>
-            </figure>
-          </div>
+          @for (subtype of subtypes; track subtype) {
+            <div class="column has-text-centered">
+              <figure
+                (click)="onClickSubtype(subtype)"
+                [ngClass]="{
+                  'common-cell': getSubtypeValue(subtype) === 1,
+                  'rare-cell': getSubtypeValue(subtype) === 2,
+                  'extra-cell': getSubtypeValue(subtype) > 2
+                }"
+                class="image is-64x64 is-inline-block"
+              >
+                <div>
+                  {{ getMappedText(getSubtypeValue(subtype), subtype) }}
+                </div>
+              </figure>
+            </div>
+          }
         </div>
       </div>
     </div>

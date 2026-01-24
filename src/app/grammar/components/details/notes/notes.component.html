@@ -1,19 +1,21 @@
 <ol class="is-size-4 ml-6">
-  <ng-container *ngFor="let section of notes">
+  @for (section of notes; track section) {
     <li class="my-4">
       <div class="is-size-4">{{ section.explanation }}</div>
-      <div *ngIf="section.examples">
-        <ul>
-          <ng-container *ngFor="let example of section.examples">
-            <li class="my-2">
-              <app-example-sentence
-                [components]="example.sentence"
-              ></app-example-sentence>
-              <div class="is-size-5">({{ example.translation }})</div>
-            </li>
-          </ng-container>
-        </ul>
-      </div>
+      @if (section.examples) {
+        <div>
+          <ul>
+            @for (example of section.examples; track example) {
+              <li class="my-2">
+                <app-example-sentence
+                  [components]="example.sentence"
+                ></app-example-sentence>
+                <div class="is-size-5">({{ example.translation }})</div>
+              </li>
+            }
+          </ul>
+        </div>
+      }
     </li>
-  </ng-container>
+  }
 </ol>

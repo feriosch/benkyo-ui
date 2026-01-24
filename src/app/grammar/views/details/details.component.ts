@@ -5,7 +5,7 @@ import { FullClause } from 'src/models/responses/grammar/clause.model';
 import { Views } from 'src/models/responses/grammar/details.model';
 import { GrammarService } from '../../services/grammar.service';
 import { DeleteClauseModalComponent } from '../../components/details/delete-modal/delete-modal.component';
-import { NgIf, NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MainInfoComponent } from '../../components/details/main-info/main-info.component';
 import { SectionTitleComponent } from '../../components/details/section-title/section-title.component';
 import { ExampleSentenceComponent } from '../../components/details/example-sentence/example-sentence.component';
@@ -19,10 +19,8 @@ import { RelatedComponent } from '../../components/details/related/related.compo
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
   imports: [
-    NgIf,
     MainInfoComponent,
     SectionTitleComponent,
-    NgFor,
     NgClass,
     ExampleSentenceComponent,
     FormationsComponent,

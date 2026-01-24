@@ -8,13 +8,13 @@ import {
 
 import { TagsMapperService } from 'src/app/vocabulary/services/tags-mapper.service';
 import { VocabularyTagsForm } from 'src/models/vocabulary/forms/form.model';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-word-form-tags-field',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddWordFormTagsFieldComponent implements OnInit {
   @Input()

@@ -9,19 +9,14 @@ import {
 } from '@angular/forms';
 
 import { MainForm, ExampleForm } from 'src/models/grammar/forms/form';
-import { NgFor } from '@angular/common';
+
 import { AddClauseFormExampleComponent } from '../../helpers/example/example.component';
 
 @Component({
   selector: 'app-add-clause-form-keys',
   templateUrl: './keys.component.html',
   styleUrls: ['./keys.component.scss'],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgFor,
-    AddClauseFormExampleComponent,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, AddClauseFormExampleComponent],
 })
 export class AddClauseFormKeysComponent implements OnInit {
   @Input()

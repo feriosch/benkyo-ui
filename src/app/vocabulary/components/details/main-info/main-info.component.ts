@@ -2,13 +2,12 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { Collection } from 'src/models/collections/collection.model';
 import { KanjiModalComponent } from '../kanji-modal/kanji-modal.component';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-word-details-main-info',
   templateUrl: './main-info.component.html',
   styleUrls: ['./main-info.component.scss'],
-  imports: [NgFor, NgIf, KanjiModalComponent],
+  imports: [KanjiModalComponent],
 })
 export class WordDetailsMainInfoComponent implements OnInit {
   @Input()

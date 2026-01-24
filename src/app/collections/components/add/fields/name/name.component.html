@@ -14,9 +14,9 @@
             placeholder="Enter collection printing name"
           />
         </div>
-        <p *ngIf="isPrintingNameInvalid" class="help is-danger">
-          Printing name is required!
-        </p>
+        @if (isPrintingNameInvalid) {
+          <p class="help is-danger">Printing name is required!</p>
+        }
       </div>
     </div>
   </div>
@@ -35,9 +35,9 @@
             placeholder="Enter identification name (collection_name)"
           />
         </div>
-        <p *ngIf="isCollectionNameInvalid" class="help is-danger">
-          Identification name is required!
-        </p>
+        @if (isCollectionNameInvalid) {
+          <p class="help is-danger">Identification name is required!</p>
+        }
       </div>
     </div>
   </div>
@@ -56,7 +56,9 @@
             placeholder="Enter collection group"
           />
         </div>
-        <p *ngIf="isGroupInvalid" class="help is-danger">Group is required!</p>
+        @if (isGroupInvalid) {
+          <p class="help is-danger">Group is required!</p>
+        }
       </div>
     </div>
   </div>

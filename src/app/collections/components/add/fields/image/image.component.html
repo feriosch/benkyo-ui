@@ -32,9 +32,11 @@
             </label>
           </div>
         </div>
-        <p *ngIf="isPathInvalid" class="help is-danger">
-          Image is required! Accepted file types: {{ fileTypes }}
-        </p>
+        @if (isPathInvalid) {
+          <p class="help is-danger">
+            Image is required! Accepted file types: {{ fileTypes }}
+          </p>
+        }
       </div>
     </div>
   </div>

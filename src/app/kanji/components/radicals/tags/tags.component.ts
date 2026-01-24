@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-radicals-tags',
   templateUrl: './tags.component.html',
-  imports: [NgFor],
+  imports: [],
 })
 export class KanjiRadicalsTagsComponent implements OnInit {
   @Input()

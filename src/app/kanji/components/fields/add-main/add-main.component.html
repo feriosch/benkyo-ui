@@ -47,9 +47,9 @@
             type="text"
             placeholder="Enter Spanish"
           />
-          <p *ngIf="isSpanishInvalid" class="help is-danger">
-            Printing name is required!
-          </p>
+          @if (isSpanishInvalid) {
+            <p class="help is-danger">Printing name is required!</p>
+          }
         </div>
       </div>
     </div>

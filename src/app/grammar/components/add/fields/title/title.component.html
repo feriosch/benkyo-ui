@@ -20,12 +20,12 @@
             placeholder="Enter the clause title"
           />
           <span class="icon is-small is-right">
-            <i
-              *ngIf="titleControl!.touched && titleControl!.invalid"
-              class="fas fa-exclamation-triangle"
-            >
-            </i>
-            <i *ngIf="titleControl!.valid" class="fas fa-check"> </i>
+            @if (titleControl!.touched && titleControl!.invalid) {
+              <i class="fas fa-exclamation-triangle"> </i>
+            }
+            @if (titleControl!.valid) {
+              <i class="fas fa-check"> </i>
+            }
           </span>
         </div>
       </div>
@@ -59,12 +59,9 @@
             placeholder="Enter translation"
           />
         </div>
-        <p
-          *ngIf="translationControl!.touched && translationControl!.invalid"
-          class="help is-danger"
-        >
-          Translation is required!
-        </p>
+        @if (translationControl!.touched && translationControl!.invalid) {
+          <p class="help is-danger">Translation is required!</p>
+        }
       </div>
     </div>
   </div>

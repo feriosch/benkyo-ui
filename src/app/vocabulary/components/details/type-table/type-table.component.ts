@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Type } from 'src/models/responses/vocabulary/word.model';
 import { TypeMapperService } from '../../../services/type-mapper.service';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-word-details-type-table',
   templateUrl: './type-table.component.html',
   styleUrls: ['./type-table.component.scss'],
-  imports: [NgFor, NgClass],
+  imports: [NgClass],
 })
 export class WordDetailsTypeTableComponent implements OnInit {
   @Input()

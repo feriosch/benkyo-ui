@@ -14,19 +14,14 @@ import {
   ExampleForm,
   FormationForm,
 } from 'src/models/grammar/forms/form';
-import { NgFor } from '@angular/common';
+
 import { AddClauseFormExampleComponent } from '../../helpers/example/example.component';
 
 @Component({
   selector: 'app-add-clause-form-formations',
   templateUrl: './formations.component.html',
   styleUrls: ['./formations.component.scss'],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgFor,
-    AddClauseFormExampleComponent,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, AddClauseFormExampleComponent],
 })
 export class AddClauseFormFormationsComponent implements OnInit {
   @Input()

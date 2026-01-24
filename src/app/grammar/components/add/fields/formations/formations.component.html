@@ -20,64 +20,69 @@
           Remove Rule
         </button>
         <div formArrayName="formations" class="mt-4">
-          <div
-            *ngFor="let formationControl of formArray!.controls; let i = index"
-          >
-            <ng-container
-              [formGroup]="getFormGroupFromControl(formationControl)"
-            >
-              <label class="label"> Rule {{ i + 1 }} </label>
-              <div class="columns is-vcentered mb-0">
-                <div class="column is-two-thirds">
-                  <div class="field has-addons">
-                    <div class="control">
-                      <a class="button is-static"> Rule </a>
-                    </div>
-                    <div class="control is-expanded">
-                      <input
-                        formControlName="rule"
-                        class="input"
-                        type="text"
-                        placeholder="Enter definition"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="columns">
-                    <div class="column">
-                      <button
-                        (click)="pushExample(formationControl)"
-                        class="button is-link is-light is-fullwidth"
-                        type="button"
-                      >
-                        Add Example
-                      </button>
-                    </div>
-                    <div class="column">
-                      <button
-                        (click)="popExample(formationControl)"
-                        class="button is-warning is-light is-fullwidth"
-                        type="button"
-                      >
-                        Remove Example
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                *ngFor="
-                  let exampleControl of getExamplesFormArray(formationControl)
-                    .controls
-                "
+          @for (
+            formationControl of formArray!.controls;
+            track formationControl;
+            let i = $index
+          ) {
+            <div>
+              <ng-container
+                [formGroup]="getFormGroupFromControl(formationControl)"
               >
-                <app-add-clause-form-clause-example
-                  [control]="exampleControl"
-                ></app-add-clause-form-clause-example>
-              </div>
-            </ng-container>
-          </div>
+                <label class="label"> Rule {{ i + 1 }} </label>
+                <div class="columns is-vcentered mb-0">
+                  <div class="column is-two-thirds">
+                    <div class="field has-addons">
+                      <div class="control">
+                        <a class="button is-static"> Rule </a>
+                      </div>
+                      <div class="control is-expanded">
+                        <input
+                          formControlName="rule"
+                          class="input"
+                          type="text"
+                          placeholder="Enter definition"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="columns">
+                      <div class="column">
+                        <button
+                          (click)="pushExample(formationControl)"
+                          class="button is-link is-light is-fullwidth"
+                          type="button"
+                        >
+                          Add Example
+                        </button>
+                      </div>
+                      <div class="column">
+                        <button
+                          (click)="popExample(formationControl)"
+                          class="button is-warning is-light is-fullwidth"
+                          type="button"
+                        >
+                          Remove Example
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @for (
+                  exampleControl of getExamplesFormArray(formationControl)
+                    .controls;
+                  track exampleControl
+                ) {
+                  <div>
+                    <app-add-clause-form-clause-example
+                      [control]="exampleControl"
+                    ></app-add-clause-form-clause-example>
+                  </div>
+                }
+              </ng-container>
+            </div>
+          }
         </div>
       </div>
     </div>

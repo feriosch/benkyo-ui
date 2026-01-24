@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TypeForm } from 'src/models/grammar/forms/form';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-clause-form-type',
   templateUrl: './type.component.html',
   styleUrls: ['./type.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgFor, NgClass],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
 })
 export class AddClauseFormTypeComponent implements OnInit {
   @Input()

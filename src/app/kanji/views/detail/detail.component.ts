@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location, NgIf } from '@angular/common';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
@@ -13,7 +13,6 @@ import { KanjiDetailRadicalsComponent } from '../../components/detail/radicals/r
   templateUrl: './detail.component.html',
   imports: [
     KanjiDetailHeaderComponent,
-    NgIf,
     KanjiDetailInfoComponent,
     KanjiDetailRadicalsComponent,
   ],

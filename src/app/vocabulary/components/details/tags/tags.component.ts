@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { TagsMapperService } from '../../../services/tags-mapper.service';
-import { NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-word-details-tags',
   templateUrl: './tags.component.html',
-  imports: [NgFor, NgClass],
+  imports: [NgClass],
 })
 export class WordDetailsTagsComponent implements OnInit {
   @Input()

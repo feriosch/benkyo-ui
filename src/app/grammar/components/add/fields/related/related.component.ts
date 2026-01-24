@@ -15,7 +15,7 @@ import {
   RelatedSectionForm,
   RelatedForm,
 } from 'src/models/grammar/forms/form';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { AddClauseFormSectionComponent } from '../../helpers/section/section.component';
 
 @Component({
@@ -25,9 +25,7 @@ import { AddClauseFormSectionComponent } from '../../helpers/section/section.com
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    NgFor,
     NgClass,
-    NgIf,
     AddClauseFormSectionComponent,
   ],
 })

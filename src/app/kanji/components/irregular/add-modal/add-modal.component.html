@@ -17,26 +17,29 @@
               type="text"
               placeholder="Enter the component"
             />
-            <p *ngIf="isComponentControlInvalid" class="help is-danger">
-              Component is required!
-            </p>
+            @if (isComponentControlInvalid) {
+              <p class="help is-danger">Component is required!</p>
+            }
           </div>
         </div>
         <div class="field">
           <label class="label">Radicals</label>
           <div formArrayName="radicals">
             <div class="columns is-multiline">
-              <div
-                *ngFor="let radical of radicalsArray.controls; let i = index"
-                class="column is-half control"
-              >
-                <input
-                  [formControlName]="i"
-                  class="input mb-1"
-                  type="text"
-                  placeholder="Enter radical {{ i + 1 }}"
-                />
-              </div>
+              @for (
+                radical of radicalsArray.controls;
+                track radical;
+                let i = $index
+              ) {
+                <div class="column is-half control">
+                  <input
+                    [formControlName]="i"
+                    class="input mb-1"
+                    type="text"
+                    placeholder="Enter radical {{ i + 1 }}"
+                  />
+                </div>
+              }
             </div>
           </div>
         </div>

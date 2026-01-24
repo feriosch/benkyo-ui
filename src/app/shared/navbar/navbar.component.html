@@ -23,73 +23,74 @@
   </div>
 
   <div class="navbar-menu">
-    <div *ngIf="isAuthenticated()" class="navbar-start">
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="navigateTo('/vocabulary')">
-          Vocabulary
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="navigateTo('/vocabulary/add')">
-            Add Word
+    @if (isAuthenticated()) {
+      <div class="navbar-start">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" (click)="navigateTo('/vocabulary')">
+            Vocabulary
           </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" (click)="navigateTo('/vocabulary/add')">
+              Add Word
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" (click)="navigateTo('/collections')">
+            Collections
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" (click)="navigateTo('/collections/add')">
+              Add Collection
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" (click)="navigateTo('/kanji')"> Kanji </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" (click)="navigateTo('/kanji/add')">
+              Add Kanji
+            </a>
+            <a class="navbar-item" (click)="navigateTo('/kanji/radicals')">
+              Components & Radicals
+            </a>
+            <a
+              class="navbar-item"
+              (click)="navigateTo('/kanji/irregularcomponents')"
+            >
+              Irregular Components
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" (click)="navigateTo('/grammar')"> Grammar </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" (click)="navigateTo('/grammar/add')">
+              Add Clause
+            </a>
+          </div>
         </div>
       </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="navigateTo('/collections')">
-          Collections
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="navigateTo('/collections/add')">
-            Add Collection
-          </a>
-        </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="navigateTo('/kanji')"> Kanji </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="navigateTo('/kanji/add')">
-            Add Kanji
-          </a>
-          <a class="navbar-item" (click)="navigateTo('/kanji/radicals')">
-            Components & Radicals
-          </a>
-          <a
-            class="navbar-item"
-            (click)="navigateTo('/kanji/irregularcomponents')"
-          >
-            Irregular Components
-          </a>
-        </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" (click)="navigateTo('/grammar')"> Grammar </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="navigateTo('/grammar/add')">
-            Add Clause
-          </a>
-        </div>
-      </div>
-    </div>
+    }
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <button *ngIf="!isAuthenticated()" class="button is-primary" disabled>
-            <strong>Sign up</strong>
-          </button>
-          <button *ngIf="!isAuthenticated()" class="button is-light" disabled>
-            <strong>Log in</strong>
-          </button>
-          <button
-            *ngIf="isAuthenticated()"
-            (click)="logout()"
-            class="button is-danger"
-          >
-            <strong>Log Out</strong>
-          </button>
+          @if (!isAuthenticated()) {
+            <button class="button is-primary" disabled>
+              <strong>Sign up</strong>
+            </button>
+          }
+          @if (!isAuthenticated()) {
+            <button class="button is-light" disabled>
+              <strong>Log in</strong>
+            </button>
+          }
+          @if (isAuthenticated()) {
+            <button (click)="logout()" class="button is-danger">
+              <strong>Log Out</strong>
+            </button>
+          }
         </div>
       </div>
     </div>

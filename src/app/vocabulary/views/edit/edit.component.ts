@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Word } from 'src/models/responses/vocabulary/word.model';
 import { VocabularyService } from '../../services/vocabulary.service';
-import { NgIf } from '@angular/common';
+
 import { EditWordFormComponent } from '../../components/edit/form/edit-form.component';
 
 @Component({
   selector: 'app-edit-word-view',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  imports: [NgIf, EditWordFormComponent],
+  imports: [EditWordFormComponent],
 })
 export class EditWordViewComponent implements OnInit {
   id: string;

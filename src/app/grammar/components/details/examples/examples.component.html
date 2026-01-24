@@ -1,8 +1,10 @@
-<ul *ngFor="let example of examples">
-  <li>
-    <app-example-sentence
-      [components]="example.sentence"
-    ></app-example-sentence>
-    <div class="is-size-5">{{ example.translation }}</div>
-  </li>
-</ul>
+@for (example of examples; track example) {
+  <ul>
+    <li>
+      <app-example-sentence
+        [components]="example.sentence"
+      ></app-example-sentence>
+      <div class="is-size-5">{{ example.translation }}</div>
+    </li>
+  </ul>
+}

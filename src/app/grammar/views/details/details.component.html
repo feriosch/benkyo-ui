@@ -1,9 +1,8 @@
-<ng-template *ngIf="isLoading; else details">
+@if (isLoading) {
   <div class="container mx-6 my-5">
     <h1>Loading...</h1>
   </div>
-</ng-template>
-<ng-template #details>
+} @else {
   <div class="container mx-6 my-5">
     <div class="buttons">
       <button (click)="onClickBack()" class="button is-info">
@@ -42,14 +41,14 @@
       [isVisible]="views['keys']"
       title="Key Sentences"
     ></app-clause-section-title>
-    <div
-      [ngClass]="{ 'is-hidden': !views['keys'] }"
-      *ngFor="let key of clause?.keys"
-      class="block"
-    >
-      <app-example-sentence [components]="key.sentence"></app-example-sentence>
-      <div class="is-size-5">{{ key.translation }}</div>
-    </div>
+    @for (key of clause?.keys; track key) {
+      <div [ngClass]="{ 'is-hidden': !views['keys'] }" class="block">
+        <app-example-sentence
+          [components]="key.sentence"
+        ></app-example-sentence>
+        <div class="is-size-5">{{ key.translation }}</div>
+      </div>
+    }
   </div>
   <div class="container mx-6 my-5">
     <app-clause-section-title
@@ -62,17 +61,19 @@
       [formations]="clause?.formations!"
     ></app-clause-formations>
   </div>
-  <div *ngIf="clause?.examples" class="container mx-6 my-5 content">
-    <app-clause-section-title
-      (dropdownToggled)="onClickDropdown('examples')"
-      [isVisible]="views['examples']"
-      title="Examples"
-    ></app-clause-section-title>
-    <app-clause-examples
-      [ngClass]="{ 'is-hidden': !views['examples'] }"
-      [examples]="clause?.examples!"
-    ></app-clause-examples>
-  </div>
+  @if (clause?.examples) {
+    <div class="container mx-6 my-5 content">
+      <app-clause-section-title
+        (dropdownToggled)="onClickDropdown('examples')"
+        [isVisible]="views['examples']"
+        title="Examples"
+      ></app-clause-section-title>
+      <app-clause-examples
+        [ngClass]="{ 'is-hidden': !views['examples'] }"
+        [examples]="clause?.examples!"
+      ></app-clause-examples>
+    </div>
+  }
   <div class="container mx-6 my-5">
     <app-clause-section-title
       (dropdownToggled)="onClickDropdown('notes')"
@@ -84,20 +85,22 @@
       [notes]="clause?.notes!"
     ></app-clause-notes>
   </div>
-  <div *ngIf="clause?.related" class="container mx-6 my-5">
-    <app-clause-section-title
-      (dropdownToggled)="onClickDropdown('related')"
-      [isVisible]="views['related']"
-      title="Related Expressions"
-    ></app-clause-section-title>
-    <app-clause-related
-      [ngClass]="{ 'is-hidden': !views['related'] }"
-      [related]="clause?.related!"
-    ></app-clause-related>
-  </div>
+  @if (clause?.related) {
+    <div class="container mx-6 my-5">
+      <app-clause-section-title
+        (dropdownToggled)="onClickDropdown('related')"
+        [isVisible]="views['related']"
+        title="Related Expressions"
+      ></app-clause-section-title>
+      <app-clause-related
+        [ngClass]="{ 'is-hidden': !views['related'] }"
+        [related]="clause?.related!"
+      ></app-clause-related>
+    </div>
+  }
   <app-delete-clause-modal
     #deleteModal
     [id]="id"
     [title]="clause!.title"
   ></app-delete-clause-modal>
-</ng-template>
+}

@@ -18,51 +18,51 @@
           </button>
         </div>
         <div formArrayName="sentences">
-          <div *ngFor="let control of controls; let i = index">
-            <label class="label">Sentence {{ i + 1 }}</label>
-            <div class="field has-addons">
-              <div class="control">
-                <a class="button is-static"> Japanese </a>
+          @for (control of controls; track control; let i = $index) {
+            <div>
+              <label class="label">Sentence {{ i + 1 }}</label>
+              <div class="field has-addons">
+                <div class="control">
+                  <a class="button is-static"> Japanese </a>
+                </div>
+                <div [formGroupName]="i" class="control is-expanded mb-4">
+                  <input
+                    [ngClass]="{ 'is-danger': isControlInvalid('japanese', i) }"
+                    formControlName="japanese"
+                    class="input mb-1"
+                    type="text"
+                    placeholder="Enter Japanese sentence"
+                  />
+                  @if (isControlInvalid("japanese", i)) {
+                    <p class="help is-danger mb-1">
+                      Japanese sentence is required!
+                    </p>
+                  }
+                </div>
               </div>
-              <div [formGroupName]="i" class="control is-expanded mb-4">
-                <input
-                  [ngClass]="{ 'is-danger': isControlInvalid('japanese', i) }"
-                  formControlName="japanese"
-                  class="input mb-1"
-                  type="text"
-                  placeholder="Enter Japanese sentence"
-                />
-                <p
-                  *ngIf="isControlInvalid('japanese', i)"
-                  class="help is-danger mb-1"
-                >
-                  Japanese sentence is required!
-                </p>
+              <div class="field has-addons">
+                <div class="control">
+                  <a class="button is-static"> Translation </a>
+                </div>
+                <div [formGroupName]="i" class="control is-expanded mb-4">
+                  <input
+                    [ngClass]="{
+                      'is-danger': isControlInvalid('translation', i)
+                    }"
+                    formControlName="translation"
+                    class="input mb-1"
+                    type="text"
+                    placeholder="Enter translation sentence"
+                  />
+                  @if (isControlInvalid("translation", i)) {
+                    <p class="help is-danger mb-1">
+                      Translation sentence is required!
+                    </p>
+                  }
+                </div>
               </div>
             </div>
-            <div class="field has-addons">
-              <div class="control">
-                <a class="button is-static"> Translation </a>
-              </div>
-              <div [formGroupName]="i" class="control is-expanded mb-4">
-                <input
-                  [ngClass]="{
-                    'is-danger': isControlInvalid('translation', i)
-                  }"
-                  formControlName="translation"
-                  class="input mb-1"
-                  type="text"
-                  placeholder="Enter translation sentence"
-                />
-                <p
-                  *ngIf="isControlInvalid('translation', i)"
-                  class="help is-danger mb-1"
-                >
-                  Translation sentence is required!
-                </p>
-              </div>
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>

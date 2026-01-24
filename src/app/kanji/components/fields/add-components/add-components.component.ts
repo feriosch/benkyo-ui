@@ -9,12 +9,11 @@ import { KanjiComponentsResponse } from 'src/models/kanji/components/responses.m
 import { KanjiMainForm } from 'src/models/kanji/forms/form.model';
 import { FormService } from 'src/app/shared/services/form.service';
 import { KanjiComponentService } from 'src/app/kanji/services/component.service';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-add-kanji-form-components-field',
   templateUrl: './add-components.component.html',
-  imports: [AutocompleteLibModule, NgFor],
+  imports: [AutocompleteLibModule],
 })
 export class AddKanjiFormComponentsFieldComponent implements OnInit {
   @ViewChild('autocomplete')

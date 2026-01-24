@@ -8,13 +8,13 @@ import {
 
 import { Kanji } from 'src/models/responses/kanji/kanji.model';
 import { KanjiService } from 'src/app/kanji/services/kanji.service';
-import { NgClass, NgIf, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-kanji-modal',
   templateUrl: './kanji-modal.component.html',
   styleUrls: ['./kanji-modal.component.scss'],
-  imports: [NgClass, NgIf, NgFor],
+  imports: [NgClass],
 })
 export class KanjiModalComponent implements OnInit, OnChanges {
   @Input()

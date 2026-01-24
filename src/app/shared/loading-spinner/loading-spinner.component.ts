@@ -1,18 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  trigger,
-  transition,
-  style,
-  animate,
-} from '@angular/animations';
+
+import { trigger, transition, style, animate } from '@angular/animations';
 
 import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-loading-spinner',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './loading-spinner.component.html',
   styleUrls: ['./loading-spinner.component.scss'],
   animations: [
@@ -21,13 +16,10 @@ import { LoadingService } from '../services/loading.service';
         style({ opacity: 0 }),
         animate('200ms ease-out', style({ opacity: 1 })),
       ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({ opacity: 0 })),
-      ]),
+      transition(':leave', [animate('200ms ease-in', style({ opacity: 0 }))]),
     ]),
   ],
 })
 export class LoadingSpinnerComponent {
   protected loadingService = inject(LoadingService);
 }
-
