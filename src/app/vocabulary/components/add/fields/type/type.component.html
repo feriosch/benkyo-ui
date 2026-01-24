@@ -1,30 +1,20 @@
 <ng-container [formGroup]="formGroup!">
-  <div class="field is-horizontal mt-4">
-    <div class="field-label">
-      <label class="label">Word Type</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <div class="columns is-centered is-mobile is-multiline">
-          @for (subtype of subtypes; track subtype) {
-            <div class="column has-text-centered">
-              <figure
-                (click)="onClickSubtype(subtype)"
-                [ngClass]="{
-                  'common-cell': getSubtypeValue(subtype) === 1,
-                  'rare-cell': getSubtypeValue(subtype) === 2,
-                  'extra-cell': getSubtypeValue(subtype) > 2
-                }"
-                class="image is-64x64 is-inline-block"
-              >
-                <div>
-                  {{ getMappedText(getSubtypeValue(subtype), subtype) }}
-                </div>
-              </figure>
-            </div>
-          }
-        </div>
+  <div class="type-grid">
+    @for (subtype of subtypes; track subtype) {
+      <div
+        class="type-cell"
+        (click)="onClickSubtype(subtype)"
+        [ngClass]="{
+          'is-common': getSubtypeValue(subtype) === 1,
+          'is-rare': getSubtypeValue(subtype) === 2,
+          'is-extra': getSubtypeValue(subtype) > 2
+        }"
+        [title]="subtype"
+      >
+        <span class="type-value">{{
+          getMappedText(getSubtypeValue(subtype), subtype)
+        }}</span>
       </div>
-    </div>
+    }
   </div>
 </ng-container>

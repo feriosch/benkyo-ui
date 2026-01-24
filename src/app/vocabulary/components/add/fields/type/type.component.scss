@@ -1,31 +1,78 @@
 @use "src/variables" as *;
 
-figure {
-  border: 3px solid;
-  border-radius: 8px;
-}
-
-figure > div {
-  height: 100%;
+.type-grid {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   justify-content: center;
+}
+
+.type-cell {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  min-width: 70px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s ease;
   user-select: none;
-  font-size: 20px;
+
+  &:hover {
+    border-color: $info;
+    background: rgba($info, 0.05);
+    transform: translateY(-2px);
+  }
+
+  &.is-common {
+    border-color: $success;
+    background: rgba($success, 0.1);
+
+    .type-value {
+      color: darken($success, 10%);
+    }
+  }
+
+  &.is-rare {
+    border-color: $warning;
+    background: rgba($warning, 0.15);
+
+    .type-value {
+      color: darken($warning, 15%);
+    }
+  }
+
+  &.is-extra {
+    border-color: #b86bff;
+    background: rgba(#b86bff, 0.1);
+
+    .type-value {
+      color: #b86bff;
+    }
+  }
 }
 
-.field-body {
-  flex-grow: 10;
+.type-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #999;
+  line-height: 1;
 }
 
-.common-cell {
-  background-color: $green-cell;
-}
+@media screen and (max-width: 900px) {
+  .type-grid {
+    justify-content: flex-start;
+  }
 
-.rare-cell {
-  background-color: $orange-cell;
-}
+  .type-cell {
+    min-width: 60px;
+    padding: 0.4rem 0.5rem;
+  }
 
-.extra-cell {
-  background-color: $lilac-cell;
+  .type-value {
+    font-size: 1.25rem;
+  }
 }

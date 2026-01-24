@@ -1,8 +1,40 @@
-span {
-  width: 100%;
-  user-select: none;
+@use "src/variables" as *;
+
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.field-body {
-  flex-grow: 10;
+.word-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px solid #e0e0e0;
+  background: #fafafa;
+  color: #888;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $info;
+    color: $info;
+    background: rgba($info, 0.05);
+  }
+
+  &.is-active {
+    border-color: $info;
+    background: $info;
+    color: white;
+
+    &:hover {
+      background: darken($info, 5%);
+    }
+  }
 }
