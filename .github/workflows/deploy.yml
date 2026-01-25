@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Image version tag (e.g., 6.0, 7.0)'
+        description: "Image version tag (e.g., 6.0, 7.0)"
         required: true
         type: string
 
@@ -29,11 +29,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Inject environment variables
+        run: |
+          sed -i 's|__PROD_BACKEND_IP__|${{ vars.PROD_BACKEND_IP }}|g' src/environments/environment.prod.ts
 
       - name: Build Angular app
         run: npm run build -- --configuration production
