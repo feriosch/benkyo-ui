@@ -6,17 +6,28 @@
       </span>
       <span>Related Words</span>
     </span>
-    <button class="button is-info is-small add-btn" (click)="onClickAdd()">
-      <span class="icon is-small">
-        <i class="fas fa-plus"></i>
-      </span>
-      <span>Add</span>
-    </button>
+    <div class="buttons are-small">
+      <button class="button is-info add-btn" (click)="onClickAdd()">
+        <span class="icon is-small">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span>Add</span>
+      </button>
+      <button
+        class="button is-link is-light add-btn"
+        (click)="onClickAddBasic()"
+      >
+        <span class="icon is-small">
+          <i class="fas fa-font"></i>
+        </span>
+        <span>Add Basic</span>
+      </button>
+    </div>
   </div>
 
   <div class="related-words-grid">
-    @for (rel of related; track rel.wordId) {
-      <div class="related-word-card">
+    @for (rel of related; track rel.wordId || rel.word) {
+      <div class="related-word-card" [ngClass]="{ 'is-basic': rel.isBasic }">
         <button
           class="remove-btn"
           (click)="onClickRemove($event, rel)"
@@ -24,11 +35,18 @@
         >
           <i class="fas fa-times"></i>
         </button>
-        <div class="card-content" (click)="onClickWord(rel.wordId)">
+        <div
+          class="card-content"
+          [class.is-clickable]="!rel.isBasic"
+          (click)="!rel.isBasic && onClickWord(rel.wordId!)"
+        >
           <div class="tags-row">
             <span class="tag is-small" [ngClass]="getTypeClass(rel.type)">
               {{ getTypeLabel(rel.type) }}
             </span>
+            @if (rel.isBasic) {
+              <span class="tag is-small is-light">基本</span>
+            }
             @if (rel.tags && rel.tags.length > 0) {
               @for (nuance of rel.tags; track nuance) {
                 <span
@@ -221,6 +239,104 @@
             Add Relationship
           </button>
           <button class="button" (click)="closeAddModal()">Cancel</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+}
+
+<!-- Add Basic Word Modal -->
+@if (showBasicModal) {
+  <div class="modal is-active">
+    <div class="modal-background" (click)="closeBasicModal()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head is-basic-header">
+        <p class="modal-card-title">
+          <span class="icon"><i class="fas fa-font"></i></span>
+          <span>Add Basic Word</span>
+        </p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="closeBasicModal()"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <p class="help mb-4">
+          Add a basic word (e.g. 天気, 見る) that isn't in your vocabulary but
+          helps as a context hint on Anki cards.
+        </p>
+
+        <div class="field">
+          <label class="label">Word (Japanese)</label>
+          <div class="control has-icons-left">
+            <input
+              class="input"
+              type="text"
+              placeholder="e.g. 天気"
+              [(ngModel)]="basicWordText"
+            />
+            <span class="icon is-left">
+              <i class="fas fa-language"></i>
+            </span>
+          </div>
+        </div>
+
+        @if (basicWordText.trim()) {
+          <div class="field">
+            <label class="label">Relationship Type</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select [(ngModel)]="basicType">
+                  <option value="related">Related</option>
+                  <option value="synonym">Synonym</option>
+                  <option value="antonym">Antonym</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Nuance Tags (optional)</label>
+            <div class="nuance-tags-selector">
+              @for (tag of availableNuanceTags; track tag) {
+                <span
+                  class="tag is-medium nuance-selector-tag"
+                  [ngClass]="{
+                    'is-selected': basicNuanceTags.includes(tag)
+                  }"
+                  (click)="toggleBasicNuanceTag(tag)"
+                >
+                  {{ getNuanceLabel(tag) }} <small>({{ tag }})</small>
+                </span>
+              }
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Note (optional)</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="e.g., everyday word for weather"
+                [(ngModel)]="basicNote"
+              />
+            </div>
+          </div>
+        }
+      </section>
+      <footer class="modal-card-foot">
+        <div class="buttons">
+          <button
+            class="button is-link"
+            [disabled]="!basicWordText.trim() || isSavingBasic"
+            [ngClass]="{ 'is-loading': isSavingBasic }"
+            (click)="saveBasicWord()"
+          >
+            Add Basic Word
+          </button>
+          <button class="button" (click)="closeBasicModal()">Cancel</button>
         </div>
       </footer>
     </div>

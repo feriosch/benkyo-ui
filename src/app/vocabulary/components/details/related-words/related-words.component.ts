@@ -41,6 +41,14 @@ export class WordDetailsRelatedWordsComponent {
   isSearching = false;
   isSaving = false;
 
+  // Add Basic Modal state
+  showBasicModal = false;
+  basicWordText = '';
+  basicType: 'related' | 'synonym' | 'antonym' = 'related';
+  basicNuanceTags: NuanceTag[] = [];
+  basicNote = '';
+  isSavingBasic = false;
+
   // Remove Modal state
   showRemoveModal = false;
   wordToRemove: RelatedWord | null = null;
@@ -217,6 +225,57 @@ export class WordDetailsRelatedWordsComponent {
       });
   }
 
+  // Basic word modal methods
+  onClickAddBasic() {
+    this.showBasicModal = true;
+    this.resetBasicModal();
+  }
+
+  closeBasicModal() {
+    this.showBasicModal = false;
+    this.resetBasicModal();
+  }
+
+  resetBasicModal() {
+    this.basicWordText = '';
+    this.basicType = 'related';
+    this.basicNuanceTags = [];
+    this.basicNote = '';
+  }
+
+  toggleBasicNuanceTag(tag: NuanceTag) {
+    const index = this.basicNuanceTags.indexOf(tag);
+    if (index > -1) {
+      this.basicNuanceTags.splice(index, 1);
+    } else {
+      this.basicNuanceTags.push(tag);
+    }
+  }
+
+  saveBasicWord() {
+    if (!this.basicWordText.trim()) return;
+
+    this.isSavingBasic = true;
+    this.vocabularyService
+      .addBasicRelatedWord(this.wordId, {
+        word: this.basicWordText.trim(),
+        type: this.basicType,
+        tags:
+          this.basicNuanceTags.length > 0 ? this.basicNuanceTags : undefined,
+        note: this.basicNote || undefined,
+      })
+      .subscribe({
+        next: () => {
+          this.isSavingBasic = false;
+          this.closeBasicModal();
+          this.relationshipAdded.emit();
+        },
+        error: () => {
+          this.isSavingBasic = false;
+        },
+      });
+  }
+
   onClickRemove(event: Event, rel: RelatedWord) {
     event.stopPropagation();
     this.wordToRemove = rel;
@@ -232,17 +291,25 @@ export class WordDetailsRelatedWordsComponent {
     if (!this.wordToRemove) return;
 
     this.isRemoving = true;
-    this.vocabularyService
-      .removeRelatedWord(this.wordId, this.wordToRemove.wordId)
-      .subscribe({
-        next: () => {
-          this.isRemoving = false;
-          this.closeRemoveModal();
-          this.relationshipRemoved.emit(this.wordToRemove!.wordId);
-        },
-        error: () => {
-          this.isRemoving = false;
-        },
-      });
+    const remove$ = this.wordToRemove.isBasic
+      ? this.vocabularyService.removeBasicRelatedWord(
+          this.wordId,
+          this.wordToRemove.word!,
+        )
+      : this.vocabularyService.removeRelatedWord(
+          this.wordId,
+          this.wordToRemove.wordId!,
+        );
+
+    remove$.subscribe({
+      next: () => {
+        this.isRemoving = false;
+        this.closeRemoveModal();
+        this.relationshipRemoved.emit(this.wordToRemove!.wordId);
+      },
+      error: () => {
+        this.isRemoving = false;
+      },
+    });
   }
 }

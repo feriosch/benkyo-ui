@@ -50,6 +50,11 @@
   overflow: hidden;
   position: relative;
 
+  &.is-basic {
+    border-left: 3px solid $link;
+    background: linear-gradient(135deg, rgba($link, 0.03) 0%, $white 100%);
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba($info, 0.2);
@@ -87,7 +92,10 @@
 
   .card-content {
     padding: 1rem;
-    cursor: pointer;
+
+    &.is-clickable {
+      cursor: pointer;
+    }
 
     .tags-row {
       display: flex;
@@ -280,6 +288,10 @@
     .modal-card-title {
       color: $grey-darker;
     }
+  }
+
+  &.is-basic-header {
+    background: linear-gradient(135deg, $link 0%, darken($link, 10%) 100%);
   }
 }
 

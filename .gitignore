@@ -47,5 +47,8 @@ Thumbs.db
 # Angular cache
 .angular/
 
+# Cursor
+.cursor/
+
 # Environments
 variables.env.ts

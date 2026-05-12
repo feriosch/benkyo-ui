@@ -12,13 +12,14 @@ export interface Word {
 }
 
 export interface RelatedWord {
-  wordId: string;
+  wordId?: string;
   type: 'related' | 'synonym' | 'antonym';
   note?: string;
   word?: string;
   hiragana?: string;
   spanish?: string;
   tags?: NuanceTag[];
+  isBasic?: boolean;
 }
 
 export type NuanceTag =

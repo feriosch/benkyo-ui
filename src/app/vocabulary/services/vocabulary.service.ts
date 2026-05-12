@@ -20,6 +20,13 @@ export interface AddRelatedWordBody {
   note?: string;
 }
 
+export interface AddBasicRelatedWordBody {
+  word: string;
+  type: 'related' | 'synonym' | 'antonym';
+  tags?: NuanceTag[];
+  note?: string;
+}
+
 interface SearchResult {
   id: string;
   word: string;
@@ -158,5 +165,19 @@ export class VocabularyService {
     return this.http.delete(
       `${this.wordsUrl}/${wordId}/related/${relatedWordId}`,
     );
+  }
+
+  addBasicRelatedWord(
+    wordId: string,
+    body: AddBasicRelatedWordBody,
+  ): Observable<any> {
+    return this.http.post(`${this.wordsUrl}/${wordId}/related/basic`, body);
+  }
+
+  removeBasicRelatedWord(wordId: string, word: string): Observable<any> {
+    const params = new HttpParams().append('word', word);
+    return this.http.delete(`${this.wordsUrl}/${wordId}/related/basic`, {
+      params,
+    });
   }
 }
