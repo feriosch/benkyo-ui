@@ -18,6 +18,7 @@ export interface AddRelatedWordBody {
   type: 'related' | 'synonym' | 'antonym';
   tags?: NuanceTag[];
   note?: string;
+  reverseNote?: string;
 }
 
 export interface AddBasicRelatedWordBody {
@@ -25,6 +26,17 @@ export interface AddBasicRelatedWordBody {
   type: 'related' | 'synonym' | 'antonym';
   tags?: NuanceTag[];
   note?: string;
+}
+
+// Editing a relationship changes ONLY this side (no counterpart, no tag-swap).
+export interface EditRelatedWordBody {
+  type: 'related' | 'synonym' | 'antonym';
+  tags?: NuanceTag[];
+  note?: string;
+}
+
+export interface EditBasicRelatedWordBody extends EditRelatedWordBody {
+  word: string;
 }
 
 interface SearchResult {
@@ -179,5 +191,24 @@ export class VocabularyService {
     return this.http.delete(`${this.wordsUrl}/${wordId}/related/basic`, {
       params,
     });
+  }
+
+  // Edit a related word — this side only; never touches the counterpart.
+  updateRelatedWord(
+    wordId: string,
+    relatedWordId: string,
+    body: EditRelatedWordBody,
+  ): Observable<any> {
+    return this.http.put(
+      `${this.wordsUrl}/${wordId}/related/${relatedWordId}`,
+      body,
+    );
+  }
+
+  updateBasicRelatedWord(
+    wordId: string,
+    body: EditBasicRelatedWordBody,
+  ): Observable<any> {
+    return this.http.put(`${this.wordsUrl}/${wordId}/related/basic`, body);
   }
 }

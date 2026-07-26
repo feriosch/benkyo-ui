@@ -27,6 +27,7 @@ interface SearchResult {
 export class WordDetailsRelatedWordsComponent {
   @Input() related!: RelatedWord[];
   @Input() wordId!: string;
+  @Input() word?: string;
   @Output() relationshipAdded = new EventEmitter<void>();
   @Output() relationshipRemoved = new EventEmitter<string>();
 
@@ -38,8 +39,13 @@ export class WordDetailsRelatedWordsComponent {
   selectedType: 'related' | 'synonym' | 'antonym' = 'related';
   selectedNuanceTags: NuanceTag[] = [];
   selectedNote = '';
+  selectedReverseNote = '';
   isSearching = false;
   isSaving = false;
+
+  // Edit mode reuses the Add modal, but edits ONE side only (no counterpart, no tag-swap)
+  isEditing = false;
+  editingRel: RelatedWord | null = null;
 
   // Add Basic Modal state
   showBasicModal = false;
@@ -140,6 +146,23 @@ export class WordDetailsRelatedWordsComponent {
     this.resetModal();
   }
 
+  onClickEdit(event: Event, rel: RelatedWord) {
+    event.stopPropagation();
+    this.resetModal();
+    this.isEditing = true;
+    this.editingRel = rel;
+    this.selectedWord = {
+      id: rel.wordId ?? '',
+      word: rel.word ?? '',
+      hiragana: rel.hiragana,
+      spanish: rel.spanish ?? '',
+    };
+    this.selectedType = rel.type;
+    this.selectedNuanceTags = [...(rel.tags ?? [])];
+    this.selectedNote = rel.note ?? '';
+    this.showAddModal = true;
+  }
+
   closeAddModal() {
     this.showAddModal = false;
     this.resetModal();
@@ -152,6 +175,9 @@ export class WordDetailsRelatedWordsComponent {
     this.selectedType = 'related';
     this.selectedNuanceTags = [];
     this.selectedNote = '';
+    this.selectedReverseNote = '';
+    this.isEditing = false;
+    this.editingRel = null;
   }
 
   onSearchInput() {
@@ -202,6 +228,39 @@ export class WordDetailsRelatedWordsComponent {
     if (!this.selectedWord) return;
 
     this.isSaving = true;
+
+    if (this.isEditing && this.editingRel) {
+      const body = {
+        type: this.selectedType,
+        tags:
+          this.selectedNuanceTags.length > 0
+            ? this.selectedNuanceTags
+            : undefined,
+        note: this.selectedNote || undefined,
+      };
+      const update$ = this.editingRel.isBasic
+        ? this.vocabularyService.updateBasicRelatedWord(this.wordId, {
+            ...body,
+            word: this.editingRel.word!,
+          })
+        : this.vocabularyService.updateRelatedWord(
+            this.wordId,
+            this.editingRel.wordId!,
+            body,
+          );
+      update$.subscribe({
+        next: () => {
+          this.isSaving = false;
+          this.closeAddModal();
+          this.relationshipAdded.emit();
+        },
+        error: () => {
+          this.isSaving = false;
+        },
+      });
+      return;
+    }
+
     this.vocabularyService
       .addRelatedWord(this.wordId, {
         relatedWordId: this.selectedWord.id,
@@ -211,6 +270,7 @@ export class WordDetailsRelatedWordsComponent {
             ? this.selectedNuanceTags
             : undefined,
         note: this.selectedNote || undefined,
+        reverseNote: this.selectedReverseNote || undefined,
       })
       .subscribe({
         next: () => {

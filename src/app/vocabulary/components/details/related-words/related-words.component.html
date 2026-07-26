@@ -29,6 +29,13 @@
     @for (rel of related; track rel.wordId || rel.word) {
       <div class="related-word-card" [ngClass]="{ 'is-basic': rel.isBasic }">
         <button
+          class="edit-btn"
+          (click)="onClickEdit($event, rel)"
+          title="Edit relationship"
+        >
+          <i class="fas fa-pen"></i>
+        </button>
+        <button
           class="remove-btn"
           (click)="onClickRemove($event, rel)"
           title="Remove relationship"
@@ -128,7 +135,9 @@
     <div class="modal-background" (click)="closeAddModal()"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Add Related Word</p>
+        <p class="modal-card-title">
+          {{ isEditing ? 'Edit Relationship' : 'Add Related Word' }}
+        </p>
         <button
           class="delete"
           aria-label="close"
@@ -136,6 +145,7 @@
         ></button>
       </header>
       <section class="modal-card-body">
+        @if (!isEditing) {
         <!-- Search input -->
         <div class="field">
           <label class="label">Search Word</label>
@@ -174,11 +184,13 @@
             }
           </div>
         }
+        }
 
         @if (selectedWord) {
           <div class="selected-word-preview">
             <p class="label">
-              Selected: <strong>{{ selectedWord.word }}</strong>
+              {{ isEditing ? 'Editing' : 'Selected' }}:
+              <strong>{{ selectedWord.word }}</strong>
             </p>
           </div>
 
@@ -214,18 +226,40 @@
             </div>
           </div>
 
-          <!-- Note -->
+          <!-- Note (forward): shown on this word's card, about the related word -->
           <div class="field">
-            <label class="label">Note (optional)</label>
+            <label class="label">
+              Note (optional) — shown on this card, about
+              <strong>{{ selectedWord.word }}</strong>
+            </label>
             <div class="control">
               <input
                 class="input"
                 type="text"
-                placeholder="e.g., more formal in business contexts"
+                placeholder="e.g., configuring values/settings. N1"
                 [(ngModel)]="selectedNote"
               />
             </div>
           </div>
+
+          @if (!isEditing) {
+          <!-- Reverse note (add only): shown on the related word's card, about this word -->
+          <div class="field">
+            <label class="label">
+              Reverse note (optional) — shown on
+              <strong>{{ selectedWord.word }}</strong>'s card, about
+              <strong>{{ word || 'this word' }}</strong>
+            </label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Leave blank to mirror the note above"
+                [(ngModel)]="selectedReverseNote"
+              />
+            </div>
+          </div>
+          }
         }
       </section>
       <footer class="modal-card-foot">
@@ -236,7 +270,7 @@
             [ngClass]="{ 'is-loading': isSaving }"
             (click)="saveRelatedWord()"
           >
-            Add Relationship
+            {{ isEditing ? 'Save Changes' : 'Add Relationship' }}
           </button>
           <button class="button" (click)="closeAddModal()">Cancel</button>
         </div>

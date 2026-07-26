@@ -46,6 +46,7 @@
         <app-word-details-related-words
           [related]="word.related || []"
           [wordId]="word.id"
+          [word]="word.word"
           (relationshipAdded)="onRelationshipChanged()"
           (relationshipRemoved)="onRelationshipChanged()"
         ></app-word-details-related-words>
