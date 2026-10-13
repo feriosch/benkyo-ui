@@ -25,6 +25,7 @@ import { AddWordFormCollectionFieldComponent } from '../fields/collection/collec
 import { AddWordFormSentencesFieldComponent } from '../fields/sentences/sentences.component';
 import { AddWordFormSubmitFieldComponent } from '../fields/submit/submit.component';
 
+/** @deprecated Words are added with the `/add-word` Claude skill (benkyo-backend). */
 @Component({
   selector: 'app-add-word-form',
   templateUrl: './add-form.component.html',

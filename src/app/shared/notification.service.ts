@@ -25,6 +25,7 @@ export class NotificationService {
     notification.openToastNotification$();
   }
 
+  /** @deprecated Only used by the deprecated add word page. */
   toastWordCreationNotification(collection: string): void {
     const notification = new ToastNotificationInitializer();
     notification.setTitle('Success!');

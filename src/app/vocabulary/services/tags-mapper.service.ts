@@ -20,6 +20,10 @@ export class TagsMapperService {
     };
   }
 
+  isFormTag(backendTag: string): boolean {
+    return backendTag in this.frontendTags;
+  }
+
   getPrintingValueFromLocal(tag: string): string {
     switch (tag) {
       case 'ateji':
@@ -74,7 +78,8 @@ export class TagsMapperService {
       case 'usually_kana':
         return 'Usually Kana';
       default:
-        return '?';
+        // Usage tags (elderly_speech → Elderly speech)
+        return tag.charAt(0).toUpperCase() + tag.slice(1).replace(/_/g, ' ');
     }
   }
 }
