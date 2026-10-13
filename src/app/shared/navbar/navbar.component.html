@@ -25,16 +25,9 @@
   <div class="navbar-menu">
     @if (isAuthenticated()) {
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" (click)="navigateTo('/vocabulary')">
-            Vocabulary
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" (click)="navigateTo('/vocabulary/add')">
-              Add Word
-            </a>
-          </div>
-        </div>
+        <a class="navbar-item" (click)="navigateTo('/vocabulary')">
+          Vocabulary
+        </a>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" (click)="navigateTo('/collections')">
             Collections

@@ -60,7 +60,9 @@ export class EditWordFormComponent implements OnInit {
 
   editWordForm: FormGroup<VocabularyMainForm>;
   collections?: Collection[];
-  originalTags: string[];
+  // Tags without a checkbox in the form (rare, elderly_speech...), added outside
+  // the UI. They are not editable here but must survive a save.
+  usageTags: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -73,7 +75,7 @@ export class EditWordFormComponent implements OnInit {
     private vocabularyFormService: VocabularyFormService,
   ) {
     this.editWordForm = this.vocabularyFormService.createNewForm();
-    this.originalTags = [];
+    this.usageTags = [];
   }
 
   ngOnInit(): void {
@@ -134,6 +136,9 @@ export class EditWordFormComponent implements OnInit {
   }
 
   initializeTagControls(): void {
+    this.usageTags = this.fullWord!.tags!.filter(
+      (backendTag: string) => !this.tagsMapperService.isFormTag(backendTag),
+    );
     this.fullWord!.tags!.forEach((backendTag: string) => {
       const frontendTag: string =
         this.tagsMapperService.frontendTags[
@@ -149,6 +154,10 @@ export class EditWordFormComponent implements OnInit {
 
       if (tagControl) tagControl.setValue(true);
     });
+  }
+
+  getTagText(tag: string): string {
+    return this.tagsMapperService.getPrintingValueFromBackend(tag);
   }
 
   initializeSentenceControls(): void {
@@ -175,6 +184,9 @@ export class EditWordFormComponent implements OnInit {
       this.editWordForm.value as VocabularyFormValues,
       this.id,
     );
+    // Always send the full list, so unchecking every box clears the form tags
+    // while usage tags are kept.
+    editWordBody.tags = [...(editWordBody.tags ?? []), ...this.usageTags];
     this.vocabularyService.updateWord(editWordBody).subscribe(
       async (_response) => {
         await this.router.navigate(['../'], { relativeTo: this.route });
