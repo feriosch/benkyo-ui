@@ -25,6 +25,23 @@ export class NotificationService {
     notification.openToastNotification$();
   }
 
+  /** @deprecated Only used by the deprecated add word page. */
+  toastWordCreationNotification(collection: string): void {
+    const notification = new ToastNotificationInitializer();
+    notification.setTitle('Success!');
+    notification.setMessage(`Word was created successfully in: ${collection}.`);
+
+    notification.setConfig({
+      autoCloseDelay: 3000,
+      layoutType: DialogLayoutDisplay.SUCCESS,
+      progressBar: ToastProgressBarEnum.NONE,
+      toastUserViewType: ToastUserViewTypeEnum.SIMPLE,
+      toastPosition: ToastPositionEnum.TOP_CENTER,
+    });
+
+    notification.openToastNotification$();
+  }
+
   toastWordUpdateNotification(word: string): void {
     const notification = new ToastNotificationInitializer();
     notification.setTitle('Success!');

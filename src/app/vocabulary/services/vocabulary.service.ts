@@ -137,6 +137,11 @@ export class VocabularyService {
     return this.http.get<Word | null>(this.searchOneWordUrl, { params });
   }
 
+  /** @deprecated Only used by the deprecated add word page. */
+  addNewWord(body: AddWordBody): Observable<any> {
+    return this.http.post(this.wordsUrl, body);
+  }
+
   updateWord(body: AddWordBody): Observable<any> {
     return this.http.put(this.wordsUrl, body);
   }
